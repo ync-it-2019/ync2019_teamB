@@ -30,8 +30,10 @@ public class JDBCTests {
 		Wallet_ync2019 폴더에는 Oracle Cloud DB의 접속 정보와 인증 정보가 들어 있음.
 		따라서 해당 경로가 틀리면 DB접속이 안됨
 		*/
-		try (Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ync2019_tp?TNS_ADMIN=D:\\Wallet_ync2019", "admin",
-				"Yncit2019@$*")) {
+//		try (Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ync2019_tp?TNS_ADMIN=D:\\Wallet_ync2019", "admin",
+//				"Yncit2019@$*")) {
+		try (Connection con = DriverManager.getConnection("jdbc:log4jdbc:oracle:thin:@220.67.2.3:1521:ora11", "educ239",
+				"pass239")) {
 
 			log.info(con);
 		} catch (Exception e) {

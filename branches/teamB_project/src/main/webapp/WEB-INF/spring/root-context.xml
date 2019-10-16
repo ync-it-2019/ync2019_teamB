@@ -16,7 +16,7 @@
 	
 	<!-- HikariCP DBconnection setting-->
 	<!--
-	Oracle Cloud DB 사용을 위한 DB접속 설정으로 변경 됨
+	Oracle Cloud DB 사용을 위한 DB접속 설정으로 변경 됨s
 	PC에서는 본인 PC경로인 TNS_ADMIN=G:\Wallet_ync2019 으로 로컬 경로로 설정!!
 	commit 시 Server에 있는 팀별 경로인 TNS_ADMIN=/home/hanize2/Wallet_ync2019 으로 값을 변경해줘야 함!!!
 	Wallet_ync2019 폴더에는 Oracle Cloud DB의 접속 정보와 인증 정보가 들어 있음.
@@ -24,9 +24,14 @@
 	-->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@ync2019_tp?TNS_ADMIN=D:\Wallet_ync2019"></property>
+		<!-- <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@ync2019_tp?TNS_ADMIN=D:\Wallet_ync2019"></property>
 		<property name="username" value="admin"></property>
 		<property name="password" value="Yncit2019@$*"></property>
+		<property name="maximumPoolSize" value="5"></property> -->
+
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@220.67.2.3:1521:ora11"></property>
+		<property name="username" value="educ239"></property>
+		<property name="password" value="pass239"></property>
 		<property name="maximumPoolSize" value="5"></property>
 	</bean>
 
