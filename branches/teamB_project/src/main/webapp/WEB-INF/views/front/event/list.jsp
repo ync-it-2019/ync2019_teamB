@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>牛모임 :: 이벤트 리스트</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         addEventListener("load", function () {
@@ -13,6 +14,11 @@
             window.scrollTo(0, 1);
         }
     </script>
+    <style media="screen">
+      a:link { color: black; text-decoration: none;}
+   a:visited { color: black; text-decoration: none;}
+   a:hover { color: black; text-decoration: underline;}
+    </style>
     
         <link href="../../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="../../../../resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
@@ -24,9 +30,6 @@
 	<!-- google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //google fonts -->
-	
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 <!-- //header -->
@@ -89,61 +92,44 @@
 <!-- //page details -->
 
 <!-- Recent News -->
-<section class="news py-5" id="news">
+<section class="news py-5">
 	<div class="container py-lg-3">
-    <h4 style="margin : 20px;"><a href="#" style="color : #007bff">진행중인 이벤트</a> | <a href="eventEndList.html"">종료된 이벤트</a></h4>
+    <h5 style="margin : 20px;"><a href="#" style="color : #007bff">진행중인 이벤트</a> | <a href="./endList">종료된 이벤트</a></h5>
     <hr>
-    <h2 style="margin-top : 50px; margin-bottom : 50px"><b>진행중인 이벤트</b></h2>
+    <h4 style="margin-top : 50px; margin-bottom : 20px"><b>진행중인 이벤트</b></h4>
 		<div class="row blog-grids">
-			<div class="col-lg-4 col-md-6 newsgrid1">
-				<a href="eventBoard.html""><img src="images/a1.jpg" alt="news image" class="img-fluid"></a>
-				<h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트1</a></h4>
+      <div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
+				<a href="./get"><img src="../../../../resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
+				<h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
+				<ul class="blog-info mt-2">
+					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
+				</ul>
+			</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
+				<a href="./get"><img src="../../../../resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
+				<h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
+				<ul class="blog-info mt-2">
+					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
+				</ul>
+			</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
+				<a href="./get"><img src="../../../../resources/img/a1.jpg" alt="news image" class="img-fluid2"></a>
+				<h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
+				<ul class="blog-info mt-2">
+					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
+				</ul>
+			</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
+				<a href="./get"><img src="../../../../resources/img/a1.jpg" alt="news image" class="img-fluid2"></a>
+				<h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
+				<ul class="blog-info mt-2">
+					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
+				</ul>
+			</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
+				<a href="./get"><img src="../../../../resources/img/a1.jpg" alt="news image" class="img-fluid2"></a>
+				<h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
 				<ul class="blog-info mt-2">
 					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
 				</ul>
 			</div>
-      <div class="col-lg-4 col-md-6 newsgrid1">
-				<a href="eventBoard.html"><img src="images/a1.jpg" alt="news image" class="img-fluid"></a>
-				<h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트2</a></h4>
-				<ul class="blog-info mt-2">
-					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-				</ul>
-			</div>
-      <div class="col-lg-4 col-md-6 newsgrid1">
-				<a href="eventBoard.html"><img src="images/a1.jpg" alt="news image" class="img-fluid"></a>
-				<h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트3</a></h4>
-				<ul class="blog-info mt-2">
-					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-				</ul>
-			</div>
-      <div class="col-lg-4 col-md-6 newsgrid1">
-				<a href="eventBoard.html"><img src="images/a1.jpg" alt="news image" class="img-fluid"></a>
-				<h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트4</a></h4>
-				<ul class="blog-info mt-2">
-					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-				</ul>
-			</div>
-      <div class="col-lg-4 col-md-6 newsgrid1">
-				<a href="eventBoard.html"><img src="images/a1.jpg" alt="news image" class="img-fluid"></a>
-				<h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트5</a></h4>
-				<ul class="blog-info mt-2">
-					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-				</ul>
-			</div>
-      <div class="col-lg-4 col-md-6 newsgrid1">
-				<a href="eventBoard.html"><img src="images/a1.jpg" alt="news image" class="img-fluid"></a>
-				<h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트6</a></h4>
-				<ul class="blog-info mt-2">
-					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-				</ul>
-			</div>
-      <div class="col-lg-4 col-md-6 newsgrid1">
-				<a href="eventBoard.html"><img src="images/a1.jpg" alt="news image" class="img-fluid"></a>
-				<h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트7</a></h4>
-				<ul class="blog-info mt-2">
-					<li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-				</ul>
-			</div>
+
       <div class="container">
       <div style="margin : 20px;">
        <ul class="pagination justify-content-center">
@@ -155,8 +141,11 @@
                <li class="page-item"><a class="page-link" href="#">5</a></li>
                <li class="page-item"><a class="page-link" href="#">Next</a></li>
        </ul>
-       </div>
-       </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- //Recent News -->
 
 <!-- footer -->
