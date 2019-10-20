@@ -163,7 +163,7 @@
 					</div>
 				</div>
 			</form>
-      <a href="myPage.html"><button class="btn" style="position: relative; bottom: 56px; left: 320px;">취소</button></a>
+      <a href="./info"><button class="btn" style="position: relative; bottom: 56px; left: 320px;">취소</button></a>
 		</div>
 
 	</div>
