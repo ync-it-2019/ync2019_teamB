@@ -27,7 +27,7 @@ public class FrontHomeController {
 
 		log.info("Welcome home!");
 	
-		return "front/index";
+		return "front/myMeeting";
 	}
 	
 }

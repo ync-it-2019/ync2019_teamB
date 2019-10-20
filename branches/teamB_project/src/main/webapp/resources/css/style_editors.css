@@ -1,0 +1,161 @@
+
+.aside {
+  align: right;
+}
+/*login_area start*/
+.login_area {
+  float: right;
+  width : 300px;
+  height: 190px;
+  border: 1px solid #dadde0;
+  margin: 140px 0 0 0px;
+  padding-top: 20px;
+
+  /*margin-top: 20px;*/
+  /*margin-right: 93px;*/
+}
+.login_area hr {
+  margin-top: 7px;
+  width: 260px;
+}
+.login_area img {
+  margin-top: -1px;
+  margin-left: -1px;
+  border: 1px solid #d1d1d1;
+  width: 310px;
+}
+.banner img{
+  margin-top: 7px;
+  height: 150px;
+}
+.login {
+  text-align: center;
+  align:center;
+  margin-top: 10px;
+  margin-left: 20px ;
+  width: 260px;
+  height: 40px;
+  border: solid 1px #d1d1d1;
+  font-weight: bold;
+  background: #e9ecef;
+  line-height: 40px;
+}
+.login_btn {
+  font-size: 15px;
+  color:#808080;
+
+}
+.user_find {
+  margin-top: 5px;
+  margin-left: 223px;
+
+}
+.btn_join {
+
+  color: #6e6e6e;
+  font-size: 14px;
+}
+
+.letter p {
+  font-size: 18px;
+  color: black;
+  text-align: center;
+}
+.arti1, .arti2, .arti3 {
+  color: #e22f26;
+  display: inline-block;
+}
+.arti1 a, .arti2 a, .arti3 a {
+  color: black;
+}
+
+.arti1 {
+  margin-left: 45px;
+}
+.arti2 {
+  margin-left: 35px;
+}
+.arti3 {
+  margin-left: 75px;
+  margin-top: 10px;
+}
+.notice .plus {
+  margin-left: 245px;
+}
+.notice {
+  margin-left: -1px;
+  border: solid 1px #d1d1d1;
+  margin-top: 7px;
+  width: 300px;
+  height: 140px;
+}
+.notice p {
+  color: #545454;
+  font-size: 14px;
+  margin: 0 10px 0 20px;
+
+}
+.notice a {
+  font-size: 12px;
+  margin: 15px 10px 0 20px;
+}
+
+/* 링크 색깔 */
+.sliderA a:link,
+.sliderA a:visited,
+.mt-4 a:link,
+.mt-4 a:visited,
+.pagination a:link,
+.pagination a:visited,
+.notice a:link,
+.notice a:visited,
+.mypage > a:link,
+.mypage > a:visited,
+.logout a:link,
+.logout a:visited
+ { color: black; text-decoration: none;}
+.sliderA a:hover,
+.mt-4 a:hover,
+.pagination a:hover,
+.profile a:hover
+ { color: black; text-decoration: underline;}
+
+ .mypage > span a:link,
+ .mypage > span a:visited
+  { color: #545454; text-decoration: none;}
+
+
+.profile{
+  width:300px;
+  display:grid;
+  grid-template-columns: 20% 80%;
+  margin-left: 10px;
+  height: 79px;
+}
+.profile img {
+  border-radius: 50%;
+}
+/* .mypage{
+} */
+.mypage a{
+  margin-left: 10px;
+  font-size: 14px;
+}
+.mypage > span a{
+  font-size: 12px;
+  margin-top: 3px;
+}
+.add_ho{
+  font-size: 12px;
+  margin-left: 10px;
+}
+.logout a{
+  font-size: 13px;
+  border: 1px solid #d1d1d1;
+  padding: 3px;
+  margin: 0 0 0 80px;
+}
+
+
+
+/*login_area end*/
