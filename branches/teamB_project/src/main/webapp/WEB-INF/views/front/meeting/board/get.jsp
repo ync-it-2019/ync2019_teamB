@@ -126,7 +126,7 @@
           <!-- //댓글쓰기-->
 
           <!--수정과 삭제버튼-->
-          <button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left" style="margin-bottom:10px"><a href="meeting_board.html" style="color:white">전체글</a></button>
+          <button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left" style="margin-bottom:10px"><a href="/.list" style="color:white">전체글</a></button>
           <button type="submit" id="submit" name="submit" class="btn btn-danger pull-right" style="margin-bottom:10px">삭제하기</button>
           <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin-bottom:10px">수정하기</button>
         </div>
@@ -152,7 +152,7 @@
         <tr>
           <td class="board-number-css">10</td>
           <td class="board-category-css">일반</td>
-          <td class="pl-4"><a href="meeting_board2.html" style="color:black">자유 게시글입니다 </a><a style="color:#5C88FD">1</a></td>
+          <td class="pl-4"><a href="./get.html" style="color:black">자유 게시글입니다 </a><a style="color:#5C88FD">2</a></td>
           <td class="board-writer-css">이주현</td>
           <td class="board-date-css">2019. 10. 01</td>
           <td class="board-hits-css">0</td>
@@ -240,7 +240,7 @@
           <button class="btn btn-secondary" type="button" >찾기</button>
         </span>
         <div class="input-group-btn" style="position: absolute; right: 0;">
-          <button class="btn btn-secondary" type="button" ><a href="meeting_board3.html" style="color:white">글쓰기</a></button>
+          <button class="btn btn-secondary" type="button" ><a href="./write" style="color:white">글쓰기</a></button>
         </div>
       </div>
       <!-- //Search form -->
