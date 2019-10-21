@@ -160,16 +160,16 @@
       <p>"오늘도 당신의 즐거운 하루가 되길 응원합니다."</p>
       </div>
         <div class="login">
-          <button class="login_btn">
-            로그인
+          <button class="login_btn" onclick="location.href='/login' ">
+            	로그인
           </button>
         </div>
       <div class="user_find">
-        <a class="btn_join" href="/front/register">회원가입</a>
+        <a class="btn_join" href="/register">회원가입</a>
       </div>
-      <div class="arti1">#<a href="*">나만의 모임</a></div>
-      <div class="arti2">#<a href="*">인맥 쌓기</a></div>
-      <div class="arti3">#<a href="*">취미 생활 크루 찾기</a></div>
+      <div class="arti1">#<a href="/front/myMeeting">나만의 모임</a></div>
+      <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
+      <div class="arti3">#<a href="/front/meetingSearch">취미 생활 크루 찾기</a></div>
     </div>
   </div>
   <!-- aside end -->
@@ -202,8 +202,8 @@
     </div>
   </div>
     <div class="faq">
-      <div class="faq_i"><a href="#"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
-      <div class="answer_i"><a href="#"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
+      <div class="faq_i"><a href="/front/question/FAQ"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
+      <div class="answer_i"><a href="/front/question/myQuestion"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
       <div class="faq_i"></div>
     </div>
   </div>
