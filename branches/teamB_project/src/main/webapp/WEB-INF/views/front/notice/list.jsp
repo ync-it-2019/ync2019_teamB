@@ -25,9 +25,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </style>
 
 	<!-- css files -->
-    <link href="../../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="../../../../resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="../../../../resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
 
 	<!-- google fonts -->
@@ -120,7 +120,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -128,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -136,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -144,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -152,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -176,7 +176,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -184,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -219,140 +219,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- footer -->
 <footer class="footer py-5">
-	<div class="container py-md-3">
-		<div class="footer-grid_section text-center">
-			<div class="footer-title mb-3">
-				<h2> <a href="index.html"><span class="fa fa-meetup"></span> Furnish</a></h2>
-			</div>
-			<div class="footer-text">
-				<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ipnut libero malesuada feugiat.
-				 Lorem ipsum dolor sit amet elit.</p>
-			</div>
-		</div>
-		<div class="row mt-5">
-			<div class="col-lg-4 mb-lg-0 mb-4 footer-top">
-				<h4 class="mb-4 w3f_title text-uppercase">Contact Info</h4>
-				<div class="footer-style-w3ls my-2">
-					<p> 1127 Block, 2nd cross, 4th floor, London.</p>
-				</div>
-				<div class="footer-style-w3ls my-2">
-					<p> (+121)-098-8907-9987</p>
-				</div>
-				<div class="footer-style-w3ls">
-					<p> <a href="mailto:info@examplemail.com">info@examplemail.com</a></p>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6 footv3-left">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Company</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="about.html">
-							About Us
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Terms of use
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Faq's
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Privacy Ploicy
-						</a>
-					</li>
-					<li>
-						<a href="contact.html">
-							Get In Touch
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Categories</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Furniture Chairs
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Three Seater Sofas
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Dining Tables
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Office Chairs
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Kitchen Cabinets
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Resources</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Getting Started
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Best Collections
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="categories.html">
-							All Categories
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							24/7 Support
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Contact for Help
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Account</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="login.html">
-							Sign In
-						</a>
-					</li>
-					<li class="">
-						<a href="register.html">
-							Create Account
-						</a>
-					</li>
-				</ul>
-			</div>
-
-		</div>
-	</div>
-	<!-- //footer bottom -->
+	
 </footer>
 <!-- //footer -->
 
