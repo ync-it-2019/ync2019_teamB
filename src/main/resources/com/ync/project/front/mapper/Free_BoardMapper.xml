@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.front.mapper.Free_BoardMapper">
+
+ 
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+
+	<select id="getList" resultType="com.ync.project.domain.BoardVO"> <!-- 게시글이 있을시 가져오기 -->
+	<![CDATA[
+		select * from tbl_board where free_board_num > 0 
+		]]>
+	</select>
+ 
+	<insert id="insert">
+		insert into teamb_free_board (free_board_num, title, write_date, contents, views, userid, meeting_num, files, category)
+		values (seq_board.nextval, #{title}, #{write_date}, #{contents}, #{views}, #{userid}, #{meeting_num}, #{files}, #{category})
+	</insert>
+
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="free_board_num" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		insert into teamb_free_board (free_board_num, title, write_date, contents, views, userid, meeting_num, files, category)
+		values (#{free_board_num},	#{title}, #{write_date}, #{contents}, #{views}, #{userid}, #{meeting_num}, #{files}, #{category})
+	</insert>
+
+	<select id="read" resultType="com.ync.project.domain.BoardVO"> <!-- 글 읽어오기 -->
+		select * from teamb_free_board where free_board_num = #{free_board_num}
+	</select>
+
+
+	<delete id="delete"> <!-- 글 삭제 -->
+		delete teamb_free_board where free_board_num = #{free_board_num}
+	</delete>
+ 
+	<update id="update">  <!-- 글 수정 -->
+		update tbl_board
+		set title = #{title},
+			contents = #{contents},
+			userid = #{userid},
+			write_date = sysdate
+			where free_board_num =
+		#{free_board_num}
+	</update>
+	<!-- 글 목록 페이징 --><!-- 리플 카운트가 테이블이 없음, bk_board ?, regdate와 updatedate 삭제 -->
+	<select id="getListWithPaging" resultType="com.ync.project.domain.BoardVO">
+		<![CDATA[
+		SELECT	free_board_num,
+				title,
+				contents,
+				userid,
+				write_date   <
+		FROM	(SELECT /*+INDEX_DESC(teamb_free_board pk_board) */
+        				rownum rn,
+        				free_board_num,
+        				title,
+        				contents,
+        				userid,
+        				write_date
+      			FROM	tbl_board
+				WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+	</select>
+
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_free_board where 
+		
+		<include refid="criteria"></include> 
+		
+		free_board_num > 0
+		
+	</select>
+	
+<!-- 	<update id="updateReplyCnt">
+		UPDATE tbl_board SET replycnt = replycnt + #{amount} WHERE free_board_num = #{free_board_num}
+	</update> -->  <!-- ReplyCnt테이블이 없어서 일단 지움 -->
+</mapper>
