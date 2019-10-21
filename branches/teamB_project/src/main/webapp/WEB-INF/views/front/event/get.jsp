@@ -20,12 +20,12 @@
    a:hover { color: black; text-decoration: underline;}
     </style>
     
-        <link href="../../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="../../../../resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="../../../../resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+        <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
 
-	<link href="../../../../resources/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+	<link href="/resources/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
 
 	<!-- google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
@@ -108,7 +108,7 @@
 						</ul>
 						<hr>
 						<div class="">
-							<img class="card-img-top" src="../../../../resources/img/1.jpg" alt="Card image cap">
+							<img class="card-img-top" src="/resources/img/1.jpg" alt="Card image cap">
 							<div class="mt-4">
 								<p class="card-text">이벤트 내용</p>
 							</div>
@@ -129,32 +129,32 @@
       <hr>
       <div class="row mt-lg-3" style="margin-left: 25px;">
 <div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="eventBoard.html"><img src="../../../../resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트1</a></h4>
+  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
+  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
   <ul class="blog-info mt-2">
     <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
   </ul>
 </div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="eventBoard.html"><img src="../../../../resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트1</a></h4>
+  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
+  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
   <ul class="blog-info mt-2">
     <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
   </ul>
 </div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="eventBoard.html"><img src="../../../../resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트1</a></h4>
+  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
+  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
   <ul class="blog-info mt-2">
     <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
   </ul>
 </div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="eventBoard.html"><img src="../../../../resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트1</a></h4>
+  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
+  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
   <ul class="blog-info mt-2">
     <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
   </ul>
 </div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="eventBoard.html"><img src="../../../../resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="eventBoard.html"> 牛 모임 이벤트1</a></h4>
+  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
+  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
   <ul class="blog-info mt-2">
     <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
   </ul>
