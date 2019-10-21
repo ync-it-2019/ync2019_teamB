@@ -13,11 +13,11 @@ import lombok.Data;
   */
 @Data
 public class QuestionVO {
-	private Long question_no;
-	private String userid;
-	private String title;
-	private String contents;
-	private String files;
-	private Date write_date;
-	private String answer_whther;
+	private Long question_no;	 //글번호
+	private String userid;		 //글쓴이 아이디
+	private String title;		 //제목
+	private String contents;	 //내용
+	private String files;		 //첨부파일
+	private Date write_date;	 //작성일자
+	private String answer_whther;//답변여부
 }
