@@ -33,39 +33,41 @@
 <body>
 <!-- //header -->
   <header class="py-sm-3 pt-3 pb-2" id="home">
-  	<div class="container">
-  		<!-- nav -->
-  		<div class="top d-md-flex">
-  			<div id="logo">
-  				<h1> <a href="index.html"><span class="fa fa-meetup"></span> Furnish</a></h1>
-  			</div>
-  			<div class="search-form mx-md-auto">
-  				<div class="n-right-w3ls">
-  					<form action="#" method="post" class="newsletter">
-  						<input class="search" type="text" placeholder="Search..." required="">
-  						<button class="form-control btn" value=""><span class="fa fa-search"></span></button>
-  					</form>
-  				</div>
-  			</div>
-  			<div class="forms mt-md-0 mt-2">
-  				<a href="login.html" class="btn"><span class="fa fa-user-circle-o"></span> Sign In</a>
-  				<a href="register.html" class="btn"><span class="fa fa-pencil-square-o"></span> Create Account</a>
-  			</div>
-  		</div>
-  		<nav class="text-center">
-  			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
-  			<input type="checkbox" id="drop" />
-  			<ul class="menu">
-  				<li class="mr-lg-4 mr-2 active"><a href="index.html">홈</a></li>
-  				<li class="mr-lg-4 mr-2"><a href="about.html">공지사항</a></li>
-  				<li class="mr-lg-4 mr-2"><a href="services.html">이벤트</a></li>
-  				<li class="mr-lg-4 mr-2"><a href="categories.html">모임 찾기</a></li>
-  				<li class="mr-lg-4 mr-2"><a href="blog.html">내모임</a></li>
-  				<li class=""><a href="contact.html">내정보</a></li>
-  			</ul>
-  		</nav>
-  		<!-- //nav -->
-  	</div>
+     <div class="container">
+        <!-- nav -->
+        <div class="top d-md-flex">
+           <div id="logo">
+              <h1> <a href="/"><span class="fa fa-meetup"></span> 牛모임</a></h1>
+           </div>
+           <div class="search-form mx-md-auto">
+              <div class="n-right-w3ls">
+                 <form action="#" method="post" class="newsletter">
+                    <input class="search" type="text" placeholder="Search..." required="">
+                    <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
+                 </form>
+              </div>
+           </div>
+           <div class="forms mt-md-0 mt-2">
+              <a href="/front/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
+              <a href="/front/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
+              <a href="/front/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
+              <a href="/front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
+           </div>
+        </div>
+        <nav class="text-center">
+           <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+           <input type="checkbox" id="drop" />
+           <ul class="menu">
+              <li class="mr-lg-4 mr-2 active"><a href="/">홈</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/front/notice/list">공지사항</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/front/event/list">이벤트</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/front/meetingSearch">모임 찾기</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/front/myMeeting">내모임</a></li>
+              <li class=""><a href="/front/question/FAQ">고객센터</a></li>
+           </ul>
+        </nav>
+        <!-- //nav -->
+     </div>
   </header>
   <!-- //header -->
 
@@ -201,7 +203,7 @@
           </button>
         </div>
       <div class="user_find">
-        <a class="btn_join" href="./register.html">회원가입</a>
+        <a class="btn_join" href="/front/register">회원가입</a>
       </div>
       <div class="arti1">#<a href="*">나만의 모임</a></div>
       <div class="arti2">#<a href="*">인맥 쌓기</a></div>
@@ -220,19 +222,19 @@
       <h3>Notice</h3>
       <div class="notice_list">
         <ul>
-          <li class="n_li_title">.<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
+          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
           <li class="n_li_date">2019-10-15<li>
         </ul>
         <ul>
-          <li class="n_li_title">.<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
+          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
           <li class="n_li_date">2019-10-15<li>
         </ul>
         <ul>
-          <li class="n_li_title">.<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
+          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
           <li class="n_li_date">2019-10-15<li>
         </ul>
         <ul>
-          <li class="n_li_title">.<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
+          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
           <li class="n_li_date">2019-10-15<li>
         </ul>
     </div>
