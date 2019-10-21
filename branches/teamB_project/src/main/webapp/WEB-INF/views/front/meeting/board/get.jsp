@@ -111,10 +111,9 @@
         <!-- //댓글창-->
         <!--댓글쓰기-->
         <div>
-          <div class="form-group" style="border:5px solid #C6D0C7; padding-bottom:40px">
+          <div class="form-group" style="border:5px solid #C6D0C7; padding-bottom:47px">
             <textarea class="form-control pull-left" id="summernote" name="content" maxlength="140" rows="7"></textarea>
-            <br>
-            <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">댓글쓰기</button>
+            <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin-top:5px">댓글쓰기</button>
           </div>
           <script>
             $('#summernote').summernote({
@@ -126,7 +125,7 @@
           <!-- //댓글쓰기-->
 
           <!--수정과 삭제버튼-->
-          <button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left" style="margin-bottom:10px"><a href="./list" style="color:white">전체글</a></button>
+          <a href="./list" style="color:white"><button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left" style="margin-bottom:10px">전체글</button></a>
           <button type="submit" id="submit" name="submit" class="btn btn-danger pull-right" style="margin-bottom:10px">삭제하기</button>
           <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin-bottom:10px">수정하기</button>
         </div>
@@ -240,7 +239,7 @@
           <button class="btn btn-secondary" type="button" >찾기</button>
         </span>
         <div class="input-group-btn" style="position: absolute; right: 0;">
-          <button class="btn btn-secondary" type="button" ><a href="./write" style="color:white">글쓰기</a></button>
+          <a href="./write" style="color:white"><button class="btn btn-secondary" type="button">글쓰기</button></a>
         </div>
       </div>
       <!-- //Search form -->

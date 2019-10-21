@@ -167,7 +167,7 @@
           <button class="btn btn-secondary" type="button" >찾기</button>
         </span>
         <div class="input-group-btn" style="position: absolute; right: 0;">
-          <button class="btn btn-secondary" type="button" ><a href="./write" style="color:white">글쓰기</a></button>
+          <a href="./write" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
         </div>
       </div>
       <!-- //Search form -->
