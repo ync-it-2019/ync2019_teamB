@@ -87,7 +87,7 @@
         });
       </script>
       <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin:10px"> 등록 </button>
-      <button type="reset" class="btn btn-default pull-right" style="margin:10px"><a href="meeting_board.html"> 취소</a> </button>
+      <button type="reset" class="btn btn-default pull-right" style="margin:10px"><a href='javascript:history.back()'> 취소</a> </button>
     </form>
   </div>
 </section>
