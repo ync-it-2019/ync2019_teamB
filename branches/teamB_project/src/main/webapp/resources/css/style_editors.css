@@ -1,63 +1,64 @@
-
+.main_top {
+  margin-left: 50px;
+  width: 1150px;
+  height: 400px;
+}
+.containers {
+  border-top: 1px solid #eee;
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+.common_title {
+    padding: 24px 0px 0px 100px;
+    font-weight: normal;
+}
+.content {
+  padding : 25px 0 0 50px;
+  float: left;
+  position: relative;
+  width: 855px;
+}
 .aside {
-  align: right;
+  float: right;
 }
 /*login_area start*/
 .login_area {
   float: right;
-  width : 300px;
-  height: 190px;
-  border: 1px solid #dadde0;
-  margin: 140px 0 0 0px;
-  padding-top: 20px;
-
+  width : 295px;
+  height: 155px;
   /*margin-top: 20px;*/
   /*margin-right: 93px;*/
 }
-.login_area hr {
-  margin-top: 7px;
-  width: 260px;
-}
-.login_area img {
-  margin-top: -1px;
-  margin-left: -1px;
-  border: 1px solid #d1d1d1;
-  width: 310px;
-}
-.banner img{
-  margin-top: 7px;
-  height: 150px;
-}
 .login {
-  text-align: center;
-  align:center;
-  margin-top: 10px;
-  margin-left: 20px ;
-  width: 260px;
-  height: 40px;
-  border: solid 1px #d1d1d1;
-  font-weight: bold;
-  background: #e9ecef;
+  margin-top: 20px;
+  margin-left: 75px;
+  padding-top: 8px;
   line-height: 40px;
 }
 .login_btn {
-  font-size: 15px;
-  color:#808080;
-
+  font-size: 17px;
+  width: 135px;
+  height: 55px;
+  border: solid 1px #e7e7e7;
+  background: #e22f26;
+  color: white;
 }
 .user_find {
-  margin-top: 5px;
-  margin-left: 223px;
-
+  margin-top: 15px;
+  margin-left: 35px;
+  color: #999;
 }
 .btn_join {
-
-  color: #6e6e6e;
-  font-size: 14px;
-}
-
-.letter p {
+  padding-left: 70px;
+  color: black;
   font-size: 18px;
+}
+.letter {
+  margin: 65px 0 0 10px;
+}
+.letter p {
+  font-size: 20px;
   color: black;
   text-align: center;
 }
@@ -68,94 +69,98 @@
 .arti1 a, .arti2 a, .arti3 a {
   color: black;
 }
-
+.arti1, .arti2 {
+  margin-top: 35px;
+}
 .arti1 {
-  margin-left: 45px;
+  margin-left: 40px;
 }
 .arti2 {
-  margin-left: 35px;
+  margin-left: 30px;
 }
 .arti3 {
-  margin-left: 75px;
+  margin-left: 70px;
   margin-top: 10px;
 }
-.notice .plus {
-  margin-left: 245px;
+/*login_area end*/
+/* main_meddle start */
+.main_meddle {
+  height: 400px;;
 }
+.meeting_area a {
+  color: black;
+}
+.m_area, .m_hobby {
+  border: solid 1px #e7e7e7;
+  float:left;
+}
+.m_area_title , .m_hobby_title {
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}read(String userid);
+.m_area_contents, .m_hobby_contents {
+  margin-top: 20px;
+}
+.m_area_contents a, .m_hobby_contents a {
+  font-size: 13px;
+}
+/*main_meddle end*/
+.editor_list  {
+  padding-top: 0rem !important;
+  padding-left: 2rem;
+}
+.news_area {
+  width: 1263px;
+  height: 180px;
+  border-top: 1px solid #e7e7e7;
+  background-color: #f7f7f7;
+}
+.main_bottom {
+  margin-top: 50px;
+}
+/* notice start */
 .notice {
-  margin-left: -1px;
-  border: solid 1px #d1d1d1;
-  margin-top: 7px;
-  width: 300px;
-  height: 140px;
-}
-.notice p {
-  color: #545454;
-  font-size: 14px;
-  margin: 0 10px 0 20px;
-
+  margin-left: 180px;
+  float: left;
 }
 .notice a {
-  font-size: 12px;
-  margin: 15px 10px 0 20px;
+  color: black;
 }
-
-/* 링크 색깔 */
-.sliderA a:link,
-.sliderA a:visited,
-.mt-4 a:link,
-.mt-4 a:visited,
-.pagination a:link,
-.pagination a:visited,
-.notice a:link,
-.notice a:visited,
-.mypage > a:link,
-.mypage > a:visited,
-.logout a:link,
-.logout a:visited
- { color: black; text-decoration: none;}
-.sliderA a:hover,
-.mt-4 a:hover,
-.pagination a:hover,
-.profile a:hover
- { color: black; text-decoration: underline;}
-
- .mypage > span a:link,
- .mypage > span a:visited
-  { color: #545454; text-decoration: none;}
-
-
-.profile{
-  width:300px;
-  display:grid;
-  grid-template-columns: 20% 80%;
-  margin-left: 10px;
-  height: 79px;
+.notice_list {
+  margin-top: 20px;
 }
-.profile img {
-  border-radius: 50%;
+.notice_list li {
+    font-size: 14px;
 }
-/* .mypage{
-} */
-.mypage a{
-  margin-left: 10px;
-  font-size: 14px;
+.n_li_title {
+  float: left;
 }
-.mypage > span a{
-  font-size: 12px;
-  margin-top: 3px;
+.n_li_date {
+  float: left;
+  margin-left: 80px;
 }
-.add_ho{
-  font-size: 12px;
-  margin-left: 10px;
+.notice p {
+  float: right;
 }
-.logout a{
-  font-size: 13px;
-  border: 1px solid #d1d1d1;
-  padding: 3px;
-  margin: 0 0 0 80px;
-}
+/* notice end */
 
-
-
-/*login_area end*/
+/* faq start */
+.faq {
+  margin-left: 30px;
+  float: left;
+}
+.faq_2 {
+  width: 200px;
+  height: 180px;
+  float: left;
+  background-color: #274784;
+  padding-bottom: 30px;
+}
+.faq_1, .faq_3 {
+  width: 200px;
+  height: 180px;
+  float: left;
+  background-color: #434a54;
+}
+/* faq end */
