@@ -16,7 +16,7 @@
 //import com.ync.project.util.UploadUtils;
 //import com.ync.project.domain.Free_BoardVO;
 //import com.ync.project.domain.Criteria;
-//import com.ync.project.front.service.BoardService;
+//import com.ync.project.front.service.Free_BoardService;
 //
 //import lombok.extern.log4j.Log4j;
 //
