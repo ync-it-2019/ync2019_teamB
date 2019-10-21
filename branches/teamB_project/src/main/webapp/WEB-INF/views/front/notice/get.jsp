@@ -25,9 +25,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </style>
 
 	<!-- css files -->
-    <link href="../../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="../../../../resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="../../../../resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
 
 	<!-- google fonts -->
@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 						<hr>
 						<div class="">
-							<img class="card-img-top" src="../../../../resources/img/1.jpg" alt="Card image cap">
+							<img class="card-img-top" src="/resources/img/1.jpg" alt="Card image cap">
 							<div class="mt-4">
 								<p class="card-text">공지사항 내용</p>
 							</div>
@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
             <td>1</td>
-            <td><a href="noticeBoard.html" class="over1">공지의 제목이 들어오는 공간입니다1ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</a></td>
+            <td><a href="./get" class="over1">공지의 제목이 들어오는 공간입니다1ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</a></td>
             <td class="over2">작성자1ㅡㅡㅡㅡㅡㅡ</td>
             <td>2019-10-09</td>
           </tr>
@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -157,7 +157,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -165,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -173,7 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -181,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -189,7 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -197,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -205,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
@@ -213,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <tbody>
           <tr>
            <td>2</td>
-           <td><a href="noticeBoard.html">공지의 제목이 들어오는 공간입니다2</a></td>
+           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
            <td>작성자2</td>
            <td>2019-10-09</td>
           </tr>
