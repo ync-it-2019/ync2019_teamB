@@ -16,7 +16,7 @@
         }
     </script>
     
-        <link href="../../../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="../../../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="../../../../../resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="../../../../../resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
@@ -82,27 +82,52 @@
         <img src="../../../../../resources/img/hello.png"><br><br>
         모두가 자유롭게 쓰는 자유게시판입니다.<br>
         열심히 활동해주세요!
-      </div><br><br>
-      <!--//게시글 내용-->
-      <!--댓글창-->
-      <div style="background:#C6D0C7; padding:2px">
-        <tr>장윤석</tr>
-        <tr><a style="float:right; color:gray">5분전</a></tr>
-      </div>
-      <div style="margin:15px 5px">
-        <tr>알겠습니다 조장</tr>
-      </div>
-      <div style="background:#C6D0C7; padding:2px">
-        <tr>장윤석</tr>
-        <tr><a style="float:right; color:gray">5분전</a></tr>
-      </div>
-      <div style="margin:15px 5px">
-        <tr>알겠습니다 조장</tr>
-      </div>
-      <!--댓글창-->
-    </div>
-  </div>
+        </div><br>
+        <!--//게시글 내용-->
+        <!--댓글창-->
+        <div class=container>
+          <div style="background:#C6D0C7; padding:2px">
+            <tr>장윤석</tr>
+            <!--class="btn btn-danger" 때문에 버튼이 빨간색-->
+            <tr><button type="button" class="btn btn-danger btn-sm" style="float:right; font-size:8px; margin-left:5px; margin-right:3px">x</button></tr>
+            <tr><a style="float:right; color:gray">5분전</a></tr>
+          </div>
+          <div style="margin:15px 5px">
+            <tr>알겠습니다 조장</tr>
+          </div>
+          <div style="background:#C6D0C7; padding:2px">
+            <tr>장윤석</tr>
+            <!--class="btn btn-danger" 때문에 버튼이 빨간색-->
+            <tr><button type="button" class="btn btn-danger btn-sm" style="float:right; font-size:8px; margin-left:5px; margin-right:3px">x</button></tr>
+            <tr><a style="float:right; color:gray">5분전</a></tr>
+          </div>
+          <div style="margin:15px 5px">
+            <tr>알겠습니다 조장</tr>
+          </div>
+          <!-- //댓글창-->
+          <!--댓글쓰기-->
+          <div>
+            <div class="form-group" style="border:5px solid #C6D0C7; padding-bottom:40px">
+              <textarea class="form-control pull-left" id="summernote" name="content" maxlength="140" rows="7"></textarea>
+              <br>
+              <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">댓글쓰기</button>
+            </div>
+            <script>
+              $('#summernote').summernote({
+                placeholder: '댓글을 입력해주세요',
+                tabsize: 2,
+                height: 60
+              });
+            </script>
+            <!-- //댓글쓰기-->
 
+            <!--수정과 삭제버튼-->
+            <button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left" style="margin-bottom:10px"><a href="meeting_board.html" style="color:white">전체글</a></button>
+            <button type="submit" id="submit" name="submit" class="btn btn-danger pull-right" style="margin-bottom:10px">삭제하기</button>
+            <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin-bottom:10px">수정하기</button>
+          </div>
+        </div>
+      </div>
 </section>
 <!-- //소모임 게시글 -->
 
