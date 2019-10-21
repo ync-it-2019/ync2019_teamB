@@ -9,11 +9,10 @@ import lombok.Data;
   * @FileName	: EventVO.java
   * @Date		: 2019. 10. 21. 
   * @Author		: 김상훈
-  * @프로그램 설명 :
+  * @프로그램 설명 : 이벤트 VO
   */
 @Data
 public class EventVO {
-
 	  private Long event_no;
 	  private String title;
 	  private Date event_start_date;
