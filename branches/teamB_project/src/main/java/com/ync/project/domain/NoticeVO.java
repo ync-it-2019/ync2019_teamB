@@ -9,7 +9,7 @@ import lombok.Data;
   * @FileName	: NoticeVO.java
   * @Date		: 2019. 10. 21. 
   * @Author		: 김상훈
-  * @프로그램 설명 :
+  * @프로그램 설명 : 공지사항 VO
   */
 @Data
 public class NoticeVO {
