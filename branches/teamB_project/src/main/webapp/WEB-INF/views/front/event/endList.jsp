@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>牛모임 :: 종료된 이벤트 게시판 </title>
+<title>牛모임 :: 종료된 이벤트 게시판</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         addEventListener("load", function () {
@@ -50,22 +50,22 @@
               </div>
            </div>
            <div class="forms mt-md-0 mt-2">
-              <a href="login.html" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
-              <a href="register.html" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
-              <a href="loout.html" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
-              <a href="../front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
+              <a href="/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
+              <a href="/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
+              <a href="/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
+              <a href="/front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
            </div>
         </div>
         <nav class="text-center">
            <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
            <input type="checkbox" id="drop" />
            <ul class="menu">
-              <li class="mr-lg-4 mr-2 active"><a href="/">홈</a></li>
-              <li class="mr-lg-4 mr-2"><a href="../front/notice/list">공지사항</a></li>
-              <li class="mr-lg-4 mr-2"><a href="../front/event/list">이벤트</a></li>
-              <li class="mr-lg-4 mr-2"><a href="../front/meetingSearch">모임 찾기</a></li>
-              <li class="mr-lg-4 mr-2"><a href="../front/myMeeting">내모임</a></li>
-              <li class=""><a href="../front/question/FAQ">고객센터</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/">홈</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/front/notice/list">공지사항</a></li>
+              <li class="mr-lg-4 mr-2 active"><a href="/front/event/list">이벤트</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/front/meetingSearch">모임 찾기</a></li>
+              <li class="mr-lg-4 mr-2"><a href="/front/myMeeting">내모임</a></li>
+              <li class=""><a href="/front/question/FAQ">고객센터</a></li>
            </ul>
         </nav>
         <!-- //nav -->
