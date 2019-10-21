@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>牛모임 :: 종료된 이벤트 게시판</title>
+<title>牛모임 :: 종료된 이벤트 게시판 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         addEventListener("load", function () {
