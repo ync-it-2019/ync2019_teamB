@@ -238,8 +238,8 @@
     </div>
   </div>
     <div class="faq">
-      <div class="faq_i"><a href="#"><img class="faq_img" src="./img/faq.png"><p class="faq_font">FAQ</p></a></div>
-      <div class="answer_i"><a href="#"><img class="answer_img" src="./img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
+      <div class="faq_i"><a href="#"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
+      <div class="answer_i"><a href="#"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
       <div class="faq_i"></div>
     </div>
   </div>
