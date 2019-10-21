@@ -150,17 +150,39 @@
   margin-left: 30px;
   float: left;
 }
-.faq_2 {
+.answer_i {
   width: 200px;
   height: 180px;
   float: left;
   background-color: #274784;
   padding-bottom: 30px;
 }
-.faq_1, .faq_3 {
+.faq_i {
   width: 200px;
   height: 180px;
   float: left;
   background-color: #434a54;
+}
+.faq_img {
+  margin-top: 20px;
+  margin-left: 50px;
+  width: 105px;
+  height: 100px;
+}
+.answer_img {
+  margin-top: 20px;
+  margin-left: 50px;
+  width: 105px;
+  height: 100px;
+}
+.faq_font {
+  color: white;
+  font-size: 30px;
+  margin-left: 70px;
+}
+.answer_font {
+  color: white;
+  font-size: 30px;
+  margin-left: 50px;
 }
 /* faq end */
