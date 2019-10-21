@@ -27,39 +27,8 @@
 	<!-- //google fonts -->
 </head>
 <body>
-<!-- 소모임 페이지 상단 이미지 / 이름 -->
-<Header class="meeting-page-name-space">
-	<div class="meeting-overlay py-5">
-		<div class="container py-lg-5">
-			<div class="text-center py-5">
-        <div class="meeting-name-style">
-					흑우들의 모임
-				</div>
-			</div>
-		</div>
-	</div>
-</Header>
-<!-- //소모임 페이지 상단 이미지 / 이름 -->
 
-<!-- 소모임 메뉴 -->
-<section>
-  <div class="container">
-    <div id="meeting-menu">
-      <ul class="menu info-row">
-        <div class="meeting-menu1">
-           <li class="mr-3 ml-3 mt-3 mb-3"><a href="../main">메인</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="../board/list">게시판</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="./list">정모</a></li>
-        </div>
-        <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#">수정하기</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#">가입하기</a></li>
-        </div>
-      </ul>
-    </div>
-  </div>
-</section>
-<!-- //소모임 메뉴 -->
+<jsp:include page="../../include/meetingAppointmentHead.jsp" flush="true" />
 
 <!-- 소모임 게시판 -->
 <section>
@@ -79,7 +48,7 @@
         <tr>
           <td class="board-number-css">5</td>
           <td class="board-category-css">일반</td>
-          <td class="pl-4"><a href="meeting_appointment2.html" style="color:black">대구 어디 소고기 먹으러</a><a style="color:#5C88FD"> 1</a></td>
+          <td class="pl-4"><a href="./get.html" style="color:black">대구 어디 소고기 먹으러</a><a style="color:#5C88FD"> 1</a></td>
           <td class="board-writer-css">이주현</td>
           <td class="board-date-css">2019. 10. 01</td>
           <td class="board-hits-css">0</td>
