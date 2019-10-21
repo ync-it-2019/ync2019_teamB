@@ -84,7 +84,7 @@
           </thead>
         </div><br>
         <div>
-          <img src="./resources/images/hello.png"><br><br>
+          <img src="/resources/img/hello.png"><br><br>
           모두가 자유롭게 쓰는 자유게시판입니다.<br>
           열심히 활동해주세요!
         </div><br>
