@@ -126,7 +126,7 @@
           <!-- //댓글쓰기-->
 
           <!--수정과 삭제버튼-->
-          <button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left" style="margin-bottom:10px"><a href="./get" style="color:white">전체글</a></button>
+          <button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left" style="margin-bottom:10px"><a href="./list" style="color:white">전체글</a></button>
           <button type="submit" id="submit" name="submit" class="btn btn-danger pull-right" style="margin-bottom:10px">삭제하기</button>
           <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin-bottom:10px">수정하기</button>
         </div>
