@@ -13,7 +13,7 @@ import lombok.Data;
   */
 @Data
 public class NoticeVO {
-	private Long notice_no;  	//모임번호
+	private Long notice_no;  	//글번호
 	private String title;  	 	//제목
 	private String contents; 	//내용
 	private Date write_date;	//작성일자
