@@ -27,7 +27,7 @@
 //public class Free_BoardController {          //setFile부분과 getBno를 해야함
 //	
 //	@Autowired
-//	private BoardService service;
+//	private Free_BoardService service;
 //
 //	@GetMapping("/register")
 //	@PreAuthorize("isAuthenticated()")
