@@ -142,8 +142,24 @@
           <div class="col-md-8" style="position: relative; top: 12px;">
 						010-1234-5555
 					</div>
-          <div style="position: relative; bottom: 340px; left: 400px;"><img src="../../../../resources/img/man.png" alt="Card image cap"></div>
 				</div>
+				<div class="row mt-3">
+					<div class="col-md-4 text-md-right">
+						<label>활동지역:</label>
+					</div>
+          <div class="col-md-8" style="position: relative; top: 12px;">
+						대구 광역시
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-4 text-md-right">
+						<label>취미:</label>
+					</div>
+          <div class="col-md-8" style="position: relative; top: 12px;">
+						등산
+					</div>
+				</div>
+          <div style="position: relative; bottom: 400px; left: 380px;"><img src="/resources/img/man.png" alt="Card image cap"></div>
 						<a href="./checkPwd"><button class="btn" style="float: right; position: relative; bottom: 320px; left: 435px;">회원 정보 변경</button></a>
 		</div>
 	</div>
