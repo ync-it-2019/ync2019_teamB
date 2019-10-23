@@ -24,7 +24,7 @@
 	</sql>
 
 
-	<select id="getList" resultType="com.ync.project.domain.BoardVO"> <!-- 게시글이 있을시 가져오기 -->
+	<select id="getList" resultType="com.ync.project.domain.Free_BoardVO"> <!-- 게시글이 있을시 가져오기 -->
 	<![CDATA[
 		select * from tbl_board where free_board_num > 0 
 		]]>
@@ -46,7 +46,7 @@
 		values (#{free_board_num},	#{title}, #{write_date}, #{contents}, #{views}, #{userid}, #{meeting_num}, #{files}, #{category})
 	</insert>
 
-	<select id="read" resultType="com.ync.project.domain.BoardVO"> <!-- 글 읽어오기 -->
+	<select id="read" resultType="com.ync.project.domain.Free_BoardVO"> <!-- 글 읽어오기 -->
 		select * from teamb_free_board where free_board_num = #{free_board_num}
 	</select>
 
@@ -65,7 +65,7 @@
 		#{free_board_num}
 	</update>
 	<!-- 글 목록 페이징 --><!-- 리플 카운트가 테이블이 없음, bk_board ?, regdate와 updatedate 삭제 -->
-	<select id="getListWithPaging" resultType="com.ync.project.domain.BoardVO">
+	<select id="getListWithPaging" resultType="com.ync.project.domain.Free_BoardVO">
 		<![CDATA[
 		SELECT	free_board_num,
 				title,
