@@ -18,4 +18,6 @@ public interface EventMapper {
 	public EventVO get(Long event_num);
 	// 글 목록 페이징 
 	public List<EventVO> getListWithPaging(Criteria cri);
+	
+	public int getTotalCount(Criteria cri);
 }
