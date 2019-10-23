@@ -14,14 +14,8 @@ import com.ync.project.domain.EventVO;
 public interface EventMapper {
 	//전체 글 목록
 	public List<EventVO> getList();
-	// 글 등록
-	public void register(EventVO board);
 	// 글 상세보기
 	public EventVO get(Long event_num);
-	// 글 수정
-	public boolean modify(EventVO board);
-	// 글 삭제
-	public boolean remove(Long event_num);
 	// 글 목록 페이징 
 	public List<EventVO> getListWithPaging(Criteria cri);
 }
