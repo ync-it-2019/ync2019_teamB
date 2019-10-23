@@ -100,7 +100,7 @@
 						<label>비밀번호:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" placeholder="" required="">
+						<input type="password" placeholder="Enter your Password" required="">
             <a href="./modify"><button class="btn" style="position: relative; bottom: 60px; left: 250px;">확인</button></a>
 					</div>
 				</div>
