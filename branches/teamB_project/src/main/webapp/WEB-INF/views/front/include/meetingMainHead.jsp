@@ -32,7 +32,7 @@
 	          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./appointment/list">정모</a></li>
 	        </div>
 	        <div class="meeting-menu2">
-	          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#">수정하기</a>
+	          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./meetingCreat">수정하기</a>
 	            <!-- <ul>
 	              <li>정모 이름 수정</li>
 	              <li>정모 소개 수정</li>
