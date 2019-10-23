@@ -151,6 +151,50 @@
 						<input type="text" value="01012345555" required="">
 					</div>
 				</div>
+				<div class="row mt-3">
+					<div class="col-md-4 text-md-right">
+						<label>활동지역:</label>
+					</div>
+					<div class="col-md-8" style="position: relative; top: 12px;">
+						<select name="abc">
+                <option>서울 특별시</option>
+                <option>세종 특별시</option>
+                <option>대구 광역시</option>
+                <option>부산 광역시</option>
+                <option>인천 광역시</option>
+                <option>울산 광역시</option>
+                <option>광주 광역시</option>
+                <option>대전 광역시</option>
+                <option>강원도</option>
+                <option>경기도</option>
+                <option>경상도</option>
+                <option>전라도</option>
+                <option>충청도</option>
+                <option>제주도</option>
+              </select>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-4 text-md-right">
+						<label>취미:</label>
+					</div>
+					<div class="col-md-8" style="position: relative; top: 12px;">
+						<select name="abc">
+                <option>게임/오락</option>
+                <option>운동/스포츠</option>
+                <option>인문학/책/글</option>
+                <option>만화/애니</option>
+                <option>문화/예술</option>
+                <option>차/오토바이</option>
+                <option>봉사활동</option>
+                <option>야구관람</option>
+                <option>요리/제조</option>
+                <option>여행</option>
+                <option>댄스/무용</option>
+                <option>외국어/언어</option>
+              </select>
+					</div>
+				</div>
         <div class="row mt-3">
 					<div class="col-md-4 text-md-right">
 						<label>프로필 사진:</label>
