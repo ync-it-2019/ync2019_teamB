@@ -29,7 +29,7 @@
 	        <div class="meeting-menu1">
 	           <li class="mr-3 ml-3 mt-3 mb-3"><a href="../main">메인</a></li>
 	          <li class="mr-3 ml-3 mt-3 mb-3"><a href="../board/list">게시판</a></li>
-	          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="../list">정모</a></li>
+	          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="../appointment/list">정모</a></li>
 	        </div>
 	        <div class="meeting-menu2">
 	          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#">수정하기</a></li>
