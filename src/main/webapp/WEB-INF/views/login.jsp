@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <li class="mr-lg-4 mr-2"><a href="/front/event/list">이벤트</a></li>
               <li class="mr-lg-4 mr-2"><a href="/front/meetingSearch">모임 찾기</a></li>
               <li class="mr-lg-4 mr-2"><a href="/front/myMeeting">내모임</a></li>
-              <li class=" "><a href="/front/question/FAQ">고객센터</a></li>
+              <li class=" active"><a href="/front/question/FAQ">고객센터</a></li>
            </ul>
         </nav>
         <!-- //nav -->
@@ -282,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
+				<p class="">Â© 2019 Furnish. All rights reserved | Design by
 					<a href="http://w3layouts.com"> W3layouts.</a>
 				</p>
 			</div>
