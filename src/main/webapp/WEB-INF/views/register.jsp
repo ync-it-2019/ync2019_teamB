@@ -203,6 +203,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<div class="row mt-3">
+					<div class="col-md-4 text-md-right">
+						<label>프로필 사진:</label>
+					</div>
+					<div class="col-md-8">
+						<input type="password" placeholder="" required=""><button type="button" style="float: right;"> 찾아보기 </button> <button type="button" style="float: right;"> 파일삭제</button>
+					</div>
+				</div>
+				<div class="row mt-3">
 					<div class="col-md-8 offset-md-4">
 						<button class="btn">회원가입</button>
 					</div>
