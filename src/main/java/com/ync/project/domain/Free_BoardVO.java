@@ -2,6 +2,12 @@ package com.ync.project.domain;
 
 import java.util.Date;
 
+ /**
+  * @FileName	: Free_BoardVO.java
+  * @Date		: 2019. 10. 25. 
+  * @Author		: 이주현
+  * @프로그램 설명 : 게시판VO
+  */
 public class Free_BoardVO {
 	
 	private int meeting_Num;		//모임 번호
