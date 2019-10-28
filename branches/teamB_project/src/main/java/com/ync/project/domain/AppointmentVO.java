@@ -2,6 +2,12 @@ package com.ync.project.domain;
 
 import java.util.Date;
 
+ /**
+  * @FileName	: AppointmentVO.java
+  * @Date		: 2019. 10. 25. 
+  * @Author		: 이주현
+  * @프로그램 설명 : 정모 VO
+  */
 public class AppointmentVO {
 
 	private int appointment_Num;		//정모 번호
