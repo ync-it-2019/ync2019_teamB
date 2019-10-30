@@ -1,5 +1,7 @@
 package com.ync.project.front.mapper;
 
+import java.util.List;
+
 import com.ync.project.domain.MemberVO;
 
 /**
@@ -9,6 +11,17 @@ import com.ync.project.domain.MemberVO;
   * @프로그램 설명 : 회원 정보 처리용 Mapper interface
   */
 public interface MemberMapper {
-
+	
+	public List<MemberVO> getUserList();
+	
+	public void insert(MemberVO member);
+	
 	public MemberVO read(String userid);
+	
+	public int updateUser(MemberVO MemberVO);
+	
+	//회원탈퇴 기능 없음!
+//	public int deleteUser(String userid);
+
+
 }
