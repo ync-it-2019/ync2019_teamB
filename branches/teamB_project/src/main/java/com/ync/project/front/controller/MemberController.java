@@ -3,7 +3,12 @@ package com.ync.project.front.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ync.project.domain.MemberVO;
+import com.ync.project.front.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -15,22 +20,36 @@ import lombok.extern.log4j.Log4j;
  */
 @Controller
 @Log4j
-@RequestMapping("/")
+@RequestMapping("/*")
 public class MemberController {
-	
 	@Autowired
+	
+	private MemberService service;
 
-	//로그인 화면
-	@GetMapping(value = "/login")
-	public void loginPage() {
-		log.info("login page!");
-
-	}
 	
 	//회원가입 화면
-	@GetMapping(value = "/register")
-	public void registerPage() {
-		log.info("register page!");
-
+	@GetMapping("/register")
+	public void register() {
+		
 	}
+	
+	 /**
+	  * @Method 설명 : 회원가입 페이지
+	  * @Method Name : register
+	  * @Date : 2019. 11. 3.
+	  * @작성자 : 조중현
+	  * @param member
+	  * @param rttr
+	  * @return
+	  */
+	@PostMapping("/register")
+	public String register(MemberVO member, RedirectAttributes rttr) {
+		
+		log.info("register : " + member);
+		service.register(member);
+		return "redirect:/register";
+	}
+	
+	
+
 }
