@@ -23,13 +23,5 @@ public class AdminHomeController {
 	  * @작성자 : 정진우
 	  * @return call jsp view
 	  */
-	@GetMapping(value = "/admin")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String home() {
-
-		log.info("Welcome Admin home!");
-	
-		return "admin/index";
-	}
 	
 }
