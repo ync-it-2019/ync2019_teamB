@@ -20,13 +20,13 @@ public class MemberServiceImpl implements MemberService{
 	private MemberMapper mapper;
 
 
-	@Override
-	public void register(MemberVO member) {
-		log.info("register...." + member);
-		
-		mapper.insert(member);
-		
-	}
+//	@Override
+//	public void register(MemberVO member) {
+//		log.info("register...." + member);
+//		
+//		mapper.insert(member);
+//		
+//	}
 
 
 	@Override
@@ -38,14 +38,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
-	@Override
-	public boolean modify(MemberVO member) {
-		// TODO Auto-generated method stub
-		
-		log.info("modify....." + member);
-
-		return mapper.updateUser(member) == 1;
-	}
+//	@Override
+//	public boolean modify(MemberVO member) {
+//		// TODO Auto-generated method stub
+//		
+//		log.info("modify....." + member);
+//
+//		return mapper.updateUser(member) == 1;
+//	}
 
 
 	@Override

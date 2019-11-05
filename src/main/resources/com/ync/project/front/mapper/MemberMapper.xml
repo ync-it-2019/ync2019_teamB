@@ -6,9 +6,12 @@
 		<id property="userid" column="userid"/>
 		<result property="userid" column="userid"/>
 		<result property="userpw" column="userpw"/>
-		<result property="userName" column="username"/>
-		<result property="regDate" column="regdate"/>
-		<result property="updateDate" column="updatedate"/>
+		<result property="name" column="name"/>
+		<result property="phone" column="phone"/>
+		<result property="email" column="email"/>
+		<result property="adress" column="adress"/>
+		<result property="hobby" column="hobby"/>
+		<result property="profile" column="profile"/>
 		<collection property="authList" resultMap="authMap">
 		</collection> 
 	</resultMap>
@@ -27,13 +30,21 @@
 	<select id="read" resultMap="memberMap">
 	SELECT	userid,
 			userpw,
-			username,
-			enabled,
-			regdate,
-			updatedate,
+			name,
+			phone,
+			email,
+			adress,
+			hobby,
+			profile,
 			auth
-	FROM	tbl_member
+	FROM	teamb_member
 	WHERE	userid = #{userid} 
+	</select>
+	
+	<select id="getUserList" resultMap="memberMap">
+	<![CDATA[
+		select * from teamb_member 
+		]]>
 	</select>
 
 </mapper>

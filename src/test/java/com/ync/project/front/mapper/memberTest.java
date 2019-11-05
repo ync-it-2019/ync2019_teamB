@@ -44,12 +44,12 @@ public class memberTest {
 //		
 //	}
 	
-//	@Test
-//	public void testRead() {
-//		MemberVO member = mapper.read("user01");
-//		
-//		log.info(member);
-//	}
+	@Test
+	public void testRead() {
+		MemberVO member = mapper.read("user01");
+		
+		log.info(member);
+	}
 	
 //	@Test
 //	public void testUpdate() {
