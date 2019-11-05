@@ -49,11 +49,11 @@ public class QuestionServiceTests {
 		board.setTitle("새로 작성하는 글");
 		board.setContents("새로 작성하는 내용");
 		board.setFiles("dldldldl");
-		board.setAnswer_whther("n");
+		board.setAnswer_whether("n");
 
 		service.register(board);
 
-		log.info("생성된 게시물의 번호: " + board.getQuestion_no());
+		log.info("생성된 게시물의 번호: " + board.getQuestion_num());
 	}
 	
 	@Test
