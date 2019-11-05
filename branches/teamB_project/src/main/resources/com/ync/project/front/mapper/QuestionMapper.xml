@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.front.mapper.QuestionMapper">
+
+	<!-- 게시판 리스트 -->
+	<select id="getList" resultType="com.ync.project.domain.QuestionVO">
+	<![CDATA[
+		SELECT *
+		FROM   teamb_1to1_question
+		WHERE  question_num > 0 
+		]]>
+	</select>
+	
+	<!-- 글 작성 -->
+	<insert id="insert">
+		INSERT INTO teamb_1to1_question (question_num,
+										 userid,
+										 title,
+										 contents,
+										 files,
+										 write_date,
+										 answer_whether)
+		VALUES(TEAMB_QUESTION_NUM.NEXTVAL,
+			   #{userid},
+			   #{title},
+			   #{contents},
+			   #{files},
+			   SYSDATE,
+			   DEFAULT)
+	</insert>
+	
+	<!-- 게시글 상세 보기 -->
+	<select id="read" resultType="com.ync.project.domain.QuestionVO">
+		SELECT *
+		FROM   teamb_1to1_question
+		WHERE  question_num = #{question_num}
+	</select>
+	
+	
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="question_num" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		INSERT INTO teamb_1to1_question (question_num, 
+										 userid, 
+									     title, 
+										 contents, 
+									 	 files, 
+										 write_date, 
+										 answer_whether)
+		VALUES (TEAMB_QUESTION_NUM.NEXTVAL, 
+				#{userid}, 
+				#{title}, 
+				#{contents}, 
+				#{files}, 
+				SYSDATE, 
+				DEFAULT)
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="update">
+		UPDATE  teamb_1to1_question
+		SET     title= #{title},
+				contents=#{contents},
+				userid = #{userid},
+				write_date = sysdate,
+				files = #{files}
+		WHERE   question_num  = #{question_num}
+	</update>
+	
+	<!-- 페이징 -->
+	<select id="getListWithPaging" resultType="com.ync.project.domain.QuestionVO">
+	<![CDATA[
+	SELECT  question_num,
+			title,
+			write_date,
+			answer_whether
+	FROM    (SELECT /*+INDEX_DESC(teamb_1to1_question xpkteamb_1to1_question) */
+			rownum rn,
+			question_num,
+			title,
+			write_date,
+			answer_whether
+			FROM teamb_1to1_question
+			)
+	]]>
+	</select>
+</mapper>
