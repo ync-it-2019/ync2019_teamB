@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +102,7 @@
 						<label><r style="color: #FF0000;">*</r>이름:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						김기본
+						<c:out value="${member.name}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -108,23 +110,15 @@
 						<label><r style="color: #FF0000;">*</r>아이디:</label>
 					</div>
 					<div class="col-md-8" style="position: relative; top: 12px;">
-						idid123
+						<c:out value="${member.userid}"/>
 					</div>
 				</div>
         <div class="row mt-3">
 					<div class="col-md-4 text-md-right">
 						<label>비밀번호:</label>
 					</div>
-          <div class="col-md-8" style="position: relative; top: 12px;">
-						**********
-					</div>
-				</div>
-        <div class="row mt-3">
-					<div class="col-md-4 text-md-right">
-						<label><r style="color: #FF0000;">*</r>닉네임:</label>
-					</div>
-          <div class="col-md-8" style="position: relative; top: 12px;">
-						현재닉
+          <div id="password" class="col-md-8" style="position: relative; top: 12px;">
+						*******
 					</div>
 				</div>
         <div class="row mt-3">
@@ -132,7 +126,7 @@
 						<label><r style="color: #FF0000;">*</r>이메일:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						aaa@abc.com
+						<c:out value="${member.email}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -140,7 +134,7 @@
 						<label>전화번호:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						010-1234-5555
+						<c:out value="${member.phone}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -148,7 +142,7 @@
 						<label>활동지역:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						대구 광역시
+						<c:out value="${member.adress}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -156,7 +150,7 @@
 						<label>취미:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						등산
+						<c:out value="${member.hobby}"/>
 					</div>
 				</div>
           <div style="position: relative; bottom: 400px; left: 380px;"><img src="/resources/img/man.png" alt="Card image cap"></div>

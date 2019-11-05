@@ -12,11 +12,11 @@ import com.ync.project.domain.MemberVO;
   */
 public interface MemberService {
 	
-	public void register(MemberVO member);
+//	public void register(MemberVO member);
 	
 	public MemberVO info(String userid);
 	
-	public boolean modify(MemberVO member);
+//	public boolean modify(MemberVO member);
 
 	public List<MemberVO> getUserList();
 //	

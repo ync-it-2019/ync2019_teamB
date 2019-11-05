@@ -50,10 +50,10 @@ public class MemberServiceTests {
 		log.info(service.getUserList());
 	}
 	
-//	@Test
-//	public void testGet() {
-//		log.info(service.info("user01"));
-//	}
+	@Test
+	public void testGet() {
+		log.info(service.info("user01"));
+	}
 	
 //	@Test
 //	public void testUpdate() {

@@ -13,12 +13,12 @@ import com.ync.project.domain.MemberVO;
 public interface MemberMapper {
 	
 	public List<MemberVO> getUserList();
-	
-	public void insert(MemberVO member);
+//	
+//	public void insert(MemberVO member);
 	
 	public MemberVO read(String userid);
 	
-	public int updateUser(MemberVO MemberVO);
+//	public int updateUser(MemberVO MemberVO);
 	
 	//회원탈퇴 기능 없음!
 //	public int deleteUser(String userid);
