@@ -1,8 +1,12 @@
 package com.ync.project.admin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ync.project.front.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 /**
@@ -13,7 +17,12 @@ import lombok.extern.log4j.Log4j;
  */
 @Controller
 @Log4j
+@RequestMapping("/admin/member/*")
 public class AdminMemberController {
+	
+	@Autowired
+	private MemberService service;
+	
 	/**
 	  * @Method 설명 : admin/member/list.jsp 호출
 	  * @Method Name : AdminMemberList
@@ -21,12 +30,12 @@ public class AdminMemberController {
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-	@GetMapping(value = "/admin/member/list")
-	public String AdminMemberList() {
-
+	@GetMapping("/list")
+	public void AdminMemberList(Model model) {
+		
 		log.info("Member List get page!");
 	
-		return "admin/member/list";
+		model.addAttribute("list", service.getUserList());
 	}
 	
 	/*
