@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -61,116 +63,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th data-breakpoints="xs sm md" data-title="DOB" class="text-right">비고</th>
                           </tr>
                         </thead>
+                        <c:forEach items="${list}" var="event" varStatus="status">
                         <tr class="unread">
                           <td class="inbox-small-cells">
                             <input type="checkbox" class="mail-checkbox">
                           </td>
-                          <td>1</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">운영자_a</td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'">행복한 소모임인, 즐거운 소모임 되기!</td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">2019-10-28 ~ 2020-01-01</td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">2019-10-28</td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'">진행중</td>
+                          <td><c:out value="${event.event_num}" /></td>
+                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"><c:out value="${event.userid}" /></td>
+                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"><c:out value="${event.title}" /></td>
+                          <td class="view-message inbox-small-cells text_limit" style="text-align:center;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_start_date}" /> ~ <c:out value="${event.event_end_date}" /></td>
+                          <td class="view-message inbox-small-cells text_limit" style="text-align:center;" onClick="location.href='/admin/event/detail'"><c:out value="${event.write_date}" /></td>
+                          <c:choose>
+        					<c:when test="${event.event_progress == '진행중'}">
+        						<td class="view-message text-right" style="color:green;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
+        					</c:when>
+        					<c:when test="${event.event_progress == '종료'}">
+        						<td class="view-message text-right" style="color:red;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
+        					</c:when>
+        					<c:otherwise>
+        						<td class="view-message text-right" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
+        					</c:otherwise>
+        				  </c:choose>
                         </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>2</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">운영자_c</td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'">11월! 수능 대박 기원 이벤트</td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">2019-11-01 ~ 2019-11-15</td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">2019-11-01</td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'">진행중</td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>3</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">운영자_b</td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'">현충일 기념 이벤트!</td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">2019-06-06 ~ 2019-06-30</td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'">2019-05-28</td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'">종료</td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>4</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"></td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>5</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"></td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>6</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"></td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>7</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"></td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>8</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"></td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>9</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"></td>
-                        </tr>
-                        <tr class="unread">
-                          <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
-                          </td>
-                          <td>10</td>
-                          <td class="inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message dont-show text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message inbox-small-cells text_limit" onClick="location.href='/admin/event/detail'"></td>
-                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"></td>
-                        </tr>
+						</c:forEach>
                       </tbody>
                     </table>
                     <div style="margin:10px 20px 0 0; text-align:right;">
