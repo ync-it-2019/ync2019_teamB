@@ -1,7 +1,7 @@
 package com.ync.project.domain;
 
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -22,4 +22,5 @@ public class EventVO {
 	  private String image;			//사진
 	  private String userid;		//글쓴이 아이디
 	  private String banner_image;  //배너 이미지
+	  private String event_progress;  //배너 이미지
 }
