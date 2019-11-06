@@ -1,7 +1,12 @@
 package com.ync.project.admin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ync.project.front.service.EventService;
 
 import lombok.extern.log4j.Log4j;
 /**
@@ -12,7 +17,12 @@ import lombok.extern.log4j.Log4j;
  */
 @Controller
 @Log4j
+@RequestMapping("/admin/event/*")
 public class AdminEventController {
+	
+	@Autowired
+	private EventService service;
+	
 	/**
 	  * @Method 설명 : admin/event/list.jsp 호출
 	  * @Method Name : AdminEventList
@@ -20,12 +30,12 @@ public class AdminEventController {
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-	@GetMapping(value = "/admin/event/list")
-	public String AdminEventList() {
+	@GetMapping("/list")
+	public void AdminEventList(Model model) {
 
 		log.info("Event List get page!");
 	
-		return "admin/event/list";
+		model.addAttribute("list", service.getList());
 	}
 	
 	/**
