@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -60,86 +63,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th data-breakpoints="xs sm md" class="text-right">가입한 모임 수</th>
                           </tr>
                         </thead>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">1</td>
-                          <td class="inbox-small-cells">서영준</td>
-                          <td class="view-message dont-show text_limit">ay9564</td>
-                          <td class="view-message ">ay9564@naver.com</td>
-                          <td class="view-message inbox-small-cells">010-7443-1516</td>
+                        <c:forEach items="${list}" var="member" varStatus="status">
+						<tr class="unread" onClick="location.href='/admin/member/detail'">
+                          <td class="inbox-small-cells"><c:out value="${status.count}" /></td>
+                          <td class="inbox-small-cells"><c:out value="${member.name}" /></td>
+                          <td class="view-message dont-show text_limit"><c:out value="${member.userid}" /></td>
+                          <td class="view-message "><c:out value="${member.email}" /></td>
+                          <td class="view-message inbox-small-cells"><c:out value="${member.phone}" /></td>
                           <td class="view-message text-right">3</td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">2</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">3</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">4</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">5</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">6</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">7</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">8</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">9</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/member/detail'">
-                          <td class="inbox-small-cells">10</td>
-                          <td class="inbox-small-cells"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message "></td>
-                          <td class="view-message inbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
+						</tr>
+					</c:forEach>
                       </tbody>
                     </table>
                   </div>
