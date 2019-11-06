@@ -5,9 +5,13 @@
 	<!-- 게시판 리스트 -->
 	<select id="getList" resultType="com.ync.project.domain.EventVO">
 	<![CDATA[
-		SELECT *
-		FROM   teamb_event
-		WHERE  event_num > 0
+		SELECT	b.*, 
+				(CASE WHEN SYSDATE < b.EVENT_START_DATE THEN '진행예정'
+        		WHEN (SYSDATE >= b.EVENT_START_DATE AND SYSDATE < b.EVENT_END_DATE) THEN '진행중'
+        		ELSE '종료'
+    			END) AS event_progress
+		FROM	TEAMB_EVENT b
+		WHERE	b.event_num > 0
 		]]>
 	</select>
 	
