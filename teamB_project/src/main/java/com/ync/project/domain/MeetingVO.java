@@ -1,5 +1,11 @@
 package com.ync.project.domain;
 
+ /**
+  * @FileName	: MeetingVO.java
+  * @Date		: 2019. 10. 25. 
+  * @Author		: 이주현
+  * @프로그램 설명 : 모임 VO
+  */
 public class MeetingVO {
 	
 	private int meeting_Num;			//모임 번호

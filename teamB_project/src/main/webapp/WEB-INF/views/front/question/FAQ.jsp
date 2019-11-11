@@ -54,9 +54,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
            </div>
            <div class="forms mt-md-0 mt-2">
-              <a href="/front/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
-              <a href="/front/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
-              <a href="/front/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
+              <a href="/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
+              <a href="/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
+              <a href="/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
               <a href="/front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
            </div>
         </div>

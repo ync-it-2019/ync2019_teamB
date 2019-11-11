@@ -12,7 +12,7 @@
 	
 	<security:http>
 		
-		<security:form-login login-page="/customLogin" />
+		<security:form-login login-page="/login" />
 		
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
 
@@ -27,5 +27,7 @@
 			<security:password-encoder ref="bcryptPasswordEncoder" />
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	
 	
 </beans>
