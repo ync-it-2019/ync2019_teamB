@@ -22,5 +22,5 @@ public interface MemberService {
 //	
 
 //	
-//	public int updateUser(MemberVO MemberVO);
+	public boolean updateUser(MemberVO member);
 }

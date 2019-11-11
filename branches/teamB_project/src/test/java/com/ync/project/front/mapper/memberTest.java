@@ -22,10 +22,10 @@ public class memberTest {
 	
 	private MemberMapper mapper;
 	
-	@Test
-	public void testGetList() {
-		mapper.getUserList().forEach(member -> log.info(member));
-	}
+//	@Test
+//	public void testGetList() {
+//		mapper.getUserList().forEach(member -> log.info(member));
+//	}
 	
 //	@Test
 //	public void testRege() {
@@ -44,24 +44,30 @@ public class memberTest {
 //		
 //	}
 	
-	@Test
-	public void testRead() {
-		MemberVO member = mapper.read("user01");
-		
-		log.info(member);
-	}
+//	@Test
+//	public void testRead() {
+//		MemberVO member = mapper.read("user01");
+//		
+//		log.info(member);
+//	}
 	
 //	@Test
-//	public void testUpdate() {
-//		MemberVO member = new MemberVO();
+//	public void testRead2() {
+//		log.info(mapper.checkPw("user01", "1234"));
 //		
-//		member.setUserid("user01");
-//		member.setUserpw("12345");
-//		member.setPhone("010-1111-2222");
-//		member.setAdress("대구");
-//		member.setHobby("슈우미");
-//		member.setProfile("사아아진");
-//		
-//		mapper.updateUser(member);
 //	}
+	
+	@Test
+	public void testUpdate() {
+		MemberVO member = new MemberVO();
+		
+		member.setUserid("user01");
+		member.setUserpw("12345");
+		member.setPhone("010-4944-6748");
+		member.setAdress("대구광역시");
+		member.setHobby("메이플스토리");
+		member.setProfile("");
+		
+		mapper.update(member);
+	}
 }

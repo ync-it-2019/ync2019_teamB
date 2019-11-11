@@ -56,4 +56,17 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public boolean updateUser(MemberVO member) {
+		
+		log.info("modify....." + member);
+
+		return mapper.update(member) == 1;
+	}
+
+
+
+
+
+
 }

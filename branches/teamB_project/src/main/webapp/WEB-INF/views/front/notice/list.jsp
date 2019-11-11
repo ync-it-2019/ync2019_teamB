@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <a href="/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
               <a href="/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
               <a href="/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
-              <a href="/front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
+              <a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
            </div>
         </div>
         <nav class="text-center">

@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords" content=" Furnish Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <title>Insert title here</title>
 </head>
+<link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
 <body>
 <header class="py-sm-3 pt-3 pb-2" id="home">
      <div class="container">
@@ -22,11 +28,20 @@
                  </form>
               </div>
            </div>
-           <div class="forms mt-md-0 mt-2">
-              <a href="/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
+           		<sec:authorize access="isAnonymous()">
+           		<a href="/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
               <a href="/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
-              <a href="/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
-              <a href="/front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
+				</sec:authorize>
+           <div class="forms mt-md-0 mt-2">
+              
+              <sec:authorize access="isAuthenticated()">
+
+				<a href="/customLogout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
+              <a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
+
+				</sec:authorize>
+
+              
            </div>
         </div>
         <nav class="text-center">
@@ -45,5 +60,68 @@
      </div>
   </header>
   <!-- //header -->
+  
+  <script type="text/javascript">
+	$(document).ready(function() {
+		var result = '<c:out value="${result}"/>';
+		
+		checkModal(result);
+
+		history.replaceState({}, null, null);
+
+		function checkModal(result) {
+
+			if (result === '' || history.state) {
+				return;
+			}
+
+			if (parseInt(result) > 0) {
+				$(".modal-body").html("게시글 " + parseInt(result)	+ " 번이 등록되었습니다.");
+			}
+
+			$("#myModal").modal("show");
+		}
+		
+		$("#regBtn").on("click", function() {
+			self.location = "/board/register";
+		});
+		
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		// 상세보기 클릭 이벤트
+		$(".move").on("click",function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='userid' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/front/myPage/info");
+			actionForm.submit();
+		});
+		
+		// 검색 버튼 클릭 이벤트
+		var searchForm = $("#searchForm");
+		$("#searchForm button").on("click",	function(e) {
+			if (!searchForm.find("option:selected").val()) {
+				alert("검색종류를 선택하세요");
+				return false;
+			}
+
+			if (!searchForm.find("input[name='keyword']").val()) {
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			searchForm.submit();
+		});
+	});
+</script>
 </body>
 </html>

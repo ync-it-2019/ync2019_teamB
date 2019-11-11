@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="keywords" content=" Furnish Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <!-- 슬라이드 css1 -->
 <link rel="stylesheet" type="text/css" href="/resources/css/set1.css" />
 
@@ -154,6 +159,7 @@
   </div>
 
   <!--aside -->
+  <sec:authorize access="isAnonymous()">
   <div class="aside">
     <div class="login_area">
       <div class="letter">
@@ -172,6 +178,11 @@
       <div class="arti3">#<a href="/front/meetingSearch">취미 생활 크루 찾기</a></div>
     </div>
   </div>
+  </sec:authorize>
+  
+  <sec:authorize access="isAuthenticated()">
+
+  </sec:authorize>
   <!-- aside end -->
 </section>
 <!-- main_top end -->
@@ -372,5 +383,7 @@
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
+
+
 </body>
 </html>

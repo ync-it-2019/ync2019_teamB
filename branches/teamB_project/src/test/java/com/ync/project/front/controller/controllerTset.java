@@ -33,14 +33,31 @@ public class controllerTset {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
+//	@Test
+//	public void tetGet() throws Exception {
+//
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/front/myPage/info")
+//				.param("userid", "user01"))
+//				.andReturn()
+//				.getModelAndView()
+//				.getModelMap());
+//	}
+	
 	@Test
-	public void tetGet() throws Exception {
-
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/front/myPage/info")
-				.param("userid", "user01"))
-				.andReturn()
-				.getModelAndView()
-				.getModelMap());
+	public void testUpdate() throws Exception {
+		
+		String resultPage = mockMvc
+				.perform(MockMvcRequestBuilders.post("/front/myPage/modify")
+				.param("userid", "user01")
+				.param("userpw", "12345")
+				.param("phone", "010-4944-6748")
+				.param("adress", "대구 광역시")
+				.param("hobby", "게임")
+				.param("profile", ""))
+			.andReturn().getModelAndView().getViewName();
+		
+		
+		log.info(resultPage);
 	}
 	
 //	@Test

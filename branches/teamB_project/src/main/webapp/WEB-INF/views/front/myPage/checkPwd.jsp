@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,6 +96,7 @@
 		<h3 class="heading mb-sm-5 mb-4 text-center">마이페이지</h3>
     <h4>비밀번호 재확인</h4>
     <hr>
+    <form action="checkPwd?userid=<sec:authentication property="principal.username"/>" method="post">
 		<div class="login-form">
 				<div class="row">
         <div class="row mt-3" style="position: relative; top: 50px;">
@@ -100,12 +104,15 @@
 						<label>비밀번호:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" placeholder="Enter your Password" required="">
-            <a href="./modify"><button class="btn" style="position: relative; bottom: 60px; left: 250px;">확인</button></a>
+						<input type="password" placeholder="Enter your Password" name="userpw">
+            <button class="btn" style="position: relative; bottom: 47px; left: 250px;">확인</button>
 					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 				</div>
 		 </div>
     </div>
+    </form>
 	</div>
 </section>
 <!-- //login -->
