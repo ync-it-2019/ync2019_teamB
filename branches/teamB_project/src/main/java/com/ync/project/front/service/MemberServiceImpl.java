@@ -65,6 +65,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public void register(MemberVO member) {
+		
+		log.info("register....." + member);
+		
+		mapper.insert(member);
+	}
+
+
 
 
 

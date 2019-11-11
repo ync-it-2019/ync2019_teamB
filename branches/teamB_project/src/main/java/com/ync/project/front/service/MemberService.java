@@ -12,7 +12,7 @@ import com.ync.project.domain.MemberVO;
   */
 public interface MemberService {
 	
-//	public void register(MemberVO member);
+	public void register(MemberVO member);
 	
 	public MemberVO info(String userid);
 	

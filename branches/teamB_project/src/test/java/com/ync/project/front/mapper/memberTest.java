@@ -58,6 +58,21 @@ public class memberTest {
 //	}
 	
 	@Test
+	public void testinsert() {
+		MemberVO member = new MemberVO();
+		member.setName("곽우렬");
+		member.setUserid("user11");
+		member.setUserpw("123411");
+		member.setPhone("010-9462-7103");
+		member.setEmail("user11@ync.ac.kr");
+		member.setHobby("게임");
+		member.setAdress("대구광역시");
+		member.setProfile("");
+		
+		mapper.insert(member);
+	}
+	
+	@Test
 	public void testUpdate() {
 		MemberVO member = new MemberVO();
 		

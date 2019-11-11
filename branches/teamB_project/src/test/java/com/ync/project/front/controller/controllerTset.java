@@ -43,22 +43,41 @@ public class controllerTset {
 //				.getModelMap());
 //	}
 	
-	@Test
-	public void testUpdate() throws Exception {
-		
-		String resultPage = mockMvc
-				.perform(MockMvcRequestBuilders.post("/front/myPage/modify")
-				.param("userid", "user01")
-				.param("userpw", "12345")
-				.param("phone", "010-4944-6748")
-				.param("adress", "대구 광역시")
-				.param("hobby", "게임")
-				.param("profile", ""))
-			.andReturn().getModelAndView().getViewName();
-		
-		
-		log.info(resultPage);
-	}
+//	@Test
+//	public void testUpdate() throws Exception {
+//		
+//		String resultPage = mockMvc
+//				.perform(MockMvcRequestBuilders.post("/front/myPage/modify")
+//				.param("userid", "user01")
+//				.param("userpw", "12345")
+//				.param("phone", "010-4944-6748")
+//				.param("adress", "대구 광역시")
+//				.param("hobby", "게임")
+//				.param("profile", ""))
+//			.andReturn().getModelAndView().getViewName();
+//		
+//		
+//		log.info(resultPage);
+//	}
+	
+//	@Test
+//	public void testregister() throws Exception {
+//		
+//		String resultPage = mockMvc
+//				.perform(MockMvcRequestBuilders.post("/register")
+//				.param("userid", "user10")
+//				.param("userpw", "123410")
+//				.param("phone", "010-")
+//				.param("adress", "대구 광역시")
+//				.param("email", "user10@ync.ac.kr")
+//				.param("name", "테스트")
+//				.param("hobby", "게임")
+//				.param("profile", ""))
+//			.andReturn().getModelAndView().getViewName();
+//		
+//		
+//		log.info(resultPage);
+//	}
 	
 //	@Test
 //	public void testList() throws Exception {

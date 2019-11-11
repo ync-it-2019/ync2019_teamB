@@ -37,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!-- //header -->
-<jsp:include page="./include/header.jsp" flush="true" />
+<jsp:include page="/WEB-INF/views/front/include/header.jsp" flush="true" />
   <section class="banner_w3lspvt">
   	<div class="csslider infinity" id="slider1">
   		<input type="radio" name="slides" checked="checked" id="slides_1" />
