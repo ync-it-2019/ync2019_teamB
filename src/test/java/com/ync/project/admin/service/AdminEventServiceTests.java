@@ -9,10 +9,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import lombok.extern.log4j.Log4j;
 
  /**
-  * @FileName	: EventServiceTests.java
-  * @Date		: 2019. 10. 27. 
-  * @Author		: 김상훈
-  * @프로그램 설명 : 이벤트 Service Test
+  * @FileName	: AdminEventServiceTests.java
+  * @Date		: 2019. 11. 11. 
+  * @Author		: 서영준
+  * @프로그램 설명 : 관리자용 이벤트 Service Test
   */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
