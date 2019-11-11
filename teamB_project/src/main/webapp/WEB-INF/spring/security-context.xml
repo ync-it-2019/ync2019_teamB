@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 인증관련 빈 설정 -->
+	
 	<bean id="customAccessDenied" class="com.ync.project.security.CustomAccessDeniedHandler"></bean>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<bean id="customUserDetailsService"	class="com.ync.project.security.CustomUserDetailsService"></bean>
