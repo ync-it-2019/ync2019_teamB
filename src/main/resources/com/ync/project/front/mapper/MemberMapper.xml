@@ -41,10 +41,27 @@
 	WHERE	userid = #{userid} 
 	</select>
 	
+	<select id="checkPw" resultMap="memberMap">
+	SELECT	userid
+	FROM	teamb_member
+	WHERE	userid = #{userid}
+	AND		userpw = #{userpw}
+	</select>
+	
 	<select id="getUserList" resultMap="memberMap">
 	<![CDATA[
 		select * from teamb_member 
 		]]>
 	</select>
+	
+	<update id="update">
+		UPDATE teamb_member
+		set userpw = #{userpw},
+			phone = #{phone},
+			adress = #{adress},
+			hobby = #{hobby},
+			profile = #{profile}
+			where userid = #{userid}
+	</update>
 
 </mapper>

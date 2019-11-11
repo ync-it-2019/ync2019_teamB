@@ -2,6 +2,8 @@ package com.ync.project.front.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ync.project.domain.MemberVO;
 
 /**
@@ -18,7 +20,9 @@ public interface MemberMapper {
 	
 	public MemberVO read(String userid);
 	
-//	public int updateUser(MemberVO MemberVO);
+//	public boolean checkPw(@Param("userid") String userid, @Param("userpw") String userpw);
+	
+	public int update(MemberVO member);
 	
 	//회원탈퇴 기능 없음!
 //	public int deleteUser(String userid);

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,13 +97,13 @@
     <h4>회원 정보 수정</h4>
     <hr>
 		<div class="login-form">
-			<form action="#" method="post">
+			<form action="/front/myPage/modify" method="post">
 				<div class="row">
 					<div class="col-md-4 text-md-right">
 						<label>이름:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						김기본
+						<c:out value="${member.name}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -108,7 +111,7 @@
 						<label>아이디:</label>
 					</div>
 					<div class="col-md-8" style="position: relative; top: 12px;">
-						idid123
+						<c:out value="${member.userid}"/>
 					</div>
 				</div>
         <div class="row mt-3">
@@ -116,7 +119,7 @@
 						<label>비밀번호:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" value="****" required="">
+						<input name='userpw' type="password" value="****">
 					</div>
 				</div>
         <div class="row mt-3">
@@ -124,15 +127,7 @@
 						<label>비밀번호 확인:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" placeholder="Enter your new Password" required="">
-					</div>
-				</div>
-        <div class="row mt-3">
-					<div class="col-md-4 text-md-right">
-						<label>닉네임:</label>
-					</div>
-          <div class="col-md-8" style="position: relative; top: 12px;">
-						현재닉
+						<input type="password" placeholder="Enter your new Password">
 					</div>
 				</div>
         <div class="row mt-3">
@@ -140,7 +135,7 @@
 						<label>이메일:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						aaa@abc.com
+						<c:out value="${member.email}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -148,7 +143,7 @@
 						<label>전화번호:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="text" value="01012345555" required="">
+						<input type="text" name='phone' value="<c:out value="${member.phone}"/>">
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -156,7 +151,7 @@
 						<label>활동지역:</label>
 					</div>
 					<div class="col-md-8" style="position: relative; top: 12px;">
-						<select name="abc">
+						<select name="adress" id="sel">
                 <option>서울 특별시</option>
                 <option>세종 특별시</option>
                 <option>대구 광역시</option>
@@ -179,7 +174,7 @@
 						<label>취미:</label>
 					</div>
 					<div class="col-md-8" style="position: relative; top: 12px;">
-						<select name="abc">
+						<select name="hobby">
                 <option>게임/오락</option>
                 <option>운동/스포츠</option>
                 <option>인문학/책/글</option>
@@ -200,7 +195,7 @@
 						<label>프로필 사진:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" placeholder="" required=""><button type="button" style="float: right;"> 찾아보기 </button> <button type="button" style="float: right;"> 파일삭제</button>
+						<input type="password" name="profile" required=""><button type="button" style="float: right;"> 찾아보기 </button> <button type="button" style="float: right;"> 파일삭제</button>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -208,6 +203,9 @@
 						<button class="btn row mt-3">정보수정</button>
 					</div>
 				</div>
+				<input type="hidden" name="userid" value="${member.userid}">
+				<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 			</form>
       <a href="./info"><button class="btn" style="position: relative; bottom: 56px; left: 320px;">취소</button></a>
 		</div>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -154,7 +155,7 @@
 					</div>
 				</div>
           <div style="position: relative; bottom: 400px; left: 380px;"><img src="/resources/img/man.png" alt="Card image cap"></div>
-						<a href="./checkPwd"><button class="btn" style="float: right; position: relative; bottom: 320px; left: 435px;">회원 정보 변경</button></a>
+						<a href="/front/myPage/modify?userid=<sec:authentication property="principal.username"/>"><button class="btn" style="float: right; position: relative; bottom: 320px; left: 435px;">회원 정보 변경</button></a>
 		</div>
 	</div>
 </section>
@@ -163,15 +164,6 @@
 <!-- footer -->
 <footer class="footer py-5">
 	<div class="container py-md-3">
-		<div class="footer-grid_section text-center">
-			<div class="footer-title mb-3">
-				<h2> <a href="index.html"><span class="fa fa-meetup"></span> Furnish</a></h2>
-			</div>
-			<div class="footer-text">
-				<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ipnut libero malesuada feugiat.
-				 Lorem ipsum dolor sit amet elit.</p>
-			</div>
-		</div>
 		<div class="row mt-5">
 			<div class="col-lg-4 mb-lg-0 mb-4 footer-top">
 				<h4 class="mb-4 w3f_title text-uppercase">Contact Info</h4>
