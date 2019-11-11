@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="keywords" content=" Furnish Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <!-- 슬라이드 css1 -->
 <link rel="stylesheet" type="text/css" href="/resources/css/set1.css" />
 
@@ -32,7 +37,7 @@
 </head>
 <body>
 <!-- //header -->
-<jsp:include page="./include/header.jsp" flush="true" />
+<jsp:include page="/WEB-INF/views/front/include/header.jsp" flush="true" />
   <section class="banner_w3lspvt">
   	<div class="csslider infinity" id="slider1">
   		<input type="radio" name="slides" checked="checked" id="slides_1" />
@@ -154,24 +159,30 @@
   </div>
 
   <!--aside -->
+  <sec:authorize access="isAnonymous()">
   <div class="aside">
     <div class="login_area">
       <div class="letter">
       <p>"오늘도 당신의 즐거운 하루가 되길 응원합니다."</p>
       </div>
         <div class="login">
-          <button class="login_btn">
-            로그인
+          <button class="login_btn" onclick="location.href='/login' ">
+            	로그인
           </button>
         </div>
       <div class="user_find">
-        <a class="btn_join" href="/front/register">회원가입</a>
+        <a class="btn_join" href="/register">회원가입</a>
       </div>
-      <div class="arti1">#<a href="*">나만의 모임</a></div>
-      <div class="arti2">#<a href="*">인맥 쌓기</a></div>
-      <div class="arti3">#<a href="*">취미 생활 크루 찾기</a></div>
+      <div class="arti1">#<a href="/front/myMeeting">나만의 모임</a></div>
+      <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
+      <div class="arti3">#<a href="/front/meetingSearch">취미 생활 크루 찾기</a></div>
     </div>
   </div>
+  </sec:authorize>
+  
+  <sec:authorize access="isAuthenticated()">
+
+  </sec:authorize>
   <!-- aside end -->
 </section>
 <!-- main_top end -->
@@ -202,8 +213,8 @@
     </div>
   </div>
     <div class="faq">
-      <div class="faq_i"><a href="#"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
-      <div class="answer_i"><a href="#"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
+      <div class="faq_i"><a href="/front/question/FAQ"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
+      <div class="answer_i"><a href="/front/question/myQuestion"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
       <div class="faq_i"></div>
     </div>
   </div>
@@ -372,5 +383,7 @@
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
+
+
 </body>
 </html>

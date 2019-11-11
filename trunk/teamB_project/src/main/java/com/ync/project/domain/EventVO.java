@@ -1,7 +1,7 @@
 package com.ync.project.domain;
 
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -13,13 +13,14 @@ import lombok.Data;
   */
 @Data
 public class EventVO {
-	  private Long event_no;
-	  private String title;
-	  private Date event_start_date;
-	  private Date event_end_date;
-	  private String contents;
-	  private Date write_Date;
-	  private String image;
-	  private String userid;
-	  private String banner_image;
+	  private Long event_num;		//글번호
+	  private String title;			//제목
+	  private Date event_start_date;//이벤트 시작일
+	  private Date event_end_date;  //이벤트 종료일
+	  private String contents;		//내용
+	  private Date write_date;		//작성일자
+	  private String image;			//사진
+	  private String userid;		//글쓴이 아이디
+	  private String banner_image;  //배너 이미지
+	  private String event_progress;  //배너 이미지
 }

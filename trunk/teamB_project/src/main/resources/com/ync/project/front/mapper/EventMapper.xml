@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.front.mapper.EventMapper">
+
+	<!-- 게시판 리스트 -->
+	<select id="getList" resultType="com.ync.project.domain.EventVO">
+	<![CDATA[
+		SELECT	b.*, 
+				(CASE WHEN SYSDATE < b.EVENT_START_DATE THEN '진행예정'
+        		WHEN (SYSDATE >= b.EVENT_START_DATE AND SYSDATE < b.EVENT_END_DATE) THEN '진행중'
+        		ELSE '종료'
+    			END) AS event_progress
+		FROM	TEAMB_EVENT b
+		WHERE	b.event_num > 0
+		]]>
+	</select>
+	
+	<!-- 게시글 상세 보기 -->
+	<select id="read" resultType="com.ync.project.domain.EventVO">
+		SELECT *
+		FROM   teamb_event
+		WHERE  event_num =	#{event_num}
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="getListWithPaging" resultType="com.ync.project.domain.EventVO">
+	<![CDATA[
+	SELECT  event_num,
+			title,
+			event_start_date,
+			event_end_date,
+			contents,
+			image
+	FROM    (SELECT /*+INDEX_DESC(teamb_event xpkteamb_event) */
+			rownum rn,
+			event_num,
+			title,
+			event_start_date,
+			event_end_date,
+			contents,
+			image
+			FROM teamb_event
+			)
+	]]>
+	</select>
+</mapper>

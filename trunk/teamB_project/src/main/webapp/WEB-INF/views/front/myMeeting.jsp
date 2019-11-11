@@ -34,11 +34,11 @@
     </script>
 
 	<!-- css files -->
-    <link href="../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="../../../resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="../../../resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/slick-theme.css">
+    <link href="/resources/css/bootstrapJ.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/slick-theme.css">
 	<!-- //css files -->
 
 	<!-- google fonts -->
@@ -81,43 +81,7 @@
 </head>
 <body>
 <!-- //header -->
-  <header class="py-sm-3 pt-3 pb-2" id="home">
-     <div class="container">
-        <!-- nav -->
-        <div class="top d-md-flex">
-           <div id="logo">
-              <h1> <a href="/"><span class="fa fa-meetup"></span> 牛모임</a></h1>
-           </div>
-           <div class="search-form mx-md-auto">
-              <div class="n-right-w3ls">
-                 <form action="#" method="post" class="newsletter">
-                    <input class="search" type="text" placeholder="Search..." required="">
-                    <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
-                 </form>
-              </div>
-           </div>
-           <div class="forms mt-md-0 mt-2">
-              <a href="/front/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
-              <a href="/front/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
-              <a href="/front/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
-              <a href="/front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
-           </div>
-        </div>
-        <nav class="text-center">
-           <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
-           <input type="checkbox" id="drop" />
-           <ul class="menu">
-              <li class="mr-lg-4 mr-2"><a href="/">홈</a></li>
-              <li class="mr-lg-4 mr-2"><a href="/front/notice/list">공지사항</a></li>
-              <li class="mr-lg-4 mr-2"><a href="/front/event/list">이벤트</a></li>
-              <li class="mr-lg-4 mr-2"><a href="/front/meetingSearch">모임 찾기</a></li>
-              <li class="mr-lg-4 mr-2 active"><a href="/front/myMeeting">내모임</a></li>
-              <li class=""><a href="/front/question/FAQ">고객센터</a></li>
-           </ul>
-        </nav>
-        <!-- //nav -->
-     </div>
-  </header>
+<jsp:include page="/WEB-INF/views/front/include/header.jsp" flush="true" />
   <!-- //header -->
 
 <!-- inner banner -->
@@ -139,7 +103,7 @@
 		</ol>
 	</div>
 </div>
-<link href="../../../resources/css/style_editors.css" rel='stylesheet' type='text/css' />
+<link href="/resources/css/style_J.css" rel='stylesheet' type='text/css' />
 
 
 <!-- //page details -->
@@ -152,7 +116,7 @@
       <div class="aside">
         <div class="login_area" style="margin-top:40px;">
           <div class="profile">
-            <a href="#"><img src="../../../resources/img/profile01.jpg" alt=""></a>
+            <a href="#"><img src="/resources/img/profile01.jpg" alt=""></a>
             <div>
               <ul>
                 <li class="mypage"><a href="#">페이커 님</a><span><a href="#">내정보</a></span></li>
@@ -183,8 +147,8 @@
             <a href="#">[안내] 牛모임 사이트가 개설되었습니다.</a><br>
             <a href="#">[점검] 정기점검 안내</a>
           </div>
-          <a href="#"><img src="../../../resources/img/event1.jpg" alt="" height="250px"></a>
-          <a href="#"><img src="../../../resources/img/FAQ.jpg" alt=""></a>
+          <a href="#"><img src="/resources/img/event1.jpg" alt="" height="250px"></a>
+          <a href="#"><img src="/resources/img/FAQ.jpg" alt=""></a>
         </div>
       </div>
 
@@ -200,7 +164,7 @@
     <div class="col-lg-5 col-md-6 newsgrid1">
       <div class="left-meeting">
         <div class="">
-          <a href="#"><img src="../../../resources/img/th.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/th.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class="mt-4"><a href="#">SKT T1</a></b>
@@ -216,7 +180,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="right-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -233,7 +197,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="left-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -250,7 +214,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="right-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -267,7 +231,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="left-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -284,7 +248,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="right-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -301,7 +265,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="left-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -318,7 +282,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="right-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -334,7 +298,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="left-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
@@ -351,7 +315,7 @@
     <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
       <div class="right-meeting">
         <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
+          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
         </div>
         <div class="introduction">
           <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>

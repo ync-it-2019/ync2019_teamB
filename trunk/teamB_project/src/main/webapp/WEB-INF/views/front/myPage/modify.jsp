@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +19,9 @@
     </script>
 
 	<!-- css files -->
-    <link href="../../../../resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="../../../../resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="../../../../resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
 
 	<!-- google fonts -->
@@ -28,42 +31,10 @@
 </head>
 <body>
 <!-- //header -->
-<header class="py-sm-3 pt-3 pb-2" id="home">
-	<div class="container">
-		<!-- nav -->
-		<div class="top d-md-flex">
-			<div id="logo">
-				<h1> <a href="index.html"><span class="fa fa-meetup"></span> Furnish</a></h1>
-			</div>
-			<div class="search-form mx-md-auto">
-				<div class="n-right-w3ls">
-					<form action="#" method="post" class="newsletter">
-						<input class="search" type="text" placeholder="Search..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-search"></span></button>
-					</form>
-				</div>
-			</div>
-			<div class="forms mt-md-0 mt-2">
-				<a href="login.html" class="btn"><span class="fa fa-user-circle-o"></span> Sign In</a>
-				<a href="register.html" class="btn"><span class="fa fa-pencil-square-o"></span> Create Account</a>
-			</div>
-		</div>
-		<nav class="text-center">
-			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
-			<input type="checkbox" id="drop" />
-			<ul class="menu">
-				<li class="mr-lg-4 mr-2"><a href="index.html">Home</a></li>
-				<li class="mr-lg-4 mr-2"><a href="about.html">About Us</a></li>
-				<li class="mr-lg-4 mr-2"><a href="services.html">Services</a></li>
-				<li class="mr-lg-4 mr-2"><a href="categories.html">Categories</a></li>
-				<li class="mr-lg-4 mr-2"><a href="blog.html">Blog</a></li>
-				<li class=""><a href="contact.html">Contact</a></li>
-			</ul>
-		</nav>
-		<!-- //nav -->
-	</div>
-</header>
-<!-- //header -->
+  <header class="py-sm-3 pt-3 pb-2" id="home">
+<jsp:include page="/WEB-INF/views/front/include/header.jsp" flush="true" />
+  </header>
+  <!-- //header -->
 
 <!-- inner banner -->
 <section class="inner-banner">
@@ -92,13 +63,13 @@
     <h4>회원 정보 수정</h4>
     <hr>
 		<div class="login-form">
-			<form action="#" method="post">
+			<form action="/front/myPage/modify" method="post">
 				<div class="row">
 					<div class="col-md-4 text-md-right">
 						<label>이름:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						김기본
+						<c:out value="${member.name}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -106,7 +77,7 @@
 						<label>아이디:</label>
 					</div>
 					<div class="col-md-8" style="position: relative; top: 12px;">
-						idid123
+						<c:out value="${member.userid}"/>
 					</div>
 				</div>
         <div class="row mt-3">
@@ -114,7 +85,7 @@
 						<label>비밀번호:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" value="****" required="">
+						<input name='userpw' type="password" value="****">
 					</div>
 				</div>
         <div class="row mt-3">
@@ -122,15 +93,7 @@
 						<label>비밀번호 확인:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" placeholder="Enter your new Password" required="">
-					</div>
-				</div>
-        <div class="row mt-3">
-					<div class="col-md-4 text-md-right">
-						<label>닉네임:</label>
-					</div>
-          <div class="col-md-8" style="position: relative; top: 12px;">
-						현재닉
+						<input type="password" placeholder="Enter your new Password">
 					</div>
 				</div>
         <div class="row mt-3">
@@ -138,7 +101,7 @@
 						<label>이메일:</label>
 					</div>
           <div class="col-md-8" style="position: relative; top: 12px;">
-						aaa@abc.com
+						<c:out value="${member.email}"/>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -146,7 +109,51 @@
 						<label>전화번호:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="text" value="01012345555" required="">
+						<input type="text" name='phone' value="<c:out value="${member.phone}"/>">
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-4 text-md-right">
+						<label>활동지역:</label>
+					</div>
+					<div class="col-md-8" style="position: relative; top: 12px;">
+						<select name="adress" id="sel">
+                <option>서울 특별시</option>
+                <option>세종 특별시</option>
+                <option>대구 광역시</option>
+                <option>부산 광역시</option>
+                <option>인천 광역시</option>
+                <option>울산 광역시</option>
+                <option>광주 광역시</option>
+                <option>대전 광역시</option>
+                <option>강원도</option>
+                <option>경기도</option>
+                <option>경상도</option>
+                <option>전라도</option>
+                <option>충청도</option>
+                <option>제주도</option>
+              </select>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-4 text-md-right">
+						<label>취미:</label>
+					</div>
+					<div class="col-md-8" style="position: relative; top: 12px;">
+						<select name="hobby">
+                <option>게임/오락</option>
+                <option>운동/스포츠</option>
+                <option>인문학/책/글</option>
+                <option>만화/애니</option>
+                <option>문화/예술</option>
+                <option>차/오토바이</option>
+                <option>봉사활동</option>
+                <option>야구관람</option>
+                <option>요리/제조</option>
+                <option>여행</option>
+                <option>댄스/무용</option>
+                <option>외국어/언어</option>
+              </select>
 					</div>
 				</div>
         <div class="row mt-3">
@@ -154,7 +161,7 @@
 						<label>프로필 사진:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="password" placeholder="" required=""><button type="button" style="float: right;"> 찾아보기 </button> <button type="button" style="float: right;"> 파일삭제</button>
+						<input type="password" name="profile" required=""><button type="button" style="float: right;"> 찾아보기 </button> <button type="button" style="float: right;"> 파일삭제</button>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -162,6 +169,9 @@
 						<button class="btn row mt-3">정보수정</button>
 					</div>
 				</div>
+				<input type="hidden" name="userid" value="${member.userid}">
+				<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 			</form>
       <a href="./info"><button class="btn" style="position: relative; bottom: 56px; left: 320px;">취소</button></a>
 		</div>
