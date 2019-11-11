@@ -1,6 +1,7 @@
 package com.ync.project.front.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,28 +28,26 @@ public class MemberController {
 	private MemberService service;
 
 	
-//	//회원가입 화면
-//	@GetMapping("/register")
-//	public void register() {
-//		
-//	}
-//	
-//	 /**
-//	  * @Method 설명 : 회원가입 페이지
-//	  * @Method Name : register
-//	  * @Date : 2019. 11. 3.
-//	  * @작성자 : 조중현
-//	  * @param member
-//	  * @param rttr
-//	  * @return
-//	  */
-//	@PostMapping("/register")
-//	public String register(MemberVO member, RedirectAttributes rttr) {
-//		
-//		log.info("register : " + member);
-//		service.register(member);
-//		return "redirect:/register";
-//	}
+	 /**
+	  * @Method 설명 : 회원가입
+	  * @Method Name : register
+	  * @Date : 2019. 11. 11.
+	  * @작성자 : 조중현
+	  */
+	@GetMapping("/register")
+	public void register() {
+	}
+	
+	@PostMapping("/register")
+	public String register(MemberVO member, RedirectAttributes rttr) {
+		BCryptPasswordEncoder scpwd = new BCryptPasswordEncoder();
+		member.setUserpw(scpwd.encode(member.getUserpw()));
+		log.info("register : " + member);
+		service.register(member);
+		return "redirect:/";
+	}
+	
+
 	
 	
 

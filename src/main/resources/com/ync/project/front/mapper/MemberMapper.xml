@@ -63,5 +63,24 @@
 			profile = #{profile}
 			where userid = #{userid}
 	</update>
+	
+	<insert id="insert">
+		insert into teamb_member (name, 
+								  userid, 
+								  userpw, 
+								  phone, 
+								  email, 
+								  profile, 
+								  adress, 
+								  hobby)
+		values (#{name},
+				#{userid},
+				#{userpw},
+				#{phone},
+				#{email},
+				#{profile},
+				#{adress},
+				#{hobby})
+	</insert>
 
 </mapper>

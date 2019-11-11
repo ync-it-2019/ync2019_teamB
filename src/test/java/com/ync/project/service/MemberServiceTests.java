@@ -41,23 +41,24 @@ public class MemberServiceTests {
 //		assertNotNull(service);
 //	}
 	
-//	@Test
-//	public void testRegister() {
-//		
-//		MemberVO member = new MemberVO();
-//		
-//		member.setName("이주현");
-//		member.setUserid("user03");
-//		member.setUserpw("1234");
-//		member.setPhone("010-2020-2222");
-//		member.setEmail("user03@ync.ac.kr");
-//		member.setAdress("서울특별시");
-//		member.setHobby("등산");
-//		
-//		service.register(member);
-//		
-//		log.info("생성된 회원의 아이디" + member.getUserid());
-//	}
+	@Test
+	public void testRegister() {
+		
+		MemberVO member = new MemberVO();
+		
+		member.setName("테스트");
+		member.setUserid("user12");
+		member.setUserpw("1234");
+		member.setPhone("010-2020-2222");
+		member.setEmail("user03@ync.ac.kr");
+		member.setAdress("서울특별시");
+		member.setHobby("등산");
+		member.setProfile("");
+		
+		service.register(member);
+		
+		log.info("생성된 회원의 아이디" + member.getUserid());
+	}
 
 //	@Test
 //	public void testList() {
@@ -115,22 +116,22 @@ public class MemberServiceTests {
 //	}
 
 	
-	@Test
-	public void testUpdate() {
-		MemberVO member = service.info("user01");
-		
-		if (member == null) {
-			return;
-		}
-		
-		member.setUserid("user01");
-		member.setUserpw("1234");
-		member.setPhone("010-4944-6748");
-		member.setAdress("대구광역시");
-		member.setHobby("유흥");
-		member.setProfile("");
-		
-		log.info("MODIFY RESULT: " + service.updateUser(member));
-	}
+//	@Test
+//	public void testUpdate() {
+//		MemberVO member = service.info("user01");
+//		
+//		if (member == null) {
+//			return;
+//		}
+//		
+//		member.setUserid("user01");
+//		member.setUserpw("1234");
+//		member.setPhone("010-4944-6748");
+//		member.setAdress("대구광역시");
+//		member.setHobby("유흥");
+//		member.setProfile("");
+//		
+//		log.info("MODIFY RESULT: " + service.updateUser(member));
+//	}
 	
 }
