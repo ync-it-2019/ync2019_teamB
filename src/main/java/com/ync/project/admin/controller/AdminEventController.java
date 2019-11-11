@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ync.project.front.service.EventService;
+import com.ync.project.admin.service.AdminEventService;
 
 import lombok.extern.log4j.Log4j;
 /**
@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 public class AdminEventController {
 	
 	@Autowired
-	private EventService service;
+	private AdminEventService service;
 	
 	/**
 	  * @Method 설명 : admin/event/list.jsp 호출
