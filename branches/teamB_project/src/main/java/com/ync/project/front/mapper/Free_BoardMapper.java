@@ -2,10 +2,12 @@ package com.ync.project.front.mapper;
 
 import java.util.List;
 
+//import org.apache.ibatis.annotations.Param;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.Free_BoardVO;
 
 public interface Free_BoardMapper {
+	
 	// @Select("SELECT * FROM tbl_board WHERE bno > 0")
 	public List<Free_BoardVO> getList();
 
