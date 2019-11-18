@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -49,34 +51,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div class="compose-mail">
                       <div class="form-group">
                         <label class="" style="margin-right:20px;">대표 이미지</label>
-                        <img class="event_img" src="images/g8.jpg" alt="" style="display:inline;">
+                        <img class="event_img " src="/resources/upload/<c:out value="${event.banner_image}" />" alt="" style="display:inline;">
                       </div>
                       <div class="form-group">
                         <label class="">작성자</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="운영자_a" readonly>
+                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.userid}" />" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">작성일</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="2019.10.28" readonly>
+                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.write_date}" />" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">기간</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="2019.10.28 ~ 2020.01.01" readonly>
+                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.event_start_date}" /> ~ <c:out value="${event.event_end_date}" />" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">비고</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="진행중" readonly>
+                        <td class="view-message text-right" onClick="location.href='/admin/event/detail'"><c:out value=" " /></td>
                       </div>
                       <div class="form-group">
                         <label class="">제목</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="행복한 소모임인, 즐거운 소모임 되기!" readonly>
+                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.title}" />" readonly>
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9" readonly>안녕하세요. 소모임 운영진 입니다. 저희 소모임이 새로운 모습으로 모임인 분들을 찾아 뵙게 되었습니다.
+                        <textarea class="wysihtml5 form-control" rows="9" readonly><c:out value="${event.contents}" />
                                     </textarea>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/event/modify'">수정</button>
+                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/event/modify?event_num=<c:out value="${event.event_num}" />'">수정</button>
                         <button class="btn btn-sm" onClick="location.href='/admin/event/list'">삭제</button>
                       </div>
                     <button class="btn btn-sm" onClick="location.href='/admin/event/list'">목록</button>

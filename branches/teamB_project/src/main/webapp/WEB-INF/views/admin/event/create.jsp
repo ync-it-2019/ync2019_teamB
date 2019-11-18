@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -47,33 +50,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </header>
                 <div class="panel-body">
                   <div class="compose-mail">
-                    <form role="form-horizontal" method="post">
-                      <div class="form-group">
+                    <form role="form" action="/admin/event/create" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name='image' value=" ">
+                    <input type="hidden" name='banner_image' value=" ">
                         <div class="form-group">
                           <label class="">작성자:</label>
-                          <input type="text" tabindex="1" id="to" class="form-control" value="운영자_a" readonly>
-                        </div>
-                        <div class="form-group">
-                          <label class="">작성일:</label>
-                          <input type="text" tabindex="1" id="to" class="form-control" value="2019.10.28" readonly>
+                          <input type="text" tabindex="1" id="to" class="form-control" value="user01" name='userid' readonly>
                         </div>
                         <div class="form-group">
                           <label class="">시작 일</label>
-                          <input type="date" tabindex="1" id="to" class="form-control" style="width:150px;">
+                          <input type="date" tabindex="1" id="to" class="form-control" style="width:150px;" name='event_start_date'>
                         </div>
                         <div class="form-group">
                           <label class="">종료 일</label>
-                          <input type="date" tabindex="1" id="to" class="form-control" style="width:150px;">
+                          <input type="date" tabindex="1" id="to" class="form-control" style="width:150px;" name='event_end_date'>
                         </div>
-                        <label for="to" class="">제목:</label>
-                        <input type="text" tabindex="1" id="to" class="form-control">
+                        <div class="form-group">
+                        	<label for="to" class="">제목:</label>
+                        	<input type="text" tabindex="1" id="to" class="form-control" name='title'>
+                        </div>
                         <div class="compose-editor">
-                          <textarea class="wysihtml5 form-control" rows="9"></textarea>
-                          <input type="file" class="default">
+                          <textarea class="wysihtml5 form-control" rows="9" name='contents'></textarea>
+                          <input type="file" class="default" name='uploadFile'>
                         </div>
                         <div class="center">
-                          <button class="btn btn-primary btn-sm" onClick="location.href='/admin/event/list'"><i class="fa fa-check"></i> 완료</button>
-                          <button class="btn btn-sm" onClick="location.href='/admin/event/list'"><i class="fa fa-times"></i> 취소</button>
+                          <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> 완료</button>
+                          <button type="button" class="btn btn-sm" onClick="location.href='/admin/event/list'"><i class="fa fa-times"></i> 취소</button>
                         </div>
                     </form>
                   </div>
