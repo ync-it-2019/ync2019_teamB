@@ -20,4 +20,7 @@ public interface AdminEventService {
 	
 	// 글 목록 페이징 
 	public List<EventVO> getListWithPaging(Criteria cri);
+	
+	// 이벤트 글 쓰기
+	public void register(EventVO event);
 }
