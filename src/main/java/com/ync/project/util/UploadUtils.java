@@ -10,6 +10,8 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ync.project.domain.EventVO;
+
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
 
@@ -44,11 +46,13 @@ public class UploadUtils {
 	}
 
 	
-	public static String uploadFormPost(MultipartFile uploadFile, String realUploadPath) {
+	public static String uploadFormPost(MultipartFile uploadFile, String realUploadPath, EventVO event) {
 
 		String uploadFolder = realUploadPath;
 		String saveFileName = null; // 서버에 저장되는 file 명
 		String fullSaveName = null; // uploadFolder + saveFileName
+		String ThumnailSaveFileName = null;
+		String ThumnailFullSaveFileName = null;
 		
 		log.info("uploadFolder: " + uploadFolder);
 
@@ -89,8 +93,11 @@ public class UploadUtils {
 
 					// 썸네일 사이즈를 지정해준다. 프로젝트에 따라 썸네일의 크기를 조절해서 사용
 					Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 100, 100);
+					
 					thumbnail.close();
 				}
+				ThumnailSaveFileName = "s_" + saveFileName;
+				ThumnailFullSaveFileName = getFolder() + "/" + ThumnailSaveFileName;
 
 				//fullSaveName = getFolder() + File.separator + saveFileName;
 				fullSaveName = getFolder() + "/" + saveFileName;
@@ -99,6 +106,13 @@ public class UploadUtils {
 				e.printStackTrace();
 			} // end catch
 		}
+		log.info("saveFileName: " + saveFileName);
+		log.info("fullSaveName: " + fullSaveName);
+		log.info("ThumnailSaveFileName: " + saveFileName);
+		log.info("ThumnailFullSaveFileName: " + ThumnailFullSaveFileName);
+		
+		event.setBanner_image(ThumnailFullSaveFileName);
+		
 		return fullSaveName;
 	}
 
