@@ -21,7 +21,7 @@ public class NoticeController {
    @GetMapping("/notice/list")
    public void list(Model model) {
       log.info("list");
-      model.addAttribute("noticeList", service.getList());
+      model.addAttribute("list", service.getList());
    }
    
    @GetMapping("/notice/get")
