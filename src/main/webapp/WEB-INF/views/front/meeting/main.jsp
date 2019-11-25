@@ -39,6 +39,12 @@
 				<div class="">
 	 				<h5>모임멤버 7명</h5>
 					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>이름</th>
+								<th>직책</th>
+							</tr>
+						</thead>						
 						<tr>
 							<th>이주현</th>
 							<th>모임장</th>
