@@ -27,12 +27,12 @@ public class EventServiceTests {
 	@Autowired
 	private EventService service;
 
-//	@Test
-//	public void testExist() {
-//		log.info(service);
-//		assertNotNull(service);
-//	}
-//	
+	@Test
+	public void testExist() {
+		log.info(service);
+		assertNotNull(service);
+	}
+	
 	@Test
 	public void testGetList() {
 
@@ -40,10 +40,10 @@ public class EventServiceTests {
 		service.getList().forEach(board -> log.info(board));
 	}
 	
-//	@Test
-//	public void testGet() {
-//
-//		log.info(service.read(1L));
-//	}
+	@Test
+	public void testGet() {
+
+		log.info(service.read(1L));
+	}
 
 }

@@ -48,4 +48,12 @@ public class AdminEventServiceImpl implements AdminEventService {
 
 		return mapper.getListWithPaging(cri);
 	}
+	
+	@Override
+	public void register(EventVO event) {
+		
+		log.info("register......." + event);
+		
+		mapper.insertSelectKey(event);
+	}
 }

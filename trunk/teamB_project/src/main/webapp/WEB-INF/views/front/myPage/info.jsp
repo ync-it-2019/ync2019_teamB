@@ -118,8 +118,14 @@
 						<c:out value="${member.hobby}"/>
 					</div>
 				</div>
-          <div style="position: relative; bottom: 400px; left: 380px;"><img src="/resources/img/man.png" alt="Card image cap"></div>
-						<a href="/front/myPage/modify?userid=<sec:authentication property="principal.username"/>"><button class="btn" style="float: right; position: relative; bottom: 320px; left: 435px;">회원 정보 변경</button></a>
+          <div style="position: relative; bottom: 370px; left: 380px;">
+          	<img src="/resources/upload/<c:out value="${member.profile}" />" alt="" style="height:353px; width:256px;">
+          </div>
+			<a href="/front/myPage/modify?userid=<sec:authentication property="principal.username"/>">
+          			<button class="btn" style="float: right; position: relative; bottom: 360px; left: 484px;">
+          				회원 정보 변경
+          			</button>
+          		</a>
 		</div>
 	</div>
 </section>

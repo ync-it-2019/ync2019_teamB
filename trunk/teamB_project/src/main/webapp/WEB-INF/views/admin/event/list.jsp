@@ -73,17 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           <td class="view-message dont-show text_limit move" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.title}" /></td>
                           <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.event_start_date}" /> ~ <c:out value="${event.event_end_date}" /></td>
                           <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.write_date}" /></td>
-                          <c:choose>
-        					<c:when test="${event.event_progress == '진행중'}">
-        						<td class="view-message text-right" style="color:green;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
-        					</c:when>
-        					<c:when test="${event.event_progress == '종료'}">
-        						<td class="view-message text-right" style="color:red;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
-        					</c:when>
-        					<c:otherwise>
-        						<td class="view-message text-right" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
-        					</c:otherwise>
-        				  </c:choose>
+                          <td class="view-message text-right" onClick="location.href='/admin/event/detail'"><c:out value=" " /></td>
                         </tr>
 						</c:forEach>
                       </tbody>
