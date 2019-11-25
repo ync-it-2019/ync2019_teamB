@@ -1,11 +1,15 @@
 package com.ync.project.domain;
 
- /**
+import lombok.Data;
+
+/**
   * @FileName	: ParticipantsVO.java
   * @Date		: 2019. 10. 25. 
   * @Author		: 이주현
   * @프로그램 설명 : 정모 참가자 VO
   */
+
+@Data
 public class ParticipantsVO {
 	
 	private int meeting_Num;		//모임 번호

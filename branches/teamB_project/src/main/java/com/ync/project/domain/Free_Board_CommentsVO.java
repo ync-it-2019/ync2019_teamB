@@ -2,12 +2,16 @@ package com.ync.project.domain;
 
 import java.util.Date;
 
+import lombok.Data;
+
  /**
   * @FileName	: Free_Board_CommentsVO.java
   * @Date		: 2019. 10. 25. 
   * @Author		: 이주현
   * @프로그램 설명 : 게시판 댓글VO
   */
+
+@Data
 public class Free_Board_CommentsVO {
 	
 	private int meeting_Num;		//모임 번호
