@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h3 class="heading mb-sm-5 mb-4 text-center">Create An Account</h3>
 
 		<div class="login-form">
-			<form action="/register" method="post">
+			<form action="/register" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-4 text-md-right">
 						<label>이름:</label>
@@ -162,9 +162,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-4 text-md-right">
 						<label>프로필사진:</label>
 					</div>
-					<div class="col-md-8">
-						<input type="password" name="profile"><button type="button" style="float: right;">파일삭제</button> <button type="button" style="float: right;">찾아보기</button>
-					</div>
+					<div class="compose-editor">
+                          <input type="file" class="default" name='uploadFile'>
+                        </div>
 				</div>
 				<div class="row mt-3">
 					<div class="col-md-8 offset-md-4">
@@ -173,6 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
+				<input type="hidden" name='profile' value=" ">
 			</form>
 		</div>
 
