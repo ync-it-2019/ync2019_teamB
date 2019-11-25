@@ -63,7 +63,7 @@
     <h4>회원 정보 수정</h4>
     <hr>
 		<div class="login-form">
-			<form action="/front/myPage/modify" method="post">
+			<form action="/front/myPage/modify" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-4 text-md-right">
 						<label>이름:</label>
@@ -160,9 +160,9 @@
 					<div class="col-md-4 text-md-right">
 						<label>프로필 사진:</label>
 					</div>
-					<div class="col-md-8">
-						<input type="password" name="profile" required=""><button type="button" style="float: right;"> 찾아보기 </button> <button type="button" style="float: right;"> 파일삭제</button>
-					</div>
+					<div class="compose-editor">
+                          <input type="file" class="default" name='uploadFile'>
+                        </div>
 				</div>
 				<div class="row mt-3">
 					<div class="col-md-8 offset-md-4">
@@ -172,6 +172,7 @@
 				<input type="hidden" name="userid" value="${member.userid}">
 				<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
+				<input type="hidden" name='profile' value=" ">
 			</form>
       <a href="./info"><button class="btn" style="position: relative; bottom: 56px; left: 320px;">취소</button></a>
 		</div>

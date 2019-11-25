@@ -2,6 +2,11 @@ package com.ync.project.front.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ync.project.domain.MemberVO;
+import com.ync.project.front.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -14,6 +19,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class FrontHomeController {
+	private MemberService service;
 	
 	/**
 	  * @Method 설명 : front/index.jsp 호출
@@ -29,5 +35,6 @@ public class FrontHomeController {
 	
 		return "front/index";
 	}
+	
 	
 }
