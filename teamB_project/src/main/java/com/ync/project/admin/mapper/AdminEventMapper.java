@@ -18,4 +18,6 @@ public interface AdminEventMapper {
 	public EventVO read(Long event_num);
 	// 목록 페이징
 	public List<EventVO> getListWithPaging(Criteria cri);
+
+	public Integer insertSelectKey(EventVO event);
 }
