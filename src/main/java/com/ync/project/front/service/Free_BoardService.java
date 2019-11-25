@@ -7,7 +7,7 @@ import com.ync.project.domain.Criteria;
 
 public interface Free_BoardService {
 	// 글 등록
-	public void register(Free_BoardVO board);  //board ??
+	public void register(Free_BoardVO board); 
 	
 	// 글 상세보기
 	public Free_BoardVO get(Long free_board_num);
