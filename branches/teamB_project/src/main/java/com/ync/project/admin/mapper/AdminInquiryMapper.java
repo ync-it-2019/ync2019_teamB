@@ -3,7 +3,7 @@ package com.ync.project.admin.mapper;
 import java.util.List;
 
 import com.ync.project.domain.Criteria;
-import com.ync.project.domain.EventVO;
+import com.ync.project.domain.QuestionVO;
 
  /**
   * @FileName	: AdminInquiryMapper.java
@@ -13,13 +13,13 @@ import com.ync.project.domain.EventVO;
   */
 public interface AdminInquiryMapper {
 	//전체 게시 글 목록
-	public List<EventVO> getList();
+	public List<QuestionVO> getList();
 	//게시 글 상세보기
-	public EventVO read(Long event_num);
+	public QuestionVO read(Long question_num);
 	//목록 페이징
-	public List<EventVO> getListWithPaging(Criteria cri);
+	public List<QuestionVO> getListWithPaging(Criteria cri);
 	//게시 글 쓰기
-	public Integer insertSelectKey(EventVO event);
+	public Integer insertSelectKey(QuestionVO question);
 	
 	public int getTotalCount(Criteria cri);
 }
