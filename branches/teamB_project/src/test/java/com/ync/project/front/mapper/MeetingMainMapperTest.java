@@ -24,7 +24,7 @@ public class MeetingMainMapperTest {
 	
 	
 	 /**
-	  * @Method 설명 : 모임 소개 테스트
+	  * @Method 설명 : 모임 정보 테스트
 	  * @Method Name : testMeetingRead
 	  * @Date : 2019. 11. 25.
 	  * @작성자 : 이주현
@@ -32,8 +32,7 @@ public class MeetingMainMapperTest {
 	@Test
 	public void testMeetingRead() {
 
-		// 존재하는 게시물 번호로 테스트
-		MeetingVO meeting = mapper.meeting_Read(2);
+		MeetingVO meeting = mapper.meeting_Read(1);
 
 		log.info(meeting);
 
@@ -48,7 +47,6 @@ public class MeetingMainMapperTest {
 //	@Test
 //	public void testAppointmentRead() {
 //
-//		// 존재하는 게시물 번호로 테스트
 //		AppointmentVO appointment = mapper.appointment_Read(1);
 //
 //		log.info(appointment);

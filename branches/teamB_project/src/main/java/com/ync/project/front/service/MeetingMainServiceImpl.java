@@ -26,9 +26,9 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	private MeetingMainMapper mapper;
 	
 	@Override
-	public MeetingVO getIntroduce(int meeting_Num) {
+	public MeetingVO getInfo(int meeting_Num) {
 		
-		log.info("getIntroduce......" + meeting_Num);
+		log.info("getInfo......" + meeting_Num);
 		
 		return mapper.meeting_Read(meeting_Num);
 	}

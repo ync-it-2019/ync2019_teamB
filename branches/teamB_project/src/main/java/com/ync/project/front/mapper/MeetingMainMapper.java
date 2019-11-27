@@ -14,7 +14,7 @@ import com.ync.project.domain.Meeting_MemberVO;
   */
 public interface MeetingMainMapper {
 	
-	//모임 소개
+	//모임 정보(모임 이름, 이미지, 소개)
 	public MeetingVO meeting_Read(int meeting_Num);
 	
 	//최근 정모

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ync.project.front.service.MeetingMainService;
 
@@ -33,11 +34,13 @@ public class MeetingController {
 	
 	//소모임 메인화면
 	@GetMapping(value = "/main")
-	public void main(Model model) {
+	public void main(Model model, @RequestParam("meeting_num") int meeting_num) {
 
 		log.info("Meeting Info page!");
 		
-		model.addAttribute("getIntroduce", service.getIntroduce(1));
+		model.addAttribute("getIntroduce", service.getInfo(meeting_num));
+		
+		model.addAttribute("getAppointment", service.getAppointment(meeting_num));
 
 	}
 	

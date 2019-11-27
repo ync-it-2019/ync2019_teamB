@@ -20,18 +20,19 @@
 	<div class="pt-3">
 		<div class="info-row">
 			<div class="meeting-introduce1">
-				<div class="meeting-introduce1-info" value=''>
-					${getIntroduce.introduce}
+				<div class="meeting-introduce1-info">
+					${getInfo.introduce}
 				</div>
 			</div>
 			<div class="meeting-introduce2">
 				<!-- 최근 정모글 들어가는 부분 -->
         		<div class="meeting-info-appointment-css">
           			<div class="meeting-info-appointment-css-title">
-            			<h3><a href="./appointment/get" style="color:black">대구 어디 소고기 먹으러</a></h3>
+            			<h3><a href="./appointment/get" style="color:black">${getAppointment.title}</a></h3>
           			</div>
           			<div class="meeting-info-appointment-css-date">
-            			2019/10/15 오후 5시 0분
+            			${getAppointment.appointment_Date}
+            			${getAppointment.appointment_Place}
           			</div>
         		</div>
         		<!-- //최근 정모글 들어가는 부분 -->
