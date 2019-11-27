@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>   
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +70,7 @@
             			<h3><a href="./appointment/get" style="color:black">${getAppointment.title}</a></h3>
           			</div>
           			<div class="meeting-info-appointment-css-date">
-            			${getAppointment.appointment_Date}
+          				<fmt:formatDate pattern="yyyy-MM-dd" value="${getAppointment.appointment_Date}" />
             			${getAppointment.appointment_Place}
           			</div>
         		</div>
@@ -80,37 +82,16 @@
 						<thead>
 							<tr>
 								<th>이름</th>
-								<th>직책</th>
+								<th>가입일</th>
 							</tr>
-						</thead>						
-						<tr>
-							<th>이주현</th>
-							<th>모임장</th>
-						</tr>
-						<tr>
-							<td>이주현</td>
-							<td>일반 멤버</td>
-						</tr>
-						<tr>
-							<td>이주현</td>
-							<td>일반 멤버</td>
-						</tr>
-						<tr>
-							<td>이주현</td>
-							<td>일반 멤버</td>
-						</tr>
-						<tr>
-							<td>이주현</td>
-							<td>일반 멤버</td>
-						</tr>
-						<tr>
-							<td>이주현</td>
-							<td>일반 멤버</td>
-						</tr>
-						<tr>
-							<td>이주현</td>
-							<td>일반 멤버</td>
-						</tr>
+						</thead>
+						
+						<c:forEach items="${getMemberList}" var="memberList" varStatus="status">
+							<tr>
+								<td><c:out value="${memberList.userid}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${memberList.join_Date}" /></td>
+							</tr>
+						</c:forEach>
 					</table>
 				</div>
 				<!-- //모임 멤버 들어가는 부분 -->

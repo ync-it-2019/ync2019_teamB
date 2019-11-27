@@ -41,6 +41,8 @@ public class MeetingController {
 		model.addAttribute("getInfo", service.getInfo(meeting_num));
 		
 		model.addAttribute("getAppointment", service.getAppointment(meeting_num));
+		
+		model.addAttribute("getMemberList", service.getMemberList(meeting_num));
 
 	}
 	
