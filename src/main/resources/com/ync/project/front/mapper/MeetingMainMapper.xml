@@ -2,10 +2,12 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ync.project.front.mapper.MeetingMainMapper">
 	
-	<!-- 모임 소개 -->
+	<!-- 모임 정보 -->
 	<select id="meeting_Read" resultType="com.ync.project.domain.MeetingVO">
 	<![CDATA[
-		SELECT	INTRODUCE
+		SELECT	MEETING_NAME,
+				MEETING_PROFILE,
+				INTRODUCE
 		FROM	TEAMB_MEETING
 		WHERE	MEETING_NUM = #{meeting_Num}
 		]]>

@@ -14,8 +14,8 @@ import com.ync.project.domain.Meeting_MemberVO;
   */
 public interface MeetingMainService {
 	
-	//모임 소개 출력
-	public MeetingVO getIntroduce(int meeting_Num);
+	//모임 정보 출력
+	public MeetingVO getInfo(int meeting_Num);
 	
 	//최근 정모 출력
 	public AppointmentVO getAppointment(int meeting_Num);

@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
   * @FileName	: MeetingMainServiceTests.java
   * @Date		: 2019. 11. 26. 
   * @Author		: 이주현
-  * @프로그램 설명 :
+  * @프로그램 설명 : 모임 메인 Service Test
   */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -35,7 +35,7 @@ public class MeetingMainServiceTests {
 	
 	@Test
 	public void testGetIntroduce() {
-		log.info(service.getIntroduce(1));
+		log.info(service.getInfo(1));
 	}
 	
 	@Test
