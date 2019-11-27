@@ -22,5 +22,8 @@ public interface MeetingMainMapper {
 	
 	//모임 멤버
 	public List<Meeting_MemberVO> getList(int meeting_Num);
+	
+	//모임 생성
+	public void meetingInsert(MeetingVO meeting);
 
 }
