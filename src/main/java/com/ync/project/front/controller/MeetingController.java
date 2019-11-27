@@ -38,7 +38,7 @@ public class MeetingController {
 
 		log.info("Meeting Info page!");
 		
-		model.addAttribute("getIntroduce", service.getInfo(meeting_num));
+		model.addAttribute("getInfo", service.getInfo(meeting_num));
 		
 		model.addAttribute("getAppointment", service.getAppointment(meeting_num));
 
