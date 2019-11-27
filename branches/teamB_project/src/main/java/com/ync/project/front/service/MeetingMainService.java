@@ -21,6 +21,9 @@ public interface MeetingMainService {
 	public AppointmentVO getAppointment(int meeting_Num);
 	
 	//모임 멤버 출력
-	public List<Meeting_MemberVO> getMemberList(int meeting_Num);	
+	public List<Meeting_MemberVO> getMemberList(int meeting_Num);
+	
+	//모임 생성
+	public void meetingCreate(MeetingVO meeting);
 
 }

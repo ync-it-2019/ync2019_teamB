@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.MemberVO;
 import com.ync.project.front.service.MeetingMainService;
 
 import lombok.extern.log4j.Log4j;
@@ -46,6 +48,23 @@ public class MeetingMainServiceTests {
 	@Test
 	public void testGetMemberList() {
 		service.getMemberList(1).forEach(board -> log.info(board));
+	}
+	
+	@Test
+	public void testMeetingCreate() {
+
+		MeetingVO meeting = new MeetingVO();
+		
+		meeting.setIntroduce("모임소개입니다.");
+		meeting.setUserid("user03");
+		meeting.setMeeting_Profile("image.jpg");
+		meeting.setMeeting_Name("모임이름");
+		meeting.setMeeting_Adress("대구광역시");
+		meeting.setMeeting_Hobby("게임/오락");
+
+		log.info(meeting);
+		
+		service.meetingCreate(meeting);
 	}
 
 
