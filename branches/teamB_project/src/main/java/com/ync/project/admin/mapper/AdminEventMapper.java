@@ -20,4 +20,6 @@ public interface AdminEventMapper {
 	public List<EventVO> getListWithPaging(Criteria cri);
 
 	public Integer insertSelectKey(EventVO event);
+	
+	public int getTotalCount(Criteria cri);
 }

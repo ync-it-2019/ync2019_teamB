@@ -3,6 +3,7 @@ package com.ync.project.admin.controller;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,12 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ync.project.admin.service.AdminEventService;
+import com.ync.project.domain.Criteria;
 import com.ync.project.domain.EventVO;
+import com.ync.project.domain.PageDTO;
 import com.ync.project.util.UploadUtils;
 
 import lombok.extern.log4j.Log4j;
@@ -46,12 +51,24 @@ public class AdminEventController {
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-	@GetMapping("/list")
-	public void AdminEventList(Model model) {
-
-		log.info("Event List get page!");
+//	@GetMapping("/list")
+//	public void AdminEventList(Model model) {
+//
+//		log.info("Event List get page!");
+//	
+//		model.addAttribute("list", service.getList());
+//	}
 	
-		model.addAttribute("list", service.getList());
+	@GetMapping("/list")
+	public void list(Criteria cri, Model model) {
+
+		log.info("list: " + cri);
+		
+		// 게시판의 글은 지속적으로 등록, 삭제 되기에 매번 list를 호출 할때 total을 구해와야 한다. 
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	/**
@@ -129,5 +146,19 @@ public class AdminEventController {
 		
 		
 	}
+	
+	/**
+	 * 이후 컨트롤러에서 해당 리스트를 받을 수 있었다
+	 */
+	//AJAX 호출 (게시글 등록, 수정)
+    @PostMapping("/delete")
+    public void AdminEventDelete(@RequestParam(value="List[]") List<String> deleteList, EventVO event, RedirectAttributes rttr) {
+    	for (String List : deleteList) {
+    		log.info("delete : " + deleteList);
+    	}
+    	
+    	log.info("안녕하세요~~~~~~~~~ 잘부탁 드립니다~~~~~");
+    	//return "redirect:/admin/event/list";
+    }
 	
 }

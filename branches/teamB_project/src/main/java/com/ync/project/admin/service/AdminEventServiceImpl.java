@@ -56,4 +56,11 @@ public class AdminEventServiceImpl implements AdminEventService {
 		
 		mapper.insertSelectKey(event);
 	}
+	
+	@Override
+	public int getTotal(Criteria cri) {
+		
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
+	}
 }
