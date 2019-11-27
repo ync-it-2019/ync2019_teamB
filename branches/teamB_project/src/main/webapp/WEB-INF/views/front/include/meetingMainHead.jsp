@@ -13,7 +13,7 @@
 			<div class="container py-lg-5">
 				<div class="text-center py-5">
 	        <div class="meeting-name-style">
-						${getInfo.title}
+						asdf
 					</div>
 				</div>
 			</div>
