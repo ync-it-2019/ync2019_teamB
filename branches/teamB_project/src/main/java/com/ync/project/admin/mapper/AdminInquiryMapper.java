@@ -7,7 +7,7 @@ import com.ync.project.domain.QuestionVO;
 
  /**
   * @FileName	: AdminInquiryMapper.java
-  * @Date		: 2019. 11. 11. 
+  * @Date		: 2019. 11. 27. 
   * @Author		: 서영준
   * @프로그램 설명 : 관리자용 1:1문의 Mapper interface
   */

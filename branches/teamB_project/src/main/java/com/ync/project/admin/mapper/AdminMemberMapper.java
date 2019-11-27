@@ -7,7 +7,7 @@ import com.ync.project.domain.MemberVO;
 
  /**
   * @FileName	: AdminMemberMapper.java
-  * @Date		: 2019. 11. 11. 
+  * @Date		: 2019. 11. 27. 
   * @Author		: 서영준
   * @프로그램 설명 : 관리자용 회원 Mapper interface
   */
