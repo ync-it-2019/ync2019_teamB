@@ -20,4 +20,6 @@ public interface NoticeMapper {
 	public void insert(NoticeVO board);
 	// 글 목록 페이징 
 	public List<NoticeVO> getListWithPaging(Criteria cri);
+	
+	public int getTotalCount(Criteria cri);
 }
