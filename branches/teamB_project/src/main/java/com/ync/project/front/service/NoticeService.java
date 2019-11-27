@@ -20,4 +20,7 @@ public interface NoticeService {
 	
 	// 글 목록 페이징 
 	public List<NoticeVO> getListWithPaging(Criteria cri);
+	
+	//추가
+	public int getTotal(Criteria cri);
 }
