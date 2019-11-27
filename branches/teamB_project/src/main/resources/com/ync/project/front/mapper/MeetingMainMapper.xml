@@ -37,4 +37,24 @@
 		]]>
 	</select>
 	
+	<!-- 모임 생성 -->
+	<insert id="meetingInsert">
+	<![CDATA[
+		INSERT INTO TEAMB_MEETING ( MEETING_NUM,
+									INTRODUCE,
+									USERID,
+									MEETING_PROFILE,
+									MEETING_NAME,
+									MEETING_ADRESS,
+									MEETING_HOBBY)
+		VALUES	(	TEAMB_MEETING_NUM.NEXTVAL,
+					#{introduce},
+					#{userid},
+					#{meeting_Profile},
+					#{meeting_Name},
+					#{meeting_Adress},
+					#{meeting_Hobby})
+		]]>
+	</insert>
+	
 </mapper>

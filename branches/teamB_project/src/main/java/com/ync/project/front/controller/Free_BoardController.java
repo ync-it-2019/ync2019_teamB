@@ -75,7 +75,7 @@ public class Free_BoardController {
 	public void get(@RequestParam("free_board_num") Long free_board_num, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get or modify");
-		model.addAttribute("board", service.get(free_board_num));
+		model.addAttribute("board", service.read(free_board_num));
 	}
 
 	@PostMapping("/modify")

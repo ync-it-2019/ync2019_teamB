@@ -2,14 +2,15 @@ package com.ync.project.front.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ync.project.domain.Criteria;
+import com.ync.project.domain.PageDTO;
+import com.ync.project.front.service.Free_BoardService;
 import com.ync.project.front.service.MeetingMainService;
 
 import lombok.extern.log4j.Log4j;
@@ -30,7 +31,10 @@ public class MeetingController {
 	private String uploadPath;
 	
 	@Autowired
-	private MeetingMainService service;
+	private Free_BoardService service1;
+	
+	@Autowired
+	private MeetingMainService service2;
 	
 	//소모임 메인화면
 	@GetMapping(value = "/main")
@@ -38,25 +42,39 @@ public class MeetingController {
 
 		log.info("Meeting Info page!");
 		
-		model.addAttribute("getInfo", service.getInfo(meeting_num));
+		model.addAttribute("getInfo", service2.getInfo(meeting_num));
 		
-		model.addAttribute("getAppointment", service.getAppointment(meeting_num));
+		model.addAttribute("getAppointment", service2.getAppointment(meeting_num));
 		
-		model.addAttribute("getMemberList", service.getMemberList(meeting_num));
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 
 	}
 	
 	//소모임 게시판 리스트
 	@GetMapping(value = "/board/list")
-	public void BoardList() {
-		log.info("Meeting board list page!");
+	public void Boardlist(Criteria cri, Model model) {
+	      
+		log.info("list : "+ cri);
+	      
+		int total = service1.getTotal(cri);
+		log.info("total: " + total);
+//		model.addAttribute("list", service.getList());  //안 됨
+		model.addAttribute("list", service1.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	//소모임 게시판 보기
 	@GetMapping(value = "/board/get")
-	public void BoardGet() {
+	public void BoardGet(@RequestParam("free_board_num") Long free_board_num, Model model) {
+
 		log.info("Meeting board get page!");
-	}
+//		int total = service.getTotal(cri);
+//		log.info("total: " + total);
+//		model.addAttribute("list", service.getListWithPaging(cri));
+//		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("board", service1.read(free_board_num));
+		
+	   }
 	
 	//소모임 게시판 쓰기
 		@GetMapping(value = "/board/write")

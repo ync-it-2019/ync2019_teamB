@@ -14,6 +14,12 @@ import com.ync.project.domain.Meeting_MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
+ /**
+  * @FileName	: MeetingMainMapperTest.java
+  * @Date		: 2019. 11. 25. 
+  * @Author		: 이주현
+  * @프로그램 설명 : 모임 메인 Mapper Test
+  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
@@ -29,14 +35,14 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 11. 25.
 	  * @작성자 : 이주현
 	  */
-	@Test
-	public void testMeetingRead() {
-
-		MeetingVO meeting = mapper.meeting_Read(1);
-
-		log.info(meeting);
-
-	}
+//	@Test
+//	public void testMeetingRead() {
+//
+//		MeetingVO meeting = mapper.meeting_Read(1);
+//
+//		log.info(meeting);
+//
+//	}
 	
 	 /**
 	  * @Method 설명 : 최근 정모 테스트
@@ -69,5 +75,28 @@ public class MeetingMainMapperTest {
 //		}
 //
 //	}
-//	
+	
+	 /**
+	  * @Method 설명 : 모임 생성 테스트
+	  * @Method Name : testMeetingCreate
+	  * @Date : 2019. 11. 27.
+	  * @작성자 : 이주현
+	  */
+	@Test
+	public void testMeetingCreate() {
+
+		MeetingVO meeting = new MeetingVO();
+		
+		meeting.setIntroduce("모임소개입니다.");
+		meeting.setUserid("user03");
+		meeting.setMeeting_Profile("image.jpg");
+		meeting.setMeeting_Name("모임이름");
+		meeting.setMeeting_Adress("대구광역시");
+		meeting.setMeeting_Hobby("게임/오락");
+
+		log.info(meeting);
+		
+		mapper.meetingInsert(meeting);
+
+	}
 }
