@@ -24,6 +24,6 @@ public interface MeetingMainMapper {
 	public List<Meeting_MemberVO> getList(int meeting_Num);
 	
 	//모임 생성
-	public void meetingInsert(MeetingVO meeting);
+	public void meetingCreate(MeetingVO meeting);
 
 }

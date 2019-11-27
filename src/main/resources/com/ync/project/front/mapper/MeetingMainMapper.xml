@@ -38,7 +38,7 @@
 	</select>
 	
 	<!-- 모임 생성 -->
-	<insert id="meetingInsert">
+	<insert id="meetingCreate">
 	<![CDATA[
 		INSERT INTO TEAMB_MEETING ( MEETING_NUM,
 									INTRODUCE,

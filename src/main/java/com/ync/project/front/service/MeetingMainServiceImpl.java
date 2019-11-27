@@ -49,4 +49,11 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 		
 		return mapper.getList(meeting_Num);
 	}
+	@Override
+	public void meetingCreate(MeetingVO meeting) {
+		
+		log.info("meetingCreate......" + meeting);
+		
+		mapper.meetingCreate(meeting);
+	}
 }

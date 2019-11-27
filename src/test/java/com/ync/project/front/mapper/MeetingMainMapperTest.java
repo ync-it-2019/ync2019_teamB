@@ -96,7 +96,7 @@ public class MeetingMainMapperTest {
 
 		log.info(meeting);
 		
-		mapper.meetingInsert(meeting);
+		mapper.meetingCreate(meeting);
 
 	}
 }
