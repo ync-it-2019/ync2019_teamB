@@ -65,8 +65,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th data-breakpoints="xs sm md" data-title="DOB" class="text-right">비고</th>
                           </tr>
                         </thead>
-                        <form id='listForm' action="/admin/event/delete" method='post'>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <c:forEach items="${list}" var="event" varStatus="status">
                         <tr class="unread">
                           <td class="inbox-small-cells">
@@ -88,7 +86,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           </c:if>
                         </tr>
 						</c:forEach>
-						</form>
                       </tbody>
                     </table>
                     <div style="margin:10px 20px 0 0; text-align:right;">
@@ -144,6 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </section>
     <!--main content end-->
   </section>
+  <form role="form" id="ckForm" action="" method=''></form>
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
@@ -157,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 		var actionForm = $("#actionForm");
 		
-		var listForm = $("#listForm");
+		var ckForm = $("#ckForm");
 
 		// 페이지 번호 클릭 이벤트
 		$(".paginate_button a").on("click", function(e) {
@@ -170,51 +168,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		/**
 		 * 파일 삭제 버튼을 누르면
 		 */
-		$('.delete').click(function() {
-		    //등록할지 물어보기
+		/* $('.delete').click(function() {
+			
+		    var checkArr = [];
+		    
+		    $('input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
+		    	checkArr.push($(this).val());
+		    });
+		    
+		    var check_code = "check=" + checkArr;
+		    
+		    //var ur1 = "/admin/event/delete?" + check_code;
+		    
+		    ckForm.attr("action", "/admin/event/delete").attr("method","get");
+		    
+		    var pageNumTag = $("input[name='pageNum']").clone();
+		    var amountTag = $("input[name='amount']").clone();
+		    var keywordTag = $("input[name='keyword']").clone();
+		    var typeTag = $("input[name='type']").clone();
+		    var check = $("input[name='ck']:checked").clone();
+		 	
+		    //매개변수값 정리 : @RequestBody List fileVOList로 담기위한 사전 작업
+		    
 		    if (!confirm('정말 삭제 하시겠습니까?')) {
 		        return false;
 		    }
+			
+		    //if (pageNumTag) {
+		      //  return false;
+		    //}
 		    
-		 	// Ajax Spring Security Header
-		    $(document).ajaxSend(function(e, xhr, options) { 
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
-			});
-
-		    //매개변수값 정리 : @RequestBody List fileVOList로 담기위한 사전 작업
-		    //배열 선언
-            var arr = [];
+		    ckForm.append(pageNumTag);
+		    ckForm.append(amountTag);
+		    ckForm.append(keywordTag);
+		    ckForm.append(typeTag);
+		    ckForm.append(check);
 		    
-		    $('#listForm input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
-		    	arr.push($(this).val());
-		    });
+		    //if (!confirm(ur1)) {
+		        //return false;
+		    //}
 		    
-		    var objParams = {
-                    "List" : arr        //배열 저장
-                };
-		  
-		  //ajax 호출
-            $.ajax({
-                url         :   "/admin/event/delete",
-                dataType    :   "json",
-                contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
-                type        :   "post",
-                data        :   objParams,
-                success     :   function(retVal){
-
-                    if(retVal.code == "OK") {
-                        alert(retVal.message);
-                    } else {
-                        alert(retVal.message);
-                    }
-                     
-                },
-                error       :   function(request, status, error){
-                    console.log("AJAX_ERROR");
-                }
-            });
-		})
-		
+		    ckForm.submit();
+		    
+		    
+		}); */
 	});
 </script>
 
