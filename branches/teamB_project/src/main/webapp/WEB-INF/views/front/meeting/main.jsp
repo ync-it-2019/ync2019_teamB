@@ -14,7 +14,7 @@
 <body>
 
 <!-- 소모임 페이지 상단 이미지 / 이름 -->
-<Header class="meeting-page-name-space">
+<Header class="meeting-page-name-space" style="background: url(/resources/img/meeting.jpg) no-repeat center; background-size: cover;">
 	<div class="meeting-overlay py-5">
 		<div class="container py-lg-5">
 			<div class="text-center py-5">
