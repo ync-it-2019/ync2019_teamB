@@ -31,6 +31,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <link href="/resources/css/admin/admin_style.css" rel="stylesheet">
   <!-- //bootstrap-css -->
   <script src="/resources/js/admin/jquery2.0.3.min.js"></script>
+  <!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -63,10 +65,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th data-breakpoints="xs sm md" data-title="DOB" class="text-right">비고</th>
                           </tr>
                         </thead>
+                        <form id='listForm' action="/admin/event/delete" method='post'>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <c:forEach items="${list}" var="event" varStatus="status">
                         <tr class="unread">
                           <td class="inbox-small-cells">
-                            <input type="checkbox" class="mail-checkbox">
+                            <input type="checkbox" class="mail-checkbox" name="ck" value="${event.event_num}">
                           </td>
                           <td><c:out value="${event.event_num}" /></td>
                           <td class="inbox-small-cells text_limit move" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.userid}" /></td>
@@ -76,27 +80,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           <td class="view-message text-right" onClick="location.href='/admin/event/detail'"><c:out value=" " /></td>
                         </tr>
 						</c:forEach>
+						</form>
                       </tbody>
                     </table>
                     <div style="margin:10px 20px 0 0; text-align:right;">
                       <button type="button" class="btn btn-default" onClick="location.href='/admin/event/create'">글쓰기</button>
-                      <button type="button" class="btn btn-default" onClick="location.href='/admin/event/list'">삭제</button>
+                      <button type="button" class="btn btn-default delete" onClick="location.href='/admin/event/list'">삭제</button>
                     </div>
                   </div>
                 </div>
                 <footer>
                   <div class="row">
                     <div class="center">
-                      <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                      </ul>
-                    </div>
+                    <!--  Pagination 시작 -->
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev}">
+							<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+						</c:if>
+						<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+						</c:if>
+					</ul>
+				</div>
+				<!--  Pagination 끝 -->
+				
+				<!-- Form 시작 -->
+				<form id='actionForm' action="/admin/event/list" method='get'>
+				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+				<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+				</form>
+				<!-- Form 끝 -->
                   </div>
                 </footer>
               </section>
@@ -124,5 +144,70 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+		
+		var listForm = $("#listForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		/**
+		 * 파일 삭제 버튼을 누르면
+		 */
+		$('.delete').click(function() {
+		    //등록할지 물어보기
+		    if (!confirm('정말 삭제 하시겠습니까?')) {
+		        return false;
+		    }
+		    
+		 	// Ajax Spring Security Header
+		    $(document).ajaxSend(function(e, xhr, options) { 
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+			});
+
+		    //매개변수값 정리 : @RequestBody List fileVOList로 담기위한 사전 작업
+		    //배열 선언
+            var arr = [];
+		    
+		    $('#listForm input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
+		    	arr.push($(this).val());
+		    });
+		    
+		    var objParams = {
+                    "List" : arr        //배열 저장
+                };
+		  
+		  //ajax 호출
+            $.ajax({
+                url         :   "/admin/event/delete",
+                dataType    :   "json",
+                contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+                type        :   "post",
+                data        :   objParams,
+                success     :   function(retVal){
+
+                    if(retVal.code == "OK") {
+                        alert(retVal.message);
+                    } else {
+                        alert(retVal.message);
+                    }
+                     
+                },
+                error       :   function(request, status, error){
+                    console.log("AJAX_ERROR");
+                }
+            });
+		})
+		
+	});
+</script>
 
 </html>
