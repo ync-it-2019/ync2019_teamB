@@ -23,4 +23,7 @@ public interface AdminEventService {
 	
 	// 이벤트 글 쓰기
 	public void register(EventVO event);
+	
+////추가(전체 글 개수)
+	public int getTotal(Criteria cri);
 }
