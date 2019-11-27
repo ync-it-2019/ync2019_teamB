@@ -24,4 +24,6 @@ public interface QuestionMapper {
 	public int update(QuestionVO board);
 	// 글 목록 페이징 
 	public List<QuestionVO> getListWithPaging(Criteria cri);
+
+	public int getTotalCount(Criteria cri);
 }
