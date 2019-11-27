@@ -1,8 +1,15 @@
 package com.ync.project.front.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ync.project.front.service.MeetingMainService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -13,17 +20,24 @@ import lombok.extern.log4j.Log4j;
   * @Author		: 조중현
   * @프로그램 설명 : 소모임 호출용 컨트롤러
   */
-@RequestMapping("front/meeting/")
+@RequestMapping("front/meeting/*")
 @Controller
 @Log4j
-
 public class MeetingController {
-
+	
+	@Value("${globalConfig.uploadPath}")
+	private String uploadPath;
+	
+	@Autowired
+	private MeetingMainService service;
+	
 	//소모임 메인화면
 	@GetMapping(value = "/main")
-	public void main() {
+	public void main(Model model) {
 
 		log.info("Meeting Info page!");
+		
+		model.addAttribute("getIntroduce", service.getIntroduce(1));
 
 	}
 	

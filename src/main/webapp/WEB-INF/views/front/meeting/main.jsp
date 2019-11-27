@@ -20,8 +20,8 @@
 	<div class="pt-3">
 		<div class="info-row">
 			<div class="meeting-introduce1">
-				<div class="meeting-introduce1-info">
-					모임 소개글 들어가는 부분1
+				<div class="meeting-introduce1-info" value=''>
+					${getIntroduce.introduce}
 				</div>
 			</div>
 			<div class="meeting-introduce2">

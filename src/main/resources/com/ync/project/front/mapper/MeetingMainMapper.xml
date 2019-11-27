@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.front.mapper.MeetingMainMapper">
+	
+	<!-- 모임 소개 -->
+	<select id="meeting_Read" resultType="com.ync.project.domain.MeetingVO">
+	<![CDATA[
+		SELECT	INTRODUCE
+		FROM	TEAMB_MEETING
+		WHERE	MEETING_NUM = #{meeting_Num}
+		]]>
+	</select>
+	
+	<!-- 최근 정모 -->
+	<select id="appointment_Read" resultType="com.ync.project.domain.AppointmentVO">
+	<![CDATA[				
+		SELECT	TITLE,
+				APPOINTMENT_DATE,
+				APPOINTMENT_PLACE
+		FROM	TEAMB_APPOINTMENT
+		WHERE	MEETING_NUM = #{meeting_Num}
+				AND APPOINTMENT_NUM = ( SELECT	MAX(APPOINTMENT_NUM)
+										FROM	TEAMB_APPOINTMENT)
+		]]>
+	</select>
+	
+	<!-- 모임 회원 -->
+	<select id="getList" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<![CDATA[
+		SELECT	USERID,
+				JOIN_DATE
+		FROM	TEAMB_MEETING_MEMBER
+		WHERE	MEETING_NUM = #{meeting_Num}
+		]]>
+	</select>
+	
+</mapper>
