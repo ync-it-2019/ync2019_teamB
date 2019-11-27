@@ -22,7 +22,8 @@
 		FROM	TEAMB_APPOINTMENT
 		WHERE	MEETING_NUM = #{meeting_Num}
 				AND APPOINTMENT_NUM = ( SELECT	MAX(APPOINTMENT_NUM)
-										FROM	TEAMB_APPOINTMENT)
+										FROM	TEAMB_APPOINTMENT
+										WHERE	MEETING_NUM = #{meeting_Num})
 		]]>
 	</select>
 	
