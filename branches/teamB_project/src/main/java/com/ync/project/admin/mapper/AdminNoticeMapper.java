@@ -6,12 +6,12 @@ import com.ync.project.domain.Criteria;
 import com.ync.project.domain.EventVO;
 
  /**
-  * @FileName	: AdminEventMapper.java
+  * @FileName	: AdminNoticeMapper.java
   * @Date		: 2019. 11. 11. 
   * @Author		: 서영준
-  * @프로그램 설명 : 관리자용 이벤트 Mapper interface
+  * @프로그램 설명 : 관리자용 공지사항 Mapper interface
   */
-public interface AdminEventMapper {
+public interface AdminNoticeMapper {
 	//전체 게시 글 목록
 	public List<EventVO> getList();
 	//게시 글 상세보기
