@@ -67,7 +67,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       </div>
                       <div class="form-group">
                         <label class="">비고</label>
-                        <td class="view-message text-right" onClick="location.href='/admin/event/detail'"><c:out value=" " /></td>
+                        <c:if test="${event.event_progress eq '진행중'}">
+                        	<input type="text" tabindex="1" id="to" class="form-control" style="color:black;" value="<c:out value="${event.event_progress}" />" readonly>
+                        </c:if>
+                        <c:if test="${event.event_progress eq '진행예정'}">
+                         	<input type="text" tabindex="1" id="to" class="form-control" style="color:green;" value="<c:out value="${event.event_progress}" />" readonly>
+                        </c:if>
+                        <c:if test="${event.event_progress eq '종료'}">
+                          	<input type="text" tabindex="1" id="to" class="form-control" style="color:red;" value="<c:out value="${event.event_progress}" />" readonly>
+                        </c:if>
                       </div>
                       <div class="form-group">
                         <label class="">제목</label>
