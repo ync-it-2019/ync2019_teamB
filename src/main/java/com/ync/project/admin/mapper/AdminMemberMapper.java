@@ -3,7 +3,7 @@ package com.ync.project.admin.mapper;
 import java.util.List;
 
 import com.ync.project.domain.Criteria;
-import com.ync.project.domain.EventVO;
+import com.ync.project.domain.MemberVO;
 
  /**
   * @FileName	: AdminMemberMapper.java
@@ -13,11 +13,11 @@ import com.ync.project.domain.EventVO;
   */
 public interface AdminMemberMapper {
 	//전체 게시 글 목록
-	public List<EventVO> getList();
+	public List<MemberVO> getList();
 	//게시 글 상세보기
-	public EventVO read(Long event_num);
+	public MemberVO read(String userid);
 	//목록 페이징
-	public List<EventVO> getListWithPaging(Criteria cri);
+	public List<MemberVO> getListWithPaging(Criteria cri);
 	
 	public int getTotalCount(Criteria cri);
 }
