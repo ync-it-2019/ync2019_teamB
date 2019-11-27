@@ -12,7 +12,7 @@
 							title like '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							content like '%'||#{keyword}||'%'
+							contents like '%'||#{keyword}||'%'
 						</when>
 					</choose>
 				</trim>
@@ -50,7 +50,24 @@
 			write_date,
 			userid
 			FROM teamb_notice
-			)
-	]]>
+			WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
 	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_notice where 
+		
+		<include refid="criteria"></include> 
+		
+		notice_num > 0
+		
+	</select>
+	
 </mapper>
