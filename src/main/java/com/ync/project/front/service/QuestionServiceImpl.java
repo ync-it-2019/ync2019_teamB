@@ -63,4 +63,10 @@ public class QuestionServiceImpl implements QuestionService {
 		log.info("modify......" + board);
 		return mapper.update(board) == 1;
 	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
+	}
 }

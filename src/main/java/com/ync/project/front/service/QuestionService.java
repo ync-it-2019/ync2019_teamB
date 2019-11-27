@@ -28,4 +28,6 @@ public interface QuestionService {
 	
 	// 글 목록 페이징 
 	public List<QuestionVO> getListWithPaging(Criteria cri);
+
+	public int getTotal(Criteria cri);
 }
