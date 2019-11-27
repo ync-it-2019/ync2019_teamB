@@ -27,47 +27,60 @@ public class NoticeMapperTest {
 	
 	private NoticeMapper mapper;
 	//검색
+//	@Test
+//	public void testSearch() {
+//    Criteria cri = new Criteria();
+//    cri.setKeyword("dl");
+//    cri.setType("T");
+//
+//    List<NoticeVO> list = mapper.getListWithPaging(cri);
+//
+//    list.forEach(board -> log.info(board));
+//    }
+	
+//	//목록
+//	@Test
+//	public void testGetList() {
+//		
+//		mapper.getList().forEach((board) -> {
+//			log.info("==================");
+//			log.info(board);
+//			});
+//	}
+//	//상세보기
+//	@Test
+//	public void testRead() {
+//		// 존재하는 게시물 번호로 테스트
+//		NoticeVO board = mapper.read(5L);
+//		log.info(board);
+//
+//	}
+//	//페이징
+//	@Test
+//	public void testPaging() {
+//
+//		Criteria cri = new Criteria();
+//		
+//	    //10개씩 3페이지 
+//	    cri.setPageNum(1);
+//	    cri.setAmount(10);
+//
+//
+//		List<NoticeVO> list = mapper.getListWithPaging(cri);
+//
+//		list.forEach(board -> log.info(board));
+//
+//	}
+	
 	@Test
-	public void testSearch() {
-    Criteria cri = new Criteria();
-    cri.setKeyword("dl");
-    cri.setType("T");
+	  public void testTotal() {
 
-    List<NoticeVO> list = mapper.getListWithPaging(cri);
+	    Criteria cri = new Criteria();
+	    cri.setKeyword("새로");
+	    cri.setType("T");
 
-    list.forEach(board -> log.info(board));
-    }
-	//목록
-	@Test
-	public void testGetList() {
-		
-		mapper.getList().forEach((board) -> {
-			log.info("==================");
-			log.info(board);
-			});
-	}
-	//상세보기
-	@Test
-	public void testRead() {
-		// 존재하는 게시물 번호로 테스트
-		NoticeVO board = mapper.read(5L);
-		log.info(board);
+	    int total = mapper.getTotalCount(cri);
 
-	}
-	//페이징
-	@Test
-	public void testPaging() {
-
-		Criteria cri = new Criteria();
-		
-	    //10개씩 3페이지 
-	    cri.setPageNum(1);
-	    cri.setAmount(10);
-
-
-		List<NoticeVO> list = mapper.getListWithPaging(cri);
-
-		list.forEach(board -> log.info(board));
-
-	}
+	    log.info("total:" + total);
+	  }
 }
