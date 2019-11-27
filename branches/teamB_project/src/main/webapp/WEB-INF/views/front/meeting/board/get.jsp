@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<!-- 
+ /**
+  * @FileName	: MeetingController.java
+  * @Date		: 2019. 11. 27. 
+  * @Author		: 장윤석
+  * @프로그램 설명 : 소모임 게시판 상세보기
+  */
+ -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta charset="UTF-8">
 <title>牛모임 :: 모임 게시글 보기</title>
 
 <jsp:include page="/WEB-INF/views/front/include/cssLink.jsp" flush="true" />
@@ -20,26 +31,26 @@
 	<div class="container mb-5">
        	<!-- 게시글 제목 -->
 		<tr>
-			<h2 style="font-weight:bold">자유 게시글입니다</h2><br>
+			<h2 style="font-weight:bold">${board.title}</h2><br>
 		</tr>
 		<!-- //게시글 제목 -->
 		
 		<!-- 작성자 / 작성일 / 조회수 -->
 		<div style="background:#C2CAC7" class="mb-4">
 			<thead>
-	            <tr>이주현 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</tr>
-	            <tr>2019.10.01 &nbsp&nbsp&nbsp&nbsp</tr>
-	            <tr>조회수 : 0</tr>
+	            <tr>${board.userid} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</tr>
+	            <tr><fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_Date}" /> &nbsp&nbsp&nbsp&nbsp</tr>
+	            <tr>조회수 : ${board.views}</tr>	            
 			</thead>
 		</div>
+		
 		<!-- //작성자 / 작성일 / 조회수 -->
 		
 		<!-- 게시글 내용 -->
 		<img src="/resources/img/hello.png"><br><br>
-		모두가 자유롭게 쓰는 자유게시판입니다.<br>
-		열심히 활동해주세요!
+			${board.contents}
+        </div>
 		<!-- //게시글 내용 -->
-	</div>
 </section>
 <!-- //소모임 게시글 -->
 
@@ -109,86 +120,20 @@
 		            <th class="board-hits-css">조회수</th>
          			</tr>
        		</thead>
+	        
+	        <c:forEach items="${list}" var="board">
 	        <tr>
-				<td class="board-number-css">10</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4"><a href="./get.html" style="color:black">자유 게시글입니다</a><a style="color:#5C88FD"> 2</a></td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
+				<td class="board-number-css"><c:out value="${board.free_board_num}"/></td>
+				<td class="board-category-css"><c:out value="${board.category}" /></td>
+				<td class="pl-4"><a href="./get" style="color:black"><c:out value="${board.title}" /></a>
+					<!--  <a style="color:#5C88FD">  댓글 수    </a> -->
+				</td>
+				<td class="board-writer-css"><c:out value="${board.userid}" /></td>
+				<td><fmt:formatDate  value="${board.write_Date}" /></td>
+				<td class="board-hits-css"><c:out value="${board.views}" /></td>
 	        </tr>
-	        <tr>
-				<td class="board-number-css">9</td>
-				<td class="board-category-css">공지사항</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">8</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">7</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">6</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">5</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">4</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">3</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">2</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
-	        <tr>
-				<td class="board-number-css">1</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-	        </tr>
+			</c:forEach>
+
 		</table>
 
 		<hr>
