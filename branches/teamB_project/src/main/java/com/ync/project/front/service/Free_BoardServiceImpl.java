@@ -9,14 +9,18 @@ import com.ync.project.domain.Criteria;
 import com.ync.project.domain.Free_BoardVO;
 import com.ync.project.front.mapper.Free_BoardMapper;
 
-//import org.zerock.domain.Criteria;
-
-
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
 //@AllArgsConstructor
+
+/**
+ * @FileName	: MeetingController.java
+ * @Date		: 2019. 11. 27. 
+ * @Author		: 장윤석
+ * @프로그램 설명     : free_board_serviceImpl
+ */
 public class Free_BoardServiceImpl implements Free_BoardService {
 
 	// @Setter(onMethod_ = @Autowired)
@@ -36,7 +40,7 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 	}
 
 	@Override
-	public Free_BoardVO get(Long free_board_num) {
+	public Free_BoardVO read(Long free_board_num) {
 
 		log.info("get......" + free_board_num);
 
