@@ -2,6 +2,26 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ync.project.admin.mapper.AdminEventMapper">
 
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
 	<!-- 게시판 리스트 -->
 	<select id="getList" resultType="com.ync.project.domain.EventVO">
 	<![CDATA[
@@ -17,10 +37,29 @@
 	
 	<!-- 게시글 상세 보기 -->
 	<select id="read" resultType="com.ync.project.domain.EventVO">
-		SELECT *
-		FROM   teamb_event
-		WHERE  event_num =	#{event_num}
+	<![CDATA[
+		SELECT b.*, 
+				(CASE WHEN SYSDATE < b.EVENT_START_DATE THEN '진행예정'
+        		WHEN (SYSDATE >= b.EVENT_START_DATE AND SYSDATE < b.EVENT_END_DATE) THEN '진행중'
+        		ELSE '종료'
+    			END) AS event_progress
+		FROM   teamb_event b
+		WHERE  b.event_num = #{event_num}
+		]]>
 	</select>
+	
+	<!-- 이벤트 글 쓰기 -->
+	<insert id="insertSelectKey">
+	
+		<selectKey keyProperty="event_num" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+	<![CDATA[
+		insert into teamb_event (event_num, title, contents, event_start_date, event_end_date, image, userid, banner_image)
+		values (seq_board.nextval,	#{title}, #{contents}, #{event_start_date}, #{event_end_date}, #{image}, #{userid}, #{banner_image})
+		]]>
+	</insert>
 	
 	<!-- 페이징 -->
 	<select id="getListWithPaging" resultType="com.ync.project.domain.EventVO">
@@ -30,7 +69,14 @@
 			event_start_date,
 			event_end_date,
 			contents,
-			image
+			userid,
+			write_date,
+			image,
+			banner_image,
+			(CASE WHEN SYSDATE < b.EVENT_START_DATE THEN '진행예정'
+        	WHEN (SYSDATE >= b.EVENT_START_DATE AND SYSDATE < b.EVENT_END_DATE) THEN '진행중'
+        	ELSE '종료'
+    		END) AS event_progress
 	FROM    (SELECT /*+INDEX_DESC(teamb_event xpkteamb_event) */
 			rownum rn,
 			event_num,
@@ -38,9 +84,27 @@
 			event_start_date,
 			event_end_date,
 			contents,
-			image
+			userid,
+			write_date,
+			image,
+			banner_image
 			FROM teamb_event
-			)
+			WHERE 
 	]]>
+	<include refid="criteria"></include> 
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			) b
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_event where 
+		
+		<include refid="criteria"></include> 
+		
+		event_num > 0
+		
 	</select>
 </mapper>
