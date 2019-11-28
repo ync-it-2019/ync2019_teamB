@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		/**
 		 * 파일 삭제 버튼을 누르면
 		 */
-		/* $('.delete').click(function() {
+		 $('.delete').click(function() {
 			
 		    var checkArr = [];
 		    
@@ -211,7 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    ckForm.submit();
 		    
 		    
-		}); */
+		});
 	});
 </script>
 
