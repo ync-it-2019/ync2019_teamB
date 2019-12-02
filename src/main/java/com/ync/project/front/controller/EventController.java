@@ -30,12 +30,6 @@ public class EventController {
       model.addAttribute("eventList", service.getList());
    }
    
-   @GetMapping("/event/endList")
-   public void endList(Model model) {
-      log.info("endList");
-      model.addAttribute("eventEndList", service.getList());
-   }
-   
    @GetMapping("/event/get")
    public void get(@RequestParam("event_num") Long event_num, Model model) {
       log.info("get");
