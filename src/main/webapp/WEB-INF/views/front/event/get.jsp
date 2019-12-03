@@ -105,16 +105,16 @@
 				<div class="row mt-lg-3">
           <div class="col-lg-14" style="border: 1px solid black; border-color: #E6E6E6">
           <div class="col-lg-13">
-						<h6 class="card-title"><b>牛 모임 이벤트1</b></h6>
+						<h6 class="card-title"><b>${board.title}</b></h6>
 						<ul class="blog-info my-2">
-							<li class="mr-sm-4 mr-2">작성자1</li>
-							<li class="mr-sm-4 mr-2"> 2019-10-12</li>
+							<li class="mr-sm-4 mr-2">${board.userid}</li>
+							<li class="mr-sm-4 mr-2"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_date}" /></li>
 						</ul>
 						<hr>
 						<div class="">
 							<img class="card-img-top" src="/resources/img/1.jpg" alt="Card image cap">
 							<div class="mt-4">
-								<p class="card-text">이벤트 내용</p>
+								<p class="card-text">${board.contents}</p>
 							</div>
 						</div>
 						<div class="comment-top" style="position: relative; top: 60px;">
@@ -125,61 +125,6 @@
       </div>
     </div>
   </div>
-</section>
-
-<section class="news py-5">
-	<div class="container py-lg-3">
-    <div class="blog-sec">
-      <hr>
-      <div class="row mt-lg-3" style="margin-left: 25px;">
-<div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
-  <ul class="blog-info mt-2">
-    <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-  </ul>
-</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
-  <ul class="blog-info mt-2">
-    <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-  </ul>
-</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
-  <ul class="blog-info mt-2">
-    <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-  </ul>
-</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
-  <ul class="blog-info mt-2">
-    <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-  </ul>
-</div><div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-  <a href="./get"><img src="/resources/img/1.jpg" alt="news image" class="img-fluid2"></a>
-  <h4 class="mt-4"><a href="./get"> 牛 모임 이벤트1</a></h4>
-  <ul class="blog-info mt-2">
-    <li class="mr-4" style="margin : 50"> 2019-10-12 ~ 2019-11-01</li>
-  </ul>
-</div>
-
-<div class="container">
-<div style="margin : 50px;">
- <ul class="pagination justify-content-center">
-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-         <li class="page-item"><a class="page-link" href="#">1</a></li>
-         <li class="page-item"><a class="page-link" href="#">2</a></li>
-         <li class="page-item"><a class="page-link" href="#">3</a></li>
-         <li class="page-item"><a class="page-link" href="#">4</a></li>
-         <li class="page-item"><a class="page-link" href="#">5</a></li>
-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
- </ul>
-  </div>
-</div>
-</div>
-  </div>
- </div>
 </section>
 
 <!-- footer -->
