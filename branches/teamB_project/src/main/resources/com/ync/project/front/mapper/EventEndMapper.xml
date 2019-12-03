@@ -11,6 +11,7 @@
 		]]>
 	</select>
 	
+	<sql id="criteria"></sql>
 	<!-- 페이징 -->
 	<select id="getListWithPaging" resultType="com.ync.project.domain.EventVO">
 	<![CDATA[
@@ -29,7 +30,23 @@
 			contents,
 			image
 			FROM teamb_event
-			)
-	]]>
+			WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_event where 
+		
+		<include refid="criteria"></include> 
+		
+		event_num > 0
+		
 	</select>
 </mapper>

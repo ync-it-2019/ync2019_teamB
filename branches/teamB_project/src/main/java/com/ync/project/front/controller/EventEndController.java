@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ync.project.domain.Criteria;
+import com.ync.project.domain.PageDTO;
 import com.ync.project.front.service.EventEndService;
 
 import lombok.AllArgsConstructor;
@@ -25,8 +27,11 @@ public class EventEndController {
    private EventEndService service;
    //종료된 이벤트 목록
    @GetMapping("/event/endList")
-   public void endList(Model model) {
+   public void endList(Criteria cri, Model model) {
       log.info("endList");
-      model.addAttribute("eventEndList", service.getEndList());
+      int total = service.getTotal(cri);
+	  log.info("total: " + total);
+      model.addAttribute("eventEndList", service.getEndList(cri));
+      model.addAttribute("pageMaker", new PageDTO(cri, total));
    }
 }

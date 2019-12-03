@@ -27,14 +27,14 @@ public class EventEndMapperTest {
 	
 	private EventEndMapper mapper;
 	//목록
-	@Test
-	public void testGetEndList() {
-		
-		mapper.getEndList().forEach((board) -> {
-			log.info("==================");
-			log.info(board);
-			});
-	}
+//	@Test
+//	public void testGetEndList() {
+//		
+//		mapper.getEndList().forEach((board) -> {
+//			log.info("==================");
+//			log.info(board);
+//			});
+//	}
 	//페이징
 	@Test
 	public void testPaging() {
