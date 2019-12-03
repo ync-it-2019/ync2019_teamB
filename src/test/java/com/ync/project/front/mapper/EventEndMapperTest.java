@@ -28,20 +28,12 @@ public class EventEndMapperTest {
 	private EventEndMapper mapper;
 	//목록
 	@Test
-	public void testGetList() {
+	public void testGetEndList() {
 		
-		mapper.getList().forEach((board) -> {
+		mapper.getEndList().forEach((board) -> {
 			log.info("==================");
 			log.info(board);
 			});
-	}
-	//상세보기
-	@Test
-	public void testRead() {
-		// 존재하는 게시물 번호로 테스트
-		EventVO board = mapper.read(5L);
-		log.info(board);
-
 	}
 	//페이징
 	@Test

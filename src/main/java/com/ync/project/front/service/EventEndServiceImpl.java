@@ -25,21 +25,12 @@ public class EventEndServiceImpl implements EventEndService {
 	@Autowired
 	private EventEndMapper mapper;
 
-	@Override
-	public EventVO read(Long event_num) {
-
-		log.info("get......" + event_num);
-
-		return mapper.read(event_num);
-
-	}
-
 	 @Override
-	 public List<EventVO> getList() {
+	 public List<EventVO> getEndList() {
 	
 		 log.info("getList..........");
 		
-		 return mapper.getList();
+		 return mapper.getEndList();
 	 }
 
 	@Override
