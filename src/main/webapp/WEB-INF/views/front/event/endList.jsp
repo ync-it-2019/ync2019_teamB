@@ -53,6 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //google fonts -->
+	<!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -98,27 +100,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  			</div>
 	  		</c:forEach>
 	  	</div>
-
+	<div class="container">
       <div style="margin : 20px;">
-       <ul class="pagination justify-content-center">
-        <c:if test="${pageMaker.prev}">
-		<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+      
+       <!--  Pagination 시작 -->
+		<ul class="pagination justify-content-center">
+		 <c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
 		</c:if>
 		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
-		<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-			<a href="${num}">${num}</a>
-		</li>
+			<li class="paginate_button"><a href="${num}">${num}</a></li>
 		</c:forEach>
 		<c:if test="${pageMaker.next}">
 			<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
 		</c:if>
-       </ul>
+		</ul>
         </div>
-        <div class="center">
-      </div>
+        <!-- Form 시작 -->
+		<form id='actionForm' action="/front/event/endList" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		</form>
     </div>
+   </div>
 </section>
 <!-- //Recent News -->
+
 
 <!-- footer -->
 <footer class="footer py-5">
@@ -151,4 +158,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
 </body>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 </html>

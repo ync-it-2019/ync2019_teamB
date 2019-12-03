@@ -27,17 +27,16 @@ public class EventEndServiceTests {
 	@Autowired
 	private EventEndService service;
 
-	@Test
-	public void testExist() {
-		log.info(service);
-		assertNotNull(service);
-	}
+//	@Test
+//	public void testExist() {
+//		log.info(service);
+//		assertNotNull(service);
+//	}
 	
 	@Test
 	public void testGetList() {
 
-		service.getListWithPaging(new Criteria(1, 10)).forEach(board -> log.info(board));
-		service.getEndList().forEach(board -> log.info(board));
+		service.getEndList(new Criteria(1, 10)).forEach(board -> log.info(board));
 	}
 
 }

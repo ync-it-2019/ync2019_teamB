@@ -25,19 +25,17 @@ public class EventEndServiceImpl implements EventEndService {
 	@Autowired
 	private EventEndMapper mapper;
 
-	 @Override
-	 public List<EventVO> getEndList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getEndList();
-	 }
-
 	@Override
-	public List<EventVO> getListWithPaging(Criteria cri) {
+	public List<EventVO> getEndList(Criteria cri) {
 
 		log.info("get List with criteria: " + cri);
 
 		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
 	}
 }

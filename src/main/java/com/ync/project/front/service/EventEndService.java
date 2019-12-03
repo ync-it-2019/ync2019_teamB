@@ -12,9 +12,9 @@ import com.ync.project.domain.EventVO;
   * @프로그램 설명 : 종료된 이벤트 Service
   */
 public interface EventEndService {
-	// 전체 글 목록
-	public List<EventVO> getEndList();
-	
 	// 글 목록 페이징 
-	public List<EventVO> getListWithPaging(Criteria cri);
+	public List<EventVO> getEndList(Criteria cri);
+	
+	//추가
+	public int getTotal(Criteria cri);
 }
