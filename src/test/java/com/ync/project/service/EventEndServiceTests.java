@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ync.project.domain.Criteria;
-import com.ync.project.front.service.EventService;
+import com.ync.project.front.service.EventEndService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,10 +22,10 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class EventServiceTests {
+public class EventEndServiceTests {
 
 	@Autowired
-	private EventService service;
+	private EventEndService service;
 
 	@Test
 	public void testExist() {
