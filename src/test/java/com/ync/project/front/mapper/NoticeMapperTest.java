@@ -55,7 +55,7 @@ public class NoticeMapperTest {
 //		log.info(board);
 //
 //	}
-//	//페이징
+	//페이징
 //	@Test
 //	public void testPaging() {
 //
@@ -76,7 +76,7 @@ public class NoticeMapperTest {
 	  public void testTotal() {
 
 	    Criteria cri = new Criteria();
-	    cri.setKeyword("새로");
+	    cri.setKeyword("공지");
 	    cri.setType("T");
 
 	    int total = mapper.getTotalCount(cri);
