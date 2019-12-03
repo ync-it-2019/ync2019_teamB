@@ -37,13 +37,7 @@ public class EventEndServiceTests {
 	public void testGetList() {
 
 		service.getListWithPaging(new Criteria(1, 10)).forEach(board -> log.info(board));
-		service.getList().forEach(board -> log.info(board));
-	}
-	
-	@Test
-	public void testGet() {
-
-		log.info(service.read(1L));
+		service.getEndList().forEach(board -> log.info(board));
 	}
 
 }

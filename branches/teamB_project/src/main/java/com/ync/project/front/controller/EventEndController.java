@@ -27,6 +27,6 @@ public class EventEndController {
    @GetMapping("/event/endList")
    public void endList(Model model) {
       log.info("endList");
-      model.addAttribute("eventEndList", service.getList());
+      model.addAttribute("eventEndList", service.getEndList());
    }
 }
