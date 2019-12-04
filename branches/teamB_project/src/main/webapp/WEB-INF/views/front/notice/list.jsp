@@ -96,11 +96,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link href="/resources/css/paging.css" rel="stylesheet">
    <!-- //css files -->
 
    <!-- google fonts -->
    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
    <!-- //google fonts -->
+   <!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -118,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- page details -->
 <div class="breadcrumb-agile">
-   <div class="container">
+   <div style="margin-left : 76.5px">
       <ol class="breadcrumb">
          <li class="breadcrumb-item">
             <a href="index.html">Home</a>
@@ -169,17 +172,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 
 <div style="margin : 20px;">
- <ul class="pagination justify-content-center">
-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-         <li class="page-item"><a class="page-link" href="#">1</a></li>
-         <li class="page-item"><a class="page-link" href="#">2</a></li>
-         <li class="page-item"><a class="page-link" href="#">3</a></li>
-         <li class="page-item"><a class="page-link" href="#">4</a></li>
-         <li class="page-item"><a class="page-link" href="#">5</a></li>
-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
- </ul>
+ <!--  Pagination 시작 -->
+		<ul class="pagination justify-content-center">
+		 <c:if test="${pageMaker.prev}">
+			<li class="page-item"><a href="${pageMaker.startPage -1}">Previous</a></li>
+		</c:if>
+		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+			<li class="page-item"><a href="${num}">${num}</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<li class="page-item"><a href="${pageMaker.endPage +1 }">Next</a></li>
+		</c:if>
+		</ul>
+        </div>
+        <!-- Form 시작 -->
+		<form id='actionForm' action="/front/notice/list" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		</form>
   </div>
- </div>
 </section>
 <!-- //services -->
 
@@ -216,4 +227,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 </html>
