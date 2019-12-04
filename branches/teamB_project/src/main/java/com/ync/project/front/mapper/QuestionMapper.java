@@ -12,9 +12,7 @@ import com.ync.project.domain.QuestionVO;
   * @프로그램 설명 : 고객센터 Mapper interface
   */
 public interface QuestionMapper {
-	// 전체 글 목록
-	public List<QuestionVO> getList();
-
+	//글작성
 	public Integer insertSelectKey(QuestionVO board);
 	// 글 상세보기
 	public QuestionVO read(Long question_num);

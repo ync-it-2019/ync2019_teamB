@@ -30,7 +30,7 @@ public class QuestionMapperTest {
 //	@Test
 //	public void testGetList() {
 //		
-//		mapper.getList().forEach((board) -> {
+//		mapper.getListWithPaging(null).forEach((board) -> {
 //			log.info("==================");
 //			log.info(board);
 //			});
@@ -43,7 +43,7 @@ public class QuestionMapperTest {
 //		log.info(board);
 //
 //	}
-//	//페이징
+	//페이징
 //	@Test
 //	public void testPaging() {
 //
@@ -61,35 +61,19 @@ public class QuestionMapperTest {
 //	}
 	
 //	@Test
-//	public void testInsert() {
+//	public void testUpdate() {
 //
 //		QuestionVO board = new QuestionVO();
-//		board.setQuestion_num(2L);
+//		// 실행전 존재하는 번호인지 확인할 것
+//		board.setQuestion_num(1L);
 //		board.setUserid("user01");
-//		board.setTitle("새로 작성하는 글");
-//		board.setContents("새로 작성하는 내용");
+//		board.setTitle("수정된 제목");
+//		board.setContents("수정된 내용");
 //		board.setFiles("dldldldl");
-//		board.setAnswer_whether("n");
 //
-//		mapper.insert(board);
-//
-//		log.info(board);
+//		int count = mapper.update(board);
+//		log.info("UPDATE COUNT: " + count);
 //	}
-	
-	@Test
-	public void testUpdate() {
-
-		QuestionVO board = new QuestionVO();
-		// 실행전 존재하는 번호인지 확인할 것
-		board.setQuestion_num(1L);
-		board.setUserid("user01");
-		board.setTitle("수정된 제목");
-		board.setContents("수정된 내용");
-		board.setFiles("dldldldl");
-
-		int count = mapper.update(board);
-		log.info("UPDATE COUNT: " + count);
-	}
 	
 //	@Test
 //	public void testInsertSelectKey() {
@@ -104,4 +88,16 @@ public class QuestionMapperTest {
 //
 //		log.info(board);
 //	}
+	
+	@Test
+	  public void testTotal() {
+
+	    Criteria cri = new Criteria();
+	    //cri.setKeyword("공지");
+	    //cri.setType("T");
+
+	    int total = mapper.getTotalCount(cri);
+
+	    log.info("total:" + total);
+	  }
 }

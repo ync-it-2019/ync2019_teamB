@@ -35,37 +35,37 @@ public class QuestionServiceTests {
 		service.getListWithPaging(new Criteria(1, 10)).forEach(board -> log.info(board));
 	}
 	
-	@Test
-	public void testGet() {
+//	@Test
+//	public void testGet() {
+//
+//		log.info(service.read(1L));
+//	}
 
-		log.info(service.read(0L));
-	}
+//	@Test
+//	public void testRegister() {
+//
+//		QuestionVO board = new QuestionVO();
+//		board.setUserid("user01");
+//		board.setTitle("새로 작성하는 글");
+//		board.setContents("새로 작성하는 내용");
+//		board.setFiles("dldldldl");
+//		board.setAnswer_whether("n");
+//
+//		service.register(board);
+//
+//		log.info("생성된 게시물의 번호: " + board.getQuestion_num());
+//	}
 
-	@Test
-	public void testRegister() {
-
-		QuestionVO board = new QuestionVO();
-		board.setUserid("user01");
-		board.setTitle("새로 작성하는 글");
-		board.setContents("새로 작성하는 내용");
-		board.setFiles("dldldldl");
-		board.setAnswer_whether("n");
-
-		service.register(board);
-
-		log.info("생성된 게시물의 번호: " + board.getQuestion_num());
-	}
-	
-	@Test
-	public void testUpdate() {
-
-		QuestionVO board = service.read(15L);
-
-		if (board == null) {
-			return;
-		}
-
-		board.setTitle("제목 수정합니다.");
-		log.info("MODIFY RESULT: " + service.modify(board));
-	}
+//	@Test
+//	public void testUpdate() {
+//
+//		QuestionVO board = service.read(15L);
+//
+//		if (board == null) {
+//			return;
+//		}
+//
+//		board.setTitle("제목 수정합니다.");
+//		log.info("MODIFY RESULT: " + service.modify(board));
+//	}
 }

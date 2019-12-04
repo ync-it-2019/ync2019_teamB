@@ -51,4 +51,16 @@ public class EventEndMapperTest {
 		list.forEach(board -> log.info(board));
 
 	}
+	
+	@Test
+	  public void testTotal() {
+
+	    Criteria cri = new Criteria();
+	    cri.setKeyword("공지");
+	    cri.setType("T");
+
+	    int total = mapper.getTotalCount(cri);
+
+	    log.info("total:" + total);
+	  }
 }

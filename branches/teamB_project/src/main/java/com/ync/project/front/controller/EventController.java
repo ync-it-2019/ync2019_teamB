@@ -31,7 +31,7 @@ public class EventController {
 	   log.info("List");
 	   int total = service.getTotal(cri);
 	   log.info("total: " + total);
-	   model.addAttribute("eventList", service.getList(cri));
+	   model.addAttribute("eventList", service.getListWithPaging(cri));
 	   model.addAttribute("pageMaker", new PageDTO(cri, total));
    }
    

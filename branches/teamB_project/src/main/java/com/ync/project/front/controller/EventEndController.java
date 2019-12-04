@@ -31,7 +31,7 @@ public class EventEndController {
       log.info("endList");
       int total = service.getTotal(cri);
 	  log.info("total: " + total);
-      model.addAttribute("eventEndList", service.getEndList(cri));
+      model.addAttribute("eventEndList", service.getListWithPaging(cri));
       model.addAttribute("pageMaker", new PageDTO(cri, total));
    }
 }

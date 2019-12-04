@@ -12,8 +12,6 @@ import com.ync.project.domain.NoticeVO;
   * @프로그램 설명 : 공지사항 Mapper interface
   */
 public interface NoticeMapper {
-	// 전체 글 목록
-	public List<NoticeVO> getList();
 	// 글 상세보기
 	public NoticeVO read(Long notice_num);
 	// 검색

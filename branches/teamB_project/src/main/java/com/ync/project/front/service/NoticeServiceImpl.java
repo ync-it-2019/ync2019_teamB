@@ -40,14 +40,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 		return mapper.getListWithPaging(cri);
 	}
-
-	@Override
-	public List<NoticeVO> getList() {
-		log.info("getList..........");
-		
-		 return mapper.getList();
-	}
-
 	@Override
 	public int getTotal(Criteria cri) {
 		log.info("get total count");

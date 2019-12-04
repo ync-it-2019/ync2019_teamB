@@ -14,13 +14,8 @@ import com.ync.project.domain.NoticeVO;
 public interface NoticeService {
 	// 글 상세보기
 	public NoticeVO read(Long notice_num);
-	
-	// 전체 글 목록
-	public List<NoticeVO> getList();
-	
 	// 글 목록 페이징 
 	public List<NoticeVO> getListWithPaging(Criteria cri);
-	
 	//추가
 	public int getTotal(Criteria cri);
 }
