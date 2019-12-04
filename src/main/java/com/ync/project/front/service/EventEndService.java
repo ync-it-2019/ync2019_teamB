@@ -13,7 +13,7 @@ import com.ync.project.domain.EventVO;
   */
 public interface EventEndService {
 	// 글 목록 페이징 
-	public List<EventVO> getEndList(Criteria cri);
+	public List<EventVO> getListWithPaging(Criteria cri);
 	
 	//추가
 	public int getTotal(Criteria cri);

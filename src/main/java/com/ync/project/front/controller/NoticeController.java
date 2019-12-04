@@ -13,6 +13,12 @@ import com.ync.project.front.service.NoticeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+ /**
+  * @FileName	: NoticeController.java
+  * @Date		: 2019. 12. 4. 
+  * @Author		: 김상훈
+  * @프로그램 설명 : 공지사항 호출용 컨트롤러
+  */
 @Controller
 @Log4j
 @RequestMapping("/front/*")

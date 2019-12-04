@@ -147,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </tr>
         </thead>
       
-      <c:forEach items="${list}" var="notice" varStatus="status">
+      <c:forEach items="${list}" var="notice">
         <tr>
          <td><c:out value="${notice.notice_num}" /></td>
          <td class="move over1" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.title}" /></td>

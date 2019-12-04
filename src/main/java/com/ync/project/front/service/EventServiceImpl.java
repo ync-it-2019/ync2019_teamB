@@ -33,7 +33,7 @@ public class EventServiceImpl implements EventService {
 
 	}
 	@Override
-	public List<EventVO> getList(Criteria cri) {
+	public List<EventVO> getListWithPaging(Criteria cri) {
 
 		log.info("get List with criteria: " + cri);
 

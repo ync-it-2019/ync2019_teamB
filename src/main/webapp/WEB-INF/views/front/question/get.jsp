@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="row mt-lg-3">
           <div class="col-lg-14" style="border: 1px solid black; border-color: #E6E6E6">
           <div class="col-lg-13">
-						<h6 class="card-title"><b>[계정]아이디를 까먹었어요</b></h6>
+						<h6 class="card-title"><b>${board.title}</b></h6>
 						<ul class="blog-info my-2">
 							<li class="mr-sm-4 mr-2">등록일자: 2019-10-14 </li>
 							<li class="mr-sm-4 mr-2"> 처리상태: 처리완료</li><br>

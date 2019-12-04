@@ -26,7 +26,7 @@ public class EventEndServiceImpl implements EventEndService {
 	private EventEndMapper mapper;
 
 	@Override
-	public List<EventVO> getEndList(Criteria cri) {
+	public List<EventVO> getListWithPaging(Criteria cri) {
 
 		log.info("get List with criteria: " + cri);
 

@@ -22,11 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <script type="text/javascript">
 	$(document).ready(function() {
-	
-		var actionForm = $("#actionForm");
 		
-		var listForm = $("#listForm");
-
 		// 페이지 번호 클릭 이벤트
 		$(".paginate_button a").on("click", function(e) {
 			e.preventDefault();
