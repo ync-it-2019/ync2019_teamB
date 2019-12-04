@@ -171,8 +171,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</form>
 </div>
 
-<div style="margin : 20px;">
- <!--  Pagination 시작 -->
+	<div style="margin : 20px;">
+ 		<!--  Pagination 시작 -->
 		<ul class="pagination justify-content-center">
 		 <c:if test="${pageMaker.prev}">
 			<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
@@ -184,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
 		</c:if>
 		</ul>
-        </div>
+       </div>
         <!-- Form 시작 -->
 		<form id='actionForm' action="/front/notice/list" method='get'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
