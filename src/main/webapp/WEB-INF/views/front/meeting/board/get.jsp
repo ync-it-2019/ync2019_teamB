@@ -47,7 +47,6 @@
 		<!-- //작성자 / 작성일 / 조회수 -->
 		
 		<!-- 게시글 내용 -->
-		<img src="/resources/img/hello.png"><br><br>
 			${board.contents}
         </div>
 		<!-- //게시글 내용 -->
@@ -66,15 +65,7 @@
         <div style="margin:15px 5px">
           	<tr>알겠습니다 조장</tr>
         </div>
-        <div style="background:#C6D0C7; padding:2px">
-			<tr>장윤석</tr>
-          	<!--class="btn btn-danger" 때문에 버튼이 빨간색-->
-          	<tr><button type="button" class="btn btn-danger btn-sm" style="float:right; font-size:8px; margin-left:5px; margin-right:3px">x</button></tr>
-          	<tr><a style="float:right; color:gray">5분전</a></tr>
-        </div>
-        <div style="margin:15px 5px">
-          	<tr>알겠습니다 조장</tr>
-        </div>
+        
 	</div>
 </section>
 <!-- //게시글 댓글 -->
@@ -125,17 +116,16 @@
 	        <tr>
 				<td class="board-number-css"><c:out value="${board.free_board_num}"/></td>
 				<td class="board-category-css"><c:out value="${board.category}" /></td>
-				<td class="pl-4"><a href="./get" style="color:black"><c:out value="${board.title}" /></a>
-					<!--  <a style="color:#5C88FD">  댓글 수    </a> -->
+				<td><a class="move" onClick="location.href='/front/meeting/board/get?free_board_num=<c:out value="${board.free_board_num}" />'">
+					<c:out value="${board.title}" /></a>
 				</td>
+					<!--  <a style="color:#5C88FD">  댓글 수    </a> -->
 				<td class="board-writer-css"><c:out value="${board.userid}" /></td>
 				<td><fmt:formatDate  value="${board.write_Date}" /></td>
 				<td class="board-hits-css"><c:out value="${board.views}" /></td>
 	        </tr>
 			</c:forEach>
-
 		</table>
-
 		<hr>
 	</div>
 </section>
@@ -173,17 +163,87 @@
 <!-- 페이지 버튼 -->
 <section>
 	<div class="text-center" style="margin-bottom:100px;">
+
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="#"> < </a></li>
-			<li class="page-item active"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#">5</a></li>
-			<li class="page-item"><a class="page-link" href="#"> > </a></li>
+			<c:if test="${pageMaker.prev}">
+				<li class="paginate_button previous">
+					<a href="/front/meeting/board/list?page=${pageMaker.startPage -1}">Previous</a>
+				</li>
+			</c:if>
+
+			<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+				<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+					<a href="/front/meeting/board/list?page=${num}">${num}</a>
+				</li>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next}">
+				<li class="paginate_button next">
+					<a href="/front/meeting/board/list?page=${pageMaker.endPage +1 }">Next</a>
+				</li>
+			</c:if>
 		</ul>
 	</div>
+	<!-- Form 시작 -->
+			<form id='actionForm' action="/front/meeting/board/list" method='get'>
+				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+ 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+				<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+			</form>
+	<!-- Form 끝 -->
+				
 </section>
 <!-- //페이지 버튼 -->
+
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var result = '<c:out value="${result}"/>';
+		
+		checkModal(result);
+
+		history.replaceState({}, null, null);
+		
+		$("#regBtn").on("click", function() {
+			self.location = "/board/register";
+		});
+		
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			 console.log('click'); //
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		// 상세보기 클릭 이벤트
+		$(".move").on("click",function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='free_board_num' value='" + $(this).attr("href") + "'>");
+			actionForm.attr("action", "/front/meeting/board/get");
+			actionForm.submit();
+		});
+		
+		// 검색 버튼 클릭 이벤트
+		var searchForm = $("#searchForm");
+		$("#searchForm button").on("click",	function(e) {
+			if (!searchForm.find("option:selected").val()) {
+				alert("검색종류를 선택하세요");
+				return false;
+			}
+
+			if (!searchForm.find("input[name='keyword']").val()) {
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			searchForm.submit();
+		});
+	});
+</script>
 </html>
