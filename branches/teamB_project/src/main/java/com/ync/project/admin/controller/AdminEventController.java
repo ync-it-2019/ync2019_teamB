@@ -3,18 +3,16 @@ package com.ync.project.admin.controller;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -138,27 +136,38 @@ public class AdminEventController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/modify")
-	public void AdminEventModify(@RequestParam("event_num") Long event_num, Model model) {
+	public void AdminEventModify(@RequestParam("event_num") Long event_num, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Event Modify get page!");
 	
 		model.addAttribute("event", service.read(event_num));
 		
-		
 	}
 	
 	/**
-	 * 이후 컨트롤러에서 해당 리스트를 받을 수 있었다
-	 */
-	//AJAX 호출 (게시글 등록, 수정)
-    @PostMapping("/delete")
-    public void AdminEventDelete(@RequestParam(value="List[]") List<String> deleteList, EventVO event, RedirectAttributes rttr) {
-    	for (String List : deleteList) {
-    		log.info("delete : " + deleteList);
-    	}
-    	
+	  * @Method 설명 : admin/event/delete 기능 실행
+	  * @Method Name : AdminEventDelete
+	  * @Date : 2019. 12. 04.
+	  * @작성자 : 서영준
+	  * @return call jsp view
+	  */
+	@PostMapping("/delete")
+    public String AdminEventDelete(@RequestParam("ck_code") String ck, Criteria cri, RedirectAttributes rttr) {
+		/*
+		 * for (String List : deleteList) { log.info("delete : " + deleteList); }
+		 */
+		String[] array = ck.split(",");
+		
+		for(int i = 0; i < array.length; i++) {
+			service.remove(Long.parseLong(array[i]));
+			System.out.println("삭제 글 번호" + (i+1) + ": " + array[i]);
+		}
+		
+		log.info(ck);
+		log.info(cri);
     	log.info("안녕하세요~~~~~~~~~ 잘부탁 드립니다~~~~~");
-    	//return "redirect:/admin/event/list";
+    	
+    	return "redirect:/admin/event/list" + cri.getListLink();
     }
 	
 }

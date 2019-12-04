@@ -90,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </table>
                     <div style="margin:10px 20px 0 0; text-align:right;">
                       <button type="button" class="btn btn-default" onClick="location.href='/admin/event/create'">글쓰기</button>
-                      <button type="button" class="btn btn-default delete" onClick="location.href='/admin/event/list'">삭제</button>
+                      <button type="button" class="btn btn-default delete">삭제</button>
                     </div>
                   </div>
                 </div>
@@ -141,7 +141,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </section>
     <!--main content end-->
   </section>
-  <form role="form" id="ckForm" action="" method=''></form>
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
@@ -149,13 +148,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
 	
 		var actionForm = $("#actionForm");
-		
-		var ckForm = $("#ckForm");
 
 		// 페이지 번호 클릭 이벤트
 		$(".paginate_button a").on("click", function(e) {
@@ -169,46 +167,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 * 파일 삭제 버튼을 누르면
 		 */
 		 $('.delete').click(function() {
+			 
+			 var $form = $('<form></form>');
+		     $form.attr('action', '/admin/event/delete');
+		     $form.attr('method', 'post');
+		     $form.appendTo('body');
 			
-		    var checkArr = [];
+		    var checkArr = "";
 		    
 		    $('input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
-		    	checkArr.push($(this).val());
+		    	//checkArr.push($(this).val());
+		    	checkArr += $(this).val() + ",";
 		    });
 		    
-		    var check_code = "check=" + checkArr;
-		    
-		    //var ur1 = "/admin/event/delete?" + check_code;
-		    
-		    ckForm.attr("action", "/admin/event/delete").attr("method","get");
+		    var ck_hidden = "<input type='hidden' name='ck_code' value='" + checkArr + "'>";
 		    
 		    var pageNumTag = $("input[name='pageNum']").clone();
 		    var amountTag = $("input[name='amount']").clone();
 		    var keywordTag = $("input[name='keyword']").clone();
 		    var typeTag = $("input[name='type']").clone();
-		    var check = $("input[name='ck']:checked").clone();
-		 	
-		    //매개변수값 정리 : @RequestBody List fileVOList로 담기위한 사전 작업
+		    var tk = $("input[id='token']").clone();
 		    
-		    if (!confirm('정말 삭제 하시겠습니까?')) {
+		    /* if (!confirm('정말 삭제 하시겠습니까?')) {
 		        return false;
-		    }
+		    } */
 			
-		    //if (pageNumTag) {
-		      //  return false;
-		    //}
+		    /* if (pageNumTag) {
+		        return false;
+		    } */
 		    
-		    ckForm.append(pageNumTag);
-		    ckForm.append(amountTag);
-		    ckForm.append(keywordTag);
-		    ckForm.append(typeTag);
-		    ckForm.append(check);
+		    $form.append(ck_hidden);
+		   	$form.append(pageNumTag);
+		    $form.append(amountTag);
+		    $form.append(keywordTag);
+		    $form.append(typeTag); 
+		    $form.append(tk);
 		    
-		    //if (!confirm(ur1)) {
-		        //return false;
-		    //}
-		    
-		    ckForm.submit();
+		    $form.submit();
 		    
 		    
 		});

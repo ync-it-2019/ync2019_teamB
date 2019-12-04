@@ -1,8 +1,9 @@
-package com.ync.project.admin.service;
+package com.ync.project.admin.mapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,25 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.admin.mapper.AdminEventMapper;
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.EventVO;
 
 import lombok.extern.log4j.Log4j;
 
- /**
-  * @FileName	: AdminEventServiceTests.java
-  * @Date		: 2019. 11. 11. 
-  * @Author		: 서영준
-  * @프로그램 설명 : 관리자용 이벤트 Service Test
-  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+// Java Config
+// @ContextConfiguration(classes = {org.zerock.config.RootConfig.class} )
 @Log4j
-public class AdminEventServiceTests {
+public class AdminEventMapperTests {
 
-	@Autowired
-	private AdminEventService service;
-	
+	//@Setter(onMethod_ = @Autowired)
 	@Autowired
 	private AdminEventMapper mapper;
 	
@@ -42,25 +37,22 @@ public class AdminEventServiceTests {
 	
 	Calendar cal = new GregorianCalendar();
 
-	
-
-//	@Test
-//	public void testAdminEventExist() {
-//		log.info(service);
-//		assertNotNull(service);
-//	}
-	
 //	@Test
 //	public void testAdminEventGetList() {
 //
-//		service.getListWithPaging(new Criteria(1, 10)).forEach(board -> log.info(board));
-//		//service.getList().forEach(board -> log.info(board));
-//	}
-	
-//	@Test
-//	public void testAdminEventGet() {
+//		//기존 방식의 코드
+////		List<EventVO> event = mapper.getList();
+////		
+////		for(EventVO e : event) {
+////			log.info(e);;
+////		}
+//		
+//		//람다식 코드
+//		mapper.getList().forEach((event) -> {
+//			log.info("=================");
+//			log.info(event);
+//			});
 //
-//		log.info(service.read(1L));
 //	}
 	
 //	@Test
@@ -73,7 +65,7 @@ public class AdminEventServiceTests {
 //		java.util.Date to3 = transFormat.parse(from3);
 //		
 //		Date date = new Date(cal.getTimeInMillis());
-//		
+//
 //		EventVO event = new EventVO();
 //		event.setTitle("등록된 테스트 이벤트 게시글");
 //		event.setEvent_start_date(date);
@@ -82,21 +74,56 @@ public class AdminEventServiceTests {
 //		event.setUserid("user01");
 //		event.setImage("이미지 경로~~");
 //		event.setBanner_image("배너 경로~~~~");
-//		
-//		log.info("생성된 게시물의 번호 : " + event.getEvent_num());
-//
-//		service.register(event);
+//		mapper.insertSelectKey(event);
 //
 //		log.info(event);
 //	}
 	
-	
+//	@Test
+//	public void testAdminEventRead() {
+//
+//		// 존재하는 게시물 번호로 테스트
+//		EventVO event = mapper.read(5L);
+//
+//		log.info(event);
+//
+//	}
+
 //	@Test
 //	public void testAdminEventDelete() {
+//
+//		log.info("DELETE COUNT: " + mapper.delete(0L));
+//	}
+
+//	@Test
+//	public void testAdminEventUpdate() {
+//
+//		EventVO event = new EventVO();
+//		// 실행전 존재하는 번호인지 확인할것
+//		board.setBno(5L);
+//		board.setTitle("수정된 제목");
+//		board.setContent("수정된 내용");
+//		board.setWriter("user00");
+//
+//		int count = mapper.update(board);
+//		log.info("UPDATE COUNT: " + count);
+//
+//	}
+
+//	@Test
+//	public void testAdminEventPaging() {
+//
+//		Criteria cri = new Criteria();
 //		
-//		//게시물 번호의 존재 여부를 확인하고 테스트 할 것
-//		log.info("REMOVE RESULT: " + service.remove(2L));
-//		
+//	    //10개씩 3페이지
+//	    cri.setPageNum(2);
+//	    cri.setAmount(10);
+//
+//
+//		List<EventVO> list = mapper.getListWithPaging(cri);
+//
+//		list.forEach(event -> log.info(event));
+//
 //	}
 
 }
