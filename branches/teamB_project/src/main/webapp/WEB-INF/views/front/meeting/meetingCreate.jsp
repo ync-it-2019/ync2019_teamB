@@ -139,6 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<button class="btn">모임 생성</button>
 					</div>
 				</div>
+				<input type="hidden" name="userid" value="${member.userid}">
 				<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 				<input type="hidden" name='meeting_Profile' value=" ">
