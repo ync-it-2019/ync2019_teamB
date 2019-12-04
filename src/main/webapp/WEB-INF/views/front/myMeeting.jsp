@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!DOCTYPE html>
@@ -109,25 +112,25 @@
 <!-- //page details -->
 
 
-<section class="news py-5" id="news">
+<section class="news py-5" id="news" >
 
-	<div class="container py-lg-3">
+	<div class="container py-lg-3" style="height:750px;">
 
       <div class="aside">
         <div class="login_area" style="margin-top:40px;">
           <div class="profile">
-            <a href="#"><img src="/resources/img/profile01.jpg" alt=""></a>
+            <a href="#"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
             <div>
               <ul>
-                <li class="mypage"><a href="#">페이커 님</a><span><a href="#">내정보</a></span></li>
+                <li class="mypage"><a href="#"><c:out value="${member.name}" /> 님</a><span><a href="#">내정보</a></span></li>
                 <li>
                   <ul>
                     <!-- address + hobby = add_ho -->
-                    <li class="add_ho">지역 : 서울특별시</li>
-                    <li class="add_ho">취미 : 게임
-                        <span class="logout">
+                    <li class="add_ho">지역 : <c:out value="${member.adress}" /></li>
+                    <li class="add_ho"><span  style="width:200px;">취미 : <c:out value="${member.hobby}" /></span>
+                        <div class="logout" align="right">
                         <a href="#">로그아웃</a>
-                      </span>
+                      </div>
                     </li>
                   </ul>
                 </li>
@@ -161,173 +164,33 @@
   <hr align="left" style="width:72%;">
 
   <div class="row blog-grids">
-    <div class="col-lg-5 col-md-6 newsgrid1">
-      <div class="left-meeting">
-        <div class="">
-          <a href="#"><img src="/resources/img/th.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class="mt-4"><a href="#">SKT T1</a></b>
-          <h6>프로게이머 선수단</h6>
-          <ul class="blog-info mt-1">
-            <li>멤버 10명</li>
-            <li> · 서울 특별시</li>
-            <li> · 게임</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  	<c:forEach items="${list}" var="meeting" varStatus="status">
+  	<div class="col-lg-5 col-md-6 newsgrid1">
+  	<c:choose>
+  		<c:when test="${status.count % 2 eq 1}">
+       		<div class="left-meeting">
+    	</c:when>
+    	<c:otherwise>
+    	<div class="right-meeting">
+    	</c:otherwise>
+  	</c:choose>
+  			<div class="">
+  			<a href="#"><img src="/resources/img/th.jpg" alt="news image" class="img-fluid"></a>
+        	</div>
+        	<div class="introduction">
+          		<b class="mt-4"><c:out value="${meeting.meeting_Name}" /></b>
+          		<h6><c:out value="${meeting.introduce}" /></h6>
+          		<ul class="blog-info mt-1">
+            		<li>멤버 10명</li>
+            		<li> · <c:out value="${meeting.meeting_Adress}" /></li>
+            		<li> · <c:out value="${meeting.meeting_Hobby}" /></li>
+          		</ul>
+        	</div>
+  		</div>
+  	</div>
 
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+	  </c:forEach>
 
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="/resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
     <div style="margin:30px 240px;">
     <ul class="pagination">
@@ -352,36 +215,34 @@
 <!-- //Recent News -->
 
 <!-- footer -->
-<footer class="footer py-5">
-
-	<!-- //footer bottom -->
+<footer class="footer py-5" >
+   
 </footer>
 <!-- //footer -->
 
 <!-- copyright -->
 <section class="copy-right py-4">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
-				</p>
-			</div>
-			<div class="col-md-4 mt-md-0 mt-4">
-				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <p class="">© 2019 Furnish. All rights reserved | Design by Team_B.
+            </p>
+         </div>
+         <div class="col-md-4 mt-md-0 mt-4">
+            <div class="subscribe-form">
+               <form action="#" method="post" class="newsletter">
+                  <input class="subscribe" type="text" placeholder="Subscribe..." required="">
+                  <button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
 </section>
 <!-- copyright -->
+
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
-
 </body>
 </html>
