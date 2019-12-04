@@ -3,11 +3,12 @@
 <mapper namespace="com.ync.project.front.mapper.Free_BoardMapper">
  
 	<sql id="criteria">
+	<!--
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'T'.toString()">   <!--원래는 title, content, writer--> <!--writer => userid -->
+						<when test="type == 'T'.toString()">
 							title like '%'||#{keyword}||'%'  
 						</when>
 						<when test="type == 'C'.toString()">
@@ -20,6 +21,7 @@
 				</trim>
 			</foreach>
 		</trim>
+	-->
 	</sql>
 
 
@@ -28,7 +30,7 @@
 		SELECT * 
 		FROM   teamb_free_board
 		WHERE  free_board_num > 0
-
+		AND    meeting_num = #{meeting_num}
 		ORDER BY free_board_num DESC
 		]]>
 	</select>
@@ -90,10 +92,12 @@
 		WHERE free_board_num = #{free_board_num}
 		AND	  meeting_num = #{meeting_num}
 	</update>
+	
 	<!-- 글 목록 페이징 --><!-- 리플 카운트가 테이블이 없음, bk_board ?, regdate와 updatedate 삭제 -->
 	<select id="getListWithPaging" resultType="com.ync.project.domain.Free_BoardVO">
 		<![CDATA[
-		SELECT	free_board_num,
+		SELECT	meeting_num,
+				free_board_num,
 				category,
 				title,
 				contents,
@@ -102,6 +106,7 @@
 				views
 		FROM	(SELECT /*+INDEX_DESC(teamb_free_board xpkteamb_free_board) */
         				rownum rn,
+        				meeting_num,
         				free_board_num,
         				category,
         				title,
@@ -110,12 +115,17 @@
         				write_date,
         				views
       			FROM	teamb_free_board
-				WHERE 
-
-      			rownum <= #{pageNum} * #{amount}
+				WHERE   meeting_num = #{meeting_num}
+				AND 
+  		]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[    
+      			rownum <= #{cri.pageNum} * #{cri.amount}
       			) 
-  		WHERE rn > (#{pageNum} -1) * #{amount}
-		]]>
+  		WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
+  		  		AND   meeting_num = #{meeting_num}
+  		]]>
 	</select>
 
 
@@ -127,7 +137,6 @@
 		<include refid="criteria"></include> 
 		
 		       free_board_num > 0
-		
 	</select>
 	
 <!-- 	<update id="updateReplyCnt">
