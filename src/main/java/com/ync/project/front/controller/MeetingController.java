@@ -2,16 +2,22 @@ package com.ync.project.front.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.PageDTO;
 import com.ync.project.front.service.Free_BoardService;
 import com.ync.project.front.service.MeetingMainService;
+import com.ync.project.util.UploadUtils;
 
 import lombok.extern.log4j.Log4j;
 
@@ -74,13 +80,13 @@ public class MeetingController {
 //		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		model.addAttribute("board", service1.read(free_board_num));
 		
-	   }
+	}
 	
 	//소모임 게시판 쓰기
-		@GetMapping(value = "/board/write")
-		public void boardWrite() {
-			log.info("Meeting board write page!");
-		}
+	@GetMapping(value = "/board/write")
+	public void boardWrite() {
+		log.info("Meeting board write page!");
+	}
 	
 	//소모임 정모게시판 리스트
 	@GetMapping(value = "/appointment/list")
@@ -95,9 +101,30 @@ public class MeetingController {
 	}
 	
 	//소모임 정모게시판 쓰기
-		@GetMapping(value = "/appointment/write")
-		public void appointmentWrite() {
-			log.info("Meeting appointment write page!");
+	@GetMapping(value = "/appointment/write")
+	public void appointmentWrite() {
+		log.info("Meeting appointment write page!");
+	}
+	
+	//모임 생성
+	@GetMapping("/meetingCreate")
+	public void meetingCreate() {
+	}
+	
+	@PostMapping("/meetingCreate")
+	public String meetingCreate(MultipartFile[] uploadFile, MeetingVO meeting, RedirectAttributes rttr) {
+		
+		for (MultipartFile multipartFile : uploadFile) {
+		// 실제로 upload된 file이 있을때만 upload 시킨다. 
+		if (multipartFile.getSize() > 0) {
+		
+				meeting.setMeeting_Profile(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+
 		}
+	}
+		log.info("register : " + meeting);
+		service2.meetingCreate(meeting);
+		return "redirect:/";
+	}
 	
 }
