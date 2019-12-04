@@ -59,7 +59,19 @@ public class MeetingController {
 		model.addAttribute("getAppointment", service2.getAppointment(meeting_num));
 		
 		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
+		
+		model.addAttribute("getCount", service2.getCount(meeting_num));
 
+	}
+	
+	@PostMapping(value = "/main")
+	public String main(Meeting_MemberVO mMember, RedirectAttributes rttr) {
+		
+		log.info(mMember);
+		
+		service3.insertMember(mMember);
+		
+		return "redirect:/front/meeting/main?meeting_num=" + mMember.getMeeting_num();	
 	}
 	
 	//소모임 게시판 리스트
@@ -122,14 +134,14 @@ public class MeetingController {
 	}
 	
 	//모임 생성
-	@GetMapping("/meetingCreate")
+	@GetMapping(value = "/meetingCreate")
 	public void meetingCreate(Model model) {
 				
 		model.addAttribute("getMeetingNum", service2);
 		
 	}
 	
-	@PostMapping("/meetingCreate")
+	@PostMapping(value = "/meetingCreate")
 	public String meetingCreate(MultipartFile[] uploadFile, MeetingVO meeting, Meeting_MemberVO mMember, RedirectAttributes rttr) {
 		
 		for (MultipartFile multipartFile : uploadFile) {
@@ -142,20 +154,6 @@ public class MeetingController {
 	}
 		log.info("register : " + meeting);
 		service2.meetingCreate(meeting);		
-		service3.insertMember(mMember);
-		
-		return "redirect:/";
-	}
-	
-	//모임 가입하기
-	@GetMapping("/meetingJoin")
-	public void meetingJoin() {}
-	
-	@PostMapping("/meetingJoin")
-	public String meetingJoin(Meeting_MemberVO mMember, RedirectAttributes rttr) {
-		
-		log.info(mMember);
-		
 		service3.insertMember(mMember);
 		
 		return "redirect:/";

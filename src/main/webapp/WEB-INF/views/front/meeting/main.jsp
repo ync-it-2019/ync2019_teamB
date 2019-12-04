@@ -12,6 +12,16 @@
 
 <jsp:include page="/WEB-INF/views/front/include/cssLink.jsp" flush="true" />
 
+<script type="text/javascript">
+	function meetingJoin() {
+		
+		if(confirm("가입하시겠습니까?")) {
+			alert("가입되었습니다.");
+			document.getElementById('frm').submit();
+		}
+	}
+</script>
+
 <meta charset="UTF-8">
 </head>
 <body>
@@ -36,18 +46,14 @@
     <div id="meeting-menu">
       <ul class="menu info-row">
         <div class="meeting-menu1">
-          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="./main?meeting_num=">메인</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./board/list">게시판</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="./main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="./appointment/list">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./meetingCreat">수정하기</a>
-            <!-- <ul>
-              <li>정모 이름 수정</li>
-              <li>정모 소개 수정</li>
-            </ul> -->
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href=".">수정하기</a>
           </li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#">가입하기</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
         </div>
       </ul>
     </div>
@@ -78,7 +84,7 @@
         		<!-- //최근 정모글 들어가는 부분 -->
         		<!-- 모임 멤버 들어가는 부분 -->
 				<div class="">
-	 				<h5>모임멤버 7명</h5>
+	 				<h5>모임멤버 ${getCount}명</h5>
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -101,5 +107,14 @@
 	</div>
 </section>
 <!-- //소모임 소개 -->
+
+<!-- 모임 가입 히든 폼 -->
+<form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
+</form>
+<!-- //모임 가입 히든 폼 -->
+
 </body>
 </html>

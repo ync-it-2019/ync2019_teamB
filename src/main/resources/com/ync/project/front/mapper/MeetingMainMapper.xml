@@ -7,7 +7,8 @@
 	<![CDATA[
 		SELECT	MEETING_NAME,
 				MEETING_PROFILE,
-				INTRODUCE
+				INTRODUCE,
+				MEETING_NUM
 		FROM	TEAMB_MEETING
 		WHERE	MEETING_NUM = #{meeting_Num}
 		]]>
@@ -30,10 +31,11 @@
 	<!-- 모임 회원 -->
 	<select id="getList" resultType="com.ync.project.domain.Meeting_MemberVO">
 	<![CDATA[
-		SELECT	USERID,
-				JOIN_DATE
-		FROM	TEAMB_MEETING_MEMBER
-		WHERE	MEETING_NUM = #{meeting_Num}
+		SELECT		USERID,
+					JOIN_DATE
+		FROM		TEAMB_MEETING_MEMBER
+		WHERE		MEETING_NUM = #{meeting_Num}
+		ORDER BY	JOIN_DATE
 		]]>
 	</select>
 	
@@ -64,6 +66,15 @@
 		FROM	TEAMB_MEETING
 		WHERE	MEETING_NUM = ( SELECT	MAX(MEETING_NUM)
 								FROM	TEAMB_MEETING)
+		]]>
+	</select>
+	
+	<!-- 모임인원수 -->
+	<select id="getCount" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<![CDATA[
+		SELECT	COUNT(*)
+		FROM	TEAMB_MEETING_MEMBER
+		WHERE	MEETING_NUM = #{meeting_Num}
 		]]>
 	</select>
 	
