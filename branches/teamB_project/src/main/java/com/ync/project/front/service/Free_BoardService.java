@@ -2,6 +2,8 @@ package com.ync.project.front.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.Free_BoardVO;
 /**
@@ -16,13 +18,13 @@ public interface Free_BoardService {
 	public Free_BoardVO read(Long free_board_num);
 	
 	// 전체 글 목록
-	public List<Free_BoardVO> getList();
+	public List<Free_BoardVO> getList(Long meeting_num);
 	
 	// 글 목록 페이징 
-	public List<Free_BoardVO> getListWithPaging(Criteria cri);
+	public List<Free_BoardVO> getListWithPaging(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
 	
 	// 글 등록
-	public void register(Free_BoardVO board); 
+	public void write(Free_BoardVO board); 
 		
 	// 글 수정
 	public boolean modify(Free_BoardVO board);
@@ -31,6 +33,6 @@ public interface Free_BoardService {
 	public boolean remove(Long free_board_num);
 	
 	//추가
-	 public int getTotal(Criteria cri);
+	 public int getTotal(@Param("cri") Criteria cri);
 
 }
