@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.Meeting_MemberVO;
 import com.ync.project.front.mapper.MeetingMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -62,6 +63,12 @@ public class MeetingServiceImpl implements MeetingService {
 	public int getTotal(Criteria cri) {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
+	}
+	
+	@Override
+	public void insertMember(Meeting_MemberVO mMember) {
+		log.info("insert Member");
+		mapper.insertMember(mMember);
 	}
 	
 }

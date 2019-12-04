@@ -1,16 +1,12 @@
 package com.ync.project.front.mapper;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.AppointmentVO;
 import com.ync.project.domain.MeetingVO;
-import com.ync.project.domain.Meeting_MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -88,7 +84,7 @@ public class MeetingMainMapperTest {
 		MeetingVO meeting = new MeetingVO();
 		
 		meeting.setIntroduce("모임소개입니다.");
-		meeting.setUserid("user03");
+		meeting.setUserid("lee02");
 		meeting.setMeeting_Profile("image.jpg");
 		meeting.setMeeting_Name("모임이름");
 		meeting.setMeeting_Adress("대구광역시");
@@ -99,4 +95,17 @@ public class MeetingMainMapperTest {
 		mapper.meetingCreate(meeting);
 
 	}
+	
+	 /**
+	  * @Method 설명 : 가장 큰 모임 번호 테스트
+	  * @Method Name : getMeetingNum
+	  * @Date : 2019. 12. 4.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void getMeetingNum() {
+//		
+//		MeetingVO meeting = mapper.getMeetingNum();
+//		log.info(meeting);
+//	}
 }

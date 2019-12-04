@@ -28,27 +28,27 @@ public class MeetingMainServiceTests {
 	@Autowired
 	private MeetingMainService service;
 	
-	@Test
-	public void testExist() {
-
-		log.info(service);
-		assertNotNull(service);
-	}
+//	@Test
+//	public void testExist() {
+//
+//		log.info(service);
+//		assertNotNull(service);
+//	}
 	
-	@Test
-	public void testGetIntroduce() {
-		log.info(service.getInfo(1));
-	}
+//	@Test
+//	public void testGetIntroduce() {
+//		log.info(service.getInfo(1));
+//	}
 	
-	@Test
-	public void testGetAppointment() {
-		log.info(service.getAppointment(1));
-	}
+//	@Test
+//	public void testGetAppointment() {
+//		log.info(service.getAppointment(1));
+//	}
 
-	@Test
-	public void testGetMemberList() {
-		service.getMemberList(1).forEach(board -> log.info(board));
-	}
+//	@Test
+//	public void testGetMemberList() {
+//		service.getMemberList(1).forEach(board -> log.info(board));
+//	}
 	
 	@Test
 	public void testMeetingCreate() {
@@ -66,6 +66,14 @@ public class MeetingMainServiceTests {
 		
 		service.meetingCreate(meeting);
 	}
+	
+//	@Test
+//	public void testGetMeetingNum() {
+//		
+//		log.info(service);
+//		
+//		service.getMeetingNum();
+//	}
 
 
 }

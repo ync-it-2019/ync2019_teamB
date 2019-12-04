@@ -2,7 +2,6 @@ package com.ync.project.front.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +13,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.Meeting_MemberVO;
 import com.ync.project.domain.PageDTO;
 import com.ync.project.front.service.Free_BoardService;
 import com.ync.project.front.service.MeetingMainService;
+import com.ync.project.front.service.MeetingService;
 import com.ync.project.util.UploadUtils;
 
 import lombok.extern.log4j.Log4j;
@@ -41,6 +42,10 @@ public class MeetingController {
 	
 	@Autowired
 	private MeetingMainService service2;
+	
+	@Autowired
+	private MeetingService service3;
+	
 	
 	//소모임 메인화면
 	@GetMapping(value = "/main")
@@ -108,11 +113,14 @@ public class MeetingController {
 	
 	//모임 생성
 	@GetMapping("/meetingCreate")
-	public void meetingCreate() {
+	public void meetingCreate(Model model) {
+				
+		model.addAttribute("getMeetingNum", service2);
+		
 	}
 	
 	@PostMapping("/meetingCreate")
-	public String meetingCreate(MultipartFile[] uploadFile, MeetingVO meeting, RedirectAttributes rttr) {
+	public String meetingCreate(MultipartFile[] uploadFile, MeetingVO meeting, Meeting_MemberVO mMember, RedirectAttributes rttr) {
 		
 		for (MultipartFile multipartFile : uploadFile) {
 		// 실제로 upload된 file이 있을때만 upload 시킨다. 
@@ -123,7 +131,9 @@ public class MeetingController {
 		}
 	}
 		log.info("register : " + meeting);
-		service2.meetingCreate(meeting);
+		service2.meetingCreate(meeting);		
+		service3.insertMember(mMember);
+		
 		return "redirect:/";
 	}
 	

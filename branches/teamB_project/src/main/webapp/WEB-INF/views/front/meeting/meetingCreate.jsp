@@ -143,6 +143,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 				<input type="hidden" name='meeting_Profile' value=" ">
+				
+				<input type="hidden" name="meeting_num" value="${getMeetingNum.getMeetingNum().meeting_Num + 1}">
+				
+				
+				
+				
+				
+				
+				
 			</form>
 		</div>
 

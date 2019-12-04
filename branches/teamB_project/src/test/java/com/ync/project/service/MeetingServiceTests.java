@@ -1,14 +1,12 @@
 package com.ync.project.service;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.Criteria;
+import com.ync.project.domain.Meeting_MemberVO;
 import com.ync.project.front.service.MeetingService;
 
 import lombok.extern.log4j.Log4j;
@@ -46,9 +44,22 @@ public class MeetingServiceTests {
 //		log.info(service.read(1L));
 //	}
 	
+//	@Test
+//	public void testmyList() {
+//		service.getMyList(new Criteria(1, 10),"user01").forEach(board -> log.info(board));
+//	}
+	
 	@Test
-	public void testmyList() {
-		service.getMyList(new Criteria(1, 10),"user01").forEach(board -> log.info(board));
+	public void testInsertMember() {
+		
+		Meeting_MemberVO mMember = new Meeting_MemberVO();
+		
+		mMember.setUserid("lee02");
+		mMember.setMeeting_num(33);
+
+		log.info(mMember);
+		
+		service.insertMember(mMember);
 	}
 
 }
