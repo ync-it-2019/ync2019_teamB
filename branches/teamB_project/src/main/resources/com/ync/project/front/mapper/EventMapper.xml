@@ -45,7 +45,9 @@
 		<![CDATA[    
       			rownum <= #{pageNum} * #{amount}
       			)
-  		WHERE rn > (#{pageNum} -1) * #{amount}   
+  		WHERE rn > (#{pageNum} -1) * #{amount}  
+  		AND SYSDATE >= event_start_date
+  		AND SYSDATE < event_end_date 
 		]]>
 	</select>
 	
