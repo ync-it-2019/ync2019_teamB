@@ -175,13 +175,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!--  Pagination 시작 -->
 		<ul class="pagination justify-content-center">
 		 <c:if test="${pageMaker.prev}">
-			<li class="page-item"><a href="${pageMaker.startPage -1}">Previous</a></li>
+			<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
 		</c:if>
 		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
-			<li class="page-item"><a href="${num}">${num}</a></li>
+			<li class="paginate_button"><a href="${num}">${num}</a></li>
 		</c:forEach>
 		<c:if test="${pageMaker.next}">
-			<li class="page-item"><a href="${pageMaker.endPage +1 }">Next</a></li>
+			<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
 		</c:if>
 		</ul>
         </div>
