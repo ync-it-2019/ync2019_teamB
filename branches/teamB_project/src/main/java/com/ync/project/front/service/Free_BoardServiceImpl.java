@@ -2,6 +2,7 @@ package com.ync.project.front.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +33,12 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 	private Free_BoardMapper mapper;
 	
 	@Override
-	public void register(Free_BoardVO board) {
+	public void write(Free_BoardVO board) {
 
-		log.info("register......" + board);
+		log.info("write......" + board);
 
 		mapper.insertSelectKey(board);
+//		return "redirect: /board/list?free_board_num="+ board.getSeq_board();
 	}
 
 	@Override
@@ -67,19 +69,19 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 	}
 
 	 @Override
-	 public List<Free_BoardVO> getList() {
+	 public List<Free_BoardVO> getList(Long meeting_num) {
 	
 		 log.info("getList..........");
 		
-		 return mapper.getList();
+		 return mapper.getList(meeting_num);
 	 }
 
 	@Override
-	public List<Free_BoardVO> getListWithPaging(Criteria cri) {
+	public List<Free_BoardVO> getListWithPaging(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num) {
 
 		log.info("get List with criteria: " + cri);
 
-		return mapper.getListWithPaging(cri);
+		return mapper.getListWithPaging(cri, meeting_num);
 	}
 
 	@Override
