@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h3 class="heading mb-sm-5 mb-4 text-center">Create Meeting</h3>
 
 		<div class="login-form">
-			<form action="/meetingCreate" method="post" enctype="multipart/form-data">
+			<form action="/front/meeting/meetingCreate" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-4 text-md-right">
 						<label>모임 이름:</label>
