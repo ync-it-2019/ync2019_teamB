@@ -90,7 +90,7 @@
 						<c:forEach items="${getMemberList}" var="memberList" varStatus="status">
 							<tr>
 								<td><c:out value="${memberList.userid}" /></td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${memberList.join_Date}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${memberList.join_date}" /></td>
 							</tr>
 						</c:forEach>
 					</table>
