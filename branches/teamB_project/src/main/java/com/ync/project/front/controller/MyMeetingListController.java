@@ -1,28 +1,37 @@
 package com.ync.project.front.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ync.project.domain.Criteria;
+import com.ync.project.domain.PageDTO;
+import com.ync.project.front.service.MeetingService;
+import com.ync.project.front.service.MemberService;
+
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
- /**
-  * @FileName	: MyMeetingListController.java
-  * @Date		: 2019. 10. 20. 
-  * @Author		: 조중현
-  * @프로그램 설명 : 내 소모임 페이지 호출용 컨트롤러
-  */
 @Controller
 @Log4j
-@RequestMapping("/")
+@RequestMapping("/*")
+@AllArgsConstructor
 public class MyMeetingListController {
-	@Autowired
-
-	@GetMapping(value = "/front/myMeeting")
-	public void MyMeetingList() {
-
-		log.info("My MeetingList page!");
-	
-	}
+   private MeetingService service;
+   private MemberService service2;
+   
+   @GetMapping("/front/myMeeting")
+   public void list(@RequestParam("userid") String userid,Criteria cri, Model model) {
+	   log.info("list: " + cri);
+	   int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getMyList(cri, userid));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
+		log.info(service2.info(userid).getUserpw());
+	     model.addAttribute("member", service2.info(userid));
+   }
+   
 }

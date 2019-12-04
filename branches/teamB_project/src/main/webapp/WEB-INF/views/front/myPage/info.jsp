@@ -119,7 +119,15 @@
 					</div>
 				</div>
           <div style="position: relative; bottom: 370px; left: 380px;">
+          <c:choose>
+          	<c:when test="${member.profile == ' ' }">
+          	<img src="/resources/img/man.png">
+          	</c:when>
+          	<c:otherwise>
           	<img src="/resources/upload/<c:out value="${member.profile}" />" alt="" style="height:353px; width:256px;">
+          	</c:otherwise>
+          </c:choose>
+          	
           </div>
 			<a href="/front/myPage/modify?userid=<sec:authentication property="principal.username"/>">
           			<button class="btn" style="float: right; position: relative; bottom: 360px; left: 484px;">

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.front.mapper.MeetingMapper">
+
+<resultMap type="com.ync.project.domain.MeetingVO" id="meetingMap">
+		<id property="meeting_Num" column="meeting_num"/>
+		<result property="meeting_Name" column="meeting_name"/>
+		<result property="userid" column="userid"/>
+		<result property="introduce" column="introduce"/>
+		<result property="meeting_Profile" column="meeting_profile"/>
+		<result property="meeting_Adress" column="meeting_adress"/>
+		<result property="meeting_Hobby" column="meeting_hobby"/>
+	</resultMap>
+	
+	<!-- 검색 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							meeting_name like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'H'.toString()">
+							meeting_hobby like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 모임 리스트 -->
+	<select id="getList" resultMap="meetingMap">
+	<![CDATA[
+		SELECT	*
+		FROM	teamb_meeting
+		ORDER BY meeting_num
+		]]>
+	</select>
+	
+	<!-- 모임 생성 -->
+	<insert id="insert">
+		insert into teamb_meeting (meeting_num, 
+								  introduce, 
+								  userid, 
+								  meeting_profile, 
+								  meeting_name, 
+								  meeting_adress, 
+								  meeting_hobby
+								  )
+		values (TEAMB_MEETING_NUM.NEXTVAL,
+				#{introduce},
+				#{userid},
+				#{meeting_Profile},
+				#{meeting_Name},
+				#{meeting_Adress},
+				#{meeting_Hobby}
+				)
+	</insert>
+	
+	
+	<!-- 모임 상세 보기 -->
+	<select id="read" resultMap="meetingMap">
+		SELECT *
+		FROM   teamb_meeting
+		WHERE  meeting_num =	#{meeting_num}
+	</select>
+	
+	
+	<!-- 모임 리스트, 페이징 -->
+	<select id="getListWithPaging" resultMap="meetingMap">
+	<![CDATA[
+	SELECT  meeting_num,
+			introduce,
+			meeting_profile,
+			meeting_name,
+			meeting_adress,
+			meeting_hobby
+	FROM    (SELECT /*+INDEX_DESC(teamb_meeting xpkteamb_meeting) */
+			rownum rn,
+			meeting_num,
+			introduce,
+			meeting_profile,
+			meeting_name,
+			meeting_adress,
+			meeting_hobby
+			FROM teamb_meeting
+			WHERE 
+  		]]>
+  		<include refid="criteria"></include>
+  		
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+  		
+  		]]>
+	</select>
+	
+	<!--가입한 모임 리스트, 페이징 -->
+	<select id="getMyList" resultMap="meetingMap">
+	<![CDATA[
+	SELECT  meeting_num,
+			introduce,
+			meeting_profile,
+			meeting_name,
+			meeting_adress,
+			meeting_hobby
+	FROM    (SELECT /*+INDEX_DESC(teamb_meeting xpkteamb_meeting) */
+			rownum rn,
+			meeting_num,
+			introduce,
+			meeting_profile,
+			meeting_name,
+			meeting_adress,
+			meeting_hobby
+			FROM teamb_meeting
+			WHERE 
+  		]]>
+		<![CDATA[    
+      			rownum <= #{cri.pageNum} * #{cri.amount}
+      			) A
+  		WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
+	    AND 	#{userid} IN (SELECT userid
+						  FROM	teamb_meeting_member B
+						  WHERE  A.MEETING_NUM = B.meeting_num)  
+		]]>
+	
+	</select>
+	
+	
+
+	
+	<!-- 모임 가입 -->
+	<insert id="insertMember">
+		insert into teamb_meeting_member (join_code,
+								  		  userid,
+								  		  join_date,
+								  		  meeting_num
+								  )
+		values (#{meeting_num} || '_' || #{userid},
+				#{userid},
+				SYSDATE,
+				#{meeting_num}
+				)
+	</insert>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_meeting where 
+		
+		<include refid="criteria"></include> 
+		
+		meeting_num > 0
+		
+	</select>
+	
+</mapper>
