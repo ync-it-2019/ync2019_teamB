@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.Meeting_MemberVO;
 
 
  /**
@@ -30,5 +31,8 @@ public interface MeetingService {
 	
 	//모임 수
 	public int getTotal(Criteria cri);
+	
+	//모임 가입
+	public void insertMember(Meeting_MemberVO mMember);
 	
 }

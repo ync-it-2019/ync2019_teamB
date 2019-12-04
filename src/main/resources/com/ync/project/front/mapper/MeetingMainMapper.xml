@@ -57,4 +57,14 @@
 		]]>
 	</insert>
 	
+	<!-- 가장 큰 모임 번호 -->
+	<select id="getMeetingNum" resultType="com.ync.project.domain.MeetingVO">
+	<![CDATA[
+		SELECT	MEETING_NUM
+		FROM	TEAMB_MEETING
+		WHERE	MEETING_NUM = ( SELECT	MAX(MEETING_NUM)
+								FROM	TEAMB_MEETING)
+		]]>
+	</select>
+	
 </mapper>

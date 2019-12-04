@@ -25,5 +25,8 @@ public interface MeetingMainMapper {
 	
 	//모임 생성
 	public void meetingCreate(MeetingVO meeting);
-
+	
+	//가장 큰 모임 번호
+	public MeetingVO getMeetingNum();
+	
 }
