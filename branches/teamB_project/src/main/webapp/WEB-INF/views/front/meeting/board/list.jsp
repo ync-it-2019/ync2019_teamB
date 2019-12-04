@@ -72,21 +72,18 @@
 <!-- 게시글 검색/글쓰기 -->
 <section class="mx-5 px-5">
 	<div class="input-group-css">
-		<!-- 분류 선택 -->
-		<select>
+  		<form id='searchForm' action="/front/meeting/board/list" method='get'>
+		<select name='type'>
 			<option value="">카테고리</option>
-			<option>일반</option>
-			<option>공지사항</option>
-			<option>정모 후기</option>
-			<option>건의</option>
+			<option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
+			<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
+			<option value="W" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>작성자</option>
 		</select>
-		<!-- //분류 선택 -->
-		
-		<!-- 검색 키워드 입력창 -->
-		<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" style="width:20%">
-		<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" >찾기</button>
-		</span>
+			<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword}"/>' />
+			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
+			<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+			<button value=""><span class="fa fa-search"></span></button>
+		</form>
 		<!-- //검색 키워드 입력창 -->
 		
 		<!-- 글쓰기 버튼 -->
@@ -111,15 +108,13 @@
 
 			<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
 				<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-					<a href="/front/meeting/board/list?page=${num}">${num}</a>
+					<a href="/front/meeting/board/list?meeting_num=${num}">${num}</a>
 				</li>
 			</c:forEach>
 
-			<c:if test="${pageMaker.next}">
-				<li class="paginate_button next">
-					<a href="/front/meeting/board/list?page=${pageMaker.endPage +1 }">Next</a>
-				</li>
-			</c:if>
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+		</c:if>
 		</ul>
 	</div>
 	<!-- Form 시작 -->
