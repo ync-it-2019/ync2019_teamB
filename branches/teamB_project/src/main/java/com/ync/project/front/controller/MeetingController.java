@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.Free_BoardVO;
 import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_MemberVO;
 import com.ync.project.domain.PageDTO;
@@ -63,35 +64,44 @@ public class MeetingController {
 	
 	//소모임 게시판 리스트
 	@GetMapping(value = "/board/list")
-	public void Boardlist(Criteria cri, Model model) {
+	public void Boardlist(@RequestParam("meeting_num") Long meeting_num, Criteria cri, Model model) {
 	      
 		log.info("list : "+ cri);
 	      
 		int total = service1.getTotal(cri);
 		log.info("total: " + total);
-//		model.addAttribute("list", service.getList());  //안 됨
-		model.addAttribute("list", service1.getListWithPaging(cri));
+//		model.addAttribute("list", service1.getList(meeting_num));  //안 됬었음
+		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
-	//소모임 게시판 보기
+	//소모임 게시글 상세보기
 	@GetMapping(value = "/board/get")
-	public void BoardGet(@RequestParam("free_board_num") Long free_board_num, Model model) {
+	public void BoardGet(@RequestParam("free_board_num") Long free_board_num, Model model, Criteria cri, Free_BoardVO board) {
 
 		log.info("Meeting board get page!");
-//		int total = service.getTotal(cri);
-//		log.info("total: " + total);
+		int total = service1.getTotal(cri);
+		log.info("total: " + total);
+		Long meeting_num = 0l;
 //		model.addAttribute("list", service.getListWithPaging(cri));
 //		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		model.addAttribute("board", service1.read(free_board_num));
-		
-	}
+		meeting_num = service1.read(free_board_num).getMeeting_num();
+		log.info("모임 번호"+ meeting_num);
+		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+	   }
 	
 	//소모임 게시판 쓰기
-	@GetMapping(value = "/board/write")
-	public void boardWrite() {
-		log.info("Meeting board write page!");
-	}
+		@GetMapping(value = "/board/write")
+//		@PreAuthorize("isAuthenticated()")
+		public void boardWrite(Free_BoardVO board, RedirectAttributes rttr) {
+			
+			log.info("register: " + board);
+			service1.write(board);
+			rttr.addFlashAttribute("result", board.getFree_board_num());
+//			return "redirect:/board/list";
+		}
 	
 	//소모임 정모게시판 리스트
 	@GetMapping(value = "/appointment/list")
@@ -137,4 +147,17 @@ public class MeetingController {
 		return "redirect:/";
 	}
 	
+	//모임 가입하기
+	@GetMapping("/meetingJoin")
+	public void meetingJoin() {}
+	
+	@PostMapping("/meetingJoin")
+	public String meetingJoin(Meeting_MemberVO mMember, RedirectAttributes rttr) {
+		
+		log.info(mMember);
+		
+		service3.insertMember(mMember);
+		
+		return "redirect:/";
+	}
 }
