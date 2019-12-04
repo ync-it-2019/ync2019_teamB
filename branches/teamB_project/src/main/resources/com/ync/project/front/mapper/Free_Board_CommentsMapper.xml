@@ -16,7 +16,7 @@
 	</delete>
 
 	<update id="update">
-		UPDATE teamb_free_board_comments SET	reply = #{reply},
+		UPDATE teamb_free_board_comments SET	free_Comments_Num = #{free_Comments_Num},
 								updatedate = sysdate 
 		WHERE free_Comments_Num = #{free_Comments_Num}
 		
