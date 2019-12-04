@@ -2,6 +2,20 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ync.project.admin.mapper.AdminEventMapper">
 
+	<resultMap type="com.ync.project.domain.EventVO" id="eventMap">
+		<id property="event_num" column="event_num"/>
+		<result property="event_num" column="event_num"/>
+		<result property="title" column="title"/>
+		<result property="event_start_date" column="event_start_date"/>
+		<result property="event_end_date" column="event_end_date"/>
+		<result property="contents" column="contents"/>
+		<result property="write_date" column="write_date"/>
+		<result property="image" column="image"/>
+		<result property="userid" column="userid"/>
+		<result property="banner_image" column="banner_image"/>
+		<result property="event_progress" column="event_progress"/>
+	</resultMap>
+
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
@@ -107,4 +121,8 @@
 		event_num > 0
 		
 	</select>
+	
+	<delete id="delete">
+		delete teamb_event where event_num = #{event_num}
+	</delete>
 </mapper>
