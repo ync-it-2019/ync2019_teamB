@@ -65,4 +65,12 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 		
 		return mapper.getMeetingNum();
 	}
+	
+	@Override
+	public Meeting_MemberVO getCount(int meeting_Num) {
+		
+		log.info("getCount......");
+		
+		return mapper.getCount(meeting_Num);
+	}
 }

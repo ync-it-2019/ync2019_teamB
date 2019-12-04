@@ -29,4 +29,7 @@ public interface MeetingMainMapper {
 	//가장 큰 모임 번호
 	public MeetingVO getMeetingNum();
 	
+	//모임인원수
+	public Meeting_MemberVO getCount(int meeting_Num);
+	
 }

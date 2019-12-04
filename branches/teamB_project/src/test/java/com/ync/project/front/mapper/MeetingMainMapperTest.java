@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.Meeting_MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -78,23 +78,23 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 11. 27.
 	  * @작성자 : 이주현
 	  */
-	@Test
-	public void testMeetingCreate() {
-
-		MeetingVO meeting = new MeetingVO();
-		
-		meeting.setIntroduce("모임소개입니다.");
-		meeting.setUserid("lee02");
-		meeting.setMeeting_Profile("image.jpg");
-		meeting.setMeeting_Name("모임이름");
-		meeting.setMeeting_Adress("대구광역시");
-		meeting.setMeeting_Hobby("게임/오락");
-
-		log.info(meeting);
-		
-		mapper.meetingCreate(meeting);
-
-	}
+//	@Test
+//	public void testMeetingCreate() {
+//
+//		MeetingVO meeting = new MeetingVO();
+//		
+//		meeting.setIntroduce("모임소개입니다.");
+//		meeting.setUserid("lee02");
+//		meeting.setMeeting_Profile("image.jpg");
+//		meeting.setMeeting_Name("모임이름");
+//		meeting.setMeeting_Adress("대구광역시");
+//		meeting.setMeeting_Hobby("게임/오락");
+//
+//		log.info(meeting);
+//		
+//		mapper.meetingCreate(meeting);
+//
+//	}
 	
 	 /**
 	  * @Method 설명 : 가장 큰 모임 번호 테스트
@@ -103,9 +103,22 @@ public class MeetingMainMapperTest {
 	  * @작성자 : 이주현
 	  */
 //	@Test
-//	public void getMeetingNum() {
+//	public void testGetMeetingNum() {
 //		
 //		MeetingVO meeting = mapper.getMeetingNum();
 //		log.info(meeting);
 //	}
+	
+	 /**
+	  * @Method 설명 : 모임인원수 테스트
+	  * @Method Name : testGetCount
+	  * @Date : 2019. 12. 4.
+	  * @작성자 : 이주현
+	  */
+	@Test
+	public void testGetCount() {
+		
+		Meeting_MemberVO mMember = mapper.getCount(1);
+		log.info(mMember);
+	}
 }

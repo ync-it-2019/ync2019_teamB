@@ -28,5 +28,8 @@ public interface MeetingMainService {
 	
 	//가장 큰 모임번호
 	public MeetingVO getMeetingNum();
+	
+	//모임인원수
+	public Meeting_MemberVO getCount(int meeting_Num);
 
 }

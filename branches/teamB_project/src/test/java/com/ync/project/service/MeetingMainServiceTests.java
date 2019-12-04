@@ -50,22 +50,22 @@ public class MeetingMainServiceTests {
 //		service.getMemberList(1).forEach(board -> log.info(board));
 //	}
 	
-	@Test
-	public void testMeetingCreate() {
-
-		MeetingVO meeting = new MeetingVO();
-		
-		meeting.setIntroduce("모임소개입니다.");
-		meeting.setUserid("user03");
-		meeting.setMeeting_Profile("image.jpg");
-		meeting.setMeeting_Name("모임이름");
-		meeting.setMeeting_Adress("대구광역시");
-		meeting.setMeeting_Hobby("게임/오락");
-
-		log.info(meeting);
-		
-		service.meetingCreate(meeting);
-	}
+//	@Test
+//	public void testMeetingCreate() {
+//
+//		MeetingVO meeting = new MeetingVO();
+//		
+//		meeting.setIntroduce("모임소개입니다.");
+//		meeting.setUserid("user03");
+//		meeting.setMeeting_Profile("image.jpg");
+//		meeting.setMeeting_Name("모임이름");
+//		meeting.setMeeting_Adress("대구광역시");
+//		meeting.setMeeting_Hobby("게임/오락");
+//
+//		log.info(meeting);
+//		
+//		service.meetingCreate(meeting);
+//	}
 	
 //	@Test
 //	public void testGetMeetingNum() {
@@ -74,6 +74,14 @@ public class MeetingMainServiceTests {
 //		
 //		service.getMeetingNum();
 //	}
+	
+	@Test
+	public void testGetCount() {
+		
+		log.info(service);
+		
+		service.getCount(1);
+	}
 
 
 }
