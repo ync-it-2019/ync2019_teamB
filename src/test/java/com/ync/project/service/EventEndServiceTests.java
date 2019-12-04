@@ -27,11 +27,11 @@ public class EventEndServiceTests {
 	@Autowired
 	private EventEndService service;
 
-//	@Test
-//	public void testExist() {
-//		log.info(service);
-//		assertNotNull(service);
-//	}
+	@Test
+	public void testExist() {
+		log.info(service);
+		assertNotNull(service);
+	}
 	
 	@Test
 	public void testGetList() {
