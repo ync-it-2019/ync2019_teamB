@@ -11,24 +11,6 @@
 		]]>
 	</select>
 	
-	<!-- 글 작성 -->
-	<insert id="insert">
-		INSERT INTO teamb_1to1_question (question_num,
-										 userid,
-										 title,
-										 contents,
-										 files,
-										 write_date,
-										 answer_whether)
-		VALUES(TEAMB_QUESTION_NUM.NEXTVAL,
-			   #{userid},
-			   #{title},
-			   #{contents},
-			   #{files},
-			   SYSDATE,
-			   DEFAULT)
-	</insert>
-	
 	<!-- 게시글 상세 보기 -->
 	<select id="read" resultType="com.ync.project.domain.QuestionVO">
 		SELECT *
@@ -36,7 +18,7 @@
 		WHERE  question_num = #{question_num}
 	</select>
 	
-	
+	<!-- 글 작성 -->
 	<insert id="insertSelectKey">
 
 		<selectKey keyProperty="question_num" order="BEFORE"
@@ -71,6 +53,7 @@
 		WHERE   question_num  = #{question_num}
 	</update>
 	
+	<sql id="criteria"></sql>
 	<!-- 페이징 -->
 	<select id="getListWithPaging" resultType="com.ync.project.domain.QuestionVO">
 	<![CDATA[
@@ -85,7 +68,23 @@
 			write_date,
 			answer_whether
 			FROM teamb_1to1_question
-			)
-	]]>
+			WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_1to1_question where 
+		
+		<include refid="criteria"></include> 
+		
+		question_num > 0
+		
 	</select>
 </mapper>

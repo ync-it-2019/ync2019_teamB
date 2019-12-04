@@ -18,8 +18,6 @@ public interface QuestionMapper {
 	public Integer insertSelectKey(QuestionVO board);
 	// 글 상세보기
 	public QuestionVO read(Long question_num);
-	// 글 작성
-	public void insert(QuestionVO board);
 	// 수정
 	public int update(QuestionVO board);
 	// 글 목록 페이징 
