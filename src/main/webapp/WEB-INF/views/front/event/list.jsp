@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,6 @@
 <meta charset="utf-8">
 <meta name="keywords" content=" Furnish Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -22,6 +20,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+		
+		var listForm = $("#listForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+	});
+</script>
     <style media="screen">
       a:link { color: black; text-decoration: none;}
    a:visited { color: black; text-decoration: none;}
@@ -32,6 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link href="/resources/css/paging.css" rel="stylesheet">
 	<!-- //css files -->
 
 	<link href="/resources/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
@@ -39,6 +55,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //google fonts -->
+	<!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- //header -->
@@ -55,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- page details -->
 <div class="breadcrumb-agile">
-	<div class="container">
+	<div style="margin-left : 76.5px">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="index.html">Home</a>
@@ -82,22 +100,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</ul>
 	  </div>
 	  </c:forEach>
+	  </div>
 
-      <div class="container">
       <div style="margin : 20px;">
-       <ul class="pagination justify-content-center">
-               <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-               <li class="page-item"><a class="page-link" href="#">1</a></li>
-               <li class="page-item"><a class="page-link" href="#">2</a></li>
-               <li class="page-item"><a class="page-link" href="#">3</a></li>
-               <li class="page-item"><a class="page-link" href="#">4</a></li>
-               <li class="page-item"><a class="page-link" href="#">5</a></li>
-               <li class="page-item"><a class="page-link" href="#">Next</a></li>
-       </ul>
+       <!--  Pagination 시작 -->
+		<ul class="pagination justify-content-center">
+		 <c:if test="${pageMaker.prev}">
+			<li class="page-item"><a href="${pageMaker.startPage -1}">Previous</a></li>
+		</c:if>
+		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+			<li class="page-item"><a href="${num}">${num}</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<li class="page-item"><a href="${pageMaker.endPage +1 }">Next</a></li>
+		</c:if>
+		</ul>
         </div>
+        <!-- Form 시작 -->
+		<form id='actionForm' action="/front/event/list" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		</form>
       </div>
-    </div>
-  </div>
 </section>
 <!-- //Recent News -->
 
@@ -133,4 +157,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //move top icon -->
 
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 </html>

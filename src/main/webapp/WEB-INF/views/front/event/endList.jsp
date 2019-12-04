@@ -42,10 +42,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    a:visited { color: black; text-decoration: none;}
    a:hover { color: black; text-decoration: underline;}
     </style>
-    
-        <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link href="/resources/css/paging.css" rel="stylesheet">
 	<!-- //css files -->
 
 	<link href="/resources/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- page details -->
 <div class="breadcrumb-agile">
-	<div class="container">
+	<div style="margin-left : 76.5px">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="index.html">Home</a>
@@ -100,19 +100,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  			</div>
 	  		</c:forEach>
 	  	</div>
-	<div class="container">
       <div style="margin : 20px;">
-      
        <!--  Pagination 시작 -->
 		<ul class="pagination justify-content-center">
 		 <c:if test="${pageMaker.prev}">
-			<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+			<li class="page-item"><a href="${pageMaker.startPage -1}">Previous</a></li>
 		</c:if>
 		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
-			<li class="paginate_button"><a href="${num}">${num}</a></li>
+			<li class="page-item"><a href="${num}">${num}</a></li>
 		</c:forEach>
 		<c:if test="${pageMaker.next}">
-			<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+			<li class="page-item"><a href="${pageMaker.endPage +1 }">Next</a></li>
 		</c:if>
 		</ul>
         </div>
@@ -122,7 +120,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 		</form>
     </div>
-   </div>
 </section>
 <!-- //Recent News -->
 
