@@ -85,10 +85,10 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 	}
 
 	@Override
-	public int getTotal(Criteria cri) {
+	public int getTotal(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num) {
 
 		log.info("get total count");
-		return mapper.getTotalCount(cri);
+		return mapper.getTotalCount(cri, meeting_num);
 	}
 
 }
