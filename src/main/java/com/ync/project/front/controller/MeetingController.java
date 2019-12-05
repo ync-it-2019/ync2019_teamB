@@ -76,30 +76,28 @@ public class MeetingController {
 	
 	//소모임 게시판 리스트
 	@GetMapping(value = "/board/list")
-	public void Boardlist(@RequestParam("meeting_num") Long meeting_num, Criteria cri, Model model) {
+	public void Boardlist(@RequestParam("meeting_num") Long meeting_num, Criteria cri, Model model, Free_BoardVO board) {
 	      
 		log.info("list : "+ cri);
-	      
-		int total = service1.getTotal(cri);
+		int total = service1.getTotal(cri, meeting_num);
 		log.info("total: " + total);
-//		model.addAttribute("list", service1.getList(meeting_num));  //안 됬었음
+		log.info("모임 번호"+ meeting_num);
+		
 		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	//소모임 게시글 상세보기
 	@GetMapping(value = "/board/get")
-	public void BoardGet(@RequestParam("free_board_num") Long free_board_num, Model model, Criteria cri, Free_BoardVO board) {
+	public void BoardGet(@RequestParam("meeting_num") Long meeting_num, @RequestParam("free_board_num") Long free_board_num, Model model, Criteria cri, Free_BoardVO board) {
 
 		log.info("Meeting board get page!");
-		int total = service1.getTotal(cri);
+		int total = service1.getTotal(cri, meeting_num);
 		log.info("total: " + total);
-		Long meeting_num = 0l;
-//		model.addAttribute("list", service.getListWithPaging(cri));
-//		model.addAttribute("pageMaker", new PageDTO(cri, total));
+
 		model.addAttribute("board", service1.read(free_board_num));
-		meeting_num = service1.read(free_board_num).getMeeting_num();
 		log.info("모임 번호"+ meeting_num);
+		
 		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	   }
