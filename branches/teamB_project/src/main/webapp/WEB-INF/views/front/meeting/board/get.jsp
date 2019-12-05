@@ -116,7 +116,7 @@
 	        <tr>
 				<td class="board-number-css"><c:out value="${board.free_board_num}"/></td>
 				<td class="board-category-css"><c:out value="${board.category}" /></td>
-				<td><a class="move" onClick="location.href='/front/meeting/board/get?free_board_num=<c:out value="${board.free_board_num}" />'">
+				<td><a class="move" onClick="location.href='/front/meeting/board/get?meeting_num=${param.meeting_num}&free_board_num=<c:out value="${board.free_board_num}" />'">
 					<c:out value="${board.title}" /></a>
 				</td>
 					<!--  <a style="color:#5C88FD">  댓글 수    </a> -->
@@ -173,7 +173,7 @@
 
 			<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
 				<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-					<a href="/front/meeting/board/list?page=${num}">${num}</a>
+					<a href="/front/meeting/board/list?meeting_num=${param.meeting_num}&pageNum=${num}">${num}</a>
 				</li>
 			</c:forEach>
 
