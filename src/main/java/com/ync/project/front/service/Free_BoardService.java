@@ -33,6 +33,6 @@ public interface Free_BoardService {
 	public boolean remove(Long free_board_num);
 	
 	//추가
-	 public int getTotal(@Param("cri") Criteria cri);
+	 public int getTotal(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
 
 }

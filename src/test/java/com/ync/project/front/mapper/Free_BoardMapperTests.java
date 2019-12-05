@@ -112,17 +112,17 @@ public class Free_BoardMapperTests {
 //
 //	}
 
-	  @Test 
-	  public void testSearch() {  
-
-	    Criteria cri = new Criteria();
-	    cri.setKeyword("키워드");
-	    cri.setType("TC");
-
-	    List<Free_BoardVO> list = mapper.getListWithPaging(cri,1L);
-
-	    list.forEach(board -> log.info(board));
-	  }
+//	  @Test 
+//	  public void testSearch() {  
+//
+//	    Criteria cri = new Criteria();
+//	    cri.setKeyword("키워드");
+//	    cri.setType("TC");
+//
+//	    List<Free_BoardVO> list = mapper.getListWithPaging(cri,1L);
+//
+//	    list.forEach(board -> log.info(board));
+//	  }
 	  
 //	  @Test
 //	  public void testTotal() {

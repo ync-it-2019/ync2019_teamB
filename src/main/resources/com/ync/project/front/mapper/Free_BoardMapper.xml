@@ -117,10 +117,7 @@
       			FROM	teamb_free_board
 				WHERE   meeting_num = #{meeting_num}
 				AND 
-  		]]>
-		<include refid="criteria"></include> 
-      
-		<![CDATA[    
+
       			rownum <= #{cri.pageNum} * #{cri.amount}
       			) 
   		WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
@@ -133,10 +130,9 @@
 		SELECT count(*)
 		FROM   teamb_free_board
 		WHERE 
-		
-		<include refid="criteria"></include> 
-		
-		       free_board_num > 0
+	<!--<include refid="criteria"></include> -->
+			   meeting_num = #{meeting_num}
+		AND    free_board_num > 0
 	</select>
 	
 <!-- 	<update id="updateReplyCnt">
