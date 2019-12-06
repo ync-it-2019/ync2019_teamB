@@ -75,29 +75,29 @@ public class QuestionMapperTest {
 //		log.info("UPDATE COUNT: " + count);
 //	}
 	
-//	@Test
-//	public void testInsertSelectKey() {
-//
-//		QuestionVO board = new QuestionVO();
-//		board.setUserid("user01");
-//		board.setTitle("세번 째 문의글");
-//		board.setContents("문의 내용");
-//		board.setFiles("file/img.jpg");
-//
-//		mapper.insertSelectKey(board);
-//
-//		log.info(board);
-//	}
-	
 	@Test
-	  public void testTotal() {
+	public void testInsertSelectKey() {
 
-	    Criteria cri = new Criteria();
-	    //cri.setKeyword("공지");
-	    //cri.setType("T");
+		QuestionVO board = new QuestionVO();
+		board.setUserid("user01");
+		board.setTitle("세번 째 문의글");
+		board.setContents("문의 내용");
+		board.setFiles("file/img.jpg");
 
-	    int total = mapper.getTotalCount(cri);
+		mapper.insertSelectKey(board);
 
-	    log.info("total:" + total);
-	  }
+		log.info(board);
+	}
+	
+//	@Test
+//	  public void testTotal() {
+//
+//	    Criteria cri = new Criteria();
+//	    //cri.setKeyword("공지");
+//	    //cri.setType("T");
+//
+//	    int total = mapper.getTotalCount(cri);
+//
+//	    log.info("total:" + total);
+//	  }
 }

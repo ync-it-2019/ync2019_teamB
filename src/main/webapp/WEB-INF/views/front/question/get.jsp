@@ -74,25 +74,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <div class="col-lg-13">
 						<h6 class="card-title"><b>${board.title}</b></h6>
 						<ul class="blog-info my-2">
-							<li class="mr-sm-4 mr-2">등록일자: 2019-10-14 </li>
-							<li class="mr-sm-4 mr-2"> 처리상태: 처리완료</li><br>
+							<li class="mr-sm-4 mr-2">등록일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_date}" /> </li>
+							<li class="mr-sm-4 mr-2"> 처리상태: ${board.answer_whether}</li><br>
 						</ul>
 						<hr>
-						<div class="">
-							<img class="card-img-top" src="../../../../resources/img/1.jpg" alt="Card image cap">
 							<div class="mt-4">
-								<p class="card-text">질문 내용이 들어오는 공간입니다.</p>
-
-								<p class="card-text mt-3">도와주세요.</p>
+								<p class="card-text">${board.contents}</p>
 							</div>
-						</div>
-            <div>
+            	<div>
               <hr>
               <b>답변:</b><br>
               해당 질문에 대한 답변이 들어오는 공간입니다.
             </div>
 						<div class="comment-top" style="position: relative; top: 60px;">
-							<a href="./myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
+							<a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
               <a href="./write"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
             </div>
           </div>
