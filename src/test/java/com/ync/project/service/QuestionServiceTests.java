@@ -41,31 +41,31 @@ public class QuestionServiceTests {
 //		log.info(service.read(1L));
 //	}
 
-	@Test
-	public void testRegister() {
-
-		QuestionVO question = new QuestionVO();
-		question.setUserid("user01");
-		question.setTitle("새로 작성하는 글");
-		question.setContents("새로 작성하는 내용");
-		question.setFiles("dldldldl");
-		question.setAnswer_whether("n");
-
-		service.register(question);
-
-		log.info("생성된 게시물의 번호: " + question.getQuestion_num());
-	}
-
 //	@Test
-//	public void testUpdate() {
+//	public void testRegister() {
 //
-//		QuestionVO board = service.read(15L);
+//		QuestionVO question = new QuestionVO();
+//		question.setUserid("user01");
+//		question.setTitle("새로 작성하는 글");
+//		question.setContents("새로 작성하는 내용");
+//		question.setFiles("dldldldl");
+//		question.setAnswer_whether("n");
 //
-//		if (board == null) {
-//			return;
-//		}
+//		service.register(question);
 //
-//		board.setTitle("제목 수정합니다.");
-//		log.info("MODIFY RESULT: " + service.modify(board));
+//		log.info("생성된 게시물의 번호: " + question.getQuestion_num());
 //	}
+
+	@Test
+	public void testUpdate() {
+
+		QuestionVO board = service.read(38L);
+
+		if (board == null) {
+			return;
+		}
+
+		board.setTitle("제목 수정합니다.");
+		log.info("MODIFY RESULT: " + service.modify(board));
+	}
 }

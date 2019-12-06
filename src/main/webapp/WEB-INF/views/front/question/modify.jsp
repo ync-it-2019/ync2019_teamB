@@ -108,6 +108,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div style="float: right;">
                 <a href="/front/question/myQuestion"><button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">문의하기</button></a>
               </div>
+              <input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
               </form>
               <div style="float: right; margin-right: 10px;">
               <a href="/front/question/FAQ"><button type="button" class="btn btn-primary" style="position: relative; left: 100px;">취소</button></a>

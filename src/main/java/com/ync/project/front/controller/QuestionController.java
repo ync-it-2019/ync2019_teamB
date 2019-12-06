@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,8 +74,8 @@ public class QuestionController {
 				question.setFiles(UploadUtils.uploadFormPost(uploadFile, uploadPath));
 			}
 			
-			log.info("create: " + question);
-			log.info("Question Create Post page!");
+			log.info("write: " + question);
+			log.info("Question Write!");
 			service.register(question);
 			
 			rttr.addFlashAttribute("result", question.getQuestion_num());
@@ -84,7 +85,14 @@ public class QuestionController {
 		
 		@GetMapping(value = "/get")
 		public void questionGet(@RequestParam("question_num") Long question_num, Model model) {
-			log.info("questionGet!");
+			log.info("question Get!");
 			model.addAttribute("question", service.read(question_num));
+		}
+		
+		@GetMapping(value = "/modify")
+		public void AdminEventModify() {
+
+			log.info("question Modify!");
+			
 		}
 }
