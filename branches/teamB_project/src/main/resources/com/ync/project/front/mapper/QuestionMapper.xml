@@ -14,7 +14,7 @@
 
 		<selectKey keyProperty="question_num" order="BEFORE"
 			resultType="long">
-			select seq_board.nextval from dual
+			select TEAMB_QUESTION_NUM.nextval from dual
 		</selectKey>
 
 		INSERT INTO teamb_1to1_question (question_num, 
@@ -23,7 +23,7 @@
 										 contents, 
 									 	 files, 
 										 write_date)
-		VALUES (seq_board.nextval, 
+		VALUES (TEAMB_QUESTION_NUM.nextval, 
 				#{userid}, 
 				#{title}, 
 				#{contents}, 
