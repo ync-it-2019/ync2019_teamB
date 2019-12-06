@@ -78,6 +78,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h4>1:1문의</h4>
             <hr>
             <form role="form" action="/front/question/write" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name='files' value=" ">
 							<div class="form-group">
                 문의 분류 &nbsp;
                 <select name="abc">

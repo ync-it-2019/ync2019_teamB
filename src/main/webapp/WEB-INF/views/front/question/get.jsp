@@ -72,14 +72,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="row mt-lg-3">
           <div class="col-lg-14" style="border: 1px solid black; border-color: #E6E6E6">
           <div class="col-lg-13">
-						<h6 class="card-title"><b>${board.title}</b></h6>
+						<h6 class="card-title"><b>${question.title}</b></h6>
 						<ul class="blog-info my-2">
-							<li class="mr-sm-4 mr-2">등록일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_date}" /> </li>
-							<li class="mr-sm-4 mr-2"> 처리상태: ${board.answer_whether}</li><br>
+							<li class="mr-sm-4 mr-2">등록일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /> </li>
+							<li class="mr-sm-4 mr-2"> 처리상태: ${question.answer_whether}</li><br>
 						</ul>
 						<hr>
 							<div class="mt-4">
-								<p class="card-text">${board.contents}</p>
+								<p class="card-text">${question.contents}</p>
 							</div>
             	<div>
               <hr>
