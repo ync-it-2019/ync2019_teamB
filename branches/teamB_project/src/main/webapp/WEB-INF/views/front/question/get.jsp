@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<a href="index.html">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page"> 고객센터</li>
 		</ol>
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
 						<div class="comment-top" style="position: relative; top: 60px;">
 							<a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
-              <a href="./write"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
+              <a href="/front/question/modify"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
             </div>
           </div>
         </div>

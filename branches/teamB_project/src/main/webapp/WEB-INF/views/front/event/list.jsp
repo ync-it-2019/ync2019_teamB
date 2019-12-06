@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div style="margin-left : 76.5px">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<a href="index.html">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page"> 이벤트</li>
 		</ol>

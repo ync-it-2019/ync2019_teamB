@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<a href="index.html">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page"> 고객센터</li>
 		</ol>

@@ -88,7 +88,7 @@
 	<div class="container">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<a href="index.html">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page"> 이벤트</li>
 		</ol>
@@ -118,7 +118,7 @@
 							</div>
 						</div>
 						<div class="comment-top" style="position: relative; top: 60px;">
-							<a href="./list"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
+							<a href="/front/event/list"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
             </div>
           </div>
         </div>

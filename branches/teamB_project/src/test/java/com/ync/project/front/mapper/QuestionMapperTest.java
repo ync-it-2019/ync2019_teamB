@@ -60,34 +60,34 @@ public class QuestionMapperTest {
 //
 //	}
 	
-//	@Test
-//	public void testUpdate() {
-//
-//		QuestionVO board = new QuestionVO();
-//		// 실행전 존재하는 번호인지 확인할 것
-//		board.setQuestion_num(1L);
-//		board.setUserid("user01");
-//		board.setTitle("수정된 제목");
-//		board.setContents("수정된 내용");
-//		board.setFiles("dldldldl");
-//
-//		int count = mapper.update(board);
-//		log.info("UPDATE COUNT: " + count);
-//	}
-	
 	@Test
-	public void testInsertSelectKey() {
+	public void testUpdate() {
 
 		QuestionVO board = new QuestionVO();
+		// 실행전 존재하는 번호인지 확인할 것
+		board.setQuestion_num(38L);
 		board.setUserid("user01");
-		board.setTitle("세번 째 문의글");
-		board.setContents("문의 내용");
-		board.setFiles("file/img.jpg");
+		board.setTitle("수정된 제목");
+		board.setContents("수정된 내용");
+		board.setFiles("aaa.jpg");
 
-		mapper.insertSelectKey(board);
-
-		log.info(board);
+		int count = mapper.update(board);
+		log.info("UPDATE COUNT: " + count);
 	}
+	
+//	@Test
+//	public void testInsertSelectKey() {
+//
+//		QuestionVO board = new QuestionVO();
+//		board.setUserid("user01");
+//		board.setTitle("세번 째 문의글");
+//		board.setContents("문의 내용");
+//		board.setFiles("file/img.jpg");
+//
+//		mapper.insertSelectKey(board);
+//
+//		log.info(board);
+//	}
 	
 //	@Test
 //	  public void testTotal() {
