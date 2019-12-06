@@ -77,7 +77,7 @@ public class AdminEventController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/detail")
-	public void AdminEventDetail(@RequestParam("event_num") Long event_num, Model model) {
+	public void AdminEventDetail(@RequestParam("event_num") Long event_num, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Event Detail get page!");
 		

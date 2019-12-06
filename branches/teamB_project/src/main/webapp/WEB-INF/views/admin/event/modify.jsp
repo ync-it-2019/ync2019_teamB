@@ -48,9 +48,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <h4 class="gen-case"> 이벤트 > 수정</h4>
                 </header>
                 <div class="panel-body">
+                <form id="updateForm"  action="/admin/event/modify" method="post">
                   <div class="compose-mail">
-                    <form role="form-horizontal" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <div class="form-group">
+                    <c:choose>
+       					<c:when test="${not empty event.image}">
+           					<label class="" style="margin-right:20px;">대표 이미지</label>
+							<a href="/resources/upload/${event.image}" target="_blank"><img class="event_img" style="display:inline;" src="/resources/upload/${event.image}"></a>
+       					</c:when>
+       					<c:otherwise>
+							<input type="hidden" name="file_${i}" value="">		
+		        		</c:otherwise>
+  	 				</c:choose>
+                      </div>
                       <div class="form-group">
                         <label class="">작성자</label>
                         <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.userid}" />" readonly>
@@ -72,17 +83,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.title}" />">
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9"> <c:out value="${event.contents}" />
-                                  </textarea>
-                        <input type="file" class="default" value=" value="<c:out value="${event.image}" />">
+                        <textarea class="wysihtml5 form-control" rows="9"> <c:out value="${event.contents}" /></textarea>
+                        <input type="file" class="default" value="<c:out value="${event.image}" />">
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/event/detail'"><i class="fa fa-check"></i> 완료</button>
-                        <button class="btn btn-sm" onClick="location.href='/admin/event/detail'"><i class="fa fa-times"></i> 취소</button>
+                        <button class="btn btn-primary btn-sm" data-oper='update'><i class="fa fa-check"></i> 완료</button>
+                        <button type="button" class="btn btn-sm" data-oper='detail'><i class="fa fa-times"></i> 취소</button>
                       </div>
-                    </form>
                   </div>
-                  <button class="btn btn-sm" onClick="location.href='/admin/event/list'">목록</button>
+                  </form>
+                  <button class="btn btn-sm" data-oper='list'>목록</button>
                 </div>
               </section>
             </div>
@@ -102,6 +112,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!--main content end-->
   </section>
+  <form id='operForm' method="get">
+  	<input type='hidden' name='event_num' value='<c:out value="${event.event_num}"/>'>
+  	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  	<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  	<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+  </form>
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
@@ -109,6 +126,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+
+$(document).ready(function() {
+  
+	var operForm = $("#operForm");
+	
+	var updateForm = $("#updateForm");
+	
+	$("button[data-oper='list']").on("click", function(e){
+		operForm.attr("action","/admin/event/list").submit();
+	});
+	
+	$("button[data-oper='detail']").on("click", function(e){
+		operForm.attr("action","/admin/event/detail").submit();
+	});
+	
+	$("button[data-oper='update']").on("click", function(e){
+		updateForm.attr("action","/admin/event/modify").submit();
+	});
+	
+});
+</script>
 </body>
 
 </html>

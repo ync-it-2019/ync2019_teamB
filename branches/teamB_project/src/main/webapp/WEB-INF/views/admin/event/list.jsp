@@ -52,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </header>
                 <div class="panel-body minimal">
                   <div class="table-inbox-wrap ">
-                    <table class="table table-inbox table-hover" style="table-layout: fixed">
+                    <table class="table table-inbox table-hover" id="newTable" style="table-layout: fixed">
                       <tbody>
                         <thead>
                           <tr>
@@ -70,19 +70,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           <td class="inbox-small-cells">
                             <input type="checkbox" class="mail-checkbox" name="ck" value="${event.event_num}">
                           </td>
-                          <td><c:out value="${event.event_num}" /></td>
-                          <td class="inbox-small-cells text_limit move" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.userid}" /></td>
-                          <td class="view-message dont-show text_limit move" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.title}" /></td>
-                          <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.event_start_date}" /> ~ <c:out value="${event.event_end_date}" /></td>
-                          <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" onClick="location.href='/admin/event/detail?event_num=<c:out value="${event.event_num}" />'"><c:out value="${event.write_date}" /></td>
+                          <td name="move" id="num" value="${event.event_num}"><c:out value="${event.event_num}" /></td>
+                          <td class="inbox-small-cells text_limit move" name="move" value="${event.event_num}"><c:out value="${event.userid}" /></td>
+                          <td class="view-message dont-show text_limit move" name="move" value="${event.event_num}"><c:out value="${event.title}" /></td>
+                          <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" name="move" value="${event.event_num}"><c:out value="${event.event_start_date}" /> ~ <c:out value="${event.event_end_date}" /></td>
+                          <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" name="move" value="${event.event_num}"><c:out value="${event.write_date}" /></td>
                           <c:if test="${event.event_progress eq '진행중'}">
-                          	<td class="view-message text-right" style="color:black;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
+                          	<td class="view-message text-right" style="color:black;"><c:out value="${event.event_progress}" /></td>
                           </c:if>
                           <c:if test="${event.event_progress eq '진행예정'}">
-                          	<td class="view-message text-right" style="color:green;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
+                          	<td class="view-message text-right" style="color:green;"><c:out value="${event.event_progress}" /></td>
                           </c:if>
                           <c:if test="${event.event_progress eq '종료'}">
-                          	<td class="view-message text-right" style="color:red;" onClick="location.href='/admin/event/detail'"><c:out value="${event.event_progress}" /></td>
+                          	<td class="view-message text-right" style="color:red;"><c:out value="${event.event_progress}" /></td>
                           </c:if>
                         </tr>
 						</c:forEach>
@@ -152,8 +152,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+		
+		var $form = $('<form></form>');
+		
 		var actionForm = $("#actionForm");
+		
+		var pageNumTag = $("input[name='pageNum']").clone();
+		var amountTag = $("input[name='amount']").clone();
+		var keywordTag = $("input[name='keyword']").clone();
+		var typeTag = $("input[name='type']").clone();
+	    var tk = $("input[id='token']").clone();
+		
+		 $("#newTable").on("click", "td[name='move']", function(e) {
+			 
+		     $form.attr('action', '/admin/event/detail');
+		     $form.attr('method', 'get');
+		     $form.appendTo('body');
+		     
+		     var event_num = $(this).attr("value");
+		     
+			 var num = "<input type='hidden' name='event_num' value='" + event_num + "'>";
+			 
+		     $form.append(num);
+			 $form.append(pageNumTag);
+			 $form.append(amountTag);
+			 $form.append(keywordTag);
+			 $form.append(typeTag);
+			 
+			 $form.submit();
+		   });
 
 		// 페이지 번호 클릭 이벤트
 		$(".paginate_button a").on("click", function(e) {
@@ -168,7 +195,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 */
 		 $('.delete').click(function() {
 			 
-			 var $form = $('<form></form>');
 		     $form.attr('action', '/admin/event/delete');
 		     $form.attr('method', 'post');
 		     $form.appendTo('body');
@@ -181,12 +207,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    });
 		    
 		    var ck_hidden = "<input type='hidden' name='ck_code' value='" + checkArr + "'>";
-		    
-		    var pageNumTag = $("input[name='pageNum']").clone();
-		    var amountTag = $("input[name='amount']").clone();
-		    var keywordTag = $("input[name='keyword']").clone();
-		    var typeTag = $("input[name='type']").clone();
-		    var tk = $("input[id='token']").clone();
 		    
 		    /* if (!confirm('정말 삭제 하시겠습니까?')) {
 		        return false;
