@@ -69,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- services -->
 <section class="news py-5">
 	<div class="container py-lg-3">
-      				<h5 style="margin : 20px;"><a href="#" style="color : #007bff">FAQ</a> | <a href="./myQuestion">나의 문의</a></h5>
+      				<h5 style="margin : 20px;"><a href="#" style="color : #007bff">FAQ</a> | <a href="/front/question/myQuestion">나의 문의</a></h5>
             <hr>
             <div class="col-lg-14">
               <div style="margin: 50px 0px;"><h4><b>자주 찾는 질문</b></h4></div>
@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </a><div style="DISPLAY: block"><br>
 상단에 있는 마이페이지에서 '회원 정보 변경'을 통해 변경할 수 있습니다.<br>
 충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="./write"><button type="button">문의하기</button></a>
+<a href="/front/question/write"><button type="button">문의하기</button></a>
 </div></td>
                    </tr>
                 </tbody>

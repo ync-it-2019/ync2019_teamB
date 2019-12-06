@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-lg-14">
             <h4>1:1문의</h4>
             <hr>
-						<form action="#" method="post">
+            <form role="form" action="/front/question/write" method="post" enctype="multipart/form-data">
 							<div class="form-group">
                 문의 분류 &nbsp;
                 <select name="abc">
@@ -88,28 +88,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
               <hr>
 							<div class="form-group">
-								아이디: aaa123 <a style="margin-left: 150px;">작성자: 닉네임</a>
-							</div>
-              <hr>
-							<div class="form-group">
-								제목<input type="text" name="title" class="form-control" required="">
+								아이디: <input type="text" class="form-control" name = "userid"
+                        value = '<sec:authentication property = "principal.username"/>' readonly="readonly">
 							</div>
 							<div class="form-group">
-								내용<textarea name="Message" rows="10" class="form-control" required=""></textarea>
+								제목<input type="text" id="to" class="form-control" name='title'>
+							</div>
+							<div class="form-group">
+								내용<textarea name='contents' rows="10" class="form-control"></textarea>
 							</div>
               <div class="form-group">
-								첨부파일
-                <input type="text" name="title" class="form-control" required="" style="margin: 5px; line-height: 1.2; width: 80%;">
+								첨부파일: 
+                <input type="file" name="uploadFile" multiple>
                 <div style="position: relative; bottom: 37px;">
-                <button type="button" style="float: right; margin-left: 5px;"> 파일삭제</button>
-                <button type="button" style="float: right;"> 찾아보기 </button>
               </div>
 							</div>
-              <div style="float: right; margin-left: 5px; float: right; position: relative; top: 100px; left: 150px;">
-                <a href="./myQuestion"><button type="button" class="btn btn-primary"">문의하기</button></a>
-                <a href="./FAQ"><button type="button" class="btn btn-primary">취소</button></a>
+              <div style="float: right;">
+                <a href="/front/question/myQuestion"><button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">문의하기</button></a>
               </div>
-						</form>
+              <input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+              </form>
+              <div style="float: right; margin-right: 10px;">
+              <a href="/front/question/FAQ"><button type="button" class="btn btn-primary" style="position: relative; left: 100px;">취소</button></a>
+              </div>
 				</div>
 			</div>
 		</div>
@@ -120,139 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- footer -->
 <footer class="footer py-5">
-	<div class="container py-md-3">
-		<div class="footer-grid_section text-center">
-			<div class="footer-title mb-3">
-				<h2> <a href="index.html"><span class="fa fa-meetup"></span> Furnish</a></h2>
-			</div>
-			<div class="footer-text">
-				<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ipnut libero malesuada feugiat.
-				 Lorem ipsum dolor sit amet elit.</p>
-			</div>
-		</div>
-		<div class="row mt-5">
-			<div class="col-lg-4 mb-lg-0 mb-4 footer-top">
-				<h4 class="mb-4 w3f_title text-uppercase">Contact Info</h4>
-				<div class="footer-style-w3ls my-2">
-					<p> 1127 Block, 2nd cross, 4th floor, London.</p>
-				</div>
-				<div class="footer-style-w3ls my-2">
-					<p> (+121)-098-8907-9987</p>
-				</div>
-				<div class="footer-style-w3ls">
-					<p> <a href="mailto:info@examplemail.com">info@examplemail.com</a></p>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6 footv3-left">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Company</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="about.html">
-							About Us
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Terms of use
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Faq's
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Privacy Ploicy
-						</a>
-					</li>
-					<li>
-						<a href="contact.html">
-							Get In Touch
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Categories</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Furniture Chairs
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Three Seater Sofas
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Dining Tables
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Office Chairs
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Kitchen Cabinets
-						</a>
-					</li>
-				</ul>
-			</div>
 
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Resources</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Getting Started
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Best Collections
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="categories.html">
-							All Categories
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							24/7 Support
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Contact for Help
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Account</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="login.html">
-							Sign In
-						</a>
-					</li>
-					<li class="">
-						<a href="register.html">
-							Create Account
-						</a>
-					</li>
-				</ul>
-			</div>
-
-		</div>
-	</div>
 	<!-- //footer bottom -->
 </footer>
 <!-- //footer -->
@@ -278,6 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </section>
 <!-- copyright -->
+
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->

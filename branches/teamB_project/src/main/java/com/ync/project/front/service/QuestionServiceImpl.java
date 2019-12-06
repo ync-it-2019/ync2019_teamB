@@ -43,17 +43,17 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public void register(QuestionVO board) {
-		log.info("register......" + board);
+	public void register(QuestionVO question) {
+		log.info("register......" + question);
 
-		mapper.insertSelectKey(board);
+		mapper.insertSelectKey(question);
 	}
 
 	@Override
-	public boolean modify(QuestionVO board) {
+	public boolean modify(QuestionVO question) {
 
-		log.info("modify......" + board);
-		return mapper.update(board) == 1;
+		log.info("modify......" + question);
+		return mapper.update(question) == 1;
 	}
 
 	@Override
