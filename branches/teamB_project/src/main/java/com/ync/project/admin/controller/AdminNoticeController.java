@@ -92,7 +92,7 @@ public class AdminNoticeController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/create")
-	public void AdminNoticeCreate() {
+	public void AdminNoticeCreate(@ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("Notice Create get page!");
 	}
 	
