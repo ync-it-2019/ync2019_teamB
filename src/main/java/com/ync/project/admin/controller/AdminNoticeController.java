@@ -24,10 +24,10 @@ import com.ync.project.util.UploadUtils;
 
 import lombok.extern.log4j.Log4j;
 /**
- * @FileName	: AdminEventController.java
- * @Date		: 2019. 11. 04. 
+ * @FileName	: AdminNoticeController.java
+ * @Date		: 2019. 12. 08. 
  * @Author		: 서영준
- * @프로그램 설명 : 이벤트 관리 페이지 호출용 controller
+ * @프로그램 설명 : 공지사항 관리 페이지 호출용 controller
  */
 @Controller
 @Log4j
@@ -41,14 +41,7 @@ public class AdminNoticeController {
 	private AdminNoticeService service;
 	
 	Calendar cal = new GregorianCalendar();
-	
-	/**
-	  * @Method 설명 : admin/notice/list.jsp 호출
-	  * @Method Name : AdminNoticeList
-	  * @Date : 2019. 12. 08.
-	  * @작성자 : 서영준
-	  * @return call jsp view
-	  */
+
 //	@GetMapping("/list")
 //	public void AdminNoticeList(Model model) {
 //
@@ -57,8 +50,15 @@ public class AdminNoticeController {
 //		model.addAttribute("list", service.getList());
 //	}
 	
+	/**
+	  * @Method 설명 : admin/notice/list.jsp 호출
+	  * @Method Name : AdminNoticeList
+	  * @Date : 2019. 12. 08.
+	  * @작성자 : 서영준
+	  * @return call jsp view
+	  */
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model) {
+	public void AdminNoticeList(Criteria cri, Model model) {
 
 		log.info("list: " + cri);
 		
@@ -131,7 +131,7 @@ public class AdminNoticeController {
 	/**
 	  * @Method 설명 : admin/notice/modify.jsp 호출
 	  * @Method Name : AdminNoticeModify
-	  * @Date : 2019. 11. 11.
+	  * @Date : 2019. 12. 08.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
@@ -152,7 +152,7 @@ public class AdminNoticeController {
 	  * @return call jsp view
 	  */
 	@PostMapping("/modify")
-	public String AdminEventModify(MultipartFile uploadFile, NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String AdminNoticeModify(MultipartFile uploadFile, NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + notice);
 		
 		// 실제로 upload된 file이 있을때만 upload 시킨다. 
@@ -188,7 +188,6 @@ public class AdminNoticeController {
 		
 		log.info(ck);
 		log.info(cri);
-    	log.info("안녕하세요~~~~~~~~~ 잘부탁 드립니다~~~~~");
     	
     	return "redirect:/admin/notice/list" + cri.getListLink();
     }

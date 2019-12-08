@@ -42,13 +42,6 @@ public class AdminEventController {
 	
 	Calendar cal = new GregorianCalendar();
 	
-	/**
-	  * @Method 설명 : admin/event/list.jsp 호출
-	  * @Method Name : AdminEventList
-	  * @Date : 2019. 11. 11.
-	  * @작성자 : 서영준
-	  * @return call jsp view
-	  */
 //	@GetMapping("/list")
 //	public void AdminEventList(Model model) {
 //
@@ -57,8 +50,15 @@ public class AdminEventController {
 //		model.addAttribute("list", service.getList());
 //	}
 	
+	/**
+	  * @Method 설명 : admin/event/list.jsp 호출
+	  * @Method Name : AdminEventList
+	  * @Date : 2019. 11. 11.
+	  * @작성자 : 서영준
+	  * @return call jsp view
+	  */
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model) {
+	public void AdminEventList(Criteria cri, Model model) {
 
 		log.info("list: " + cri);
 		
@@ -189,7 +189,6 @@ public class AdminEventController {
 		
 		log.info(ck);
 		log.info(cri);
-    	log.info("안녕하세요~~~~~~~~~ 잘부탁 드립니다~~~~~");
     	
     	return "redirect:/admin/event/list" + cri.getListLink();
     }
