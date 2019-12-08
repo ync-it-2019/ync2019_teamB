@@ -78,7 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       </tbody>
                     </table>
                     <div style="margin:10px 20px 0 0; text-align:right;">
-                      <button type="button" class="btn btn-default" onClick="location.href='/admin/notice/create'">글쓰기</button>
+                      <button type="button" class="btn btn-default" data-oper='create'>글쓰기</button>
                       <button type="button" class="btn btn-default" onClick="location.href='#'">삭제</button>
                     </div>
                   </div>
@@ -212,6 +212,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		        return false;
 		    } */
 		});
+		 $("button[data-oper='create']").on("click", function(e){
+			 actionForm.attr("action","/admin/notice/create").submit();
+			});
 	});
 </script>
 
