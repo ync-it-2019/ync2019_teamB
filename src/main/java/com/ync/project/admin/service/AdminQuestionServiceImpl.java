@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ync.project.admin.mapper.AdminInquiryMapper;
+import com.ync.project.admin.mapper.AdminQuestionMapper;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.QuestionVO;
 
@@ -19,10 +19,10 @@ import lombok.extern.log4j.Log4j;
   */
 @Log4j
 @Service
-public class AdminInquiryServiceImpl implements AdminInquiryService {
+public class AdminQuestionServiceImpl implements AdminQuestionService {
 
 	@Autowired
-	private AdminInquiryMapper mapper;
+	private AdminQuestionMapper mapper;
 
 	@Override
 	public QuestionVO read(Long question_num) {
