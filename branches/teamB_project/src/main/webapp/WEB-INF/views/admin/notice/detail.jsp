@@ -77,8 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           
           <form id='operForm' action="/admin/notice/modify" method="get">
   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-  			<input type='hidden' name='event_num' value='<c:out value="${event.event_num}"/>'>
-  			<input type='hidden' name='ck_code' value='<c:out value="${event.event_num}"/>'>
+  			<input type='hidden' name='notice_num' value='<c:out value="${notice.notice_num}"/>'>
+  			<input type='hidden' name='ck_code' value='<c:out value="${notice.notice_num}"/>'>
   			<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   			<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
   			<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>

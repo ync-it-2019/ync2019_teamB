@@ -3,6 +3,7 @@ package com.ync.project.admin.service;
 import java.util.List;
 
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.EventVO;
 import com.ync.project.domain.NoticeVO;
 
  /**
@@ -23,6 +24,9 @@ public interface AdminNoticeService {
 	
 	// 글 쓰기
 	public void register(NoticeVO notice);
+	
+	//글 수정
+	public boolean modify(NoticeVO notice);
 	
 	//글 삭제
 	public boolean remove(Long notice_num);

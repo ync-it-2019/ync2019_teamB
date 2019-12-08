@@ -107,13 +107,11 @@
 	</delete>
 	
 	<update id="update">
-	<!--update teamb_notice
+		update teamb_notice
 		set title= #{title},
 		contents=#{contents},
-		notice_start_date = #{notice_start_date},
-		event_end_date = #{event_end_date},
-		image = #{image},
-		banner_image = #{banner_image}
-		where notice_num = #{notice_num} -->
+		popup=#{popup},
+		files = #{files}
+		where notice_num = #{notice_num}
 	</update>
 </mapper>

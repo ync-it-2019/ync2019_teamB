@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ync.project.admin.mapper.AdminNoticeMapper;
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.EventVO;
 import com.ync.project.domain.NoticeVO;
 
 import lombok.extern.log4j.Log4j;
@@ -47,6 +48,14 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		log.info("get List with criteria: " + cri);
 
 		return mapper.getListWithPaging(cri);
+	}
+	
+	@Override
+	public boolean modify(NoticeVO notice) {
+		
+		log.info("modify......." + notice);
+		
+		return mapper.update(notice) == 1;
 	}
 	
 	@Override
