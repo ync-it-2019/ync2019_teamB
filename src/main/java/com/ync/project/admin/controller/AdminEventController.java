@@ -92,7 +92,8 @@ public class AdminEventController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/create")
-	public void AdminEventCreate() {
+	public void AdminEventCreate(@ModelAttribute("cri") Criteria cri, Model model) {
+		
 		log.info("Event Create get page!");
 	}
 	
