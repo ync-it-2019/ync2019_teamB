@@ -52,8 +52,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div class="compose-mail">
                     <form role="form" action="/admin/event/create" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input type="hidden" name='image' value=" ">
-                    <input type="hidden" name='banner_image' value=" ">
+                    <input type="hidden" name='image' value="">
+                    <input type="hidden" name='banner_image' value="">
                         <div class="form-group">
                           <label class="">작성자:</label>
                           <input type="text" tabindex="1" id="to" class="form-control" value="user01" name='userid' readonly>

@@ -48,46 +48,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <h4 class="gen-case"> 이벤트 > 수정</h4>
                 </header>
                 <div class="panel-body">
-                <form id="updateForm"  action="/admin/event/modify" method="post">
+                <form id="updateForm"  action="/admin/event/modify" method="post"  enctype="multipart/form-data">
                   <div class="compose-mail">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <div class="form-group">
+                    <input type="hidden" name="event_num" value="${event.event_num}"/>
                     <c:choose>
        					<c:when test="${not empty event.image}">
-           					<label class="" style="margin-right:20px;">대표 이미지</label>
-							<a href="/resources/upload/${event.image}" target="_blank"><img class="event_img" style="display:inline;" src="/resources/upload/${event.image}"></a>
+           					<div class="form-group">
+           						<label class="" style="margin-right:20px;">대표 이미지</label>
+								<a href="/resources/upload/${event.image}" target="_blank"><img class="event_img" style="display:inline;" src="/resources/upload/${event.image}"></a>
+								<input type="hidden" name="image" value="${event.image}">
+								<input type="hidden" name="banner_image" value="${event.banner_image}">
+       						</div>
        					</c:when>
        					<c:otherwise>
-							<input type="hidden" name="file_${i}" value="">		
+       						<div class="form-group">
+								<input type="hidden" name="image" value="">
+								<input type="hidden" name="banner_image" value="">
+							</div>
 		        		</c:otherwise>
   	 				</c:choose>
-                      </div>
                       <div class="form-group">
                         <label class="">작성자</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.userid}" />" readonly>
+                        <input type="text" tabindex="1" id="to" name="userid" class="form-control" value="<c:out value="${event.userid}" />" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">작성일</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.write_date}" />" readonly>
+                        <input type="text" tabindex="1" id="to" name="write_date" class="form-control" value="<c:out value="${event.write_date}" />" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">시작 일</label>
-                        <input type="date" tabindex="1" id="to" class="form-control" value="<c:out value="${event.event_start_date}" />" style="width:150px;">
+                        <input type="date" tabindex="1" id="to" name="event_start_date" class="form-control" value="<c:out value="${event.event_start_date}" />" style="width:150px;">
                       </div>
                       <div class="form-group">
                         <label class="">종료 일</label>
-                        <input type="date" tabindex="1" id="to" class="form-control" value="<c:out value="${event.event_end_date}" />" style="width:150px;">
+                        <input type="date" tabindex="1" id="to" name="event_end_date" class="form-control" value="<c:out value="${event.event_end_date}" />" style="width:150px;">
                       </div>
                       <div class="form-group">
                         <label class="">제목</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.title}" />">
+                        <input type="text" tabindex="1" id="to" name="title" class="form-control" value="<c:out value="${event.title}" />">
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9"> <c:out value="${event.contents}" /></textarea>
-                        <input type="file" class="default" value="<c:out value="${event.image}" />">
+                        <textarea class="wysihtml5 form-control" rows="9" name="contents"> <c:out value="${event.contents}" /></textarea>
+                        <input type="file" class="default" name="uploadFile" value="${event.image}"/>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" data-oper='update'><i class="fa fa-check"></i> 완료</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-oper='update'><i class="fa fa-check"></i> 완료</button>
                         <button type="button" class="btn btn-sm" data-oper='detail'><i class="fa fa-times"></i> 취소</button>
                       </div>
                   </div>
@@ -134,6 +140,11 @@ $(document).ready(function() {
 	
 	var updateForm = $("#updateForm");
 	
+	var pageNumTag = $("input[name='pageNum']").clone();
+	var amountTag = $("input[name='amount']").clone();
+	var keywordTag = $("input[name='keyword']").clone();
+	var typeTag = $("input[name='type']").clone();
+	
 	$("button[data-oper='list']").on("click", function(e){
 		operForm.attr("action","/admin/event/list").submit();
 	});
@@ -143,6 +154,10 @@ $(document).ready(function() {
 	});
 	
 	$("button[data-oper='update']").on("click", function(e){
+		updateForm.append(pageNumTag);
+		updateForm.append(amountTag);
+		updateForm.append(keywordTag);
+		updateForm.append(typeTag); 
 		updateForm.attr("action","/admin/event/modify").submit();
 	});
 	

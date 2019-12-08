@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div class="compose-mail">
                       <div class="form-group">
                         <label class="" style="margin-right:20px;">대표 이미지</label>
-                        <img class="event_img " src="/resources/upload/<c:out value="${event.image}" />" alt="" style="display:inline;">
+                        <img class="event_img" src="/resources/upload/<c:out value="${event.image}" />" alt="" style="display:inline;">
                       </div>
                       <div class="form-group">
                         <label class="">작성자</label>
@@ -111,7 +111,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--main content end-->
   </section>
   <form id='operForm' action="/admin/event/modify" method="get">
+  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   	<input type='hidden' name='event_num' value='<c:out value="${event.event_num}"/>'>
+  	<input type='hidden' name='ck_code' value='<c:out value="${event.event_num}"/>'>
   	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   	<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
   	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -139,7 +141,10 @@ $(document).ready(function() {
 	});
 	
 	$("button[data-oper='remove']").on("click", function(e){
-		operForm.attr("action","/admin/event/remove").submit();
+		if (confirm('정말 삭제 하시겠습니까?')) {
+			operForm.attr('method', 'post');
+			operForm.attr("action","/admin/event/delete").submit();
+		}
 	});
 	
 	$("button[data-oper='list']").on("click", function(e){

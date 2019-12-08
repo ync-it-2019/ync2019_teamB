@@ -145,6 +145,29 @@ public class AdminEventController {
 	}
 	
 	/**
+	  * @Method 설명 : 공지 수정 후 admin/event/detail.jsp 호출
+	  * @Method Name : AdminEventModify
+	  * @Date : 2019. 12. 08.
+	  * @작성자 : 서영준
+	  * @return call jsp view
+	  */
+	@PostMapping("/modify")
+	public String AdminEventModify(MultipartFile uploadFile, EventVO event, @ModelAttribute("cri") Criteria cri,  RedirectAttributes rttr) {
+		log.info("modify:" + event);
+		
+		// 실제로 upload된 file이 있을때만 upload 시킨다. 
+				if (uploadFile.getSize() > 0) {
+					event.setImage(UploadUtils.uploadFormPost(uploadFile, uploadPath, event));
+				}
+		
+		if (service.modify(event)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/admin/event/detail" + cri.getListLink() + "&event_num=" + event.getEvent_num();
+	}
+	
+	/**
 	  * @Method 설명 : admin/event/delete 기능 실행
 	  * @Method Name : AdminEventDelete
 	  * @Date : 2019. 12. 04.

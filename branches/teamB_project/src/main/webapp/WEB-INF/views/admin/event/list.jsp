@@ -195,37 +195,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 */
 		 $('.delete').click(function() {
 			 
-		     $form.attr('action', '/admin/event/delete');
-		     $form.attr('method', 'post');
-		     $form.appendTo('body');
-			
-		    var checkArr = "";
-		    
-		    $('input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
-		    	//checkArr.push($(this).val());
-		    	checkArr += $(this).val() + ",";
-		    });
-		    
-		    var ck_hidden = "<input type='hidden' name='ck_code' value='" + checkArr + "'>";
-		    
-		    /* if (!confirm('정말 삭제 하시겠습니까?')) {
+			  if (confirm('정말 삭제 하시겠습니까?')) {
+				  $form.attr('action', '/admin/event/delete');
+				     $form.attr('method', 'post');
+				     $form.appendTo('body');
+					
+				    var checkArr = "";
+				    
+				    $('input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
+				    	//checkArr.push($(this).val());
+				    	checkArr += $(this).val() + ",";
+				    });
+				    
+				    var ck_hidden = "<input type='hidden' name='ck_code' value='" + checkArr + "'>";
+				    
+				    $form.append(ck_hidden);
+				   	$form.append(pageNumTag);
+				    $form.append(amountTag);
+				    $form.append(keywordTag);
+				    $form.append(typeTag); 
+				    $form.append(tk);
+				    
+				    $form.submit();
+		    }
+			  
+			/* if (!confirm('정말 삭제 하시겠습니까?')) {
 		        return false;
 		    } */
 			
 		    /* if (pageNumTag) {
 		        return false;
 		    } */
-		    
-		    $form.append(ck_hidden);
-		   	$form.append(pageNumTag);
-		    $form.append(amountTag);
-		    $form.append(keywordTag);
-		    $form.append(typeTag); 
-		    $form.append(tk);
-		    
-		    $form.submit();
-		    
-		    
 		});
 	});
 </script>
