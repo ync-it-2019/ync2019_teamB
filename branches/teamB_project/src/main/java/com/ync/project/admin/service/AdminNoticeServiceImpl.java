@@ -50,6 +50,14 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	}
 	
 	@Override
+	public boolean remove(Long notice_num) {
+		
+		log.info("remove......" + notice_num);
+		
+		return mapper.delete(notice_num) == 1;
+	}
+	
+	@Override
 	public void register(NoticeVO notice) {
 		
 		log.info("register......." + notice);

@@ -65,15 +65,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/notice/modify'">수정</button>
-                        <button class="btn btn-sm" onClick="location.href='#'">삭제</button>
+                        <button class="btn btn-primary btn-sm" data-oper='modify'>수정</button>
+                        <button class="btn btn-sm" data-oper='remove'>삭제</button>
                       </div>
-                    <button class="btn btn-sm" onClick="location.href='/admin/notice/list'">목록</button>
+                    <button class="btn btn-sm" data-oper='list'>목록</button>
                   </div>
                 </div>
               </section>
             </div>
           </div>
+          
+          <form id='operForm' action="/admin/notice/modify" method="get">
+  			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  			<input type='hidden' name='event_num' value='<c:out value="${event.event_num}"/>'>
+  			<input type='hidden' name='ck_code' value='<c:out value="${event.event_num}"/>'>
+  			<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  			<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  			<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  			<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+  		  </form>
 
           <!-- page end-->
         </div>
@@ -96,6 +106,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+
+function replaceEscapeStr(str) {
+	return str.replace("\\","\\\\");
+}
+
+$(document).ready(function() {
+  
+	var operForm = $("#operForm");
+
+	$("button[data-oper='modify']").on("click", function(e){
+		operForm.attr("action","/admin/notice/modify").submit();
+	});
+	
+	$("button[data-oper='remove']").on("click", function(e){
+		if (confirm('정말 삭제 하시겠습니까?')) {
+			operForm.attr('method', 'post');
+			operForm.attr("action","/admin/notice/delete").submit();
+		}
+	});
+	
+	$("button[data-oper='list']").on("click", function(e){
+		operForm.attr("action","/admin/notice/list").submit();
+	});
+	
+});
+</script>
 </body>
 
 </html>

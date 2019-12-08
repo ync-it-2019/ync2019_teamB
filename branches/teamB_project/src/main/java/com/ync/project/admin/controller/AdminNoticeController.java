@@ -97,14 +97,14 @@ public class AdminNoticeController {
 	}
 	
 	/**
-	  * @Method 설명 : 파일 업로드 후 admin/event/list.jsp 호출
-	  * @Method Name : AdminEventCreate
-	  * @Date : 2019. 11. 11.
+	  * @Method 설명 : 파일 업로드 후 admin/notice/list.jsp 호출
+	  * @Method Name : AdminNoticeCreate
+	  * @Date : 2019. 12. 08.
 	  * @작성자 : 서영준
 	  * @return redirect jsp view
 	  */
 	@PostMapping("/create")
-	public String AdminEventCreate(MultipartFile uploadFile, NoticeVO notice, RedirectAttributes rttr) {
+	public String AdminNoticeCreate(MultipartFile uploadFile, NoticeVO notice, RedirectAttributes rttr) {
 		Date date = new Date(cal.getTimeInMillis());
 		
 		log.info("파일 이름: " + uploadFile.getOriginalFilename());
@@ -119,7 +119,7 @@ public class AdminNoticeController {
 		notice.setWrite_date(date);
 		
 		log.info("create: " + notice);
-		log.info("Event Create Post page!");
+		log.info("Notice Create Post page!");
 		service.register(notice);
 		
 		rttr.addFlashAttribute("result", notice.getNotice_num());
@@ -168,29 +168,28 @@ public class AdminNoticeController {
 //	}
 	
 	/**
-	  * @Method 설명 : admin/event/delete 기능 실행
-	  * @Method Name : AdminEventDelete
-	  * @Date : 2019. 12. 04.
+	  * @Method 설명 : admin/notice/delete 기능 실행
+	  * @Method Name : AdminNoticeDelete
+	  * @Date : 2019. 12. 08.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-//	@PostMapping("/delete")
-//    public String AdminEventDelete(@RequestParam("ck_code") String ck, Criteria cri, RedirectAttributes rttr) {
-//		/*
-//		 * for (String List : deleteList) { log.info("delete : " + deleteList); }
-//		 */
-//		String[] array = ck.split(",");
-//		
-//		for(int i = 0; i < array.length; i++) {
-//			service.remove(Long.parseLong(array[i]));
-//			System.out.println("삭제 글 번호" + (i+1) + ": " + array[i]);
-//		}
-//		
-//		log.info(ck);
-//		log.info(cri);
-//    	log.info("안녕하세요~~~~~~~~~ 잘부탁 드립니다~~~~~");
-//    	
-//    	return "redirect:/admin/event/list" + cri.getListLink();
-//    }
-	
+	@PostMapping("/delete")
+    public String AdminNoticeDelete(@RequestParam("ck_code") String ck, Criteria cri, RedirectAttributes rttr) {
+		/*
+		 * for (String List : deleteList) { log.info("delete : " + deleteList); }
+		 */
+		String[] array = ck.split(",");
+		
+		for(int i = 0; i < array.length; i++) {
+			service.remove(Long.parseLong(array[i]));
+			System.out.println("삭제 글 번호" + (i+1) + ": " + array[i]);
+		}
+		
+		log.info(ck);
+		log.info(cri);
+    	log.info("안녕하세요~~~~~~~~~ 잘부탁 드립니다~~~~~");
+    	
+    	return "redirect:/admin/notice/list" + cri.getListLink();
+    }
 }
