@@ -11,7 +11,7 @@ import com.ync.project.domain.QuestionVO;
   * @Author		: 서영준
   * @프로그램 설명 : 관리자용 1:1문의 Mapper interface
   */
-public interface AdminInquiryMapper {
+public interface AdminQuestionMapper {
 	//전체 게시 글 목록
 	public List<QuestionVO> getList();
 	//게시 글 상세보기
