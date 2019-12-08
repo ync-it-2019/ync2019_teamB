@@ -125,4 +125,15 @@
 	<delete id="delete">
 		delete teamb_event where event_num = #{event_num}
 	</delete>
+	
+	<update id="update">
+		update teamb_event
+		set title= #{title},
+		contents=#{contents},
+		event_start_date = #{event_start_date},
+		event_end_date = #{event_end_date},
+		image = #{image},
+		banner_image = #{banner_image}
+		where event_num = #{event_num}
+	</update>
 </mapper>
