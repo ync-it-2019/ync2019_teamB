@@ -79,7 +79,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </a>
             </li>
             <li class="sub-menu">
-              <a href="/admin/inquiry/list" class="active">
+              <a href="/admin/question/list" class="active">
                 <i class="fa fa-envelope"></i>
                 <span>1:1문의 </span>
               </a>
