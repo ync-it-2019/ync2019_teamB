@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -49,17 +51,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div class="compose-mail">
                       <div class="form-group">
                         <label class="">제목:</label>
-                        소모임이 새로운 모습으로 찾아왔습니다.
+                        ${notice.title}
                       </div>
                       <div class="form-group">
                         <label class="">팝업여부</label>
-                        On
+                        ${notice.popup}
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9" readonly>안녕하세요. 소모임 운영진 입니다. 저희 소모임이 새로운 모습으로 모임인 분들을 찾아 뵙게 되었습니다.</textarea>
+                        <textarea class="wysihtml5 form-control" rows="9" readonly>${notice.contents}</textarea>
                         <div class="form-group">
                           <label class="">첨부:</label>
-                          <p class="form-control ">notice.png </p>
+                          <p class="form-control">${notice.files}</p>
                         </div>
                       </div>
                       <div class="center">

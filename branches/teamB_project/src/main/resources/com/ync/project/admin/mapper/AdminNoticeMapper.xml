@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.admin.mapper.AdminNoticeMapper">
+
+	<resultMap type="com.ync.project.domain.NoticeVO" id="noticeMap">
+		<id property="notice_num" column="notice_num"/>
+		<result property="notice_num" column="notice_num"/>
+		<result property="title" column="title"/>
+		<result property="contents" column="contents"/>
+		<result property="write_date" column="write_date"/>
+		<result property="files" column="files"/>
+		<result property="userid" column="userid"/>
+		<result property="popup" column="popup"/>
+	</resultMap>
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 게시판 리스트 -->
+	<select id="getList" resultType="com.ync.project.domain.NoticeVO">
+	<![CDATA[
+		SELECT	*
+		FROM	TEAMB_NOTICE
+		WHERE	notice_num > 0
+		]]>
+	</select>
+	
+	<!-- 게시글 상세 보기 -->
+	<select id="read" resultType="com.ync.project.domain.NoticeVO">
+	<![CDATA[
+		SELECT *
+		FROM   teamb_notice
+		WHERE  notice_num = #{notice_num}
+		]]>
+	</select>
+	
+	<!-- 이벤트 글 쓰기 -->
+	<insert id="insertSelectKey">
+	
+		<selectKey keyProperty="notice_num" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+	<![CDATA[
+		insert into teamb_notice (notice_num, title, contents, write_date, files, userid, popup)
+		values (seq_board.nextval,	#{title}, #{contents}, #{write_date}, #{files}, #{userid}, #{popup})
+		]]>
+	</insert>
+	
+	<!-- 페이징 -->
+	<select id="getListWithPaging" resultType="com.ync.project.domain.NoticeVO">
+	<![CDATA[
+	SELECT  notice_num,
+			title,
+			write_date,
+			contents,
+			userid,
+			files,
+			popup
+	FROM    (SELECT /*+INDEX_DESC(teamb_notice xpkteamb_notice) */
+			rownum rn,
+			notice_num,
+			title,
+			write_date,
+			contents,
+			userid,
+			files,
+			popup
+			FROM teamb_notice
+			WHERE 
+	]]>
+	<include refid="criteria"></include> 
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			) b
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_notice where 
+		
+		<include refid="criteria"></include> 
+		
+		notice_num > 0
+		
+	</select>
+	
+	<delete id="delete">
+		delete teamb_notice where notice_num = #{notice_num}
+	</delete>
+	
+	<update id="update">
+	<!--update teamb_notice
+		set title= #{title},
+		contents=#{contents},
+		notice_start_date = #{notice_start_date},
+		event_end_date = #{event_end_date},
+		image = #{image},
+		banner_image = #{banner_image}
+		where notice_num = #{notice_num} -->
+	</update>
+</mapper>
