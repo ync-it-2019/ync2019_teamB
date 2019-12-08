@@ -129,43 +129,43 @@ public class AdminNoticeController {
 	}
 	
 	/**
-	  * @Method 설명 : admin/event/modify.jsp 호출
-	  * @Method Name : AdminEventModify
+	  * @Method 설명 : admin/notice/modify.jsp 호출
+	  * @Method Name : AdminNoticeModify
 	  * @Date : 2019. 11. 11.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-//	@GetMapping("/modify")
-//	public void AdminEventModify(@RequestParam("event_num") Long event_num, @ModelAttribute("cri") Criteria cri, Model model) {
-//
-//		log.info("Event Modify get page!");
-//	
-//		model.addAttribute("event", service.read(event_num));
-//		
-//	}
+	@GetMapping("/modify")
+	public void AdminNoticeModify(@RequestParam("notice_num") Long notice_num, @ModelAttribute("cri") Criteria cri, Model model) {
+
+		log.info("Notice Modify get page!");
+	
+		model.addAttribute("notice", service.read(notice_num));
+		
+	}
 	
 	/**
-	  * @Method 설명 : 공지 수정 후 admin/event/detail.jsp 호출
-	  * @Method Name : AdminEventModify
+	  * @Method 설명 : 공지 수정 후 admin/notice/detail.jsp 호출
+	  * @Method Name : AdminNoticeModify
 	  * @Date : 2019. 12. 08.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-//	@PostMapping("/modify")
-//	public String AdminEventModify(MultipartFile uploadFile, EventVO event, @ModelAttribute("cri") Criteria cri,  RedirectAttributes rttr) {
-//		log.info("modify:" + event);
-//		
-//		// 실제로 upload된 file이 있을때만 upload 시킨다. 
-//				if (uploadFile.getSize() > 0) {
-//					event.setImage(UploadUtils.uploadFormPost(uploadFile, uploadPath, event));
-//				}
-//		
-//		if (service.modify(event)) {
-//			rttr.addFlashAttribute("result", "success");
-//		}
-//
-//		return "redirect:/admin/event/detail" + cri.getListLink() + "&event_num=" + event.getEvent_num();
-//	}
+	@PostMapping("/modify")
+	public String AdminEventModify(MultipartFile uploadFile, NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("modify:" + notice);
+		
+		// 실제로 upload된 file이 있을때만 upload 시킨다. 
+				if (uploadFile.getSize() > 0) {
+					notice.setFiles(UploadUtils.uploadFormPost(uploadFile, uploadPath));
+				}
+		
+		if (service.modify(notice)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/admin/notice/detail" + cri.getListLink() + "&notice_num=" + notice.getNotice_num();
+	}
 	
 	/**
 	  * @Method 설명 : admin/notice/delete 기능 실행

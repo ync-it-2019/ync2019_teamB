@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -48,28 +50,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </header>
                 <div class="panel-body">
                   <div class="compose-mail">
-                    <form role="form-horizontal" method="post">
+                    <form id="updateForm" role="form-horizontal" action="/admin/notice/modify" method="post"  enctype="multipart/form-data">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name="notice_num" value="${notice.notice_num}"/>
                       <div class="form-group">
                         <label for="to" class="">제목:</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="소모임이 새로운 모습으로 찾아왔습니다.">
-                        <div class="form-group">
-                          <label for="subject" class="">팝업여부</label>
-                          <input type="radio" name="chk_pop" value="Y" style="width:5%; float:none;" checked>On
-                          <input type="radio" name="chk_pop" value="N" style="width:5%; float:none;">Off
-                        </div>
-
+                        <input type="text" tabindex="1" id="to" class="form-control" name="title" value="${notice.title}">
+                      </div>
+                      <div class="form-group">
+                        <label for="subject" class="">팝업여부</label>
+                        <c:choose>
+       						<c:when test="${notice.popup eq 'Yes'}">
+           						<input type="radio" name="popup" value="Yes" style="width:5%; float:none;" checked>On
+                          		<input type="radio" name="popup" value="No" style="width:5%; float:none;">Off
+       						</c:when>
+       						<c:otherwise>
+								<input type="radio" name="popup" value="Yes" style="width:5%; float:none;">On
+                      	 		<input type="radio" name="popup" value="No" style="width:5%; float:none;" checked>Off
+		        			</c:otherwise>
+  	 					</c:choose>
+                      </div>
                         <div class="compose-editor">
-                          <textarea class="wysihtml5 form-control" rows="9">안녕하세요. 소모임 운영진 입니다. 저희 소모임이 새로운 모습으로 모임인 분들을 찾아 뵙게 되었습니다.</textarea>
+                          <textarea class="wysihtml5 form-control" name="contents" rows="9">${notice.contents}</textarea>
                           </textarea>
-                          <input type="file" class="default" value="notice.png">
+                          <input type="file" class="default" name="uploadFile" value="${notice.files}">
+                          <input type="hidden" class="default" name="Files">
                         </div>
                         <div class="center">
-                          <button class="btn btn-primary btn-sm" onClick="location.href='/admin/notice/detail'"><i class="fa fa-check"></i> 완료</button>
-                          <button class="btn btn-sm" onClick="location.href='/admin/notice/detail'"><i class="fa fa-times"></i> 취소</button>
+                          <button type="button" class="btn btn-primary btn-sm" data-oper='update'><i class="fa fa-check"></i> 완료</button>
+                          <button type="button" class="btn btn-sm" data-oper='detail'><i class="fa fa-times"></i> 취소</button>
                         </div>
                     </form>
                   </div>
-                  <button class="btn btn-sm" onClick="location.href='/admin/notice/list'">목록</button>
+                  <button class="btn btn-sm" data-oper='list'>목록</button>
                 </div>
               </section>
             </div>
@@ -86,7 +99,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>
       <!-- / footer -->
     </section>
-
+    
+    <form id='operForm' method="get">
+  		<input type='hidden' name='notice_num' value='<c:out value="${notice.notice_num}"/>'>
+  		<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  		<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  		<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+  	</form>
     <!--main content end-->
   </section>
   <script src="/resources/js/admin/bootstrap.js"></script>
@@ -96,6 +116,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+
+$(document).ready(function() {
+  
+	var operForm = $("#operForm");
+	
+	var updateForm = $("#updateForm");
+	
+	var pageNumTag = $("input[name='pageNum']").clone();
+	var amountTag = $("input[name='amount']").clone();
+	var keywordTag = $("input[name='keyword']").clone();
+	var typeTag = $("input[name='type']").clone();
+	
+	$("button[data-oper='list']").on("click", function(e){
+		operForm.attr("action","/admin/notice/list").submit();
+	});
+	
+	$("button[data-oper='detail']").on("click", function(e){
+		operForm.attr("action","/admin/notice/detail").submit();
+	});
+	
+	$("button[data-oper='update']").on("click", function(e){
+		updateForm.append(pageNumTag);
+		updateForm.append(amountTag);
+		updateForm.append(keywordTag);
+		updateForm.append(typeTag); 
+		updateForm.attr("action","/admin/notice/modify").submit();
+	});
+	
+});
+</script>
 </body>
 
 </html>
