@@ -32,6 +32,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <link href="/resources/css/admin/admin_style.css" rel="stylesheet">
   <!-- //bootstrap-css -->
   <script src="/resources/js/admin/jquery2.0.3.min.js"></script>
+  <!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -76,16 +78,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div class="center">
                           <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> 완료</button>
-                          <button type="button" class="btn btn-sm" onClick="location.href='/admin/event/list'"><i class="fa fa-times"></i> 취소</button>
+                          <button type="button" class="btn btn-sm" data-oper='list'><i class="fa fa-times"></i> 취소</button>
                         </div>
                     </form>
                   </div>
-                  <button class="btn btn-sm" onClick="location.href='/admin/event/list'">목록</button>
+                  <button class="btn btn-sm" data-oper='list'>목록</button>
                 </div>
               </section>
             </div>
           </div>
-
+		<form id='actionForm' action="/admin/event/list" method='get'>
+		<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+		<input type='hidden' name='amount' value='${cri.amount}'>
+		<input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+		<input type='hidden' name='keyword'	value='<c:out value="${cri.keyword }"/>'>
+		</form>
           <!-- page end-->
         </div>
       </section>
@@ -108,5 +115,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
 
+		var actionForm = $("#actionForm");
+
+		 $("button[data-oper='list']").on("click", function(e){
+			 actionForm.submit();
+			});
+	});
+</script>
 </html>
