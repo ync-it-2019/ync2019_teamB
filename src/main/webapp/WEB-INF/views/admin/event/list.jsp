@@ -90,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </table>
                     <div style="margin:10px 20px 0 0; text-align:right;">
                       <button type="button" class="btn btn-default" data-oper='create'>글쓰기</button>
-                      <button type="button" class="btn btn-default delete">삭제</button>
+                      <button type="button" class="btn btn-default" data-oper='delete'>삭제</button>
                     </div>
                   </div>
                 </div>
@@ -193,7 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		/**
 		 * 파일 삭제 버튼을 누르면
 		 */
-		 $('.delete').click(function() {
+		 $("button[data-oper='delete']").on("click", function(e){
 			 
 			  if (confirm('정말 삭제 하시겠습니까?')) {
 				  $form.attr('action', '/admin/event/delete');
