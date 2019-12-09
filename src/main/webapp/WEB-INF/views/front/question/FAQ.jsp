@@ -38,7 +38,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //google fonts -->
 	
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <!-- //header -->
@@ -81,7 +80,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </a><div style="DISPLAY: block"><br>
 상단에 있는 마이페이지에서 '회원 정보 변경'을 통해 변경할 수 있습니다.<br>
 충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="/front/question/write"><button type="button">문의하기</button></a>
+	<sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
 </div></td>
                    </tr>
                 </tbody>
@@ -93,7 +97,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   해당 정모의 최대인원이 이미 다 채워진 상태라면 더 이상의 참가가 불가능합니다.<br>
   현재 해당 정모의 참가인원을 확인해주시기 바랍니다.<br>
   충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-  <a href="./write"><button type="button">문의하기</button></a>
+  <sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
   </div></td>
                   </tr>
                 </tbody>
@@ -104,7 +113,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </a><div style="DISPLAY: none"><br>
   단순 변경은 불가하며, 탈퇴 후 재가입으로 가능합니다.<br>
   충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="./write"><button type="button">문의하기</button></a>
+<sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
 </div></td>
                   </tr>
               </tbody>
@@ -115,7 +129,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </a><div style="DISPLAY: none"><br>
 최소 만15세 이상부터 모임참가가 가능합니다.<br>
 충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="./write"><button type="button">문의하기</button></a>
+<sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
 </div></td>
                 </tr>
               </tbody>
@@ -130,7 +149,12 @@ Internet Explorer>인터넷 옵션>일반>검색기록>삭제에서 '쿠키 및 
 2. 크롬 사용자의 경우<br>
 Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>인터넷 사용 기록 삭제에서 '쿠키 및 기타 사이트 데이터' 삭제<br>
 충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="./write"><button type="button">문의하기</button></a>
+<sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
 </div></td>
                 </tr>
               </tbody>
@@ -142,7 +166,12 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 현재 가입 가능한 모입의 개수에 관해서는 제한을 두지 않고 있습니다.<br>
 마음껏 여러 모임에 가입해 활동해 주시길 바랍니다.<br>
 충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="./write"><button type="button">문의하기</button></a>
+<sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
 </div></td>
                 </tr>
               </tbody>
@@ -154,7 +183,12 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 네 재가입은 바로 가능 합니다.<br>
 다만, 탈퇴 즉시 회원님의 온라인 정보는 삭제되며 복구가 불가능합니다.<br>
 충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="./write"><button type="button">문의하기</button></a>
+<sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
 </div></td>
                 </tr>
               </tbody>
@@ -166,7 +200,12 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 아래의 '문의하기'버튼을 통해 새로운 신분증 사진을 첨부하여 문의해주시길 바랍니다.<br>
 확인되는 즉시 회원정보를 변경해 드리겠습니다.<br>
 충분한 답변을 얻지 못하셨다면 옆의 1대1 문의를 통해 답변해드리겠습니다.<br>
-<a href="./write"><button type="button">문의하기</button></a>
+<sec:authorize access="isAnonymous()">
+		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<a href="/front/question/write"><button type="button">문의하기</button></a>
+	</sec:authorize>
 </div></td>
                 </tr>
               </tbody>
@@ -209,4 +248,5 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
 </body>
+
 </html>
