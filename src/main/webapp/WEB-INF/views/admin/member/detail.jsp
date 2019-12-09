@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -48,53 +50,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-lg-12">
               <section class="panel">
                 <header class="panel-heading">
-                  회원정보
+                  	회원정보
                 </header>
                 <div class="panel-body">
                   <form class="form-horizontal bucket-form" method="get">
                     <div class="form-group">
-                      <img class="member_img" src="images/no_img.jpg" alt="">
+                      <img class="member_img" src="/resources/img/no_img.jpg" alt="">
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">이름</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="서영준" readonly>
+                        <input type="text" class="form-control" value="${member.name}" readonly>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">아이디</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="ay9564" readonly>
+                        <input type="text" class="form-control" value="${member.userid}" readonly>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">비밀번호</label>
                       <div class="col-sm-6">
-                        <input type="password" class="form-control round-input" value="ay789456" readonly>
+                        <input type="password" class="form-control round-input" value="${member.userpw}" readonly>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">전화번호</label>
                       <div class="col-sm-6">
-                        <input class="form-control" type="text" value="010-7443-1516" readonly>
+                        <input class="form-control" type="text" value="${member.phone}" readonly>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class=" col-sm-3 control-label">이메일</label>
                       <div class="col-lg-6">
-                        <p class="form-control-static">ay9564@naver.com</p>
+                        <p class="form-control-static"><c:out value="${member.name}" /></p>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">관심분야</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="영화감상" readonly>
+                        <input type="text" class="form-control" value="${member.hobby}" readonly>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">활동지역</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="대구" readonly>
+                        <input type="text" class="form-control" value="${member.adress}" readonly>
                       </div>
                     </div>
                   </form>
