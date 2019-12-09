@@ -15,7 +15,7 @@ import lombok.Data;
   */
 public class MeetingVO {
 	
-	private int meeting_Num;			//모임 번호
+	private Long meeting_Num;			//모임 번호
 	
 	private String meeting_Name;		//모임 이름
 	private String introduce;			//모임 소개
