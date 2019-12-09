@@ -15,7 +15,7 @@ public interface AdminMeetingMapper {
 	//전체 게시 글 목록
 	public List<MeetingVO> getList();
 	//게시 글 상세보기
-	public MeetingVO read(int meeting_num);
+	public MeetingVO read(Long meeting_num);
 	//목록 페이징
 	public List<MeetingVO> getListWithPaging(Criteria cri);
 	

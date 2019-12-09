@@ -25,7 +25,7 @@ public class AdminMeetingServiceImpl implements AdminMeetingService {
 	private AdminMeetingMapper mapper;
 
 	@Override
-	public MeetingVO read(int meeting_Num) {
+	public MeetingVO read(Long meeting_Num) {
 
 		log.info("get......" + meeting_Num);
 
