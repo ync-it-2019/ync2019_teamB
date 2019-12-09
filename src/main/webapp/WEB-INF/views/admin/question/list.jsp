@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 	<input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
                 	<label class="tab" for="tab1">전체</label>
                 	<input id="tab2" type="radio" name="tabs">
-                	<label class="tab" for="tab2">문의중</label>
+                	<label class="tab" for="tab2">처리중</label>
                 	<input id="tab3" type="radio" name="tabs">
                 	<label class="tab" for="tab3">답변완료</label>
                 </c:if>
@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input id="tab1" type="radio" name="tabs">
                 	<label class="tab" for="tab1">전체</label>
                 	<input id="tab2" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
-                	<label class="tab" for="tab2">문의중</label>
+                	<label class="tab" for="tab2">처리중</label>
                 	<input id="tab3" type="radio" name="tabs">
                 	<label class="tab" for="tab3">답변완료</label>
 				</c:if>
@@ -117,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input id="tab1" type="radio" name="tabs">
                 	<label class="tab" for="tab1">전체</label>
                 	<input id="tab2" type="radio" name="tabs">
-                	<label class="tab" for="tab2">문의중</label>
+                	<label class="tab" for="tab2">처리중</label>
                 	<input id="tab3" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
                 	<label class="tab" for="tab3">답변완료</label>
 				</c:if>
@@ -145,7 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           <td class="view-message dont-show text_limit move" name="move" value="${question.question_num}"><c:out value="${question.userid}" /></td>
                           <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" name="move" value="${question.question_num}"><c:out value="${question.write_date}" /></td>
                           <c:if test="${question.answer_whether eq 'N'}">
-                          	<td class="view-message text-right" style="color:red;">문의중</td>
+                          	<td class="view-message text-right" style="color:red;">처리중</td>
                           </c:if>
                           <c:if test="${question.answer_whether eq 'Y'}">
                           	<td class="view-message text-right" style="color:green;">답변 완료</td>
@@ -219,7 +219,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var amountTag = $("input[name='amount']").clone();
 		var keywordTag = $("input[name='keyword']").clone();
 		var typeTag = $("input[name='type']").clone();
-	    var tk = $("input[id='token']").clone();
 		
 		 $("#newTable").on("click", "td[name='move']", function(e) {
 			 
@@ -229,7 +228,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		     
 		     var event_num = $(this).attr("value");
 		     
-			 var num = "<input type='hidden' name='event_num' value='" + event_num + "'>";
+			 var num = "<input type='hidden' name='question_num' value='" + event_num + "'>";
 			 
 		     $form.append(num);
 			 $form.append(pageNumTag);
@@ -304,48 +303,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 		});
-		
-		/**
-		 * 파일 삭제 버튼을 누르면
-		 */
-		 $("button[data-oper='delete']").on("click", function(e){
-			 
-			  if (confirm('정말 삭제 하시겠습니까?')) {
-				  $form.attr('action', '/admin/event/delete');
-				     $form.attr('method', 'post');
-				     $form.appendTo('body');
-					
-				    var checkArr = "";
-				    
-				    $('input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
-				    	//checkArr.push($(this).val());
-				    	checkArr += $(this).val() + ",";
-				    });
-				    
-				    var ck_hidden = "<input type='hidden' name='ck_code' value='" + checkArr + "'>";
-				    
-				    $form.append(ck_hidden);
-				   	$form.append(pageNumTag);
-				    $form.append(amountTag);
-				    $form.append(keywordTag);
-				    $form.append(typeTag); 
-				    $form.append(tk);
-				    
-				    $form.submit();
-		    }
-			  
-			/* if (!confirm('정말 삭제 하시겠습니까?')) {
-		        return false;
-		    } */
-			
-		    /* if (pageNumTag) {
-		        return false;
-		    } */
-		});
-		
-		 $("button[data-oper='create']").on("click", function(e){
-			 actionForm.attr("action","/admin/event/create").submit();
-			});
 	});
 </script>
 </body>
