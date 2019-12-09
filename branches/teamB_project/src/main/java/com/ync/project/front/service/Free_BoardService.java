@@ -24,7 +24,7 @@ public interface Free_BoardService {
 	public List<Free_BoardVO> getListWithPaging(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
 	
 	// 글 등록
-	public void write(Free_BoardVO board); 
+	public void write(@Param("board") Free_BoardVO board, @Param("meeting_num") Long meeting_num); 
 		
 	// 글 수정
 	public boolean modify(Free_BoardVO board);
