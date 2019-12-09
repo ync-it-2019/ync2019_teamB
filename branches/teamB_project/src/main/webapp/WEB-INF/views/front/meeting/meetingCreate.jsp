@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //page details -->
 
-<!-- login -->
+<!-- 모임 생성 -->
 <section class="login py-5">
 	<div class="container">
 		<h3 class="heading mb-sm-5 mb-4 text-center">Create Meeting</h3>
@@ -151,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	</div>
 </section>
-<!-- //login -->
+<!-- //모임 생성 -->
 
 <!-- footer -->
 <footer class="footer py-5">
