@@ -36,8 +36,8 @@
 	</select>
  
 	<insert id="insert">
-		insert into teamb_free_board (free_board_num, title, write_date, contents, views, userid, meeting_num, files, category)
-		values (seq_board.nextval, #{title}, sysdate, #{contents}, #{views}, #{userid}, #{meeting_num}, #{files}, #{category})
+		insert into teamb_free_board (free_board_num, title, write_date, contents, userid, meeting_num, files, category)
+		values (seq_board.nextval, #{board.title}, sysdate, #{board.contents}, #{board.userid}, #{board.meeting_num}, #{board.files}, #{board.category})
 	</insert>
 
 	<insert id="insertSelectKey">
@@ -52,17 +52,15 @@
 			 title,
 			 write_date,
 			 contents,
-			 views,
 			 userid,
 			 meeting_num,
 			 files,
 			 category)
 		VALUES 
-			(#{free_board_num},
+			(TEAMB_FREE_BOARD_NUM.NEXTVAL,
 			 #{title},
 			 sysdate,
 			 #{contents},
-			 #{views},
 			 #{userid},
 			 #{meeting_num},
 			 #{files},
