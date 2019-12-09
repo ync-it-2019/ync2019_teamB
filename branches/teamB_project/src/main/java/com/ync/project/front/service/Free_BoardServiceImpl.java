@@ -33,12 +33,12 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 	private Free_BoardMapper mapper;
 	
 	@Override
-	public void write(Free_BoardVO board) {
+	public void write(@Param("board") Free_BoardVO board, @Param("meeting_num") Long meeting_num) {
 
 		log.info("write......" + board);
 
-		mapper.insertSelectKey(board);
-//		return "redirect: /board/list?free_board_num="+ board.getSeq_board();
+		mapper.insert(board, meeting_num);
+//		return "redirect: /board/list?meeting_num="+board.getMeeting_num()+"&free_board_num="+ board.getSeq_board();
 	}
 
 	@Override
