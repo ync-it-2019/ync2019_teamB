@@ -47,9 +47,15 @@
 		<!-- //작성자 / 작성일 / 조회수 -->
 		
 		<!-- 게시글 내용 -->
+		<c:if test="${not empty board.files}">
+			<div class="form-group">
+				<a href="/resources/upload/${board.files}" target="_blank"><img src="/resources/upload/${board.files}"></a>
+			</div>
+		</c:if>
+		<br>
 			${board.contents}
-        </div>
-		<!-- //게시글 내용 -->
+    </div>
+	<!-- //게시글 내용 -->
 </section>
 <!-- //소모임 게시글 -->
 
@@ -90,7 +96,7 @@
 <!-- 목록 / 수정 / 삭제 버튼 -->
 <section>
 	<div class="container">
-		<button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left mb-3"><a href="meeting_board.html" style="color:white">목록</a></button>
+		<button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left mb-3"><a href="/front/meeting/board/list?meeting_num=${param.meeting_num}&pageNum=1" style="color:white">목록</a></button>
 		<button type="submit" id="submit" name="submit" class="btn btn-danger pull-right">삭제</button>
 		<button type="submit" id="submit" name="submit" class="btn btn-primary pull-right mr-2">수정</button>
 	</div>
@@ -153,7 +159,7 @@
 		
 		<!-- 글쓰기 버튼 -->
 		<div class="input-group-btn" style="position: absolute; right: 0;">
-			<a href="./write" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
+			<a href="./write?meeting_num=${param.meeting_num}" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
 		</div>
 		<!-- //글쓰기 버튼 -->
 	</div>

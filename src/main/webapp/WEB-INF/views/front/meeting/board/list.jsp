@@ -88,7 +88,7 @@
 		
 		<!-- 글쓰기 버튼 -->
 		<div class="input-group-btn" style="position: absolute; right: 0;">
-			<a href="/front/meeting/board/write" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
+			<a href="/front/meeting/board/write?meeting_num=${param.meeting_num}" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
 		</div>
 		<!-- //글쓰기 버튼 -->
 	</div>
