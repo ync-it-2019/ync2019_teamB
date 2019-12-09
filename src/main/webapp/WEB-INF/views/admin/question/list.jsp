@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -45,11 +47,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         padding: 50px;
         margin: 0 auto;
         background: #ffffff;}
-
-    section {
-        display: none;
-        border-top: 1px solid #ddd;}
-
     /*라디오버튼 숨김*/
       input {
           display: none;}
@@ -100,19 +97,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <h4 class="gen-case">1:1 문의 관리
                   </h4>
                 </header>
-                <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
-                <label class="tab" for="tab1">전체</label>
-
-                <input id="tab2" type="radio" name="tabs">
-                <label class="tab" for="tab2">문의중</label>
-
-                <input id="tab3" type="radio" name="tabs">
-                <label class="tab" for="tab3">답변완료</label>
-
-                <section id="content1">
+                <c:if test="${empty pageMaker.cri.type}">
+                	<input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+                	<label class="tab" for="tab1">전체</label>
+                	<input id="tab2" type="radio" name="tabs">
+                	<label class="tab" for="tab2">문의중</label>
+                	<input id="tab3" type="radio" name="tabs">
+                	<label class="tab" for="tab3">답변완료</label>
+                </c:if>
+				<c:if test="${ pageMaker.cri.type eq 'N'}">
+					<input id="tab1" type="radio" name="tabs">
+                	<label class="tab" for="tab1">전체</label>
+                	<input id="tab2" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+                	<label class="tab" for="tab2">문의중</label>
+                	<input id="tab3" type="radio" name="tabs">
+                	<label class="tab" for="tab3">답변완료</label>
+				</c:if>
+				<c:if test="${ pageMaker.cri.type eq 'Y'}">
+					<input id="tab1" type="radio" name="tabs">
+                	<label class="tab" for="tab1">전체</label>
+                	<input id="tab2" type="radio" name="tabs">
+                	<label class="tab" for="tab2">문의중</label>
+                	<input id="tab3" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+                	<label class="tab" for="tab3">답변완료</label>
+				</c:if>
+                	
+                <section>
                   <div class="panel-body minimal"style="padding:0px 15px 0px 15px;">
                     <div class="table-inbox-wrap ">
-                      <table class="table table-inbox table-hover" style="table-layout: fixed">
+                      <table class="table table-inbox table-hover" id="newTable" style="table-layout: fixed">
                         <tbody>
                           <thead>
                             <tr>
@@ -120,105 +133,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                               <th style="width:140px;">카테고리</th>
                               <th style="width:440px; text-align:center;">제목</th>
                               <th data-breakpoints="xs">작성자</th>
-                              <th data-breakpoints="xs">작성일</th>
+                              <th data-breakpoints="xs" class="center">작성일</th>
                               <th data-breakpoints="xs sm md" data-title="DOB" class="text-right">비고</th>
                             </tr>
                           </thead>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">1</td>
-                            <td class="inbox-small-cells text_limit">모임</td>
-                            <td class="view-message dont-show text_limit">운영하던 모임이 정지되었습니다.</td>
-                            <td class="view-message inbox-small-cells text_limit">서영준</td>
-                            <td class="view-message inbox-small-cells text_limit">2019-10-28</td>
-                            <td class="view-message text-right">문의중</td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">2</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">3</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">4</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">5</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">6</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">7</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">8</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">9</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
-                          <tr class="unread" onClick="location.href='/admin/inquiry/detail'">
-                            <td class="inbox-small-cells text_limit">10</td>
-                            <td class="inbox-small-cells text_limit"></td>
-                            <td class="view-message dont-show text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message inbox-small-cells text_limit"></td>
-                            <td class="view-message text-right"></td>
-                          </tr>
+                           <c:forEach items="${list}" var="question" varStatus="status">
+                           <tr>
+                          <td name="move" id="num" value="${question.question_num}"><c:out value="${question.question_num}" /></td>
+                          <td class="inbox-small-cells text_limit move" name="move" value="${question.question_num}"><c:out value="${question.userid}" /></td>
+                          <td class="inbox-small-cells text_limit move" name="move" value="${question.question_num}"><c:out value="${question.title}" /></td>
+                          <td class="view-message dont-show text_limit move" name="move" value="${question.question_num}"><c:out value="${question.userid}" /></td>
+                          <td class="view-message inbox-small-cells text_limit move" style="text-align:center;" name="move" value="${question.question_num}"><c:out value="${question.write_date}" /></td>
+                          <c:if test="${question.answer_whether eq 'N'}">
+                          	<td class="view-message text-right" style="color:red;">문의중</td>
+                          </c:if>
+                          <c:if test="${question.answer_whether eq 'Y'}">
+                          	<td class="view-message text-right" style="color:green;">답변 완료</td>
+                          </c:if>
+                        </tr>
+						</c:forEach>
                         </tbody>
                       </table>
                     </div>
                     <footer>
                       <div class="row">
                         <div class="center">
-                          <ul class="pagination pagination-sm m-t-none m-b-none">
-                            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                          </ul>
+                          <!--  Pagination 시작 -->
+							<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+								</c:if>
+								<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+									<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+										<a href="${num}">${num}</a>
+									</li>
+								</c:forEach>
+								<c:if test="${pageMaker.next}">
+									<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+								</c:if>
+							</ul>
                         </div>
                       </div>
                     </footer>
@@ -240,6 +193,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </section>
     <!--main content end-->
   </section>
+  <!-- Form 시작 -->
+	<form id='actionForm' action="/admin/question/list" method='get'>
+	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+	<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+	<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+	</form>
+  <!-- Form 끝 -->
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
@@ -247,6 +208,146 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function() {
+		
+		var $form = $('<form></form>');
+		
+		var actionForm = $("#actionForm");
+		
+		var pageNumTag = $("input[name='pageNum']").clone();
+		var amountTag = $("input[name='amount']").clone();
+		var keywordTag = $("input[name='keyword']").clone();
+		var typeTag = $("input[name='type']").clone();
+	    var tk = $("input[id='token']").clone();
+		
+		 $("#newTable").on("click", "td[name='move']", function(e) {
+			 
+		     $form.attr('action', '/admin/question/detail');
+		     $form.attr('method', 'get');
+		     $form.appendTo('body');
+		     
+		     var event_num = $(this).attr("value");
+		     
+			 var num = "<input type='hidden' name='event_num' value='" + event_num + "'>";
+			 
+		     $form.append(num);
+			 $form.append(pageNumTag);
+			 $form.append(amountTag);
+			 $form.append(keywordTag);
+			 $form.append(typeTag);
+			 
+			 $form.submit();
+		   });
+		 
+			$("#tab1").on("click", function(e) {
+			 
+		     	$form.attr('action', '/admin/question/list');
+		     	$form.attr('method', 'get');
+		     	$form.appendTo('body');
+		     
+			 	var t = "<input type='hidden' name='type'>";
+			 	var p = "<input type='hidden' name='pageNum' value='1'>";
+			 	var a = "<input type='hidden' name='amount' value='10'>";
+			 	var k = "<input type='hidden' name='keyword' value=''>";
+			 
+			 	 $form.append(t);
+				 $form.append(p);
+				 $form.append(a);
+				 $form.append(k);
+			 
+			 	$form.submit();
+		   });
+			
+			$("#tab2").on("click", function(e) {
+				 
+		     	$form.attr('action', '/admin/question/list');
+		     	$form.attr('method', 'get');
+		     	$form.appendTo('body');
+		     
+			 	var t = "<input type='hidden' name='type' value='N'>";
+			 	var p = "<input type='hidden' name='pageNum' value='1'>";
+			 	var a = "<input type='hidden' name='amount' value='10'>";
+			 	var k = "<input type='hidden' name='keyword' value=''>";
+			 
+			 	$form.append(t);
+				$form.append(p);
+				$form.append(a);
+				$form.append(k);
+			 
+			 	$form.submit();
+		   });
+			
+			$("#tab3").on("click", function(e) {
+				 
+		     	$form.attr('action', '/admin/question/list');
+		     	$form.attr('method', 'get');
+		     	$form.appendTo('body');
+		     
+			 	var t = "<input type='hidden' name='type' value='Y'>";
+			 	var p = "<input type='hidden' name='pageNum' value='1'>";
+			 	var a = "<input type='hidden' name='amount' value='10'>";
+			 	var k = "<input type='hidden' name='keyword' value=''>";
+			 
+			 	$form.append(t);
+				$form.append(p);
+				$form.append(a);
+				$form.append(k);
+			 
+			 	$form.submit();
+		   });
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		/**
+		 * 파일 삭제 버튼을 누르면
+		 */
+		 $("button[data-oper='delete']").on("click", function(e){
+			 
+			  if (confirm('정말 삭제 하시겠습니까?')) {
+				  $form.attr('action', '/admin/event/delete');
+				     $form.attr('method', 'post');
+				     $form.appendTo('body');
+					
+				    var checkArr = "";
+				    
+				    $('input[name="ck"]:checked').each(function(i) { //check 된값 배열에 담기
+				    	//checkArr.push($(this).val());
+				    	checkArr += $(this).val() + ",";
+				    });
+				    
+				    var ck_hidden = "<input type='hidden' name='ck_code' value='" + checkArr + "'>";
+				    
+				    $form.append(ck_hidden);
+				   	$form.append(pageNumTag);
+				    $form.append(amountTag);
+				    $form.append(keywordTag);
+				    $form.append(typeTag); 
+				    $form.append(tk);
+				    
+				    $form.submit();
+		    }
+			  
+			/* if (!confirm('정말 삭제 하시겠습니까?')) {
+		        return false;
+		    } */
+			
+		    /* if (pageNumTag) {
+		        return false;
+		    } */
+		});
+		
+		 $("button[data-oper='create']").on("click", function(e){
+			 actionForm.attr("action","/admin/event/create").submit();
+			});
+	});
+</script>
 </body>
 
 </html>
