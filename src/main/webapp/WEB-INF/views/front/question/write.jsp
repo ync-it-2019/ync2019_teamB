@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
 							</div>
               <div style="float: right;">
-                <a href="/front/question/myQuestion"><button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">문의하기</button></a>
+                <button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">문의하기</button>
               </div>
               </form>
               <div style="float: right; margin-right: 10px;">

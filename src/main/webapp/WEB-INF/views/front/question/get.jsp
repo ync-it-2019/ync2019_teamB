@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="comment-top" style="position: relative; top: 60px;">
 							<a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
               <c:if test="${question.yn == '처리중'}">
-              	<a href="/front/question/modify"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
+              	<a href="/front/question/modify?question_num=<c:out value="${question.question_num}" />"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
               </c:if>
             </div>
           </div>

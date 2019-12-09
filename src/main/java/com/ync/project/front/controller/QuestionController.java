@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +64,7 @@ public class QuestionController {
 		}
 		
 		@PostMapping(value = "/write")
-		public String uploadFormPost(MultipartFile uploadFile, Model model, QuestionVO question,  RedirectAttributes rttr) {
+		public String uploadFormPost(MultipartFile uploadFile, Model model, QuestionVO question, RedirectAttributes rttr) {
 			
 			log.info("파일 이름: " + uploadFile.getOriginalFilename());
 			log.info("파일 크기: " + uploadFile.getSize());
@@ -83,16 +84,21 @@ public class QuestionController {
 			return "redirect:/front/question/myQuestion";
 		}
 		
-		@GetMapping(value = "/get")
+		@GetMapping({"/get","/modify"})
 		public void questionGet(@RequestParam("question_num") Long question_num, Model model) {
-			log.info("question Get!");
+			log.info("Get or Modify!");
 			model.addAttribute("question", service.read(question_num));
 		}
 		
-		@GetMapping(value = "/modify")
-		public void AdminEventModify() {
+		@PostMapping("/modify")
+		@PreAuthorize("principal.username == #question.userid")
+		public String modify(QuestionVO question, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+			log.info("modify:" + question);
 
-			log.info("question Modify!");
-			
+			if (service.modify(question)) {
+				rttr.addFlashAttribute("result", "success");
+			}
+
+			return "redirect:/front/question/myQuestion" + cri.getListLink();
 		}
 }

@@ -88,31 +88,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </select>
 							</div>
               <hr>
-              			<div class="form-group">
-								<input type="hidden" class="form-control" name="question_num" value='<c:out value="${question.question_num}"/>' readonly="readonly">
-							</div>
-							<div class="form-group">
-								아이디 <input type="text" class="form-control" name = "userid"
-                        value = '<sec:authentication property = "principal.username"/>' readonly="readonly">
-							</div>
-							<div class="form-group">
-								제목<input type="text" class="form-control" name='title' value='<c:out value="${question.title}"/>'>
-							</div>
-							<div class="form-group">
-								내용<textarea name='contents' rows="10" class="form-control"><c:out value="${question.contents}"/></textarea>
-							</div>
+              	<div class="form-group">
+					<input type="hidden" class="form-control" name="question_num" value='<c:out value="${question.question_num}"/>' readonly="readonly">
+				</div>
+				<div class="form-group">
+					아이디 <input type="text" class="form-control" name = "userid" value = '<sec:authentication property = "principal.username"/>' readonly="readonly">
+				</div>
+				<div class="form-group">
+					제목<input type="text" class="form-control" name='title' value='<c:out value="${question.title}"/>'>
+				</div>
+				<div class="form-group">
+					내용<textarea name='contents' rows="10" class="form-control"><c:out value="${question.contents}"/></textarea>
+				</div>
               <div class="form-group">
-								첨부파일: 
-                <input type="file" name="uploadFile" value='<c:out value="${question.title}"/>' multiple>
-                <div style="position: relative; bottom: 37px;">
-              </div>
-							</div>
+					첨부파일:<input type="file" name="uploadFile" value='<c:out value="${question.title}"/>' multiple>
+                	<div style="position: relative; bottom: 37px;"></div>
+			  </div>
               <div style="float: right;">
                 <a href="/front/question/myQuestion"><button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">수정하기</button></a>
               </div>
               </form>
               <div style="float: right; margin-right: 10px;">
-              <a href="/front/question/FAQ"><button type="button" class="btn btn-primary" style="position: relative; left: 100px;">취소</button></a>
+              <a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="position: relative; left: 100px;">취소</button></a>
               </div>
 				</div>
 			</div>
