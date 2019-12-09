@@ -27,7 +27,7 @@
 <body>
 
 <!-- 소모임 페이지 상단 이미지 / 이름 -->
-<Header class="meeting-page-name-space" style="background: url(/resources/img/meeting.jpg) no-repeat center; background-size: cover;">
+<Header class="meeting-page-name-space" style="background: url(/resources/upload/<c:out value="${getInfo.meeting_Profile}" />) no-repeat center; background-size: cover;">
 	<div class="meeting-overlay py-5">
 		<div class="container py-lg-5">
 			<div class="text-center py-5">
@@ -48,7 +48,7 @@
         <div class="meeting-menu1">
           <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="./main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="./board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./appointment/list">정모</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
           <li class="mr-3 ml-3 mt-3 mb-3"><a href=".">수정하기</a>
@@ -109,7 +109,7 @@
 <!-- //소모임 소개 -->
 
 <!-- 모임 가입 히든 폼 -->
-<form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+<form id="frm" action="./main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
