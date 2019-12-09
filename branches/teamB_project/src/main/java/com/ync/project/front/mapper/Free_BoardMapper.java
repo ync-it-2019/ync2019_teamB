@@ -20,9 +20,9 @@ public interface Free_BoardMapper {
 
 	public List<Free_BoardVO> getListWithPaging(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num); //글 목록 페이징
 
-	public void insert(Free_BoardVO board);
+	public void insert(@Param("board") Free_BoardVO board, @Param("meeting_num") Long meeting_num);
 
-	public Integer insertSelectKey(Free_BoardVO board);
+	public Integer insertSelectKey(@Param("board") Free_BoardVO board, @Param("meeting_num") Long meeting_num);
 
 	public Free_BoardVO read(Long free_board_num);  //글 상세보기   모임 번호 필요?
 
