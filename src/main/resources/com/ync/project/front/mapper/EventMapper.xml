@@ -28,16 +28,16 @@
 			contents,
 			image
 			FROM teamb_event
-			WHERE 
+			WHERE SYSDATE >= event_start_date
+  			AND SYSDATE < event_end_date 
+  			AND
   		]]>
 		<include refid="criteria"></include> 
       
 		<![CDATA[    
       			rownum <= #{pageNum} * #{amount}
       			)
-  		WHERE rn > (#{pageNum} -1) * #{amount}  
-  		AND SYSDATE >= event_start_date
-  		AND SYSDATE < event_end_date 
+  	WHERE rn > (#{pageNum} -1) * #{amount}  
 		]]>
 	</select>
 	

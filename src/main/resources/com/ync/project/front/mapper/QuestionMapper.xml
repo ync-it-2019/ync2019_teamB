@@ -4,7 +4,18 @@
 	
 	<!-- 게시글 상세 보기 -->
 	<select id="read" resultType="com.ync.project.domain.QuestionVO">
-		SELECT *
+		SELECT question_num,
+			   userid,
+			   title,
+			   contents,
+			   files,
+			   write_date,
+			   answer_whether,
+			   answer,
+			   answer_writer,
+			   answer_date,
+			   DECODE(answer_whether, 'Y' , '처리완료' ,
+                              	   	  'N' , '처리중') YN
 		FROM   teamb_1to1_question
 		WHERE  question_num = #{question_num}
 	</select>
@@ -49,7 +60,9 @@
 	SELECT  question_num,
 			title,
 			write_date,
-			answer_whether
+			answer_whether,
+			DECODE(answer_whether, 'Y' , '처리완료' ,
+                              	   'N' , '처리중') YN
 	FROM    (SELECT /*+INDEX_DESC(teamb_1to1_question xpkteamb_1to1_question) */
 			rownum rn,
 			question_num,

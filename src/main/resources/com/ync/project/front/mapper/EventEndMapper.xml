@@ -27,9 +27,9 @@
       
 		<![CDATA[    
       			rownum <= #{pageNum} * #{amount}
+      		AND   SYSDATE >= event_end_date
       			)
-  		WHERE rn > (#{pageNum} -1) * #{amount}   
-  		AND   SYSDATE >= event_end_date
+  	WHERE rn > (#{pageNum} -1) * #{amount}
 		]]>
 	</select>
 	

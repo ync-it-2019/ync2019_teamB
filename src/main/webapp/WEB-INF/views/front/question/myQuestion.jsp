@@ -32,14 +32,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 		});
-		
-		// 상세보기 클릭 이벤트
-		$(".move").on("click",function(e) {
-			e.preventDefault();
-			actionForm.append("<input type='hidden' name='notice_num' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/front/notice/get");
-			actionForm.submit();
-		});
 	});
 </script>
     <style media="screen">
@@ -110,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <td><c:out value="${question.question_num}" /></td>
               <td class="move over1" onClick="location.href='/front/question/get?question_num=<c:out value="${question.question_num}" />'"><c:out value="${question.title}" /></td>
               <td><fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /></td>
-              <td><c:out value="${question.answer_whether}" /></td>
+              <td>${question.yn}</td>
             </tr>
           </tbody>
           </c:forEach>
