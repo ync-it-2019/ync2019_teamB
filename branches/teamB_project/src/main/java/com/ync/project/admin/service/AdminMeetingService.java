@@ -13,7 +13,7 @@ import com.ync.project.domain.MeetingVO;
   */
 public interface AdminMeetingService {
 	// 글 상세보기
-	public MeetingVO read(int meeting_Num);
+	public MeetingVO read(Long meeting_Num);
 	
 	// 전체 글 목록
 	public List<MeetingVO> getList();

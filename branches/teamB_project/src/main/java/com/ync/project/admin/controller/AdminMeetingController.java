@@ -1,7 +1,16 @@
 package com.ync.project.admin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ync.project.admin.service.AdminMeetingService;
+import com.ync.project.domain.Criteria;
+import com.ync.project.domain.PageDTO;
 
 import lombok.extern.log4j.Log4j;
 /**
@@ -12,7 +21,12 @@ import lombok.extern.log4j.Log4j;
  */
 @Controller
 @Log4j
+@RequestMapping("/admin/meeting/*")
 public class AdminMeetingController {
+	
+	@Autowired
+	private AdminMeetingService service;
+	
 	/**
 	  * @Method 설명 : admin/meeting/list.jsp 호출
 	  * @Method Name : AdminMeetingList
@@ -20,12 +34,16 @@ public class AdminMeetingController {
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-	@GetMapping(value = "/admin/meeting/list")
-	public String AdminMeetingList() {
+	@GetMapping("/list")
+	public void AdminMeetingList(Criteria cri, Model model) {
 
 		log.info("Meeting List get page!");
+		
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	
-		return "admin/meeting/list";
 	}
 	
 	/**
@@ -35,11 +53,10 @@ public class AdminMeetingController {
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-	@GetMapping(value = "/admin/meeting/detail")
-	public String AdminMeetingDetail() {
+	@GetMapping("/detail")
+	public void AdminMeetingDetail(@RequestParam("meeting_num") Long meeting_num, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Meeting Detail get page!");
 	
-		return "admin/meeting/detail";
 	}
 }

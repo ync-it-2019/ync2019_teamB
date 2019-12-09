@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ync.project.admin.mapper.AdminMemberMapper">
+<mapper namespace="com.ync.project.admin.mapper.AdminMeetingMapper">
 
-	<resultMap type="com.ync.project.domain.MemberVO" id="memberMap">
-		<id property="userid" column="userid"/>
+	<resultMap type="com.ync.project.domain.MeetingVO" id="meetingMap">
+		<id property="meeting_Num" column="meeting_num"/>
+		<result property="meeting_Num" column="meeting_num"/>
+		<result property="meeting_Name" column="meeting_name"/>
+		<result property="introduce" column="introduce"/>
 		<result property="userid" column="userid"/>
-		<result property="userpw" column="userpw"/>
-		<result property="name" column="name"/>
-		<result property="phone" column="phone"/>
-		<result property="email" column="email"/>
-		<result property="profile" column="profile"/>
-		<result property="hobby" column="hobby"/>
-		<result property="adress" column="adress"/>
-		<collection property="authList" resultMap="authMap">
-		</collection> 
-	</resultMap>
-	
-	<resultMap type="com.ync.project.domain.AuthVO" id="authMap">
-		<result property="userid" column="userid"/>
-		<result property="auth" column="auth"/>
+		<result property="meeting_Profile" column="meeting_profile"/>
+		<result property="meeting_Adress" column="meeting_adress"/>
+		<result property="meeting_Hobby" column="meeting_hobby"/>
 	</resultMap>
 	
 	<sql id="criteria">
@@ -47,44 +39,38 @@
 	Spring Security의 기본 사용법과 다르게 tbl_member에 권한 컴럼(auth)을
 	넣어서 사용하기에 기본 사용법과 달라진다.
 	-->
-	<select id="read" resultMap="memberMap">
-	SELECT	name,
+	<select id="read" resultMap="meetingMap">
+	SELECT	meeting_num,
+			meeting_name,
+			introduce,
 			userid,
-			userpw,
-			phone,
-			email,
-			profile,
-			hobby,
-			adress,
-			auth
-	FROM	teamb_member
-	WHERE	userid = #{userid} 
+			meeting_profile,
+			meeting_adress,
+			meeting_hobby
+	FROM	teamb_meeting
+	WHERE	meeting_num = #{meeting_Num} 
 	</select>
 	
 	<!-- 페이징 -->
-	<select id="getListWithPaging" resultType="com.ync.project.domain.MemberVO">
+	<select id="getListWithPaging" resultType="com.ync.project.domain.MeetingVO">
 	<![CDATA[
-	SELECT  name,
+	SELECT  meeting_num,
+			meeting_name,
+			introduce,
 			userid,
-			userpw,
-			phone,
-			email,
-			profile,
-			hobby,
-			adress,
-			auth
-	FROM    (SELECT /*+INDEX_DESC(teamb_member xpkteamb_member) */
+			meeting_Profile,
+			meeting_Adress,
+			meeting_Hobby
+	FROM    (SELECT /*+INDEX_DESC(teamb_meeting xpkteamb_meeting) */
 			rownum rn,
-			name,
+			meeting_num,
+			meeting_name,
+			introduce,
 			userid,
-			userpw,
-			phone,
-			email,
-			profile,
-			hobby,
-			adress,
-			auth
-			FROM teamb_member
+			meeting_Profile,
+			meeting_Adress,
+			meeting_Hobby
+			FROM teamb_meeting
 			WHERE 
 	]]>
 	<include refid="criteria"></include> 
@@ -97,7 +83,7 @@
 	
 	<select id="getTotalCount" resultType="int">
 	
-		select count(*) from teamb_member
+		select count(*) from teamb_meeting
 		
 	</select>
 
