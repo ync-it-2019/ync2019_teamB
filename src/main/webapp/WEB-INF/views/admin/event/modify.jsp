@@ -146,6 +146,7 @@ $(document).ready(function() {
 	var typeTag = $("input[name='type']").clone();
 	
 	$("button[data-oper='list']").on("click", function(e){
+		$("input[name='event_num']").remove();
 		operForm.attr("action","/admin/event/list").submit();
 	});
 	
