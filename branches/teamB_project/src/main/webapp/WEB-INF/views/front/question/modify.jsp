@@ -37,7 +37,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //google fonts -->
 	
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <!-- //header -->
@@ -77,39 +76,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-lg-14">
             <h4>1:1문의</h4>
             <hr>
-            <form role="form" action="/front/question/write" method="post" enctype="multipart/form-data">
+            <form role="form" action="/front/question/modify" method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name='files' value=" ">
 							<div class="form-group">
                 문의 분류 &nbsp;
-                <select name="abc">
-                <option>계정</option>
-                <option>모임</option>
-                <option>기타</option>
+              <select name="title" id="selectBox">
+                <option>[계정]</option>
+                <option>[모임]</option>
+                <option>[기타]</option>
               </select>
 							</div>
               <hr>
+              			<div class="form-group">
+								<input type="hidden" class="form-control" name="question_num" value='<c:out value="${question.question_num}"/>' readonly="readonly">
+							</div>
 							<div class="form-group">
 								아이디 <input type="text" class="form-control" name = "userid"
                         value = '<sec:authentication property = "principal.username"/>' readonly="readonly">
 							</div>
 							<div class="form-group">
-								제목<input type="text" id="to" class="form-control" name='title'>
+								제목<input type="text" class="form-control" name='title' value='<c:out value="${question.title}"/>'>
 							</div>
 							<div class="form-group">
-								내용<textarea name='contents' rows="10" class="form-control"></textarea>
+								내용<textarea name='contents' rows="10" class="form-control"><c:out value="${question.contents}"/></textarea>
 							</div>
               <div class="form-group">
 								첨부파일: 
-                <input type="file" name="uploadFile" multiple>
+                <input type="file" name="uploadFile" value='<c:out value="${question.title}"/>' multiple>
                 <div style="position: relative; bottom: 37px;">
               </div>
 							</div>
               <div style="float: right;">
-                <a href="/front/question/myQuestion"><button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">문의하기</button></a>
+                <a href="/front/question/myQuestion"><button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">수정하기</button></a>
               </div>
-              <input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
               </form>
               <div style="float: right; margin-right: 10px;">
               <a href="/front/question/FAQ"><button type="button" class="btn btn-primary" style="position: relative; left: 100px;">취소</button></a>
