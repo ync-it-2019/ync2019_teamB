@@ -75,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h6 class="card-title"><b>${question.title}</b></h6>
 						<ul class="blog-info my-2">
 							<li class="mr-sm-4 mr-2">등록일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /> </li>
-							<li class="mr-sm-4 mr-2"> 처리상태: ${question.answer_whether}</li><br>
+							<li class="mr-sm-4 mr-2"> 처리상태: ${question.yn}</li><br>
 						</ul>
 						<hr>
 							<div class="mt-4">
@@ -88,7 +88,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
 						<div class="comment-top" style="position: relative; top: 60px;">
 							<a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
-              <a href="/front/question/modify"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
+              <c:if test="${question.yn == '처리중'}">
+              	<a href="/front/question/modify"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
+              </c:if>
             </div>
           </div>
         </div>
