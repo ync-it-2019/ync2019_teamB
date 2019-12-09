@@ -81,11 +81,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="mt-4">
 								<p class="card-text">${question.contents}</p>
 							</div>
+				<c:if test="${question.yn == '처리완료'}">
             	<div>
               <hr>
-              <b>답변:</b><br>
-              해당 질문에 대한 답변이 들어오는 공간입니다.
+              <b>답변</b>
+              <div style="float: right; margin-right: 30px">${question.answer_date}</div>
+              <br><br>
+              안녕하십니까 답변자 <b>${question.answer_writer}</b>입니다.<br>
+              ${question.answer}
             </div>
+            </c:if>
 						<div class="comment-top" style="position: relative; top: 60px;">
 							<a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
               <c:if test="${question.yn == '처리중'}">

@@ -102,7 +102,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <td><c:out value="${question.question_num}" /></td>
               <td class="move over1" onClick="location.href='/front/question/get?question_num=<c:out value="${question.question_num}" />'"><c:out value="${question.title}" /></td>
               <td><fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /></td>
-              <td>${question.yn}</td>
+              <c:if test="${question.yn == '처리완료'}">
+              <td><div style="color:green;">${question.yn}</div></td>
+              </c:if>
+              <c:if test="${question.yn == '처리중'}">
+              <td><div style="color:red;">${question.yn}</div></td>
+              </c:if>
             </tr>
           </tbody>
           </c:forEach>
