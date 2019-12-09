@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Furnish Interior Category Flat Bootstrap Responsive Web Template | Creat Account Page :: w3layouts</title>
+<title>牛모임 :: 모임 생성</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <meta name="keywords" content=" Furnish Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h3 class="heading mb-sm-5 mb-4 text-center">Create Meeting</h3>
 
 		<div class="login-form">
-			<form action="/front/meeting/meetingCreate" method="post" enctype="multipart/form-data">
+			<form action="./meetingCreate" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-4 text-md-right">
 						<label>모임 이름:</label>
@@ -145,12 +145,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<input type="hidden" name='meeting_Profile' value=" ">
 				
 				<input type="hidden" name="meeting_num" value="${getMeetingNum.getMeetingNum().meeting_Num + 1}">
-				
-				
-				
-				
-				
-				
 				
 			</form>
 		</div>
