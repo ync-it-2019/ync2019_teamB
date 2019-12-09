@@ -69,21 +69,21 @@ public class AdminQuestionController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
-//	/**
-//	  * @Method 설명 : admin/question/detail.jsp 호출
-//	  * @Method Name : AdminQuestionDetail
-//	  * @Date : 2019. 12. 08.
-//	  * @작성자 : 서영준
-//	  * @return call jsp view
-//	  */
-//	@GetMapping("/detail")
-//	public void AdminQuestionDetail(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
-//
-//		log.info("Question Detail get page!");
-//		
-//		model.addAttribute("question", service.read(question_num));
-//	}
-//	
+	/**
+	  * @Method 설명 : admin/question/detail.jsp 호출
+	  * @Method Name : AdminQuestionDetail
+	  * @Date : 2019. 12. 08.
+	  * @작성자 : 서영준
+	  * @return call jsp view
+	  */
+	@GetMapping("/detail")
+	public void AdminQuestionDetail(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
+
+		log.info("Question Detail get page!");
+		
+		model.addAttribute("question", service.read(question_num));
+	}
+	
 //	/**
 //	  * @Method 설명 : admin/question/create.jsp 호출
 //	  * @Method Name : AdminQuestionCreate
