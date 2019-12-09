@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ync.project.admin.mapper.AdminQuestionMapper;
+import com.ync.project.domain.AnswerVO;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.QuestionVO;
 
@@ -50,11 +51,11 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	}
 	
 	@Override
-	public void register(QuestionVO question) {
+	public void register(AnswerVO answer) {
 		
-		log.info("register......." + question);
+		log.info("register......." + answer);
 		
-		mapper.insertSelectKey(question);
+		mapper.insertSelectKey(answer);
 	}
 	
 	@Override

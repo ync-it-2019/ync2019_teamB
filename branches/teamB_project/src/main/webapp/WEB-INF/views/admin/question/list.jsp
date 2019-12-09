@@ -132,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                               <th style="width:60px;">No</th>
                               <th style="width:140px;">카테고리</th>
                               <th style="width:440px; text-align:center;">제목</th>
-                              <th data-breakpoints="xs">작성자</th>
+                              <th data-breakpoints="xs">질문자</th>
                               <th data-breakpoints="xs" class="center">작성일</th>
                               <th data-breakpoints="xs sm md" data-title="DOB" class="text-right">비고</th>
                             </tr>

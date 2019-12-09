@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <h3 class="center">질문</h3>
                   <div class="compose-mail">
                       <div class="form-group">
-                        <label class="">작성자</label>
+                        <label class="">질문자</label>
                         <input type="text" tabindex="1" id="to" class="form-control" value="${question.userid}" readonly>
                       </div>
                       <div class="form-group">
@@ -61,11 +61,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <div class="form-group">
                         <label class="">비고</label>
                         <c:if test="${question.answer_whether eq 'N'}">
-                        <input type="text" tabindex="1" id="to" class="form-control" style="color:red;" value="처리중" readonly>
-                          </c:if>
-                          <c:if test="${question.answer_whether eq 'Y'}">
-                          	<input type="text" tabindex="1" id="to" class="form-control" style="color:green;" value="답변완료" readonly>
-                          </c:if>
+                        	<input type="text" tabindex="1" id="to" class="form-control" style="color:red;" value="처리중" readonly>
+                        </c:if>
+                        <c:if test="${question.answer_whether eq 'Y'}">
+                         	<input type="text" tabindex="1" id="to" class="form-control" style="color:green;" value="답변완료" readonly>
+                        </c:if>
                       </div>
                       <div class="form-group">
                         <label class="">제목</label>
@@ -79,17 +79,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div class="compose-mail">
                       <div class="form-group">
                         <label class="">작성자</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="" readonly>
+                        <input type="text" tabindex="1" id="to" class="form-control" value="${question.answer_writer}" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">작성일</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="" readonly>
+                        <input type="text" tabindex="1" id="to" class="form-control" value="${question.answer_date}" readonly>
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9" readonly></textarea>
+                        <textarea class="wysihtml5 form-control" rows="9" readonly>${question.answer}</textarea>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" data-oper='create' style="width:100px;">답변</button>
+                      <c:if test="${question.answer_whether eq 'N'}">
+                        	<button class="btn btn-primary btn-sm" data-oper='create' style="width:100px;">답변</button>
+                        </c:if>
+                        <c:if test="${question.answer_whether eq 'Y'}">
+                        
+                        </c:if>
                       </div>
                     <button class="btn btn-sm" data-oper='list'>목록</button>
                   </div>
@@ -145,6 +150,8 @@ $(document).ready(function() {
 	});
 	
 	$("button[data-oper='create']").on("click", function(e){
+		$("input[id='token']").remove();
+		$("input[name='ck_code']").remove();
 		operForm.attr("action","/admin/question/create").submit();
 	});
 	

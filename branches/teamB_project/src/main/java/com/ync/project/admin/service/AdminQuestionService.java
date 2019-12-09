@@ -2,6 +2,7 @@ package com.ync.project.admin.service;
 
 import java.util.List;
 
+import com.ync.project.domain.AnswerVO;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.QuestionVO;
 
@@ -21,8 +22,8 @@ public interface AdminQuestionService {
 	// 글 목록 페이징 
 	public List<QuestionVO> getListWithPaging(Criteria cri);
 	
-	// 이벤트 글 쓰기
-	public void register(QuestionVO question);
+	// 글 쓰기
+	public void register(AnswerVO answer);
 	
 ////추가(전체 글 개수)
 	public int getTotal(Criteria cri);
