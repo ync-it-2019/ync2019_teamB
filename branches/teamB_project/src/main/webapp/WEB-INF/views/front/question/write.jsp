@@ -37,7 +37,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //google fonts -->
 	
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <!-- //header -->
@@ -82,10 +81,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="hidden" name='files' value=" ">
 							<div class="form-group">
                 문의 분류 &nbsp;
-                <select name="abc">
-                <option>계정</option>
-                <option>모임</option>
-                <option>기타</option>
+              <select name="title" id="selectBox">
+                <option>[계정]</option>
+                <option>[모임]</option>
+                <option>[기타]</option>
               </select>
 							</div>
               <hr>
