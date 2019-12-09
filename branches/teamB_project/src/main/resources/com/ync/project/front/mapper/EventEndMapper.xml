@@ -21,13 +21,13 @@
 			contents,
 			image
 			FROM teamb_event
-			WHERE 
+			WHERE SYSDATE >= event_end_date
+			AND
   		]]>
 		<include refid="criteria"></include> 
       
 		<![CDATA[    
       			rownum <= #{pageNum} * #{amount}
-      		AND   SYSDATE >= event_end_date
       			)
   	WHERE rn > (#{pageNum} -1) * #{amount}
 		]]>
@@ -37,8 +37,9 @@
 		select count(*) from teamb_event where 
 		
 		<include refid="criteria"></include> 
-		
+		<![CDATA[  
 		event_num > 0
-		
+		AND SYSDATE >= event_end_date
+		]]>
 	</select>
 </mapper>
