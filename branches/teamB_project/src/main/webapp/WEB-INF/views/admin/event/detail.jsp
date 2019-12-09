@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--main content end-->
   </section>
   <form id='operForm' action="/admin/event/modify" method="get">
-  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   	<input type='hidden' name='event_num' value='<c:out value="${event.event_num}"/>'>
   	<input type='hidden' name='ck_code' value='<c:out value="${event.event_num}"/>'>
   	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
@@ -137,6 +137,7 @@ $(document).ready(function() {
 	var operForm = $("#operForm");
 
 	$("button[data-oper='modify']").on("click", function(e){
+		$("input[id='token']").remove();
 		operForm.attr("action","/admin/event/modify").submit();
 	});
 	
@@ -148,6 +149,9 @@ $(document).ready(function() {
 	});
 	
 	$("button[data-oper='list']").on("click", function(e){
+		$("input[id='token']").remove();
+		$("input[name='event_num']").remove();
+		$("input[name='ck_code']").remove();
 		operForm.attr("action","/admin/event/list").submit();
 	});
 	
