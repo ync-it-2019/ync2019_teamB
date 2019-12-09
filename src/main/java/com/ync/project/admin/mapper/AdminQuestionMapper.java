@@ -2,6 +2,7 @@ package com.ync.project.admin.mapper;
 
 import java.util.List;
 
+import com.ync.project.domain.AnswerVO;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.QuestionVO;
 
@@ -18,8 +19,8 @@ public interface AdminQuestionMapper {
 	public QuestionVO read(Long question_num);
 	//목록 페이징
 	public List<QuestionVO> getListWithPaging(Criteria cri);
-	//게시 글 쓰기
-	public Integer insertSelectKey(QuestionVO question);
+	//답변 글 쓰기
+	public Integer insertSelectKey(AnswerVO answer);
 	
 	public int getTotalCount(Criteria cri);
 }

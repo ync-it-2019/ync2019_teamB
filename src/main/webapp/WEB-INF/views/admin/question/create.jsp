@@ -29,6 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <link href="/resources/css/admin/admin_style.css" rel="stylesheet">
   <!-- //bootstrap-css -->
   <script src="/resources/js/admin/jquery2.0.3.min.js"></script>
+
 </head>
 
 <body>
@@ -49,29 +50,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body">
                   <h3 class="center">1:1 문의 답변</h3>
                   <div class="compose-mail">
-                    <form role="form-horizontal" method="post">
+                    <form id="operForm" action="/admin/question/create" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                       <div class="form-group">
-                        <label class="">작성자:</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="운영자_a" readonly>
+                        <label class="">질문자:</label>
+                        <input type="text" tabindex="1" id="to" name="answer_writer" class="form-control" value="user01" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">작성일:</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="2019.10.28" readonly>
+                        <input type="text" tabindex="1" id="to" name="answer_date" class="form-control" value="${date_time}" readonly>
+
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9"></textarea>
+                        <textarea class="wysihtml5 form-control" name="answer" rows="9"></textarea>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/inquiry/list'"><i class="fa fa-check"></i> 완료</button>
-                        <button class="btn btn-sm" onClick="location.href='/admin/inquiry/list'"><i class="fa fa-times"></i> 취소</button>
+                        <button type="submit" class="btn btn-primary btn-sm" data-oper="create"><i class="fa fa-check"></i> 완료</button>
+                        <button type="button" class="btn btn-sm" data-oper="detail"><i class="fa fa-times"></i> 취소</button>
                       </div>
                     </form>
                   </div>
-                  <button class="btn btn-sm" onClick="location.href='/admin/inquiry/list'">목록</button>
+                  <button class="btn btn-sm" data-oper="list">목록</button>
                 </div>
               </section>
             </div>
           </div>
+          
+        <form id='actionForm' action="/admin/question/list" method='get'>
+        <input type='hidden' name='question_num' value='${question_num}'>
+		<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+		<input type='hidden' name='amount' value='${cri.amount}'>
+		<input type='hidden' name='type' value='${cri.type }'>
+		<input type='hidden' name='keyword'	value='${cri.keyword }'>
+		</form>
 
           <!-- page end-->
         </div>
@@ -94,6 +105,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+		var actionForm = $("#actionForm");
+		
+		var operForm = $("#operForm");
+		
+		var question_num = $("input[name='question_num']").clone();
+		var pageNumTag = $("input[name='pageNum']").clone();
+		var amountTag = $("input[name='amount']").clone();
+		var keywordTag = $("input[name='keyword']").clone();
+		var typeTag = $("input[name='type']").clone();
+		
+		$("button[data-oper='list']").on("click", function(e){
+			 actionForm.submit();
+			});
+		
+		$("button[data-oper='detail']").on("click", function(e){
+			actionForm.attr('action', '/admin/question/detail');
+			actionForm.submit();
+			});
+		
+		$("button[data-oper='create']").on("click", function(e){
+			operForm.append(question_num);
+			operForm.append(pageNumTag);
+			operForm.append(amountTag);
+			operForm.append(keywordTag);
+			operForm.append(typeTag);
+			operForm.submit();
+			});
+		
+	});
+</script>
 </body>
 
 </html>
