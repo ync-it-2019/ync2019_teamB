@@ -26,7 +26,7 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	private MeetingMainMapper mapper;
 	
 	@Override
-	public MeetingVO getInfo(int meeting_Num) {
+	public MeetingVO getInfo(Long meeting_Num) {
 		
 		log.info("getInfo......" + meeting_Num);
 		
@@ -34,7 +34,7 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	}
 	
 	@Override
-	public AppointmentVO getAppointment(int meeting_Num) {
+	public AppointmentVO getAppointment(Long meeting_Num) {
 		
 		log.info("getAppointment......" + meeting_Num);
 		
@@ -43,7 +43,7 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	}
 	
 	@Override
-	public List<Meeting_MemberVO> getMemberList(int meeting_Num) {
+	public List<Meeting_MemberVO> getMemberList(Long meeting_Num) {
 		
 		log.info("getMemberList......" + meeting_Num);
 		
@@ -67,10 +67,18 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	}
 	
 	@Override
-	public Meeting_MemberVO getCount(int meeting_Num) {
+	public Meeting_MemberVO getCount(Long meeting_Num) {
 		
 		log.info("getCount......");
 		
 		return mapper.getCount(meeting_Num);
+	}
+	
+	@Override
+	public void meetingModify(MeetingVO meeting) {
+		
+		log.info("meetingModify......" + meeting);
+		
+		mapper.meetingModify(meeting);
 	}
 }

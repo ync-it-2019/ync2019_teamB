@@ -51,7 +51,7 @@
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="./appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href=".">수정하기</a>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
         </div>

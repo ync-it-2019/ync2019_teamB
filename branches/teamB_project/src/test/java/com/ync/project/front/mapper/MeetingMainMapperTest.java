@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_MemberVO;
 
 import lombok.extern.log4j.Log4j;
@@ -34,7 +35,7 @@ public class MeetingMainMapperTest {
 //	@Test
 //	public void testMeetingRead() {
 //
-//		MeetingVO meeting = mapper.meeting_Read(1);
+//		MeetingVO meeting = mapper.meeting_Read(1L);
 //
 //		log.info(meeting);
 //
@@ -49,7 +50,7 @@ public class MeetingMainMapperTest {
 //	@Test
 //	public void testAppointmentRead() {
 //
-//		AppointmentVO appointment = mapper.appointment_Read(1);
+//		AppointmentVO appointment = mapper.appointment_Read(1L);
 //
 //		log.info(appointment);
 //
@@ -64,7 +65,7 @@ public class MeetingMainMapperTest {
 //	@Test
 //	public void testGetList() {
 //		
-//		List<Meeting_MemberVO> meeting_Member = mapper.getList(1);
+//		List<Meeting_MemberVO> meeting_Member = mapper.getList(1L);
 //		
 //		for(Meeting_MemberVO m: meeting_Member) {
 //			log.info(m);
@@ -115,10 +116,34 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 4.
 	  * @작성자 : 이주현
 	  */
+//	@Test
+//	public void testGetCount() {
+//		
+//		Meeting_MemberVO mMember = mapper.getCount(1L);
+//		log.info(mMember);
+//	}
+	
+	 /**
+	  * @Method 설명 : 모임정보수정 테스트
+	  * @Method Name : testMeetingModify
+	  * @Date : 2019. 12. 10.
+	  * @작성자 : 이주현
+	  */
 	@Test
-	public void testGetCount() {
+	public void testMeetingModify() {
 		
-		Meeting_MemberVO mMember = mapper.getCount(1);
-		log.info(mMember);
+		MeetingVO meeting = new MeetingVO();
+		
+		meeting.setIntroduce("모임소개입니다.");
+		meeting.setMeeting_Profile("image.jpg");
+		meeting.setMeeting_Name("모임 이름 수정2");
+		meeting.setMeeting_Adress("대구광역시");
+		meeting.setMeeting_Hobby("게임/오락");
+		meeting.setMeeting_Num(50L);
+
+		log.info(meeting);
+		
+		mapper.meetingModify(meeting);
 	}
+	
 }

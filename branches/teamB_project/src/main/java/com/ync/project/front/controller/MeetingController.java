@@ -50,7 +50,7 @@ public class MeetingController {
 	
 	//소모임 메인화면
 	@GetMapping(value = "/main")
-	public void main(Model model, @RequestParam("meeting_num") int meeting_num) {
+	public void main(Model model, @RequestParam("meeting_num") Long meeting_num) {
 
 		log.info("Meeting Info page!");
 		
@@ -171,5 +171,30 @@ public class MeetingController {
 		service3.insertMember(mMember);
 		
 		return "redirect:/";
+	}
+	
+	//모임 수정
+	@GetMapping(value = "/meetingModify")
+	public void meetingModify(Model model, @RequestParam("meeting_num") Long meeting_num) {
+				
+		model.addAttribute("getMeetingNum", service2);
+		
+		model.addAttribute("getInfo", service2.getInfo(meeting_num));
+		
+	}
+	
+	@PostMapping(value = "/meetingModify")
+	public String meetingModify(MultipartFile[] uploadFile, MeetingVO meeting, RedirectAttributes rttr) {
+		
+		for (MultipartFile multipartFile : uploadFile) {
+			// 실제로 upload된 file이 있을때만 upload 시킨다. 
+			if (multipartFile.getSize() > 0) {
+					meeting.setMeeting_Profile(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+			}
+		}
+		log.info("modify : " + meeting);
+		service2.meetingModify(meeting);	
+		
+		return "redirect:/front/meeting/main?meeting_num=" + meeting.getMeeting_Num();
 	}
 }
