@@ -10,6 +10,7 @@
 		<result property="meeting_Profile" column="meeting_profile"/>
 		<result property="meeting_Adress" column="meeting_adress"/>
 		<result property="meeting_Hobby" column="meeting_hobby"/>
+		<result property="meeting_count" column="meeting_count"/>
 	</resultMap>
 	
 	<!-- 검색 -->
@@ -115,20 +116,22 @@
 			meeting_name,
 			meeting_adress,
 			meeting_hobby
-			FROM teamb_meeting
+			FROM teamb_meeting A
 			WHERE 
   		]]>
 		<![CDATA[    
       			rownum <= #{cri.pageNum} * #{cri.amount}
-      			) A
+      			
+      		AND #{userid} IN (SELECT userid
+						  FROM	teamb_meeting_member B
+						  WHERE  A.MEETING_NUM = B.meeting_num)) C
   		WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
 	    AND 	#{userid} IN (SELECT userid
 						  FROM	teamb_meeting_member B
-						  WHERE  A.MEETING_NUM = B.meeting_num)  
+						  WHERE  C.MEETING_NUM = B.meeting_num)  
 		]]>
 	
 	</select>
-	
 	
 
 	
@@ -146,6 +149,8 @@
 				)
 	</insert>
 	
+	
+	
 	<select id="getTotalCount" resultType="int">
 		select count(*) from teamb_meeting where 
 		
@@ -153,6 +158,23 @@
 		
 		meeting_num > 0
 		
+	</select>
+	
+	<select id="getMyTotalCount" resultType="int">
+		select count(*) from teamb_meeting A 
+		where  meeting_num > 0
+		AND    #{userid} IN (SELECT userid
+						     FROM	teamb_meeting_member B
+						     WHERE  A.MEETING_NUM = B.meeting_num)
+		
+	</select>
+	
+	<select id="MeetingMemberCount" resultMap="meetingMap">
+	<![CDATA[
+		SELECT meeting_num, count(*) AS meeting_count
+		FROM   teamb_meeting_member
+		GROUP BY meeting_num
+		]]>
 	</select>
 	
 </mapper>
