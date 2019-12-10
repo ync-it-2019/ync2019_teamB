@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
               <div class="form-group">
 								첨부파일: 
-                <input type="file" name="uploadFile" multiple>
+                <input type="file" name="uploadFile">
                 <div style="position: relative; bottom: 37px;">
               </div>
 							</div>

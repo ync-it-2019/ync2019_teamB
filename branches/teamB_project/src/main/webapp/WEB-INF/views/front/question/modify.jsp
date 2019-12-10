@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					내용<textarea name='contents' rows="10" class="form-control"><c:out value="${question.contents}"/></textarea>
 				</div>
               <div class="form-group">
-					첨부파일:<input type="file" name="uploadFile" value='<c:out value="${question.title}"/>' multiple>
+					첨부파일:<input type="file" name="uploadFile" value='<c:out value="${question.files}"/>'/>
                 	<div style="position: relative; bottom: 37px;"></div>
 			  </div>
               <div style="float: right;">
