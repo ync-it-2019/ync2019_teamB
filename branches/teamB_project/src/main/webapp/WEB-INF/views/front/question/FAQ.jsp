@@ -84,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
 </div></td>
                    </tr>
@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
   </div></td>
                   </tr>
@@ -117,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
 </div></td>
                   </tr>
@@ -133,7 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
 </div></td>
                 </tr>
@@ -153,7 +153,7 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
 </div></td>
                 </tr>
@@ -170,7 +170,7 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
 </div></td>
                 </tr>
@@ -187,7 +187,7 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
 </div></td>
                 </tr>
@@ -204,7 +204,7 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 		<div onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login"><button type="button">문의하기</button></a></div>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-		<a href="/front/question/write"><button type="button">문의하기</button></a>
+		<a href="/front/question/write"><button type="button" style="cursor:pointer">문의하기</button></a>
 	</sec:authorize>
 </div></td>
                 </tr>

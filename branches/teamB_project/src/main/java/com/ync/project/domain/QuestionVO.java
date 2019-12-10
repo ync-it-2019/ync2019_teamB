@@ -23,4 +23,5 @@ public class QuestionVO {
 	private String answer;		  //답변내용
 	private Date answer_date;	  //답변날짜
 	private String answer_writer; //답변자 아이디
+	private String category; //답변자 아이디
 }

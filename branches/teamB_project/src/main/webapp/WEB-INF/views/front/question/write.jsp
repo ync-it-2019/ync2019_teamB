@@ -81,10 +81,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="hidden" name='files' value=" ">
 							<div class="form-group">
                 문의 분류 &nbsp;
-              <select name="title" id="selectBox">
-                <option>[계정]</option>
-                <option>[모임]</option>
-                <option>[기타]</option>
+              <select id="category" name="category">
+                <option>계정</option>
+                <option>모임</option>
+                <option>기타</option>
               </select>
 							</div>
               <hr>

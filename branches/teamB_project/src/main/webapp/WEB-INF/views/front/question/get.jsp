@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="row mt-lg-3">
           <div class="col-lg-14" style="border: 1px solid black; border-color: #E6E6E6">
           <div class="col-lg-13">
-						<h6 class="card-title"><b>${question.title}</b></h6>
+						<h6 class="card-title"><b>[${question.category}]${question.title}</b></h6>
 						<ul class="blog-info my-2">
 							<li class="mr-sm-4 mr-2">등록일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /> </li>
 							<li class="mr-sm-4 mr-2"> 처리상태: ${question.yn}</li><br>
@@ -83,11 +83,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 				<c:if test="${question.yn == '처리완료'}">
             	<div>
-              <hr>
+              <br><hr>
               <b>답변</b>
               <div style="float: right; margin-right: 30px">${question.answer_date}</div>
               <br><br>
-              안녕하십니까 답변자 <b>${question.answer_writer}</b>입니다.<br>
+              (답변자: <b>${question.answer_writer}</b>)<br><br>
               ${question.answer}
             </div>
             </c:if>

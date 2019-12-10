@@ -41,20 +41,21 @@ public class QuestionServiceTests {
 //		log.info(service.read(1L));
 //	}
 
-//	@Test
-//	public void testRegister() {
-//
-//		QuestionVO question = new QuestionVO();
-//		question.setUserid("user01");
-//		question.setTitle("새로 작성하는 글");
-//		question.setContents("새로 작성하는 내용");
-//		question.setFiles("dldldldl");
-//		question.setAnswer_whether("n");
-//
-//		service.register(question);
-//
-//		log.info("생성된 게시물의 번호: " + question.getQuestion_num());
-//	}
+	@Test
+	public void testRegister() {
+
+		QuestionVO question = new QuestionVO();
+		question.setUserid("user01");
+		question.setTitle("새로 작성하는 글");
+		question.setContents("새로 작성하는 내용");
+		question.setFiles("dldldldl");
+		question.setAnswer_whether("n");
+		question.setCategory("계정");
+
+		service.register(question);
+
+		log.info("생성된 게시물의 번호: " + question.getQuestion_num());
+	}
 
 	@Test
 	public void testUpdate() {
