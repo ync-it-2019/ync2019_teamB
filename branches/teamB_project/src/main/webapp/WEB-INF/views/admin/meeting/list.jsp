@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -47,7 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </header>
                 <div class="panel-body minimal">
                   <div class="table-inbox-wrap ">
-                    <table class="table table-inbox table-hover" style="table-layout: fixed">
+                    <table id="newTable" class="table table-inbox table-hover" style="table-layout: fixed">
                       <tbody>
                         <thead>
                           <tr>
@@ -59,87 +61,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th data-breakpoints="xs sm md" class="text-right">활동 지역</th>
                           </tr>
                         </thead>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">1</td>
-                          <td class="inbox-small-cells text_limit">우리동네 감주대장</td>
-                          <td class="view-message dont-show text_limit">서영준</td>
-                          <td class="view-message text_limit">그대는 꽃인가.. 술인가.. 왜 나를 취하게 하는가...
-                          </td>
-                          <td class="view-message inbox-small-cells text_limit">갬성...</td>
-                          <td class="view-message text-right">니맘속...</td>
+                        <c:forEach items="${list}" var="meeting" varStatus="status">
+                        <tr class="unread" name="move" value="${meeting.meeting_Num}">
+                          <td class=""><c:out value="${meeting.meeting_Num}" /></td>
+                          <td class="inbox-small-cells text_limit"><c:out value="${meeting.meeting_Name}" /></td>
+                          <td class="view-message dont-show text_limit"><c:out value="${meeting.userid}" /></td>
+                          <td class="view-message text_limit"><c:out value="${meeting.introduce}" /></td>
+                          <td class="view-message inbox-small-cells text_limit"><c:out value="${meeting.meeting_Hobby}" /></td>
+                          <td class="view-message text-right"><c:out value="${meeting.meeting_Adress}" /></td>
                         </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">2</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">3</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">4</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">5</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">6</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">7</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">8</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">9</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
-                        <tr class="unread" onClick="location.href='/admin/meeting/detail'">
-                          <td class="">10</td>
-                          <td class="inbox-small-cells text_limit"></td>
-                          <td class="view-message dont-show text_limit"></td>
-                          <td class="view-message text_limit"></td>
-                          <td class="view-message text_limitinbox-small-cells"></td>
-                          <td class="view-message text-right"></td>
-                        </tr>
+                        </c:forEach>
                       </tbody>
                     </table>
                   </div>
@@ -147,17 +78,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <footer>
                   <div class="row">
                     <div class="center">
-                      <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
+                    <!--  Pagination 시작 -->
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev}">
+							<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+						</c:if>
+						<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+						</c:if>
+					</ul>
+				</div>
+				<!--  Pagination 끝 -->
+				
+				<!-- Form 시작 -->
+				<form id='actionForm' action="/admin/meeting/list" method='get'>
+				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+				<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+				</form>
+				<!-- Form 끝 -->
                 </footer>
               </section>
             </div>
@@ -183,6 +128,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function() {
+		
+		var $form = $('<form></form>');
+		
+		var actionForm = $("#actionForm");
+		
+		var pageNumTag = $("input[name='pageNum']").clone();
+		var amountTag = $("input[name='amount']").clone();
+		var keywordTag = $("input[name='keyword']").clone();
+		var typeTag = $("input[name='type']").clone();
+	    var tk = $("input[id='token']").clone();
+		
+		 $("#newTable").on("click", "tr[name='move']", function(e) {
+			 
+		     $form.attr('action', '/admin/meeting/detail');
+		     $form.attr('method', 'get');
+		     $form.appendTo('body');
+		     
+		     var meeting_num = $(this).attr("value");
+		     
+			 var num = "<input type='hidden' name='meeting_num' value='" + meeting_num + "'>";
+			 
+		     $form.append(num);
+			 $form.append(pageNumTag);
+			 $form.append(amountTag);
+			 $form.append(keywordTag);
+			 $form.append(typeTag);
+			 
+			 $form.submit();
+		   });
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 </body>
 
 </html>
