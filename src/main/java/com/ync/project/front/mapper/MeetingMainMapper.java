@@ -15,13 +15,13 @@ import com.ync.project.domain.Meeting_MemberVO;
 public interface MeetingMainMapper {
 	
 	//모임 정보(모임 이름, 이미지, 소개)
-	public MeetingVO meeting_Read(int meeting_Num);
+	public MeetingVO meeting_Read(Long meeting_Num);
 	
 	//최근 정모
-	public AppointmentVO appointment_Read(int meeting_Num);
+	public AppointmentVO appointment_Read(Long meeting_Num);
 	
 	//모임 멤버
-	public List<Meeting_MemberVO> getList(int meeting_Num);
+	public List<Meeting_MemberVO> getList(Long meeting_Num);
 	
 	//모임 생성
 	public void meetingCreate(MeetingVO meeting);
@@ -30,6 +30,9 @@ public interface MeetingMainMapper {
 	public MeetingVO getMeetingNum();
 	
 	//모임인원수
-	public Meeting_MemberVO getCount(int meeting_Num);
+	public Meeting_MemberVO getCount(Long meeting_Num);
+	
+	//모임 수정
+	public void meetingModify(MeetingVO meeting);
 	
 }

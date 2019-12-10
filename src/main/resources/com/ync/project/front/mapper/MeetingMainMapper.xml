@@ -78,4 +78,17 @@
 		]]>
 	</select>
 	
+	<!-- 모임 수정 -->
+	<update id="meetingModify">
+	<![CDATA[
+		UPDATE	TEAMB_MEETING
+		SET		INTRODUCE = #{introduce},
+				MEETING_PROFILE = #{meeting_Profile},
+				MEETING_NAME = #{meeting_Name},
+				MEETING_ADRESS = #{meeting_Adress},
+				MEETING_HOBBY = #{meeting_Hobby}
+		WHERE	MEETING_NUM = #{meeting_Num}
+		]]>
+	</update>
+	
 </mapper>

@@ -1,7 +1,5 @@
 package com.ync.project.service;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ync.project.domain.MeetingVO;
-import com.ync.project.domain.MemberVO;
 import com.ync.project.front.service.MeetingMainService;
 
 import lombok.extern.log4j.Log4j;
@@ -34,22 +31,22 @@ public class MeetingMainServiceTests {
 //		log.info(service);
 //		assertNotNull(service);
 //	}
-	
+//	
 //	@Test
 //	public void testGetIntroduce() {
-//		log.info(service.getInfo(1));
+//		log.info(service.getInfo(1L));
 //	}
-	
+//	
 //	@Test
 //	public void testGetAppointment() {
-//		log.info(service.getAppointment(1));
+//		log.info(service.getAppointment(1L));
 //	}
-
+//
 //	@Test
 //	public void testGetMemberList() {
-//		service.getMemberList(1).forEach(board -> log.info(board));
+//		service.getMemberList(1L).forEach(board -> log.info(board));
 //	}
-	
+//	
 //	@Test
 //	public void testMeetingCreate() {
 //
@@ -66,7 +63,7 @@ public class MeetingMainServiceTests {
 //		
 //		service.meetingCreate(meeting);
 //	}
-	
+//	
 //	@Test
 //	public void testGetMeetingNum() {
 //		
@@ -74,14 +71,31 @@ public class MeetingMainServiceTests {
 //		
 //		service.getMeetingNum();
 //	}
-	
-	@Test
-	public void testGetCount() {
-		
-		log.info(service);
-		
-		service.getCount(1);
-	}
+//	
+//	@Test
+//	public void testGetCount() {
+//		
+//		log.info(service);
+//		
+//		service.getCount(1L);
+//	}
 
+	@Test
+	public void testMeetingModify() {
+
+		MeetingVO meeting = new MeetingVO();
+		
+		meeting.setIntroduce("수정 444");
+		meeting.setMeeting_Profile("");
+		meeting.setMeeting_Name("모임이름 수정 444");
+		meeting.setMeeting_Adress("대구광역시");
+		meeting.setMeeting_Hobby("게임/오락");
+		
+		meeting.setMeeting_Num(50L);
+
+		log.info(meeting);
+		
+		service.meetingModify(meeting);
+	}
 
 }
