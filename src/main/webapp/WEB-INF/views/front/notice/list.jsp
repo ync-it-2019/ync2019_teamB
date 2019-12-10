@@ -150,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <c:forEach items="${list}" var="notice">
         <tr>
          <td><c:out value="${notice.notice_num}" /></td>
-         <td class="move over1" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.title}" /></td>
+         <td class="move over1" style="cursor:pointer" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.title}" /></td>
          <td class="move" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.userid}" /></td>
          <td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.write_date}" /></td>
         </tr>
@@ -167,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword}"/>' />
 		<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
 		<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
-		<button value=""><span class="fa fa-search"></span></button>
+		<button value="" style="cursor:pointer"><span class="fa fa-search"></span></button>
 	</form>
 </div>
 
