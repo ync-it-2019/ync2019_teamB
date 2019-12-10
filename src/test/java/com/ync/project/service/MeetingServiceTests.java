@@ -49,17 +49,27 @@ public class MeetingServiceTests {
 //		service.getMyList(new Criteria(1, 10),"user01").forEach(board -> log.info(board));
 //	}
 	
-	@Test
-	public void testInsertMember() {
-		
-		Meeting_MemberVO mMember = new Meeting_MemberVO();
-		
-		mMember.setUserid("lee02");
-		mMember.setMeeting_num(33);
+//	@Test
+//	public void testInsertMember() {
+//		
+//		Meeting_MemberVO mMember = new Meeting_MemberVO();
+//		
+//		mMember.setUserid("lee02");
+//		mMember.setMeeting_num(33);
+//
+//		log.info(mMember);
+//		
+//		service.insertMember(mMember);
+//	}
+	
+//	@Test
+//	public void testmyList() {
+//		service.MeetingMemberCount().forEach(board -> log.info(board));
+//	}
 
-		log.info(mMember);
-		
-		service.insertMember(mMember);
+	@Test
+	public void test() {
+		service.MeetingMemberCount();
 	}
 
 }
