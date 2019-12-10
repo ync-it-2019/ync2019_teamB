@@ -1,8 +1,5 @@
 package com.ync.project.front.controller;
 
-import java.io.File;
-import java.sql.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,10 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ync.project.domain.Criteria;
-import com.ync.project.domain.EventVO;
 import com.ync.project.domain.PageDTO;
 import com.ync.project.domain.QuestionVO;
-import com.ync.project.front.service.MemberService;
 import com.ync.project.front.service.QuestionService;
 import com.ync.project.util.UploadUtils;
 
