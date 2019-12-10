@@ -1,4 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,13 +18,14 @@
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
+            
         }, false);
 
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
 
-        $(document).on('ready', function() {
+        $(document).on('ready', function() {        	
       $(".regular").slick({
         dots: true,
         infinite: true,
@@ -113,7 +119,7 @@
 		</ol>
 	</div>
 </div>
-<link href="../../../resources/css/style_J.css" rel='stylesheet' type='text/css' />
+<link href="/resources/css/style_J.css" rel='stylesheet' type='text/css' />
 
 
 <!-- //page details -->
@@ -125,72 +131,103 @@
     <div class="container">
     <div class="input-group">
       <h4 style="margin:5px 15px 0 0;">주제별 모임</h4>
-      <input type="text" class="form-control" placeholder="모임을 검색해보세요.">
+      <form id='meetingSearch' action="/front/meetingSearch" method='get'>
+      <input type="text" class="form-control" name='keyword' value='' placeholder="모임을 검색해보세요.">
+      <input type='hidden' name='type' value='N' />
+		<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
+		<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
           <span class="input-group-btn">
             <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> 검색</button>
           </span>
+      </form>
     </div>
     </div>
+    
       <div class="aside">
         <div class="login_area">
+        <sec:authorize access="isAnonymous()">
           <div class="login">
-            <a class="login_btn" href="#">로그인</a>
+            <a class="login_btn" href="/login">로그인</a>
           </div>
           <div class="user_find">
-            <a class="btn_join" href="*">회원가입</a>
+            <a class="btn_join" href="/register">회원가입</a>
           </div>
+       </sec:authorize>
+       <sec:authorize access="isAuthenticated()">
+       <div class="profile">
+            <a href="/front/myMeeting?userid=<sec:authentication property="principal.username"/>"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
+            <div>
+              <ul>
+                <li class="mypage"><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>"><c:out value="${member.name}" /> 님</a><span><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>">내정보</a></span></li>
+                <li>
+                  <ul>
+                    <!-- address + hobby = add_ho -->
+                    <li class="add_ho">지역 : <c:out value="${member.adress}" /></li>
+                    <li class="add_ho"><span  style="width:200px;">취미 : <c:out value="${member.hobby}" /></span>
+                        <div class="logout" align="right">
+                        <a href="/customLogout">로그아웃</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </sec:authorize>
           <hr>
-          <div class="arti1">#<a href="*">나만의 모임</a></div>
+          <div class="arti1"><a href="*">나만의 모임</a></div>
           <div class="arti2">#<a href="*">인맥 쌓기</a></div>
           <div class="arti3">#<a href="*">취미 생활 크루 찾기</a></div>
           <div class="notice">
-            <a href="#" class="plus">+더보기</a>
+            <a href="/front/notice/list" class="plus">+더보기</a>
             <p>공지사항</p>
-            <a href="#">[안내] 소모임 개설시 주의사항</a><br>
-            <a href="#">[안내] 牛모임 사이트가 개설되었습니다.</a><br>
-            <a href="#">[점검] 정기점검 안내</a>
+            <c:forEach items="${list3}" var="notice" begin="0" end="2" step="1" varStatus="status">
+            <a href="notice/get?notice_num=<c:out value="${notice.notice_num}" />"><c:out value="${notice.title}" /></a><br>
+            </c:forEach>
           </div>
-          <a href="#"><img src="../../../resources/img/event2.jpg" alt="" height="250px"></a>
-          <a href="#"><img src="../../../resources/img/FAQ.jpg" alt=""></a>
-
+          <c:forEach items="${list4}" var="event" begin="0" end="0" step="1" varStatus="status">
+          <a href="/front/event/get?event_num=<c:out value="${event.event_num}" />"><img src="/resources/upload/<c:out value="${event.image}" />" alt="" height="250px"></a>
+          </c:forEach>
+          <a href="/front/question/FAQ"><img src="/resources/img/FAQ.jpg" alt=""></a>
+  
         </div>
-
       </div>
+      
     <section class="regular slider">
-    <div class="sliderA">
-      <a href="#">게임/오락</a>
+    <div class="sliderA" hobby="ALL">
+	<a href="#">ALL</a>
     </div>
-    <div class="sliderA">
+	<div class="sliderA" hobby="게임/오락">
+	<a href="#">게임/오락</a>
+    </div>
+    <div class="sliderA" hobby="운동/스포츠">
       <a href="#">운동/스포츠</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="인문학/책/글">
       <a href="#">인문학/책/글</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="만화/애니">
       <a href="#">만화/애니</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="문화/예술">
       <a href="#">문화/예술</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="차/오토바이">
       <a href="#">차/오토바이</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="봉사활동">
       <a href="#">봉사활동</a>
     </div>
-    <div class="sliderA">
-      <a href="#">야구관람</a>
-    </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="요리/제조">
       <a href="#">요리/제조</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="여행">
       <a href="#">여행</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="댄스/무용">
       <a href="#">댄스/무용</a>
     </div>
-    <div class="sliderA">
+    <div class="sliderA" hobby="외국/언어">
       <a href="#">외국/언어</a>
     </div>
   </section>
@@ -198,192 +235,68 @@
 
 
 
-
   <h5>모임 전체</h5>
   <hr align="left" style="width:72%;">
 
-  <div class="row blog-grids">
-    <div class="col-lg-5 col-md-6 newsgrid1">
-      <div class="left-meeting">
-        <div class="">
-          <a href="#"><img src="../../../resources/img/6.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class="mt-4"><a href="#">ㅌㅏㄷㅏ 산을타다</a></b>
-          <h6>등산,,, 초보,,, 중급,, 모두 대환영,,!</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <div class="row blog-grids">
+  	<c:forEach items="${list}" var="meeting" varStatus="status">
+  	<div class="col-lg-5 col-md-6 newsgrid1">
+  	<c:choose>
+  		<c:when test="${status.count % 2 eq 1}">
+       		<div class="left-meeting">
+    	</c:when>
+    	<c:otherwise>
+    	<div class="right-meeting">
+    	</c:otherwise>
+  	</c:choose>
+  			<div class="">
+  			<a href="#"><img src="/resources/img/th.jpg" alt="news image" class="img-fluid"></a>
+        	</div>
+        	<div class="introduction">
+          		<b class="mt-4"><c:out value="${meeting.meeting_Name}" /></b>
+          		<h6><c:out value="${meeting.introduce}" /></h6>
+          		<ul class="blog-info mt-1">
+          		<li>멤버 
+          		<c:set var="memberCount" value="0" />
+          		<c:forEach items="${list2}" var="meeting2" varStatus="status">
+          		<c:if test="${meeting.meeting_Num eq meeting2.meeting_Num}">
+          		<c:set var="memberCount" value="${meeting2.meeting_count}" />
+          		</c:if>
+          		</c:forEach>
+          		<c:out value="${memberCount}" />
+            		명</li>
+            		<li> · <c:out value="${meeting.meeting_Adress}" /></li>
+            		<li> · <c:out value="${meeting.meeting_Hobby}" /></li>
+          		</ul>
+        	</div>
+  		</div>
+  	</div>
+	  </c:forEach>
 
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="left-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-5 col-md-6 mt-md-0 mt-5 newsgrid2">
-      <div class="right-meeting">
-        <div class="meetingA">
-          <a href="#"><img src="../../../resources/img/blog1.jpg" alt="news image" class="img-fluid"></a>
-        </div>
-        <div class="introduction">
-          <b class=" mt-4"><a href="single.html">Meeting Name2</a></b>
-          <h6>Meeting introduction</h6>
-          <ul class="blog-info mt-1">
-            <li>주제 ·  </li>
-            <li>지역 · </li>
-            <li>멤버 10명</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin:30px 240px;">
+    <div style="margin:130px 330px; text-align: center;">
     <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    	<c:if test="${pageMaker.prev}">
+			<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1}">Previous</a></li>
+		</c:if>
+		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+			<li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1 }">Next</a></li>
+		</c:if>
     </ul>
+    <form id='actionForm' action="/front/meetingSearch" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+	</form>
     </div>
-		</div>
+    <div class="ud d-flex justify-content-center">
+
+</div>
 	</div>
   <!--aside -->
 
@@ -425,7 +338,53 @@
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
-
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+		var keyword = '<c:out value="${pageMaker.cri.keyword}"/>';
+		// 페이지 번호 클릭 이벤트
+		$(".page-item a").on("click", function(e) {
+			e.preventDefault();
+			if(keyword != ''){
+				actionForm.append("<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type}"/>' />");
+				actionForm.append("<input type='hidden' name='keyword' value='"+ keyword+"' />");
+			}
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+			
+		});
+		
+		var searchForm = $("#meetingSearch");
+		$("#meetingSearch button").on("click",	function(e) {
+			if (!searchForm.find("option:selected").val()) {
+				searchForm.find("input[name='pageNum']").val("1");
+				e.preventDefault();
+				searchForm.submit();
+			}
+		});
+		var $form = $('<form></form>');
+		$(".sliderA").on("click", function(e) {
+			
+		    $form.attr('action', '/front/meetingSearch');
+	        $form.attr('method', 'get');
+	        $form.appendTo('body');
+	        var keyword = $(this).attr("hobby");
+	        if(keyword == 'ALL'){
+	        	location.href = "/front/meetingSearch";
+	        }
+	        else{
+	        	var tag = "<input type='hidden' name='keyword' value='" + keyword + "'>";
+		        var tag2 = "<input type='hidden' name='type' value='H' />";
+		        var tag3 = "<input type='hidden' name='pageNum' value='<c:out value="1"/>' />";
+		        var tag4 = "<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />";
+		        $form.append(tag + tag2 + tag3 + tag4);
+		        $form.submit();
+	        }
+		})
+		
+	});
+</script>
 </body>
 </body>
 </html>
