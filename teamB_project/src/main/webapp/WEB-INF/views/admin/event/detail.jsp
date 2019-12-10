@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div class="compose-mail">
                       <div class="form-group">
                         <label class="" style="margin-right:20px;">대표 이미지</label>
-                        <img class="event_img " src="/resources/upload/<c:out value="${event.banner_image}" />" alt="" style="display:inline;">
+                        <img class="event_img" src="/resources/upload/<c:out value="${event.image}" />" alt="" style="display:inline;">
                       </div>
                       <div class="form-group">
                         <label class="">작성자</label>
@@ -67,7 +67,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       </div>
                       <div class="form-group">
                         <label class="">비고</label>
-                        <td class="view-message text-right" onClick="location.href='/admin/event/detail'"><c:out value=" " /></td>
+                        <c:if test="${event.event_progress eq '진행중'}">
+                        	<input type="text" tabindex="1" id="to" class="form-control" style="color:black;" value="<c:out value="${event.event_progress}" />" readonly>
+                        </c:if>
+                        <c:if test="${event.event_progress eq '진행예정'}">
+                         	<input type="text" tabindex="1" id="to" class="form-control" style="color:green;" value="<c:out value="${event.event_progress}" />" readonly>
+                        </c:if>
+                        <c:if test="${event.event_progress eq '종료'}">
+                          	<input type="text" tabindex="1" id="to" class="form-control" style="color:red;" value="<c:out value="${event.event_progress}" />" readonly>
+                        </c:if>
                       </div>
                       <div class="form-group">
                         <label class="">제목</label>
@@ -78,10 +86,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </textarea>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/event/modify?event_num=<c:out value="${event.event_num}" />'">수정</button>
-                        <button class="btn btn-sm" onClick="location.href='/admin/event/list'">삭제</button>
+                      	<button class="btn btn-primary btn-sm" data-oper='modify'>수정</button>
+                        <button class="btn btn-sm" data-oper='remove'>삭제</button>
                       </div>
-                    <button class="btn btn-sm" onClick="location.href='/admin/event/list'">목록</button>
+                    <button class="btn btn-sm" data-oper='list'>목록</button>
                   </div>
                 </div>
               </section>
@@ -102,6 +110,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!--main content end-->
   </section>
+  <form id='operForm' action="/admin/event/modify" method="get">
+  	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  	<input type='hidden' name='event_num' value='<c:out value="${event.event_num}"/>'>
+  	<input type='hidden' name='ck_code' value='<c:out value="${event.event_num}"/>'>
+  	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  	<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  	<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+  </form>
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
@@ -109,6 +126,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+<script type="text/javascript">
+
+function replaceEscapeStr(str) {
+	return str.replace("\\","\\\\");
+}
+
+$(document).ready(function() {
+  
+	var operForm = $("#operForm");
+
+	$("button[data-oper='modify']").on("click", function(e){
+		$("input[id='token']").remove();
+		operForm.attr("action","/admin/event/modify").submit();
+	});
+	
+	$("button[data-oper='remove']").on("click", function(e){
+		if (confirm('정말 삭제 하시겠습니까?')) {
+			operForm.attr('method', 'post');
+			operForm.attr("action","/admin/event/delete").submit();
+		}
+	});
+	
+	$("button[data-oper='list']").on("click", function(e){
+		$("input[id='token']").remove();
+		$("input[name='event_num']").remove();
+		$("input[name='ck_code']").remove();
+		operForm.attr("action","/admin/event/list").submit();
+	});
+	
+});
+</script>
 </body>
 
 </html>

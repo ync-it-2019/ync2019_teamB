@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </header>
                 <div class="panel-body minimal">
                   <div class="table-inbox-wrap ">
-                    <table class="table table-inbox table-hover" style="table-layout: fixed">
+                    <table id="newTable" class="table table-inbox table-hover" style="table-layout: fixed">
                       <tbody>
                         <thead>
                           <tr>
@@ -64,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           </tr>
                         </thead>
                         <c:forEach items="${list}" var="member" varStatus="status">
-						<tr class="unread" onClick="location.href='/admin/member/detail'">
+						<tr class="unread" name="move" value="${member.userid}">
                           <td class="inbox-small-cells"><c:out value="${status.count}" /></td>
                           <td class="inbox-small-cells"><c:out value="${member.name}" /></td>
                           <td class="view-message dont-show text_limit"><c:out value="${member.userid}" /></td>
@@ -80,17 +80,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <footer>
                   <div class="row">
                     <div class="center">
-                      <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
+                    <!--  Pagination 시작 -->
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev}">
+							<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+						</c:if>
+						<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+						</c:if>
+					</ul>
+				</div>
+				<!--  Pagination 끝 -->
+				
+				<!-- Form 시작 -->
+				<form id='actionForm' action="/admin/member/list" method='get'>
+				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+				<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+				</form>
+				<!-- Form 끝 -->
                 </footer>
               </section>
             </div>
@@ -115,6 +129,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function() {
+		
+		var $form = $('<form></form>');
+		
+		var actionForm = $("#actionForm");
+		
+		var pageNumTag = $("input[name='pageNum']").clone();
+		var amountTag = $("input[name='amount']").clone();
+		var keywordTag = $("input[name='keyword']").clone();
+		var typeTag = $("input[name='type']").clone();
+	    var tk = $("input[id='token']").clone();
+		
+		 $("#newTable").on("click", "tr[name='move']", function(e) {
+			 
+		     $form.attr('action', '/admin/member/detail');
+		     $form.attr('method', 'get');
+		     $form.appendTo('body');
+		     
+		     var userid = $(this).attr("value");
+		     
+			 var num = "<input type='hidden' name='userid' value='" + userid + "'>";
+			 
+		     $form.append(num);
+			 $form.append(pageNumTag);
+			 $form.append(amountTag);
+			 $form.append(keywordTag);
+			 $form.append(typeTag);
+			 
+			 $form.submit();
+		   });
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 </body>
 
 </html>

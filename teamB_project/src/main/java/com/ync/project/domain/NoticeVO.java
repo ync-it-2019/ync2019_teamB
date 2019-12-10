@@ -1,11 +1,10 @@
 package com.ync.project.domain;
 
-
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Data;
 
- /**
+/**
   * @FileName	: NoticeVO.java
   * @Date		: 2019. 10. 21. 
   * @Author		: 김상훈

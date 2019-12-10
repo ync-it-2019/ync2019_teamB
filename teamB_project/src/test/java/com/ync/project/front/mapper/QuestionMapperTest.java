@@ -26,15 +26,6 @@ public class QuestionMapperTest {
 	@Autowired
 	
 	private QuestionMapper mapper;
-	//목록
-//	@Test
-//	public void testGetList() {
-//		
-//		mapper.getList().forEach((board) -> {
-//			log.info("==================");
-//			log.info(board);
-//			});
-//	}
 	//상세보기
 //	@Test
 //	public void testRead() {
@@ -43,7 +34,7 @@ public class QuestionMapperTest {
 //		log.info(board);
 //
 //	}
-//	//페이징
+	//페이징
 //	@Test
 //	public void testPaging() {
 //
@@ -59,49 +50,47 @@ public class QuestionMapperTest {
 //		list.forEach(board -> log.info(board));
 //
 //	}
-	
-//	@Test
-//	public void testInsert() {
-//
-//		QuestionVO board = new QuestionVO();
-//		board.setQuestion_num(2L);
-//		board.setUserid("user01");
-//		board.setTitle("새로 작성하는 글");
-//		board.setContents("새로 작성하는 내용");
-//		board.setFiles("dldldldl");
-//		board.setAnswer_whether("n");
-//
-//		mapper.insert(board);
-//
-//		log.info(board);
-//	}
-	
+//	
 	@Test
 	public void testUpdate() {
 
-		QuestionVO board = new QuestionVO();
+		QuestionVO question = new QuestionVO();
 		// 실행전 존재하는 번호인지 확인할 것
-		board.setQuestion_num(1L);
-		board.setUserid("user01");
-		board.setTitle("수정된 제목");
-		board.setContents("수정된 내용");
-		board.setFiles("dldldldl");
+		question.setQuestion_num(38L);
+		question.setUserid("user01");
+		question.setTitle("수정된 제목");
+		question.setContents("수정된 내용");
+		question.setFiles("aaa.jpg");
+		question.setCategory("계정");
 
-		int count = mapper.update(board);
+		int count = mapper.update(question);
 		log.info("UPDATE COUNT: " + count);
 	}
 	
+	@Test
+	public void testInsertSelectKey() {
+
+		QuestionVO question = new QuestionVO();
+		question.setUserid("user01");
+		question.setTitle("세번 째 문의글");
+		question.setContents("문의 내용");
+		question.setFiles("file/img.jpg");
+		question.setCategory("계정");
+
+		mapper.insertSelectKey(question);
+
+		log.info(question);
+	}
+	
 //	@Test
-//	public void testInsertSelectKey() {
+//	  public void testTotal() {
 //
-//		QuestionVO board = new QuestionVO();
-//		board.setUserid("user01");
-//		board.setTitle("세번 째 문의글");
-//		board.setContents("문의 내용");
-//		board.setFiles("file/img.jpg");
+//	    Criteria cri = new Criteria();
+//	    //cri.setKeyword("공지");
+//	    //cri.setType("T");
 //
-//		mapper.insertSelectKey(board);
+//	    int total = mapper.getTotalCount(cri);
 //
-//		log.info(board);
-//	}
+//	    log.info("total:" + total);
+//	  }
 }

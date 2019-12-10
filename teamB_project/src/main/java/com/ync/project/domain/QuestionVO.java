@@ -1,11 +1,10 @@
 package com.ync.project.domain;
 
-
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Data;
 
- /**
+/**
   * @FileName	: QuestionVO.java
   * @Date		: 2019. 10. 21. 
   * @Author		: 김상훈
@@ -20,4 +19,9 @@ public class QuestionVO {
 	private String files;		 //첨부파일
 	private Date write_date;	 //작성일자
 	private String answer_whether;//답변여부
+	private String yn;			  //답변여부
+	private String answer;		  //답변내용
+	private Date answer_date;	  //답변날짜
+	private String answer_writer; //답변자 아이디
+	private String category; //답변자 아이디
 }

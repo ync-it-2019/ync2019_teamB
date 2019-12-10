@@ -48,41 +48,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <h4 class="gen-case"> 이벤트 > 수정</h4>
                 </header>
                 <div class="panel-body">
+                <form id="updateForm"  action="/admin/event/modify" method="post"  enctype="multipart/form-data">
                   <div class="compose-mail">
-                    <form role="form-horizontal" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name="event_num" value="${event.event_num}"/>
+                    <c:choose>
+       					<c:when test="${not empty event.image}">
+           					<div class="form-group">
+           						<label class="" style="margin-right:20px;">대표 이미지</label>
+								<a href="/resources/upload/${event.image}" target="_blank"><img class="event_img" style="display:inline;" src="/resources/upload/${event.image}"></a>
+								<input type="hidden" name="image" value="${event.image}">
+								<input type="hidden" name="banner_image" value="${event.banner_image}">
+       						</div>
+       					</c:when>
+       					<c:otherwise>
+       						<div class="form-group">
+								<input type="hidden" name="image" value="">
+								<input type="hidden" name="banner_image" value="">
+							</div>
+		        		</c:otherwise>
+  	 				</c:choose>
                       <div class="form-group">
                         <label class="">작성자</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.userid}" />" readonly>
+                        <input type="text" tabindex="1" id="to" name="userid" class="form-control" value="<c:out value="${event.userid}" />" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">작성일</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.write_date}" />" readonly>
+                        <input type="text" tabindex="1" id="to" name="write_date" class="form-control" value="<c:out value="${event.write_date}" />" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">시작 일</label>
-                        <input type="date" tabindex="1" id="to" class="form-control" value="<c:out value="${event.event_start_date}" />" style="width:150px;">
+                        <input type="date" tabindex="1" id="to" name="event_start_date" class="form-control" value="<c:out value="${event.event_start_date}" />" style="width:150px;">
                       </div>
                       <div class="form-group">
                         <label class="">종료 일</label>
-                        <input type="date" tabindex="1" id="to" class="form-control" value="<c:out value="${event.event_end_date}" />" style="width:150px;">
+                        <input type="date" tabindex="1" id="to" name="event_end_date" class="form-control" value="<c:out value="${event.event_end_date}" />" style="width:150px;">
                       </div>
                       <div class="form-group">
                         <label class="">제목</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${event.title}" />">
+                        <input type="text" tabindex="1" id="to" name="title" class="form-control" value="<c:out value="${event.title}" />">
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9"> <c:out value="${event.contents}" />
-                                  </textarea>
-                        <input type="file" class="default" value=" value="<c:out value="${event.image}" />">
+                        <textarea class="wysihtml5 form-control" rows="9" name="contents"> <c:out value="${event.contents}" /></textarea>
+                        <input type="file" class="default" name="uploadFile" value="${event.image}"/>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/event/detail'"><i class="fa fa-check"></i> 완료</button>
-                        <button class="btn btn-sm" onClick="location.href='/admin/event/detail'"><i class="fa fa-times"></i> 취소</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-oper='update'><i class="fa fa-check"></i> 완료</button>
+                        <button type="button" class="btn btn-sm" data-oper='detail'><i class="fa fa-times"></i> 취소</button>
                       </div>
-                    </form>
                   </div>
-                  <button class="btn btn-sm" onClick="location.href='/admin/event/list'">목록</button>
+                  </form>
+                  <button class="btn btn-sm" data-oper='list'>목록</button>
                 </div>
               </section>
             </div>
@@ -102,6 +118,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!--main content end-->
   </section>
+  <form id='operForm' method="get">
+  	<input type='hidden' name='event_num' value='<c:out value="${event.event_num}"/>'>
+  	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  	<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  	<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+  </form>
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
@@ -109,6 +132,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+
+$(document).ready(function() {
+  
+	var operForm = $("#operForm");
+	
+	var updateForm = $("#updateForm");
+	
+	var pageNumTag = $("input[name='pageNum']").clone();
+	var amountTag = $("input[name='amount']").clone();
+	var keywordTag = $("input[name='keyword']").clone();
+	var typeTag = $("input[name='type']").clone();
+	
+	$("button[data-oper='list']").on("click", function(e){
+		$("input[name='event_num']").remove();
+		operForm.attr("action","/admin/event/list").submit();
+	});
+	
+	$("button[data-oper='detail']").on("click", function(e){
+		operForm.attr("action","/admin/event/detail").submit();
+	});
+	
+	$("button[data-oper='update']").on("click", function(e){
+		updateForm.append(pageNumTag);
+		updateForm.append(amountTag);
+		updateForm.append(keywordTag);
+		updateForm.append(typeTag); 
+		updateForm.attr("action","/admin/event/modify").submit();
+	});
+	
+});
+</script>
 </body>
 
 </html>

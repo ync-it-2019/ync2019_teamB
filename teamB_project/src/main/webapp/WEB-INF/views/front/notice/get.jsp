@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<a href="index.html">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page"> 공지사항</li>
 		</ol>
@@ -69,16 +72,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="row mt-lg-3">
           <div class="col-lg-14" style="border: 1px solid black; border-color: #E6E6E6">
           <div class="col-lg-13">
-						<h6 class="card-title"><b>牛 모임 공지사항1</b></h6>
+						<h6 class="card-title"><b>${board.title}</b></h6>
 						<ul class="blog-info my-2">
-							<li class="mr-sm-4 mr-2">작성자1</li>
-							<li class="mr-sm-4 mr-2"> 2019-10-12</li>
+							<li class="mr-sm-4 mr-2">${board.userid}</li>
+							<li class="mr-sm-4 mr-2"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_date}" /></li>
 						</ul>
 						<hr>
 						<div class="">
-							<img class="card-img-top" src="/resources/img/1.jpg" alt="Card image cap">
 							<div class="mt-4">
-								<p class="card-text">공지사항 내용</p>
+								<p class="card-text">${board.contents}</p>
 							</div>
 						</div>
 						<div class="comment-top" style="position: relative; top: 60px;">
@@ -89,125 +91,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>
     </div>
   </div>
-</section>
-
-<section class="news py-5">
-	<div class="container py-lg-3">
-    <hr>
-    <div class="col-lg-14" style="margin-top:30px;">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>글번호</th>
-            <th><a style="position: relative; left: 250px;">제목</a></th>
-            <th><a style="position: relative; left: 25px;">글쓴이</a></th>
-            <th><a style="position: relative; left: 10px;">작성일</a></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td><a href="./get" class="over1">공지의 제목이 들어오는 공간입니다1ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</a></td>
-            <td class="over2">작성자1ㅡㅡㅡㅡㅡㅡ</td>
-            <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-           <td>2</td>
-           <td><a href="./get">공지의 제목이 들어오는 공간입니다2</a></td>
-           <td>작성자2</td>
-           <td>2019-10-09</td>
-          </tr>
-        </tbody>
-      </table>
-	</div>
-<div class="ud d-flex justify-content-center">
-  <form action="#" method="post" class="newsletter">
-    <select name="abc" style="height:30px; position: relative; top: 1px;">
-    <option>제목</option>
-    <option>내용</option>
-  </select>
-    <input class="search" type="text" placeholder="Search..." required="">
-    <button value=""><span class="fa fa-search"></span></button>
-  </form>
-</div>
-<div style="margin : 20px;">
- <ul class="pagination justify-content-center">
-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-         <li class="page-item"><a class="page-link" href="#">1</a></li>
-         <li class="page-item"><a class="page-link" href="#">2</a></li>
-         <li class="page-item"><a class="page-link" href="#">3</a></li>
-         <li class="page-item"><a class="page-link" href="#">4</a></li>
-         <li class="page-item"><a class="page-link" href="#">5</a></li>
-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
- </ul>
-  </div>
- </div>
 </section>
 
 <!-- footer -->

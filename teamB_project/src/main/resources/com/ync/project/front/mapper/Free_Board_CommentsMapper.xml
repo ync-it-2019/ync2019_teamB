@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.front.mapper.Free_Board_CommentsMapper">
+	
+	<insert id="insert">
+		INSERT INTO teamb_free_board_comments (free_Comments_Num, free_Board_Num, meeting_Num, contents, userid, write_Date)
+		VALUES (seq_reply.nextval, #{free_Board_Num}, #{meeting_Num}, #{contents}, #{userid}, sysdate)
+	</insert>
+
+	<select id="read" resultType="com.ync.project.domain.Free_Board_CommentsVO">
+		SELECT * FROM teamb_free_board_comments WHERE free_Comments_Num =	#{free_Comments_Num}
+	</select>
+
+	<delete id="delete">
+		DELETE FROM teamb_free_board_comments WHERE free_Comments_Num = #{free_Comments_Num}
+	</delete>
+
+	<update id="update">
+		UPDATE teamb_free_board_comments SET	free_Comments_Num = #{free_Comments_Num},
+								updatedate = sysdate 
+		WHERE free_Comments_Num = #{free_Comments_Num}
+		
+	</update>
+
+
+	<select id="getListWithPaging" resultType="com.ync.project.domain.Free_Board_CommentsVO">
+
+		SELECT	free_Comments_Num,
+				free_Board_Num,
+				meeting_Num,
+				contents,
+				userid,
+				write_Date
+		FROM	teamb_free_board_comments
+		WHERE	free_Board_Num = #{free_Board_Num}
+		ORDER BY free_Comments_Num asc
+
+	</select>
+
+	<select id="getListWithPaging2" resultType="com.ync.project.domain.Free_Board_CommentsVO">
+		<![CDATA[
+	 		SELECT	free_Comments_Num,
+	 				free_Board_Num,
+					meeting_Num,
+					contents,
+					userid,
+					write_Date
+	 		FROM	(SELECT /*+INDEX(teamb_free_board_comments idx_reply) */ 
+	      					rownum rn,
+	      					free_Comments_Num,
+	      					free_Board_Num,
+							meeting_Num,
+							contents,
+							userid,
+							write_Date
+	    			FROM	teamb_free_board_comments
+	    			WHERE	free_Board_Num =  #{free_Board_Num}
+	    			AND		free_Comments_Num > 0
+	    			AND		rownum <= #{cri.pageNum} * #{cri.amount}
+	   				)
+	   		WHERE	rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+	</select>
+
+	<select id="getCountByfree_Board_Num" resultType="int">
+		<![CDATA[
+		SELECT count(free_Comments_Num) FROM teamb_free_board_comments WHERE free_Board_Num = #{free_Board_Num}
+		]]>
+	</select>
+	
+</mapper>

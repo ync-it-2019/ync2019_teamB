@@ -12,12 +12,12 @@ import com.ync.project.domain.EventVO;
   * @프로그램 설명 : 이벤트 Service
   */
 public interface EventService {
-	// 글 상세보기
-	public EventVO read(Long event_num);
-	
 	// 전체 글 목록
 	public List<EventVO> getList();
-	
+	// 글 상세보기
+	public EventVO read(Long event_num);
 	// 글 목록 페이징 
 	public List<EventVO> getListWithPaging(Criteria cri);
+	//추가
+	public int getTotal(Criteria cri);
 }

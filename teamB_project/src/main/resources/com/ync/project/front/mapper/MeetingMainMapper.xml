@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.front.mapper.MeetingMainMapper">
+	
+	<!-- 모임 정보 -->
+	<select id="meeting_Read" resultType="com.ync.project.domain.MeetingVO">
+	<![CDATA[
+		SELECT	MEETING_NAME,
+				MEETING_PROFILE,
+				INTRODUCE,
+				MEETING_NUM
+		FROM	TEAMB_MEETING
+		WHERE	MEETING_NUM = #{meeting_Num}
+		]]>
+	</select>
+	
+	<!-- 최근 정모 -->
+	<select id="appointment_Read" resultType="com.ync.project.domain.AppointmentVO">
+	<![CDATA[				
+		SELECT	TITLE,
+				APPOINTMENT_DATE,
+				APPOINTMENT_PLACE
+		FROM	TEAMB_APPOINTMENT
+		WHERE	MEETING_NUM = #{meeting_Num}
+				AND APPOINTMENT_NUM = ( SELECT	MAX(APPOINTMENT_NUM)
+										FROM	TEAMB_APPOINTMENT
+										WHERE	MEETING_NUM = #{meeting_Num})
+		]]>
+	</select>
+	
+	<!-- 모임 회원 -->
+	<select id="getList" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<![CDATA[
+		SELECT		USERID,
+					JOIN_DATE
+		FROM		TEAMB_MEETING_MEMBER
+		WHERE		MEETING_NUM = #{meeting_Num}
+		ORDER BY	JOIN_DATE
+		]]>
+	</select>
+	
+	<!-- 모임 생성 -->
+	<insert id="meetingCreate">
+	<![CDATA[
+		INSERT INTO TEAMB_MEETING ( MEETING_NUM,
+									INTRODUCE,
+									USERID,
+									MEETING_PROFILE,
+									MEETING_NAME,
+									MEETING_ADRESS,
+									MEETING_HOBBY)
+		VALUES	(	TEAMB_MEETING_NUM.NEXTVAL,
+					#{introduce},
+					#{userid},
+					#{meeting_Profile},
+					#{meeting_Name},
+					#{meeting_Adress},
+					#{meeting_Hobby})
+		]]>
+	</insert>
+	
+	<!-- 가장 큰 모임 번호 -->
+	<select id="getMeetingNum" resultType="com.ync.project.domain.MeetingVO">
+	<![CDATA[
+		SELECT	MEETING_NUM
+		FROM	TEAMB_MEETING
+		WHERE	MEETING_NUM = ( SELECT	MAX(MEETING_NUM)
+								FROM	TEAMB_MEETING)
+		]]>
+	</select>
+	
+	<!-- 모임인원수 -->
+	<select id="getCount" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<![CDATA[
+		SELECT	COUNT(*)
+		FROM	TEAMB_MEETING_MEMBER
+		WHERE	MEETING_NUM = #{meeting_Num}
+		]]>
+	</select>
+	
+	<!-- 모임 수정 -->
+	<update id="meetingModify">
+	<![CDATA[
+		UPDATE	TEAMB_MEETING
+		SET		INTRODUCE = #{introduce},
+				MEETING_PROFILE = #{meeting_Profile},
+				MEETING_NAME = #{meeting_Name},
+				MEETING_ADRESS = #{meeting_Adress},
+				MEETING_HOBBY = #{meeting_Hobby}
+		WHERE	MEETING_NUM = #{meeting_Num}
+		]]>
+	</update>
+	
+</mapper>

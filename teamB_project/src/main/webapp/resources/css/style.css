@@ -1955,8 +1955,7 @@ a.move-top {
 /*-- //Responsive design --*/
 /* 이주현 작업 css 시작 */
 .meeting-page-name-space {
-    background: url(../img/meeting.jpg) no-repeat center;
-    background-size: cover;
+    
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

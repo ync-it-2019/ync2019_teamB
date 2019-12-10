@@ -22,6 +22,70 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+    
+    <script type="text/javascript">
+	$(document).ready(function() {
+		var result = '<c:out value="${result}"/>';
+		
+		checkModal(result);
+
+		history.replaceState({}, null, null);
+
+		function checkModal(result) {
+
+			if (result === '' || history.state) {
+				return;
+			}
+
+			if (parseInt(result) > 0) {
+				$(".modal-body").html("게시글 " + parseInt(result)	+ " 번이 등록되었습니다.");
+			}
+
+			$("#myModal").modal("show");
+		}
+		
+		$("#regBtn").on("click", function() {
+			self.location = "/front/notice/write";
+		});
+		
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		// 상세보기 클릭 이벤트
+		$(".move").on("click",function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='notice_num' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/front/notice/get");
+			actionForm.submit();
+		});
+		
+		// 검색 버튼 클릭 이벤트
+		var searchForm = $("#searchForm");
+		$("#searchForm button").on("click",	function(e) {
+			if (!searchForm.find("option:selected").val()) {
+				alert("검색종류를 선택하세요");
+				return false;
+			}
+
+			if (!searchForm.find("input[name='keyword']").val()) {
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			searchForm.submit();
+		});
+	});
+</script>
+    
     <style media="screen">
       a:link { color: black; text-decoration: none;}
         a:visited { color: black; text-decoration: none;}
@@ -32,11 +96,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+    <link href="/resources/css/paging.css" rel="stylesheet">
    <!-- //css files -->
 
    <!-- google fonts -->
    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
    <!-- //google fonts -->
+   <!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -54,10 +121,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- page details -->
 <div class="breadcrumb-agile">
-   <div class="container">
+   <div style="margin-left : 76.5px">
       <ol class="breadcrumb">
          <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
+            <a href="/">Home</a>
          </li>
          <li class="breadcrumb-item active" aria-current="page"> 공지사항</li>
       </ol>
@@ -79,39 +146,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th><a style="position: relative; left: 10px;">작성일</a></th>
           </tr>
         </thead>
-        
-      <c:forEach items="${list}" var="board">
-         <tr>
-            <td><c:out value="${board.notice_num}" /></td>
-             <td><a class="over1 move" href='<c:out value="${board.notice_num}"/>'><c:out value="${board.title}" /></a></td>
-             <td><c:out value="${board.userid}" /></td>
-             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_date}" /></td>
-         </tr>
-      </c:forEach>
+      
+      <c:forEach items="${list}" var="notice">
+        <tr>
+         <td><c:out value="${notice.notice_num}" /></td>
+         <td class="move over1" style="cursor:pointer" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.title}" /></td>
+         <td class="move" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.userid}" /></td>
+         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.write_date}" /></td>
+        </tr>
+	  </c:forEach>
       </table>
    </div>
+   
 <div class="ud d-flex justify-content-center">
-  <form action="#" method="post" class="newsletter">
-    <select name="abc" style="height:30px; position: relative; top: 1px;">
-    <option>제목</option>
-    <option>내용</option>
-  </select>
-    <input class="search" type="text" placeholder="Search..." required="">
-    <button value=""><span class="fa fa-search"></span></button>
-  </form>
+  <form id='searchForm' action="/front/notice/list" method='get'>
+		<select name='type'>
+			<option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
+			<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
+		</select>
+		<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword}"/>' />
+		<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
+		<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+		<button value="" style="cursor:pointer"><span class="fa fa-search"></span></button>
+	</form>
 </div>
-<div style="margin : 20px;">
- <ul class="pagination justify-content-center">
-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-         <li class="page-item"><a class="page-link" href="#">1</a></li>
-         <li class="page-item"><a class="page-link" href="#">2</a></li>
-         <li class="page-item"><a class="page-link" href="#">3</a></li>
-         <li class="page-item"><a class="page-link" href="#">4</a></li>
-         <li class="page-item"><a class="page-link" href="#">5</a></li>
-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
- </ul>
+
+	<div style="margin : 20px;">
+ 		<!--  Pagination 시작 -->
+		<ul class="pagination justify-content-center">
+		 <c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+		</c:if>
+		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+			<li class="paginate_button"><a href="${num}">${num}</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+		</c:if>
+		</ul>
+       </div>
+        <!-- Form 시작 -->
+		<form id='actionForm' action="/front/notice/list" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		</form>
   </div>
- </div>
 </section>
 <!-- //services -->
 
@@ -148,4 +227,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 </html>

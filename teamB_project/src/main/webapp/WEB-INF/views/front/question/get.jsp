@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<a href="index.html">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page"> 고객센터</li>
 		</ol>
@@ -72,28 +72,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="row mt-lg-3">
           <div class="col-lg-14" style="border: 1px solid black; border-color: #E6E6E6">
           <div class="col-lg-13">
-						<h6 class="card-title"><b>[계정]아이디를 까먹었어요</b></h6>
+						<h6 class="card-title"><b>[${question.category}]${question.title}</b></h6>
 						<ul class="blog-info my-2">
-							<li class="mr-sm-4 mr-2">등록일자: 2019-10-14 </li>
-							<li class="mr-sm-4 mr-2"> 처리상태: 처리완료</li><br>
+							<li class="mr-sm-4 mr-2">등록일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /> </li>
+							<li class="mr-sm-4 mr-2"> 처리상태: ${question.yn}</li><br>
 						</ul>
 						<hr>
-						<div class="">
-							<img class="card-img-top" src="../../../../resources/img/1.jpg" alt="Card image cap">
 							<div class="mt-4">
-								<p class="card-text">질문 내용이 들어오는 공간입니다.</p>
-
-								<p class="card-text mt-3">도와주세요.</p>
+								<p class="card-text">${question.contents}</p>
 							</div>
-						</div>
-            <div>
-              <hr>
-              <b>답변:</b><br>
-              해당 질문에 대한 답변이 들어오는 공간입니다.
+				<c:if test="${question.yn == '처리완료'}">
+            	<div>
+              <br><hr>
+              <b>답변</b>
+              <div style="float: right; margin-right: 30px">${question.answer_date}</div>
+              <br><br>
+              (답변자: <b>${question.answer_writer}</b>)<br><br>
+              ${question.answer}
             </div>
+            </c:if>
 						<div class="comment-top" style="position: relative; top: 60px;">
-							<a href="./myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
-              <a href="./write"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
+							<a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
+              <c:if test="${question.yn == '처리중'}">
+              	<a href="/front/question/modify?question_num=<c:out value="${question.question_num}" />"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
+              </c:if>
             </div>
           </div>
         </div>
