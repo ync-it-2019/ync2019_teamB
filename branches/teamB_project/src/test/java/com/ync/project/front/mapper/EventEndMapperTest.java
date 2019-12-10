@@ -27,40 +27,40 @@ public class EventEndMapperTest {
 	
 	private EventEndMapper mapper;
 	//목록
-//	@Test
-//	public void testGetEndList() {
-//		
-//		mapper.getEndList().forEach((board) -> {
-//			log.info("==================");
-//			log.info(board);
-//			});
-//	}
-	//페이징
 	@Test
-	public void testPaging() {
-
-		Criteria cri = new Criteria();
+	public void testGetEndList() {
 		
-	    //10개씩 3페이지 
-	    cri.setPageNum(1);
-	    cri.setAmount(10);
-
-
-		List<EventVO> list = mapper.getListWithPaging(cri);
-
-		list.forEach(board -> log.info(board));
-
+		mapper.getEndList().forEach((eventEndList) -> {
+			log.info("==================");
+			log.info(eventEndList);
+			});
 	}
-	
-	@Test
-	  public void testTotal() {
-
-	    Criteria cri = new Criteria();
-	    cri.setKeyword("공지");
-	    cri.setType("T");
-
-	    int total = mapper.getTotalCount(cri);
-
-	    log.info("total:" + total);
-	  }
+	//페이징
+//	@Test
+//	public void testPaging() {
+//
+//		Criteria cri = new Criteria();
+//		
+//	    //10개씩 3페이지 
+//	    cri.setPageNum(1);
+//	    cri.setAmount(10);
+//
+//
+//		List<EventVO> list = mapper.getListWithPaging(cri);
+//
+//		list.forEach(board -> log.info(board));
+//
+//	}
+//	
+//	@Test
+//	  public void testTotal() {
+//
+//	    Criteria cri = new Criteria();
+//	    cri.setKeyword("공지");
+//	    cri.setType("T");
+//
+//	    int total = mapper.getTotalCount(cri);
+//
+//	    log.info("total:" + total);
+//	  }
 }

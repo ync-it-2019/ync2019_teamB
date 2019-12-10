@@ -12,6 +12,8 @@ import com.ync.project.domain.EventVO;
   * @프로그램 설명 : 이벤트 Service
   */
 public interface EventService {
+	// 전체 글 목록
+	public List<EventVO> getList();
 	// 글 상세보기
 	public EventVO read(Long event_num);
 	// 글 목록 페이징 
