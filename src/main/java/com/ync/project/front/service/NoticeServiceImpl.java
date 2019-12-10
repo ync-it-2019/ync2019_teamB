@@ -45,4 +45,10 @@ public class NoticeServiceImpl implements NoticeService {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
 	}
+
+	@Override
+	public List<NoticeVO> getList() {
+		log.info("getList..........");
+		 return mapper.getList();
+	}
 }

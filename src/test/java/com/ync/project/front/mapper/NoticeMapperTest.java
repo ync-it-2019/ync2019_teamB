@@ -38,15 +38,15 @@ public class NoticeMapperTest {
 //    list.forEach(board -> log.info(board));
 //    }
 	
-//	//목록
-//	@Test
-//	public void testGetList() {
-//		
-//		mapper.getList().forEach((board) -> {
-//			log.info("==================");
-//			log.info(board);
-//			});
-//	}
+	//목록
+	@Test
+	public void testGetList() {
+		
+		mapper.getList().forEach((board) -> {
+			log.info("==================");
+			log.info(board);
+			});
+	}
 //	//상세보기
 //	@Test
 //	public void testRead() {

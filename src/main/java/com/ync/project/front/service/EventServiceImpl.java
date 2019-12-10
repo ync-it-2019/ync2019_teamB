@@ -45,4 +45,9 @@ public class EventServiceImpl implements EventService {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
 	}
+	@Override
+	public List<EventVO> getList() {
+		log.info("getList..........");
+		 return mapper.getList();
+	}
 }

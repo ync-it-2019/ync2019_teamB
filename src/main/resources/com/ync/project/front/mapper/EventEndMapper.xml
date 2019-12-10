@@ -3,6 +3,16 @@
 <mapper namespace="com.ync.project.front.mapper.EventEndMapper">
 
 	<sql id="criteria"></sql>
+	
+	<!-- 목록 내용 출력 -->
+	<select id="getEndList" resultType="com.ync.project.domain.EventVO">
+	<![CDATA[
+		SELECT *
+		FROM  teamb_event
+		WHERE event_num > 0 
+		]]>
+	</select>
+	
 	<!-- 페이징 -->
 	<select id="getListWithPaging" resultType="com.ync.project.domain.EventVO">
 	<![CDATA[

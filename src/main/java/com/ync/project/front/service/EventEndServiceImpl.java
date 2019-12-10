@@ -38,4 +38,10 @@ public class EventEndServiceImpl implements EventEndService {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
 	}
+
+	@Override
+	public List<EventVO> getList() {
+		log.info("getList..........");
+		 return mapper.getEndList();
+	}
 }
