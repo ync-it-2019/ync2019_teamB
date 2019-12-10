@@ -1,18 +1,21 @@
 package com.ync.project.domain;
 
+
+import java.util.List;
+
 import lombok.Data;
 
+@Data
 /**
+
   * @FileName	: MeetingVO.java
   * @Date		: 2019. 10. 25. 
   * @Author		: 이주현
   * @프로그램 설명 : 모임 VO
   */
-
-@Data
 public class MeetingVO {
 	
-	private int meeting_Num;			//모임 번호
+	private Long meeting_Num;			//모임 번호
 	
 	private String meeting_Name;		//모임 이름
 	private String introduce;			//모임 소개

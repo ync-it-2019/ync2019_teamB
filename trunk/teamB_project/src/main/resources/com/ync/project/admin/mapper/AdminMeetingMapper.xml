@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ync.project.admin.mapper.AdminMeetingMapper">
+
+	<resultMap type="com.ync.project.domain.MeetingVO" id="meetingMap">
+		<id property="meeting_Num" column="meeting_num"/>
+		<result property="meeting_Num" column="meeting_num"/>
+		<result property="meeting_Name" column="meeting_name"/>
+		<result property="introduce" column="introduce"/>
+		<result property="userid" column="userid"/>
+		<result property="meeting_Profile" column="meeting_profile"/>
+		<result property="meeting_Adress" column="meeting_adress"/>
+		<result property="meeting_Hobby" column="meeting_hobby"/>
+	</resultMap>
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!--
+	member_auth table은 사용 하지 않고 AuthVO만 사용한다.
+	tbl_member 의 autho 컬럼 정보만 따로 담아는 객차이다.
+	Spring Security의 기본 사용법과 다르게 tbl_member에 권한 컴럼(auth)을
+	넣어서 사용하기에 기본 사용법과 달라진다.
+	-->
+	<select id="read" resultMap="meetingMap">
+	SELECT	meeting_num,
+			meeting_name,
+			introduce,
+			userid,
+			meeting_profile,
+			meeting_adress,
+			meeting_hobby
+	FROM	teamb_meeting
+	WHERE	meeting_num = #{meeting_Num} 
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="getListWithPaging" resultType="com.ync.project.domain.MeetingVO">
+	<![CDATA[
+	SELECT  meeting_num,
+			meeting_name,
+			introduce,
+			userid,
+			meeting_Profile,
+			meeting_Adress,
+			meeting_Hobby
+	FROM    (SELECT /*+INDEX_DESC(teamb_meeting xpkteamb_meeting) */
+			rownum rn,
+			meeting_num,
+			meeting_name,
+			introduce,
+			userid,
+			meeting_Profile,
+			meeting_Adress,
+			meeting_Hobby
+			FROM teamb_meeting
+			WHERE 
+	]]>
+	<include refid="criteria"></include> 
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			) b
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+	
+		select count(*) from teamb_meeting
+		
+	</select>
+
+</mapper>

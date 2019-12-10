@@ -29,11 +29,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <link href="/resources/css/admin/admin_style.css" rel="stylesheet">
   <!-- //bootstrap-css -->
   <script src="/resources/js/admin/jquery2.0.3.min.js"></script>
+
 </head>
 
 <body>
   <section id="container">
-    <jsp:include page="../includes/inquiry_header.jsp" flush="true" />
+    <jsp:include page="../includes/question_header.jsp" flush="true" />
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -43,55 +44,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-sm-9 mail-w3agile">
               <section class="panel">
                 <header class="panel-heading wht-bg">
-                  <h4 class="gen-case"> 1:1 문의 관리 > 1:1 문의 정보</h4>
+                  <h4 class="gen-case"> 1:1 문의 > 답변 등록
+                  </h4>
                 </header>
                 <div class="panel-body">
-                  <h3 class="center">질문</h3>
+                  <h3 class="center">1:1 문의 답변</h3>
                   <div class="compose-mail">
+                    <form id="operForm" action="/admin/question/create" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                       <div class="form-group">
-                        <label class="">작성자</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="ay9564" readonly>
+                        <label class="">질문자:</label>
+                        <input type="text" tabindex="1" id="to" name="answer_writer" class="form-control" value="user01" readonly>
                       </div>
                       <div class="form-group">
-                        <label class="">작성일</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="2019.10.28" readonly>
-                      </div>
-                      <div class="form-group">
-                        <label class="">비고</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="문의중" readonly>
-                      </div>
-                      <div class="form-group">
-                        <label class="">제목</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="운영하던 모임이 정지되었습니다." readonly>
+                        <label class="">작성일:</label>
+                        <input type="text" tabindex="1" id="to" name="answer_date" class="form-control" value="${date_time}" readonly>
+
                       </div>
                       <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9" readonly>운영 중이던 모임이 갑자기 폐쇄 되었습니다. 아무 통보도 없는 갑작스런 조치에 많이 당황스럽네요;; 폐쇈 된 이유가 사행성 게시물 작성 및 홍보이 던데 저희는 그런 적이 없습니다. 다시 한번 확인해 주시기 바랍니다. 빠른 답변 부탁드립니다.
-                        </textarea>
-                      </div>
-                  </div>
-                  <h3 class="center">답변</h3>
-                  <div class="compose-mail">
-                      <div class="form-group">
-                        <label class="">작성자</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="" readonly>
-                      </div>
-                      <div class="form-group">
-                        <label class="">작성일</label>
-                        <input type="text" tabindex="1" id="to" class="form-control" value="" readonly>
-                      </div>
-                      <div class="compose-editor">
-                        <textarea class="wysihtml5 form-control" rows="9" readonly></textarea>
+                        <textarea class="wysihtml5 form-control" name="answer" rows="9"></textarea>
                       </div>
                       <div class="center">
-                        <button class="btn btn-primary btn-sm" onClick="location.href='/admin/inquiry/create'" style="width:100px;">답변</button>
+                        <button type="submit" class="btn btn-primary btn-sm" data-oper="create"><i class="fa fa-check"></i> 완료</button>
+                        <button type="button" class="btn btn-sm" data-oper="detail"><i class="fa fa-times"></i> 취소</button>
                       </div>
-                    <button class="btn btn-sm" onClick="location.href='/admin/inquiry/list'">목록</button>
+                    </form>
                   </div>
-
+                  <button class="btn btn-sm" data-oper="list">목록</button>
                 </div>
               </section>
             </div>
           </div>
+          
+        <form id='actionForm' action="/admin/question/list" method='get'>
+        <input type='hidden' name='question_num' value='${question_num}'>
+		<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+		<input type='hidden' name='amount' value='${cri.amount}'>
+		<input type='hidden' name='type' value='${cri.type }'>
+		<input type='hidden' name='keyword'	value='${cri.keyword }'>
+		</form>
 
           <!-- page end-->
         </div>
@@ -114,6 +105,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+		var actionForm = $("#actionForm");
+		
+		var operForm = $("#operForm");
+		
+		var question_num = $("input[name='question_num']").clone();
+		var pageNumTag = $("input[name='pageNum']").clone();
+		var amountTag = $("input[name='amount']").clone();
+		var keywordTag = $("input[name='keyword']").clone();
+		var typeTag = $("input[name='type']").clone();
+		
+		$("button[data-oper='list']").on("click", function(e){
+			 actionForm.submit();
+			});
+		
+		$("button[data-oper='detail']").on("click", function(e){
+			actionForm.attr('action', '/admin/question/detail');
+			actionForm.submit();
+			});
+		
+		$("button[data-oper='create']").on("click", function(e){
+			operForm.append(question_num);
+			operForm.append(pageNumTag);
+			operForm.append(amountTag);
+			operForm.append(keywordTag);
+			operForm.append(typeTag);
+			operForm.submit();
+			});
+		
+	});
+</script>
 </body>
 
 </html>

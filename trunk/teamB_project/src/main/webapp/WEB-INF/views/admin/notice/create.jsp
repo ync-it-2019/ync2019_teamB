@@ -29,6 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <link href="/resources/css/admin/admin_style.css" rel="stylesheet">
   <!-- //bootstrap-css -->
   <script src="/resources/js/admin/jquery2.0.3.min.js"></script>
+  <!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -47,31 +49,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </header>
                 <div class="panel-body">
                   <div class="compose-mail">
-                    <form role="form-horizontal" method="post">
+                    <form role="form-horizontal" action="/admin/notice/create" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" id="to" class="form-control" value="user01" name='userid' readonly>
                       <div class="form-group">
                         <label for="to" class="">제목:</label>
-                        <input type="text" tabindex="1" id="to" class="form-control">
+                        <input type="text" name="title" tabindex="1" id="to" class="form-control">
                         <div class="form-group">
                           <label for="subject" class="">팝업여부</label>
-                          <input type="radio" name="chk_pop" value="Y" style="width:5%; float:none;">On
-                          <input type="radio" name="chk_pop" value="N" style="width:5%; float:none;">Off
+                          <input type="radio" name="popup" value="Yes" style="width:5%; float:none;">On
+                          <input type="radio" name="popup" value="No" style="width:5%; float:none;">Off
                         </div>
 
                         <div class="compose-editor">
-                          <textarea class="wysihtml5 form-control" rows="9"></textarea>
-                          <input type="file" class="default">
+                          <textarea class="wysihtml5 form-control" rows="9" name="contents"></textarea>
+                          <input type="file" class="default" name="uploadFile">
+                          <input type="hidden" class="default" name="files">
                         </div>
                         <div class="center">
-                          <button class="btn btn-primary btn-sm" onClick="location.href='/admin/notice/list'"><i class="fa fa-check"></i> 완료</button>
-                          <button class="btn btn-sm" onClick="location.href='/admin/notice/list'"><i class="fa fa-times"></i> 취소</button>
+                          <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> 완료</button>
+                          <button type="button" class="btn btn-sm" data-oper='list'><i class="fa fa-times"></i> 취소</button>
                         </div>
                     </form>
                   </div>
-                  <button class="btn btn-sm" onClick="location.href='/admin/notice/list'">목록</button>
+                  <button class="btn btn-sm" data-oper='list'>목록</button>
                 </div>
               </section>
             </div>
           </div>
+          
+           <!-- Form 시작 -->
+			<form id='actionForm' action="/admin/notice/list" method='get'>
+			<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+			<input type='hidden' name='amount' value='${cri.amount}'>
+			<input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+			<input type='hidden' name='keyword'	value='<c:out value="${cri.keyword }"/>'>
+			</form>
+		   <!-- Form 끝 -->
 
           <!-- page end-->
         </div>
@@ -95,5 +109,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var actionForm = $("#actionForm");
+		
+		 $("button[data-oper='list']").on("click", function(e){
+			 actionForm.submit();
+			});
+	});
+</script>
 
 </html>

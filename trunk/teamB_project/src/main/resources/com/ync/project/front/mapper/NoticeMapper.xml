@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ync.project.front.mapper.NoticeMapper">
-
+	
+	<!-- 목록 내용 출력 -->
+	<select id="getList" resultType="com.ync.project.domain.NoticeVO">
+   <![CDATA[
+      SELECT notice_num,
+            substr(title, 0, 25)AS title,
+            write_date,
+            userid
+      FROM   teamb_notice
+      WHERE  notice_num > 0 
+      ]]>
+   </select>
+	
 	<!-- 검색 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
@@ -12,22 +24,13 @@
 							title like '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							content like '%'||#{keyword}||'%'
+							contents like '%'||#{keyword}||'%'
 						</when>
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
 	</sql>
-	
-	<!-- 게시판 리스트 -->
-	<select id="getList" resultType="com.ync.project.domain.NoticeVO">
-	<![CDATA[
-		SELECT *
-		FROM   teamb_notice
-		WHERE  notice_num > 0 
-		]]>
-	</select>
 	
 	<!-- 게시글 상세 보기 -->
 	<select id="read" resultType="com.ync.project.domain.NoticeVO">
@@ -50,7 +53,24 @@
 			write_date,
 			userid
 			FROM teamb_notice
-			)
-	]]>
+			WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
 	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from teamb_notice where 
+		
+		<include refid="criteria"></include> 
+		
+		notice_num > 0
+		
+	</select>
+	
 </mapper>

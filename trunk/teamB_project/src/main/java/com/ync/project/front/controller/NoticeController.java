@@ -6,11 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ync.project.domain.Criteria;
+import com.ync.project.domain.PageDTO;
 import com.ync.project.front.service.NoticeService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+ /**
+  * @FileName	: NoticeController.java
+  * @Date		: 2019. 12. 4. 
+  * @Author		: 김상훈
+  * @프로그램 설명 : 공지사항 호출용 컨트롤러
+  */
 @Controller
 @Log4j
 @RequestMapping("/front/*")
@@ -19,9 +27,12 @@ public class NoticeController {
    private NoticeService service;
    
    @GetMapping("/notice/list")
-   public void list(Model model) {
-      log.info("list");
-      model.addAttribute("list", service.getList());
+   public void list(Criteria cri, Model model) {
+	   log.info("list: " + cri);
+	   int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
    }
    
    @GetMapping("/notice/get")

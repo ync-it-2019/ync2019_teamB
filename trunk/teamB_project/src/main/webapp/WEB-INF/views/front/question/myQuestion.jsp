@@ -22,6 +22,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+		
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
     <style media="screen">
       a:link { color: black; text-decoration: none;}
    a:visited { color: black; text-decoration: none;}
@@ -32,13 +44,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+	<link href="/resources/css/paging.css" rel="stylesheet">
 	<!-- //css files -->
 
 	<!-- google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //google fonts -->
+	<!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <!-- //header -->
@@ -58,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<a href="index.html">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page"> 고객센터</li>
 		</ol>
@@ -82,99 +96,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <th>답변여부</th>
             </tr>
           </thead>
+          <c:forEach items="${list}" var="question">
           <tbody>
             <tr>
-              <td>1</td>
-              <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다1ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</a></td>
-              <td>2019-10-09</td>
-              <td>답변 완료</td>
+              <td><c:out value="${question.question_num}" /></td>
+              <td style="cursor:pointer" class="move over1" onClick="location.href='/front/question/get?question_num=<c:out value="${question.question_num}" />'">[${question.category}]${question.title}</td>
+              <td><fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /></td>
+              <c:if test="${question.yn == '처리완료'}">
+              <td><div style="color:green;">${question.yn}</div></td>
+              </c:if>
+              <c:if test="${question.yn == '처리중'}">
+              <td><div style="color:red;">${question.yn}</div></td>
+              </c:if>
             </tr>
           </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-             <td>2</td>
-             <td><a href="./get" class="over1">질문의 제목이 들어오는 공간입니다2</a></td>
-             <td>2019-10-09</td>
-             <td>답변 완료</td>
-            </tr>
-          </tbody>
+          </c:forEach>
         </table>
 </div>
 <div style="margin : 20px;">
- <ul class="pagination justify-content-center">
-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-         <li class="page-item"><a class="page-link" href="#">1</a></li>
-         <li class="page-item"><a class="page-link" href="#">2</a></li>
-         <li class="page-item"><a class="page-link" href="#">3</a></li>
-         <li class="page-item"><a class="page-link" href="#">4</a></li>
-         <li class="page-item"><a class="page-link" href="#">5</a></li>
-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
- </ul>
-  </div>
+ 		<!--  Pagination 시작 -->
+		<ul class="pagination justify-content-center">
+		 <c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+		</c:if>
+		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+			<li class="paginate_button"><a href="${num}">${num}</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+		</c:if>
+		</ul>
+       </div>
+        <!-- Form 시작 -->
+		<form id='actionForm' action="/front/question/myQuestion" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		</form>
  </div>
 </section>
 <!-- //services -->
@@ -182,162 +139,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- footer -->
 <footer class="footer py-5">
-	<div class="container py-md-3">
-		<div class="footer-grid_section text-center">
-			<div class="footer-title mb-3">
-				<h2> <a href="index.html"><span class="fa fa-meetup"></span> Furnish</a></h2>
-			</div>
-			<div class="footer-text">
-				<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ipnut libero malesuada feugiat.
-				 Lorem ipsum dolor sit amet elit.</p>
-			</div>
-		</div>
-		<div class="row mt-5">
-			<div class="col-lg-4 mb-lg-0 mb-4 footer-top">
-				<h4 class="mb-4 w3f_title text-uppercase">Contact Info</h4>
-				<div class="footer-style-w3ls my-2">
-					<p> 1127 Block, 2nd cross, 4th floor, London.</p>
-				</div>
-				<div class="footer-style-w3ls my-2">
-					<p> (+121)-098-8907-9987</p>
-				</div>
-				<div class="footer-style-w3ls">
-					<p> <a href="mailto:info@examplemail.com">info@examplemail.com</a></p>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6 footv3-left">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Company</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="about.html">
-							About Us
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Terms of use
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Faq's
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Privacy Ploicy
-						</a>
-					</li>
-					<li>
-						<a href="contact.html">
-							Get In Touch
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Categories</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Furniture Chairs
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Three Seater Sofas
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Dining Tables
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Office Chairs
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Kitchen Cabinets
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Resources</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Getting Started
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Best Collections
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="categories.html">
-							All Categories
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							24/7 Support
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Contact for Help
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Account</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="login.html">
-							Sign In
-						</a>
-					</li>
-					<li class="">
-						<a href="register.html">
-							Create Account
-						</a>
-					</li>
-				</ul>
-			</div>
-
-		</div>
-	</div>
-	<!-- //footer bottom -->
+   
 </footer>
 <!-- //footer -->
 
 <!-- copyright -->
 <section class="copy-right py-4">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
-				</p>
-			</div>
-			<div class="col-md-4 mt-md-0 mt-4">
-				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <p class="">© 2019 Furnish. All rights reserved | Design by
+               <a href="http://w3layouts.com"> W3layouts.</a>
+            </p>
+         </div>
+         <div class="col-md-4 mt-md-0 mt-4">
+            <div class="subscribe-form">
+               <form action="#" method="post" class="newsletter">
+                  <input class="subscribe" type="text" placeholder="Subscribe..." required="">
+                  <button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
 </section>
 <!-- copyright -->
 
@@ -345,4 +169,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
 </body>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
+
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 </html>

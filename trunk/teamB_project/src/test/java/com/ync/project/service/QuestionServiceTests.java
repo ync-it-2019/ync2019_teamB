@@ -35,31 +35,32 @@ public class QuestionServiceTests {
 		service.getListWithPaging(new Criteria(1, 10)).forEach(board -> log.info(board));
 	}
 	
-	@Test
-	public void testGet() {
-
-		log.info(service.read(0L));
-	}
+//	@Test
+//	public void testGet() {
+//
+//		log.info(service.read(1L));
+//	}
 
 	@Test
 	public void testRegister() {
 
-		QuestionVO board = new QuestionVO();
-		board.setUserid("user01");
-		board.setTitle("새로 작성하는 글");
-		board.setContents("새로 작성하는 내용");
-		board.setFiles("dldldldl");
-		board.setAnswer_whether("n");
+		QuestionVO question = new QuestionVO();
+		question.setUserid("user01");
+		question.setTitle("새로 작성하는 글");
+		question.setContents("새로 작성하는 내용");
+		question.setFiles("dldldldl");
+		question.setAnswer_whether("n");
+		question.setCategory("계정");
 
-		service.register(board);
+		service.register(question);
 
-		log.info("생성된 게시물의 번호: " + board.getQuestion_num());
+		log.info("생성된 게시물의 번호: " + question.getQuestion_num());
 	}
-	
+
 	@Test
 	public void testUpdate() {
 
-		QuestionVO board = service.read(15L);
+		QuestionVO board = service.read(38L);
 
 		if (board == null) {
 			return;

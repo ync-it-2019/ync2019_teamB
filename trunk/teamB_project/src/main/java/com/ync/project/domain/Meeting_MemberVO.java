@@ -14,9 +14,11 @@ import lombok.Data;
 @Data
 public class Meeting_MemberVO {
 	
-	private int meeting_Num;		//모임 번호
+	
+	private String join_code;		//모임 맴버 코드
+	private int meeting_num;		//모임 번호
 	
 	private String userid;			//회원 아이디
-	private Date join_Date;			//가입일
-	private Date fire_whether;		//강퇴 여부
+	private Date join_date;			//가입일
+
 }

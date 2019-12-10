@@ -3,6 +3,7 @@ package com.ync.project.front.mapper;
 import java.util.List;
 
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.EventVO;
 import com.ync.project.domain.NoticeVO;
 
  /**
@@ -20,4 +21,6 @@ public interface NoticeMapper {
 	public void insert(NoticeVO board);
 	// 글 목록 페이징 
 	public List<NoticeVO> getListWithPaging(Criteria cri);
+	//글 전체 개수
+	public int getTotalCount(Criteria cri);
 }

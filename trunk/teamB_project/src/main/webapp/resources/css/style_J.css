@@ -134,6 +134,7 @@
 }
 .profile img {
   border-radius: 50%;
+  height: 60px;
 }
 /* .mypage{
 } */
@@ -150,10 +151,12 @@
   margin-left: 10px;
 }
 .logout a{
+	position: relative;
   font-size: 13px;
   border: 1px solid #d1d1d1;
   padding: 3px;
-  margin: 0 0 0 80px;
+  right : 30px;
+  bottom : 18px;
 }
 
 

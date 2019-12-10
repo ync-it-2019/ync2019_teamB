@@ -50,10 +50,33 @@ public class AdminEventServiceImpl implements AdminEventService {
 	}
 	
 	@Override
+	public boolean modify(EventVO event) {
+		
+		log.info("modify......." + event);
+		
+		return mapper.update(event) == 1;
+	}
+	
+	@Override
+	public boolean remove(Long event_num) {
+		
+		log.info("remove......" + event_num);
+		
+		return mapper.delete(event_num) == 1;
+	}
+	
+	@Override
 	public void register(EventVO event) {
 		
 		log.info("register......." + event);
 		
 		mapper.insertSelectKey(event);
+	}
+	
+	@Override
+	public int getTotal(Criteria cri) {
+		
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
 	}
 }

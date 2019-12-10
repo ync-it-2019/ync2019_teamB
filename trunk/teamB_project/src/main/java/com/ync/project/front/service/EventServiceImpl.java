@@ -32,20 +32,22 @@ public class EventServiceImpl implements EventService {
 		return mapper.read(event_num);
 
 	}
-
-	 @Override
-	 public List<EventVO> getList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getList();
-	 }
-
 	@Override
 	public List<EventVO> getListWithPaging(Criteria cri) {
 
 		log.info("get List with criteria: " + cri);
 
 		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
+	}
+	@Override
+	public List<EventVO> getList() {
+		log.info("getList..........");
+		 return mapper.getList();
 	}
 }

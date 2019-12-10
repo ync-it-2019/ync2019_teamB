@@ -41,12 +41,7 @@
 	WHERE	userid = #{userid} 
 	</select>
 	
-	<select id="checkPw" resultMap="memberMap">
-	SELECT	userid
-	FROM	teamb_member
-	WHERE	userid = #{userid}
-	AND		userpw = #{userpw}
-	</select>
+
 	
 	<select id="getUserList" resultMap="memberMap">
 	<![CDATA[
