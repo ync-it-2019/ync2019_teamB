@@ -77,7 +77,7 @@ public class MeetingController {
 	//소모임 게시판 리스트
 	@GetMapping(value = "/board/list")
 	public void Boardlist(@RequestParam("meeting_num") Long meeting_num, Criteria cri, Model model, Free_BoardVO board) {
-	      
+		
 		log.info("list : "+ cri);
 		int total = service1.getTotal(cri, meeting_num);
 		log.info("total: " + total);
@@ -86,11 +86,11 @@ public class MeetingController {
 		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-	
+   
 	//소모임 게시글 상세보기
 	@GetMapping(value = "/board/get")
 	public void BoardGet(@RequestParam("meeting_num") Long meeting_num, @RequestParam("free_board_num") Long free_board_num, Model model, Criteria cri, Free_BoardVO board) {
-
+		
 		log.info("Meeting board get page!");
 		int total = service1.getTotal(cri, meeting_num);
 		log.info("total: " + total);
@@ -100,18 +100,34 @@ public class MeetingController {
 		
 		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-	   }
-	
-	//소모임 게시판 쓰기
-		@GetMapping(value = "/board/write")
-//		@PreAuthorize("isAuthenticated()")
-		public void boardWrite(Free_BoardVO board, RedirectAttributes rttr) {
-			
-			log.info("register: " + board);
-			service1.write(board);
-			rttr.addFlashAttribute("result", board.getFree_board_num());
-//			return "redirect:/board/list";
+	}
+   
+	//소모임 게시글 작성 페이지
+	@GetMapping("/board/write")
+	public void boardWrite(@RequestParam("meeting_num") Long meeting_num) {
+		log.info("Board Write get page!");
+	}
+   
+	//소모임 게시글 작성 하기
+	@PostMapping("/board/write")
+	public String boardWrite(@RequestParam("meeting_num") Long meeting_num, MultipartFile uploadFile, Free_BoardVO board, RedirectAttributes rttr) {
+		
+		log.info("파일 이름: " + uploadFile.getOriginalFilename());
+		log.info("파일 크기: " + uploadFile.getSize());
+		log.info("컨텐트 타입: " + uploadFile.getContentType());
+		
+		// 실제로 upload된 file이 있을때만 upload 시킨다. 
+		if (uploadFile.getSize() > 0) {
+			board.setFiles(UploadUtils.uploadFormPost(uploadFile, uploadPath));
 		}
+		
+		log.info("register: " + board);
+		service1.write(board, meeting_num);
+		rttr.addFlashAttribute("result", board.getFree_board_num());
+		rttr.addFlashAttribute("result", board.getMeeting_num());
+
+		return "redirect:/front/meeting/board/list?meeting_num="+board.getMeeting_num();
+	}
 	
 	//소모임 정모게시판 리스트
 	@GetMapping(value = "/appointment/list")
