@@ -17,8 +17,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
      <div class="container">
         <!-- nav -->
         <div class="top d-md-flex">
-           <div id="logo">
-              <h1> <a href="/"><span class="fa fa-meetup"></span> 牛모임</a></h1>
+           <div id="logo" style="margin-left:30px;">
+              <h1> <a href="/"> 牛모임</a></h1>
            </div>
            <div class="search-form mx-md-auto">
               <div class="n-right-w3ls">
@@ -56,8 +56,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <li class="mr-lg-4 mr-2"><a href="/front/event/list">이벤트</a></li>
               <li class="mr-lg-4 mr-2"><a href="/front/meetingSearch">모임 찾기</a></li>
               <sec:authorize access="isAuthenticated()">
-              <li class="mr-lg-4 mr-2" id="move" onClick="location.href='/front/myMeeting?userid=<sec:authentication property="principal.username"/>'">
-              		<a href="#">내모임</a></li>
+              <li class="mr-lg-4 mr-2">
+              		<a href="/front/myMeeting?userid=<sec:authentication property="principal.username"/>">내모임</a></li>
               </sec:authorize>
               <sec:authorize access="isAnonymous()">
               <li class="mr-lg-4 mr-2" id="loginGo" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login">내모임</a></li>

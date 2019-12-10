@@ -34,6 +34,7 @@
       });
 
     });
+        
     </script>
 
 	<!-- css files -->
@@ -119,17 +120,17 @@
       <div class="aside">
         <div class="login_area" style="margin-top:40px;">
           <div class="profile">
-            <a href="#"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
+            <a href="/front/myMeeting?userid=<sec:authentication property="principal.username"/>"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
             <div>
               <ul>
-                <li class="mypage"><a href="#"><c:out value="${member.name}" /> 님</a><span><a href="#">내정보</a></span></li>
+                <li class="mypage"><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>"><c:out value="${member.name}" /> 님</a><span><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>">내정보</a></span></li>
                 <li>
                   <ul>
                     <!-- address + hobby = add_ho -->
                     <li class="add_ho">지역 : <c:out value="${member.adress}" /></li>
                     <li class="add_ho"><span  style="width:200px;">취미 : <c:out value="${member.hobby}" /></span>
                         <div class="logout" align="right">
-                        <a href="#">로그아웃</a>
+                        <a href="/customLogout">로그아웃</a>
                       </div>
                     </li>
                   </ul>
@@ -142,16 +143,18 @@
           <hr>
           <div class="arti1">#<a href="*">나만의 모임</a></div>
           <div class="arti2">#<a href="*">인맥 쌓기</a></div>
-          <div class="arti3">#<a href="/meetingSearch.jsp">취미 생활 크루 찾기</a></div>
+          <div class="arti3">#<a href="/front/meetingSearch">취미 생활 크루 찾기</a></div>
           <div class="notice">
-            <a href="#" class="plus">+더보기</a>
+            <a href="/front/notice/list" class="plus">+더보기</a>
             <p>공지사항</p>
-            <a href="#">[안내] 소모임 개설시 주의사항</a><br>
-            <a href="#">[안내] 牛모임 사이트가 개설되었습니다.</a><br>
-            <a href="#">[점검] 정기점검 안내</a>
+            <c:forEach items="${list3}" var="notice" begin="0" end="3" step="1" varStatus="status">
+            <a href="notice/get?notice_num=<c:out value="${notice.notice_num}" />"><c:out value="${notice.title}" /></a><br>
+            </c:forEach>
           </div>
-          <a href="#"><img src="/resources/img/event1.jpg" alt="" height="250px"></a>
-          <a href="#"><img src="/resources/img/FAQ.jpg" alt=""></a>
+          <c:forEach items="${list2}" var="event" begin="0" end="0" step="1" varStatus="status">
+          <a href="/front/event/get?event_num=<c:out value="${event.event_num}" />"><img src="/resources/upload/<c:out value="${event.image}" />" alt="" height="250px"></a>
+          </c:forEach>
+          <a href="/front/question/FAQ"><img src="/resources/img/FAQ.jpg" alt=""></a>
         </div>
       </div>
 
@@ -181,27 +184,41 @@
           		<b class="mt-4"><c:out value="${meeting.meeting_Name}" /></b>
           		<h6><c:out value="${meeting.introduce}" /></h6>
           		<ul class="blog-info mt-1">
-            		<li>멤버 10명</li>
+          		<li>멤버 
+          		<c:set var="memberCount" value="0" />
+          		<c:forEach items="${list4}" var="meeting2" varStatus="status">
+          		<c:if test="${meeting.meeting_Num eq meeting2.meeting_Num}">
+          		<c:set var="memberCount" value="${meeting2.meeting_count}" />
+          		</c:if>
+          		</c:forEach>
+          		<c:out value="${memberCount}" />
+            		명</li>
             		<li> · <c:out value="${meeting.meeting_Adress}" /></li>
             		<li> · <c:out value="${meeting.meeting_Hobby}" /></li>
           		</ul>
         	</div>
   		</div>
   	</div>
-
 	  </c:forEach>
 
 
-    <div style="margin:30px 240px;">
+    <div style="margin:130px 330px; text-align: center;">
     <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    	<c:if test="${pageMaker.prev}">
+			<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1}">Previous</a></li>
+		</c:if>
+		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+			<li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1 }">Next</a></li>
+		</c:if>
     </ul>
+    <form id='actionForm' action="/front/myMeeting" method='get'>
+		<input type='hidden' name='userid' value='<sec:authentication property="principal.username"/>'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		</form>
     </div>
 		</div>
 	</div>
@@ -240,7 +257,20 @@
    </div>
 </section>
 <!-- copyright -->
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		var actionForm = $("#actionForm");
 
+		// 페이지 번호 클릭 이벤트
+		$(".page-item a").on("click", function(e) {
+			e.preventDefault();
+			// console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	});
+</script>
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->
