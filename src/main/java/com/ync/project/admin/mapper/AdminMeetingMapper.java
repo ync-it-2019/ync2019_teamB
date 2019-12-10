@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.Meeting_Member_InfoVO;
 
  /**
   * @FileName	: AdminMeetingMapper.java
@@ -20,4 +21,8 @@ public interface AdminMeetingMapper {
 	public List<MeetingVO> getListWithPaging(Criteria cri);
 	
 	public int getTotalCount(Criteria cri);
+	
+	public List<Meeting_Member_InfoVO> getMemberInfo(Long meeting_num);
+	
+	public int getMemberCnt(Long meeting_num);
 }
