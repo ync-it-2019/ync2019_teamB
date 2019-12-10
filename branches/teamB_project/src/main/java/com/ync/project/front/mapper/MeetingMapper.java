@@ -31,7 +31,11 @@ public interface MeetingMapper {
 	public List<MeetingVO> getMyList(@Param("cri") Criteria cri, @Param("userid") String userid);
 	//모임 가입
 	public void insertMember(Meeting_MemberVO mMember);
-	
+	//모임 인원수 카운트
 	public int getTotalCount(Criteria cri);
+	//내가 가입한 모임의 수
+	public int getMyTotalCount(String userid);
+	//내가 가입한 모임 가입자 수
+	public List<MeetingVO> MeetingMemberCount();
 
 }

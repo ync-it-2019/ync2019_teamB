@@ -71,4 +71,16 @@ public class MeetingServiceImpl implements MeetingService {
 		mapper.insertMember(mMember);
 	}
 	
+	@Override
+	public int getMyTotal(String userid) {
+		log.info("get My Meeting List total count");
+		return mapper.getMyTotalCount(userid);
+	}
+
+	@Override
+	public List<MeetingVO> MeetingMemberCount() {
+		log.info("get My Meeting List Member total count");
+		return mapper.MeetingMemberCount();
+	}
+	
 }

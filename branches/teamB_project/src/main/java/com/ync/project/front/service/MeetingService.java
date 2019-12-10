@@ -35,4 +35,10 @@ public interface MeetingService {
 	//모임 가입
 	public void insertMember(Meeting_MemberVO mMember);
 	
+	// 내가 가입한 모임 수
+	public int getMyTotal(String userid);
+   
+	//모임 회원 수
+	public List<MeetingVO> MeetingMemberCount();
+	
 }

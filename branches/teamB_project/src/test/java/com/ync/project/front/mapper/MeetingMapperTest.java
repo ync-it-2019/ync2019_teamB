@@ -144,4 +144,25 @@ public class MeetingMapperTest {
 //	  }
 	
 	
+//	@Test
+//	public void testMyTotal() {
+//		
+//		Criteria cri = new Criteria();
+//		cri.setKeyword("상");
+//		cri.setType("N");
+//
+//		int total = mapper.getMyTotalCount("user02");
+//
+//		log.info("total:" + total);
+//	}
+
+	@Test
+	public void testmembertotal() {
+		mapper.MeetingMemberCount().forEach((board) -> {
+			log.info("==================");
+			log.info(board);
+		});
+	}
+	
+	
 }
