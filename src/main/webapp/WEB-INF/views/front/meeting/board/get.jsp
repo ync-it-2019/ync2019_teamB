@@ -33,7 +33,7 @@
 	<div class="container mb-5">
        	<!-- 게시글 제목 -->
 		<tr>
-			<h2 style="font-weight:bold">${board.title}</h2><br>
+			<h2 style="font-weight:bold">${param.title}</h2><br>
 		</tr>
 		<!-- //게시글 제목 -->
 		
@@ -42,7 +42,7 @@
 			<thead>
 	            <tr>${board.userid} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</tr>
 	            <tr><fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_Date}" /> &nbsp&nbsp&nbsp&nbsp</tr>
-	            <tr>조회수 : ${board.views}</tr>	            
+	            <tr>조회수 : ${board.views+1}</tr>	            
 			</thead>
 		</div>
 		
