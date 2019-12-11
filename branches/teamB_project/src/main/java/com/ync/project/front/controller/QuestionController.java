@@ -1,5 +1,7 @@
 package com.ync.project.front.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -44,12 +46,13 @@ public class QuestionController {
 		}
 		
 		@GetMapping(value = "/myQuestion")
-		public void myQuestion(Criteria cri, Model model) {
-			log.info("List");
+		public void myQuestion(Criteria cri, Model model, Principal principal) {
 			log.info("cri: " + cri);
-			int total = service.getTotal(cri);
+			String userid = principal.getName();
+			int total = service.getTotal(cri, userid);
 			log.info("total: " + total);
-			model.addAttribute("list", service.getListWithPaging(cri));
+			log.info(principal.getName());
+			model.addAttribute("list", service.getListWithPaging(cri, userid));
 			model.addAttribute("pageMaker", new PageDTO(cri, total));
 		}
 		
