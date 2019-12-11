@@ -2,6 +2,8 @@ package com.ync.project.front.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.QuestionVO;
 
@@ -19,7 +21,7 @@ public interface QuestionMapper {
 	// 수정
 	public int update(QuestionVO board);
 	// 글 목록 페이징 
-	public List<QuestionVO> getListWithPaging(Criteria cri);
+	public List<QuestionVO> getListWithPaging(@Param("cri") Criteria cri, @Param("userid") String userid);
 
-	public int getTotalCount(Criteria cri);
+	public int getTotalCount(@Param("cri") Criteria cri, @Param("userid") String userid);
 }
