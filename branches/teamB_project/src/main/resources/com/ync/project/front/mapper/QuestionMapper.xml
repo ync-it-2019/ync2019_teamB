@@ -76,7 +76,7 @@
 			write_date,
 			answer_whether
 			FROM teamb_1to1_question
-			WHERE 
+			WHERE
   		]]>
 		<include refid="criteria"></include>
       
