@@ -19,6 +19,8 @@
 <title>牛모임 :: 모임 게시글 보기</title>
 
 <jsp:include page="/WEB-INF/views/front/include/cssLink.jsp" flush="true" />
+  <!-- //$(document).ready를 사용하려면 필요함 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <meta charset="UTF-8">
 </head>
@@ -97,8 +99,31 @@
 <section>
 	<div class="container">
 		<button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left mb-3"><a href="/front/meeting/board/list?meeting_num=${param.meeting_num}&pageNum=1" style="color:white">목록</a></button>
-		<button type="submit" id="submit" name="submit" class="btn btn-danger pull-right">삭제</button>
-		<button type="submit" id="submit" name="submit" class="btn btn-primary pull-right mr-2">수정</button>
+		<sec:authentication property="principal" var="pinfo"/>
+		<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.username eq board.userid}">
+					<button data-oper='remove' id="remove" name="remove" class="btn btn-danger pull-right">삭제</button>		
+					<button data-oper='modify' class="btn btn-primary pull-right mr-2"><a href="/front/meeting/board/modify?meeting_num=${param.meeting_num}&free_board_num=${param.free_board_num}" style="color:white">수정</a></button>
+				</c:if>
+		</sec:authorize>
+		
+		<form id='operForm' action="/front/meeting/board/modify" method="get">
+			<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  			<input type='hidden' name='free_board_num' value='<c:out value="${board.free_board_num}"/>'>
+			<input type='hidden' name ='meeting_num' value='<c:out value="${board.meeting_num}"/>'>
+			<input type='hidden' name ='userid' value='<c:out value="${board.userid}"/>'>
+			<input type='hidden' name ='category' value='<c:out value="${board.category}"/>'>
+			<input type='hidden' name ='title' value='<c:out value="${board.title}"/>'>
+			<input type='hidden' name ='contents' value='<c:out value="${board.contents}"/>'>
+			<input type='hidden' name ='files' value='<c:out value="${board.files}"/>'>
+			<input type='hidden' name ='write_Date' value='<c:out value="${board.write_Date}"/>'>
+			<input type='hidden' name ='views' value='<c:out value="${board.views}"/>'>
+			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+			<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+  			<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  			<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+		</form>
+		
 	</div>
 </section>
 <!-- //목록 / 수정 / 삭제 버튼 -->
@@ -192,6 +217,7 @@
 	</div>
 	<!-- Form 시작 -->
 			<form id='actionForm' action="/front/meeting/board/list" method='get'>
+				<input type='hidden' name ='free_board_num' value='${param.free_board_num}'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
  				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -206,6 +232,23 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var result = '<c:out value="${result}"/>';
+
+		var operForm = $("#operForm");
+		
+		$("button[data-oper='remove']").on("click", function(e){
+			
+			if (confirm('정말 삭제 하시겠습니까?')) {
+				operForm.attr('method', 'post');
+				operForm.attr("action","/front/meeting/board/remove").submit();
+			}
+		});
+		
+		$("button[data-oper='list']").on("click", function(e){
+			$("input[id='token']").remove();
+			$("input[name='event_num']").remove();
+			$("input[name='ck_code']").remove();
+			operForm.attr("action","/front/meeting/board/list").submit();
+		});
 		
 		checkModal(result);
 
@@ -250,6 +293,7 @@
 			e.preventDefault();
 			searchForm.submit();
 		});
+		
 	});
 </script>
 </html>
