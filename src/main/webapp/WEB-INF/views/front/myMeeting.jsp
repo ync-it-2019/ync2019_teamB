@@ -120,10 +120,10 @@
       <div class="aside">
         <div class="login_area" style="margin-top:40px;">
           <div class="profile">
-            <a href="/front/myMeeting?userid=<sec:authentication property="principal.username"/>"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
+            <a href="/front/myMeeting"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
             <div>
               <ul>
-                <li class="mypage"><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>"><c:out value="${member.name}" /> 님</a><span><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>">내정보</a></span></li>
+                <li class="mypage"><a href="/front/myPage/info"><c:out value="${member.name}" /> 님</a><span><a href="/front/myPage/info">내정보</a></span></li>
                 <li>
                   <ul>
                     <!-- address + hobby = add_ho -->

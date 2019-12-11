@@ -1,10 +1,11 @@
 package com.ync.project.front.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.PageDTO;
@@ -33,18 +34,20 @@ public class MyMeetingListController {
    private EventService service3;
    private NoticeService service4;
    
-    /**
-  * @Method 설명 : myMeeting.jsp호출용 메소드
+
+ /**
+  * @Method 설명 : myMeeting.jsp 호출
   * @Method Name : list
-  * @Date : 2019. 12. 9.
+  * @Date : 2019. 12. 11.
   * @작성자 : 조중현
-  * @param userid
+  * @param principal
   * @param cri
   * @param model
   */
 @GetMapping("/front/myMeeting")
-   public void list(@RequestParam("userid") String userid,Criteria cri, Model model) {
+   public void list(Principal principal, Criteria cri, Model model) {
 	   log.info("list: " + cri);
+	   String userid = principal.getName();
 	   int total = service.getMyTotal(userid);
 		log.info("total: " + total);
 		//모임 회원 수

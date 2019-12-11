@@ -37,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <sec:authorize access="isAuthenticated()">
 
 				<a href="/customLogout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
-				<a href="#" class="btn" id="move2" onClick="location.href='/front/myPage/info?userid=<sec:authentication property="principal.username"/>'">
+				<a href="#" class="btn" id="move2" onClick="location.href='/front/myPage/info'">
 				<span class="fa fa-pencil-square-o" >
 				</span> 
 				마이페이지</a>
@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <li class="mr-lg-4 mr-2"><a href="/front/meetingSearch">모임 찾기</a></li>
               <sec:authorize access="isAuthenticated()">
               <li class="mr-lg-4 mr-2">
-              		<a href="/front/myMeeting?userid=<sec:authentication property="principal.username"/>">내모임</a></li>
+              		<a href="/front/myMeeting">내모임</a></li>
               </sec:authorize>
               <sec:authorize access="isAnonymous()">
               <li class="mr-lg-4 mr-2" id="loginGo" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');"><a href="/login">내모임</a></li>
@@ -113,12 +113,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			actionForm.submit();
 		});
 		
-		$("#move2").on("click",function(e) {
-			e.preventDefault();
-			actionForm.append("<input type='hidden' name='userid' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/front/myPage/info");
-			actionForm.submit();
-		});
 		
 		
 		// 검색 버튼 클릭 이벤트
