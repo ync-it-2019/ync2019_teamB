@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ync.project.front.mapper.Free_BoardMapper">
- 
+ <!--
+  /**
+  * @FileName	: MeetingController.java
+  * @Date		: 2019. 12. 11.
+  * @Author		: 장윤석
+  * @프로그램 설명   : 소모임게시판xml
+  */
+ -->
 	<sql id="criteria">
 	<!--
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
@@ -78,7 +85,7 @@
 	<delete id="delete"> <!-- 글 삭제 -->
 		DELETE teamb_free_board
 		WHERE  free_board_num = #{free_board_num}
-		AND    meeting_num = #{meeting_num}
+
 	</delete>
  
 	<update id="update">  <!-- 글 수정 -->
@@ -86,9 +93,9 @@
 		SET   title = #{title},
 			  contents = #{contents},
 			  userid = #{userid},
-			  write_date = sysdate
+			  write_date = sysdate,
+			  files = #{files}
 		WHERE free_board_num = #{free_board_num}
-		AND	  meeting_num = #{meeting_num}
 	</update>
 	
 	<!-- 글 목록 페이징 --><!-- 리플 카운트가 테이블이 없음, bk_board ?, regdate와 updatedate 삭제 -->
