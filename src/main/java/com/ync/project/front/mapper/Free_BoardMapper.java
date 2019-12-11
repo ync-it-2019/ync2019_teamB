@@ -29,6 +29,8 @@ public interface Free_BoardMapper {
 	public int delete(Long free_board_num);
 
 	public int update(Free_BoardVO board);
+	
+	public int viewCount(Long free_board_num);
 
 	public int getTotalCount(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);  //글 목록 갯수 카운트
 
