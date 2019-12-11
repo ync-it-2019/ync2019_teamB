@@ -116,12 +116,12 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 4.
 	  * @작성자 : 이주현
 	  */
-//	@Test
-//	public void testGetCount() {
-//		
-//		Meeting_MemberVO mMember = mapper.getCount(1L);
-//		log.info(mMember);
-//	}
+	@Test
+	public void testGetCount() {
+		
+		Meeting_MemberVO mMember = mapper.getCount(1L);
+		log.info(mMember);
+	}
 	
 	 /**
 	  * @Method 설명 : 모임정보수정 테스트
@@ -129,21 +129,21 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 10.
 	  * @작성자 : 이주현
 	  */
-	@Test
-	public void testMeetingModify() {
-		
-		MeetingVO meeting = new MeetingVO();
-		
-		meeting.setIntroduce("모임소개입니다.");
-		meeting.setMeeting_Profile("image.jpg");
-		meeting.setMeeting_Name("모임 이름 수정2");
-		meeting.setMeeting_Adress("대구광역시");
-		meeting.setMeeting_Hobby("게임/오락");
-		meeting.setMeeting_Num(50L);
-
-		log.info(meeting);
-		
-		mapper.meetingModify(meeting);
-	}
+//	@Test
+//	public void testMeetingModify() {
+//		
+//		MeetingVO meeting = new MeetingVO();
+//		
+//		meeting.setIntroduce("모임소개입니다.");
+//		meeting.setMeeting_Profile("image.jpg");
+//		meeting.setMeeting_Name("모임 이름 수정2");
+//		meeting.setMeeting_Adress("대구광역시");
+//		meeting.setMeeting_Hobby("게임/오락");
+//		meeting.setMeeting_Num(50L);
+//
+//		log.info(meeting);
+//		
+//		mapper.meetingModify(meeting);
+//	}
 	
 }
