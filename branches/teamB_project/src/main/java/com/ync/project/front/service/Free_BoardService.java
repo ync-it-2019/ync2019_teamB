@@ -32,6 +32,9 @@ public interface Free_BoardService {
 	// 글 삭제
 	public boolean remove(Long free_board_num);
 	
+	//글 조회수 갱신
+	public int viewCount(Long free_board_num);
+	
 	//추가
 	 public int getTotal(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
 
