@@ -30,7 +30,7 @@ public interface MeetingMainMapper {
 	public MeetingVO getMeetingNum();
 	
 	//모임인원수
-	public Meeting_MemberVO getCount(Long meeting_Num);
+	public int getCount(Long meeting_Num);
 	
 	//모임 수정
 	public void meetingModify(MeetingVO meeting);

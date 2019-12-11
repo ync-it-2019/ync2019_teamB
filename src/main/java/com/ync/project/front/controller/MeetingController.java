@@ -2,9 +2,11 @@ package com.ync.project.front.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -88,7 +90,7 @@ public class MeetingController {
 	}
    
 	//소모임 게시글 상세보기
-	@GetMapping(value = "/board/get")
+	@GetMapping(value = {"/board/get", "/board/modify"})
 	public void BoardGet(@RequestParam("meeting_num") Long meeting_num, @RequestParam("free_board_num") Long free_board_num, Model model, Criteria cri, Free_BoardVO board) {
 		
 		log.info("Meeting board get page!");
@@ -127,6 +129,38 @@ public class MeetingController {
 		rttr.addFlashAttribute("result", board.getMeeting_num());
 
 		return "redirect:/front/meeting/board/list?meeting_num="+board.getMeeting_num();
+	}
+	
+	
+	//소모임 게시글 수정하기
+	@PostMapping("/board/modify")
+	@PreAuthorize("principal.username == #board.userid")
+	public String modify(MultipartFile uploadFile, Free_BoardVO board,  @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("modify:" + board);
+		
+		// 실제로 upload된 file이 있을때만 upload 시킨다. 
+		if (uploadFile.getSize() > 0) {
+			board.setFiles(UploadUtils.uploadFormPost(uploadFile, uploadPath));
+		}
+		
+		if (service1.modify(board)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/front/meeting/board/list?meeting_num="+board.getMeeting_num()+"&pageNum=1";
+	}
+	
+	//소모임 게시글 삭제
+	@PostMapping("/board/remove")
+	@PreAuthorize("principal.username == #board.userid")
+	public String remove(Free_BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+
+		log.info("remove..." + board.getFree_board_num());
+		service1.remove( board.getFree_board_num());
+		rttr.addFlashAttribute("result", "success");		
+		
+		return "redirect:/front/meeting/board/list?meeting_num="+board.getMeeting_num()+"&pageNum=1";
+		//return "";
 	}
 	
 	//소모임 정모게시판 리스트

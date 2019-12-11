@@ -72,30 +72,30 @@ public class MeetingMainServiceTests {
 //		service.getMeetingNum();
 //	}
 //	
-//	@Test
-//	public void testGetCount() {
-//		
-//		log.info(service);
-//		
-//		service.getCount(1L);
-//	}
-
 	@Test
-	public void testMeetingModify() {
-
-		MeetingVO meeting = new MeetingVO();
+	public void testGetCount() {
 		
-		meeting.setIntroduce("수정 444");
-		meeting.setMeeting_Profile("");
-		meeting.setMeeting_Name("모임이름 수정 444");
-		meeting.setMeeting_Adress("대구광역시");
-		meeting.setMeeting_Hobby("게임/오락");
+		log.info(service);
 		
-		meeting.setMeeting_Num(50L);
-
-		log.info(meeting);
-		
-		service.meetingModify(meeting);
+		service.getCount(1L);
 	}
+
+//	@Test
+//	public void testMeetingModify() {
+//
+//		MeetingVO meeting = new MeetingVO();
+//		
+//		meeting.setIntroduce("수정 444");
+//		meeting.setMeeting_Profile("");
+//		meeting.setMeeting_Name("모임이름 수정 444");
+//		meeting.setMeeting_Adress("대구광역시");
+//		meeting.setMeeting_Hobby("게임/오락");
+//		
+//		meeting.setMeeting_Num(50L);
+//
+//		log.info(meeting);
+//		
+//		service.meetingModify(meeting);
+//	}
 
 }
