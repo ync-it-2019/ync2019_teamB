@@ -68,7 +68,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- services -->
 <section class="news py-5">
 	<div class="container py-lg-3">
-      				<h5 style="margin : 20px;"><a href="#" style="color : #007bff">FAQ</a> | <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login">나의 문의</a></sec:authorize><sec:authorize access="isAuthenticated()"><a href="/front/question/myQuestion">나의 문의</a></sec:authorize></h5>
+      				<h5 style="margin : 20px;"><a href="#" style="color : #007bff">FAQ</a> | <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login">나의 문의</a></sec:authorize>
+      				<sec:authorize access="isAuthenticated()"><a href="/front/question/myQuestion">나의 문의</a></sec:authorize></h5>
             <hr>
             <div class="col-lg-14">
               <div style="margin: 50px 0px;"><h4><b>자주 찾는 질문</b></h4></div>
