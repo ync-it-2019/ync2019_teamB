@@ -29,7 +29,7 @@ import lombok.extern.log4j.Log4j;
  /**
   * @FileName	: MeetingController.java
   * @Date		: 2019. 10. 20. 
-  * @Author		: 조중현
+  * @Author		: 조중현, 장윤석, 이주현
   * @프로그램 설명 : 소모임 호출용 컨트롤러
   */
 @RequestMapping("front/meeting/*")
@@ -98,6 +98,7 @@ public class MeetingController {
 		log.info("total: " + total);
 
 		model.addAttribute("board", service1.read(free_board_num));
+		model.addAttribute("view", service1.viewCount(free_board_num));
 		log.info("모임 번호"+ meeting_num);
 		
 		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
