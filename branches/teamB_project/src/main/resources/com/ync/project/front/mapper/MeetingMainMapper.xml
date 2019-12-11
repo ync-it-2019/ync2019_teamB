@@ -70,9 +70,9 @@
 	</select>
 	
 	<!-- 모임인원수 -->
-	<select id="getCount" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<select id="getCount"  resultType="int">
 	<![CDATA[
-		SELECT	COUNT(*)
+		SELECT	COUNT(JOIN_CODE) AS MEETING_MEMEBER_COUNT
 		FROM	TEAMB_MEETING_MEMBER
 		WHERE	MEETING_NUM = #{meeting_Num}
 		]]>

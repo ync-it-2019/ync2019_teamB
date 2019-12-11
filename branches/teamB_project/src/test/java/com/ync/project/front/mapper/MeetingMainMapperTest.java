@@ -119,8 +119,8 @@ public class MeetingMainMapperTest {
 	@Test
 	public void testGetCount() {
 		
-		Meeting_MemberVO mMember = mapper.getCount(1L);
-		log.info(mMember);
+		int memberCount = mapper.getCount(1L);
+		log.info(memberCount);
 	}
 	
 	 /**

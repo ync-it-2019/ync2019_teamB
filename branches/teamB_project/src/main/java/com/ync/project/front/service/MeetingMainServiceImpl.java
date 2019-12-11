@@ -67,7 +67,7 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	}
 	
 	@Override
-	public Meeting_MemberVO getCount(Long meeting_Num) {
+	public int getCount(Long meeting_Num) {
 		
 		log.info("getCount......");
 		
