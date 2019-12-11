@@ -155,15 +155,20 @@
        </sec:authorize>
        <sec:authorize access="isAuthenticated()">
        <div class="profile">
-            <a href="/front/myMeeting?userid=<sec:authentication property="principal.username"/>"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
+       <sec:authentication property="principal.username" var="userId"/>
+       <c:forEach items="${member}" var="member" varStatus="status">
+       <c:if test="${member.userid eq userId}">
+            <a href="/front/myPage/info"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
             <div>
               <ul>
-                <li class="mypage"><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>"><c:out value="${member.name}" /> 님</a><span><a href="/front/myPage/info?userid=<sec:authentication property="principal.username"/>">내정보</a></span></li>
+                <li class="mypage"><a href="/front/myPage/info"><c:out value="${member.name}" />님</a><span><a href="/front/myPage/info">내정보</a></span></li>
                 <li>
                   <ul>
                     <!-- address + hobby = add_ho -->
                     <li class="add_ho">지역 : <c:out value="${member.adress}" /></li>
                     <li class="add_ho"><span  style="width:200px;">취미 : <c:out value="${member.hobby}" /></span>
+                    </c:if>
+                    </c:forEach>
                         <div class="logout" align="right">
                         <a href="/customLogout">로그아웃</a>
                       </div>
@@ -175,18 +180,19 @@
           </div>
           </sec:authorize>
           <hr>
-          <div class="arti1"><a href="*">나만의 모임</a></div>
-          <div class="arti2">#<a href="*">인맥 쌓기</a></div>
-          <div class="arti3">#<a href="*">취미 생활 크루 찾기</a></div>
+          <div class="arti1">#<a href="/front/meeting/meetingCreate">나만의 모임</a></div>
+          <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
+          <div class="arti3">#<a href="/front/myMeeting">취미 생활 크로 활동</a></div>
           <div class="notice">
             <a href="/front/notice/list" class="plus">+더보기</a>
             <p>공지사항</p>
             <c:forEach items="${list3}" var="notice" begin="0" end="2" step="1" varStatus="status">
             <a href="notice/get?notice_num=<c:out value="${notice.notice_num}" />"><c:out value="${notice.title}" /></a><br>
+            <c:set var="para" value="${notice.title}" scope="session"  />
             </c:forEach>
           </div>
           <c:forEach items="${list4}" var="event" begin="0" end="0" step="1" varStatus="status">
-          <a href="/front/event/get?event_num=<c:out value="${event.event_num}" />"><img src="/resources/upload/<c:out value="${event.image}" />" alt="" height="250px"></a>
+          <a href="/front/event/get?event_num=<c:out value="${event.event_num}" />"><img src="/resources/upload/<c:out value="${event.image}" />" height="250px"></a>
           </c:forEach>
           <a href="/front/question/FAQ"><img src="/resources/img/FAQ.jpg" alt=""></a>
   
