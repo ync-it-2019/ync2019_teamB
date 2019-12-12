@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						<div class="comment-top" style="position: relative; top: 60px;">
-							<a href="/front/event/list"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
+							<a href="/front/event/endList"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
             </div>
           </div>
         </div>

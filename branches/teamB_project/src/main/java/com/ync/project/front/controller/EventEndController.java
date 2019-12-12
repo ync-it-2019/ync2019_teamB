@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.PageDTO;
@@ -41,4 +43,19 @@ public class EventEndController {
       model.addAttribute("eventEndList", service.getListWithPaging(cri));
       model.addAttribute("pageMaker", new PageDTO(cri, total));
    }
+
+ /**
+  * @Method 설명 : front/event/endGet.jsp 호출
+  * @Method Name : get
+  * @Date : 2019. 12. 12.
+  * @작성자 : 김상훈
+  * @param uploadFile
+  * @param event_num
+  * @param model
+  */
+@GetMapping("/event/endGet")
+public void get(MultipartFile uploadFile, @RequestParam("event_num") Long event_num, Model model) {
+   log.info("get");
+   model.addAttribute("board", service.read(event_num));
+}
 }

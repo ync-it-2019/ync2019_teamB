@@ -44,4 +44,11 @@ public class EventEndServiceImpl implements EventEndService {
 		log.info("getList..........");
 		 return mapper.getEndList();
 	}
+
+	@Override
+	public EventVO read(Long event_num) {
+		log.info("get......" + event_num);
+
+		return mapper.read(event_num);
+	}
 }

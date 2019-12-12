@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.PageDTO;
@@ -35,7 +36,7 @@ public class EventController {
   * @param model
   */
 @GetMapping("/event/list")
-   public void list(Criteria cri, Model model) {
+   public void list(MultipartFile uploadFile, Criteria cri, Model model) {
 	   log.info("List");
 	   int total = service.getTotal(cri);
 	   log.info("total: " + total);
@@ -52,7 +53,7 @@ public class EventController {
   * @param model
   */
 @GetMapping("/event/get")
-   public void get(@RequestParam("event_num") Long event_num, Model model) {
+   public void get(MultipartFile uploadFile, @RequestParam("event_num") Long event_num, Model model) {
       log.info("get");
       model.addAttribute("board", service.read(event_num));
    }

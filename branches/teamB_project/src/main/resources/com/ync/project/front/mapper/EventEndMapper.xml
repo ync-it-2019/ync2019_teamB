@@ -13,6 +13,13 @@
 		]]>
 	</select>
 	
+	<!-- 게시글 상세 보기 -->
+	<select id="read" resultType="com.ync.project.domain.EventVO">
+		SELECT *
+		FROM   teamb_event
+		WHERE  event_num =	#{event_num}
+	</select>
+	
 	<!-- 페이징 -->
 	<select id="getListWithPaging" resultType="com.ync.project.domain.EventVO">
 	<![CDATA[
