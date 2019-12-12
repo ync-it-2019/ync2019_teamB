@@ -137,16 +137,9 @@ public class QuestionController {
 		  * @return
 		  */
 		@PostMapping("/modify")
-		public String modify(MultipartFile uploadFile, QuestionVO question, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		public String modify(QuestionVO question, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 			log.info("modify:" + question);
-			log.info("파일 이름: " + uploadFile.getOriginalFilename());
-			log.info("파일 크기: " + uploadFile.getSize());
-			log.info("컨텐트 타입: " + uploadFile.getContentType());
 			
-			// 실제로 upload된 file이 있을때만 upload 시킨다. 
-			if (uploadFile.getSize() > 0) {
-				question.setFiles(UploadUtils.uploadFormPost(uploadFile, uploadPath));
-			}
 			if (service.modify(question)) {
 				rttr.addFlashAttribute("result", "success");
 			}
