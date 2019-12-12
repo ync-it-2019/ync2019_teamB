@@ -1,6 +1,7 @@
 package com.ync.project.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class AdminMeetingController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/list")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminMeetingList(Criteria cri, Model model) {
 
 		log.info("Meeting List get page!");
@@ -55,6 +57,7 @@ public class AdminMeetingController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/detail")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminMeetingDetail(@RequestParam("meeting_num") Long meeting_num, @ModelAttribute("cri") Criteria cri, @ModelAttribute("mcri") MeetingMemberCriteria mcri, Model model) {
 
 		log.info("Meeting Detail get page!");
