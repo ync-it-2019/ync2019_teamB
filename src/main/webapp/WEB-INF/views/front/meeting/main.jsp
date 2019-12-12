@@ -46,12 +46,12 @@
     <div id="meeting-menu">
       <ul class="menu info-row">
         <div class="meeting-menu1">
-          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="./main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="/front/meeting/main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
         </div>
@@ -77,8 +77,8 @@
             			<h3><a href="./appointment/get" style="color:black">${getAppointment.title}</a></h3>
           			</div>
           			<div class="meeting-info-appointment-css-date">
-          				<fmt:formatDate pattern="yyyy-MM-dd" value="${getAppointment.appointment_Date}" />
-            			${getAppointment.appointment_Place}
+          				<fmt:formatDate pattern="yyyy-MM-dd" value="${getAppointment.appointment_date}" />
+            			${getAppointment.appointment_place}
           			</div>
         		</div>
         		<!-- //최근 정모글 들어가는 부분 -->
@@ -109,7 +109,7 @@
 <!-- //소모임 소개 -->
 
 <!-- 모임 가입 히든 폼 -->
-<form id="frm" action="./main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+<form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">

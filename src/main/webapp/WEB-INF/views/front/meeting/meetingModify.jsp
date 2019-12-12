@@ -232,7 +232,7 @@
 <!-- //모임 수정 -->
 
 <!-- 모임 가입 히든 폼 -->
-<form id="frm" action="./main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+<form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">

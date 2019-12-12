@@ -70,25 +70,25 @@
 <!-- 글쓰기 -->
 <section>
 	<div class="container">
-		<form role="form" id="appoWrite" action="/front/meeting/appointment/write" method="post" enctype="multipart/form-data">
+		<form role="form" action="/front/meeting/appointment/modify" method="post" enctype="multipart/form-data">
 			<br style="clear: both">
-			<h3 style="margin-bottom: 25px;">정모 작성</h3>
+			<h3 style="margin-bottom: 25px;">정모 수정</h3>
 			<div class="form-group">
-				<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" required>
+				<input type="text" class="form-control" name="title" value="${getAppointmentRead.title}" required>
 			</div>
 			
 			<div class="form-group">
-				<textarea class="form-control" id="summernote" name="contents" placeholder="내용을 적어주세요" maxlength="140" rows="7"></textarea>
+				<textarea class="form-control" id="summernote" name="contents" maxlength="140" rows="7">${getAppointmentRead.contents}</textarea>
 			</div>
 			<div class="input-group-css">
-				<input type="date" class="form-control-appointment" name="appointment_date" required>
-				<input type="text" class="form-control-appointment" name="appointment_place" placeholder="정모 장소를 입력해주세요" required>
-				<input type="text" class="form-control-appointment" name="max_people" placeholder="정모 최대인원을 입력해주세요" required>
+				<input type="date" class="form-control-appointment" name="appointment_date" value="${getAppointmentRead.appointment_date}" required>
+				<input type="text" class="form-control-appointment" name="appointment_place" value="${getAppointmentRead.appointment_place}" required>
+				<input type="text" class="form-control-appointment" name="max_people" value="${getAppointmentRead.max_people}" required>
 			</div>
 			
 			<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 			<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
-			<input type="hidden" name="appointment_num" value="${getAppointmentNum.getAppointmentNum().appointment_num + 1}">
+			<input type="hidden" name="appointment_num" value="${getAppointmentRead.appointment_num}">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			
 			<button type="submit" class="btn btn-primary pull-right" style="margin:10px"> 등록 </button>
