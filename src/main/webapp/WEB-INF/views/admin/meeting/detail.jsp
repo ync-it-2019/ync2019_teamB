@@ -31,6 +31,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <link href="/resources/css/admin/admin_style.css" rel="stylesheet">
   <!-- //bootstrap-css -->
   <script src="/resources/js/admin/jquery2.0.3.min.js"></script>
+  <!-- //$(document).ready를 사용하려면 필요함 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -101,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </tr>
                           </thead>
                           <tbody>
-                          <c:forEach items="${member_info}" var="info" varStatus="status">
+                          <c:forEach items="${member_info}" var="info">
                             <tr data-expanded="true" class="unread cursor" onClick="location.href='/admin/member/detail'">
                               <td>1</td>
                               <td><c:out value="${info.userid}"></c:out></td> 
@@ -114,15 +116,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <footer>
                           <div class="row">
                             <div class="center">
-                              <ul class="pagination pagination-sm m-t-none m-b-none">
-                                <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                                <li><a href="">1</a></li>
-                                <li><a href="">2</a></li>
-                                <li><a href="">3</a></li>
-                                <li><a href="">4</a></li>
-                                <li><a href="">5</a></li>
-                                <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                              </ul>
+                              <!--  Pagination 시작 -->
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+									</c:if>
+									<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+										<li class="paginate_button  ${pageMaker.mcri.memberpageNum == num ? "active":""} ">
+											<a href="${num}">${num}</a>
+										</li>
+									</c:forEach>
+									<c:if test="${pageMaker.next}">
+										<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+									</c:if>
+								</ul>
                             </div>
                           </div>
                         </footer>
@@ -133,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </section>
             </div>
           </div>
-          <button type="button" class="btn btn-default" onClick="location.href='/admin/meeting/list'">목록</button>
+          <button type="button" class="btn btn-default" data-oper="list">목록</button>
           <!-- page end-->
         </div>
       </section>
@@ -145,6 +152,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>
       <!-- / footer -->
     </section>
+    <!-- Form 시작 -->
+	<form id='actionForm' action="/admin/meeting/list" method='get'>
+		<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+		<input type='hidden' name='amount' value='${cri.amount}'>
+		<input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+		<input type='hidden' name='keyword'	value='<c:out value="${cri.keyword }"/>'>
+	</form>
+	<!-- Form 끝 -->
+				
+	<!-- Form 시작 -->
+	<form id='operForm' action="/admin/meeting/detail" method='get'>
+		<input type='hidden' name='MemberpageNum' value='${pageMaker.mcri.memberpageNum}'>
+		<input type='hidden' name='Memberamount' value='${pageMaker.mcri.memberamount}'>
+	</form>
+	<!-- Form 끝 -->
 
     <!--main content end-->
   </section>
@@ -155,6 +177,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function() {
+		
+		var actionForm = $("#actionForm");
+		
+		var operForm = $("#operForm");
+		
+		var pageNumTag = $("input[name='pageNum']").clone();
+		var amountTag = $("input[name='amount']").clone();
+		var keywordTag = $("input[name='keyword']").clone();
+		var typeTag = $("input[name='type']").clone();
+		
+		$("button[data-oper='list']").on("click", function(e){
+			e.preventDefault();
+			// console.log('click');
+			actionForm.submit();
+		});
+		
+		// 페이지 번호 클릭 이벤트
+		$(".paginate_button a").on("click", function(e) {
+			operForm.append(pageNumTag);
+			operForm.append(amountTag);
+			operForm.append(keywordTag);
+			operForm.append(typeTag);
+			operForm.submit();
+		});
+	});
+</script>
 </body>
 
 </html>
