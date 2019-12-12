@@ -271,7 +271,7 @@
           	<img src="/resources/img/meeting.png" style="height:105px; width:200px;">
           	</c:when>
           	<c:otherwise>
-          	<img src="/resources/upload/<c:out value="${meeting.meeting_Profile}" />" alt="" >
+          	<img src="/resources/upload/<c:out value="${meeting.meeting_Profile}" />" alt=""  style="height:105px; width:200px;">
           	</c:otherwise>
       </c:choose>
   			</a>
