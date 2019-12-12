@@ -29,9 +29,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		// userName means userid
 		MemberVO vo = memberMapper.read(userName);
-
+		
 		log.warn("queried by member mapper: " + vo);
-
+		
 		//return null;
 		return vo == null ? null : new CustomUser(vo);
 	}

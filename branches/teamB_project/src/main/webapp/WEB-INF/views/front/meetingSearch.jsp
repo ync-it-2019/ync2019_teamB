@@ -14,7 +14,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="../../../resources/js/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/resources/js/slick.js" type="text/javascript" charset="utf-8"></script>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -132,12 +132,12 @@
     <div class="input-group">
       <h4 style="margin:5px 15px 0 0;">주제별 모임</h4>
       <form id='meetingSearch' action="/front/meetingSearch" method='get'>
-      <input type="text" class="form-control" name='keyword' value='' placeholder="모임을 검색해보세요.">
+      <input type="text" class="form-control" name='keyword' value='' placeholder="모임을 검색해보세요." style="width:400px;">
       <input type='hidden' name='type' value='N' />
 		<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
 		<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
           <span class="input-group-btn">
-            <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> 검색</button>
+            <button class="btn btn-search" type="button" style="margin-top:-65px; margin-left:402px;"><i class="fa fa-search fa-fw"></i> 검색</button>
           </span>
       </form>
     </div>
@@ -158,7 +158,14 @@
        <sec:authentication property="principal.username" var="userId"/>
        <c:forEach items="${member}" var="member" varStatus="status">
        <c:if test="${member.userid eq userId}">
-            <a href="/front/myPage/info"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
+       <c:choose>
+          	<c:when test="${member.profile == ' ' }">
+          	<a href="/front/myPage/info"><img src="/resources/img/man.png"></a>
+          	</c:when>
+          	<c:otherwise>
+          	<a href="/front/myPage/info"><img src="/resources/upload/<c:out value="${member.profile}" />" alt=""></a>
+          	</c:otherwise>
+      </c:choose>
             <div>
               <ul>
                 <li class="mypage"><a href="/front/myPage/info"><c:out value="${member.name}" />님</a><span><a href="/front/myPage/info">내정보</a></span></li>
@@ -258,10 +265,19 @@
     	</c:otherwise>
   	</c:choose>
   			<div class="">
-  			<a href="#"><img src="/resources/img/th.jpg" alt="news image" class="img-fluid"></a>
+  			<a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }">
+  			<c:choose>
+          	<c:when test="${meeting.meeting_Profile == ' ' || meeting.meeting_Profile == null }">
+          	<img src="/resources/img/meeting.png" style="height:105px; width:200px;">
+          	</c:when>
+          	<c:otherwise>
+          	<img src="/resources/upload/<c:out value="${meeting.meeting_Profile}" />" alt="" >
+          	</c:otherwise>
+      </c:choose>
+  			</a>
         	</div>
         	<div class="introduction">
-          		<b class="mt-4"><c:out value="${meeting.meeting_Name}" /></b>
+        	<b class="mt-4"><a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }"><c:out value="${meeting.meeting_Name}" /></a></b>
           		<h6><c:out value="${meeting.introduce}" /></h6>
           		<ul class="blog-info mt-1">
           		<li>멤버 
@@ -391,6 +407,5 @@
 		
 	});
 </script>
-</body>
 </body>
 </html>

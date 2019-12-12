@@ -411,12 +411,7 @@ li > a:only-child:after { content: ''; }
 }
 
 .banner-top {
-    background: url(/resources/img/1.jpg) no-repeat center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
+
 }
 
 .banner-top1 {
