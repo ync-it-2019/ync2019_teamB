@@ -40,74 +40,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <jsp:include page="/WEB-INF/views/front/include/header.jsp" flush="true" />
   <section class="banner_w3lspvt">
   	<div class="csslider infinity" id="slider1">
+  	<c:forEach items="${event}" var="event" varStatus="status">
+  		<c:choose>
+  		<c:when test="${status.index eq 0 }">
   		<input type="radio" name="slides" checked="checked" id="slides_1" />
-  		<input type="radio" name="slides" id="slides_2" />
-  		<input type="radio" name="slides" id="slides_3" />
-  		<input type="radio" name="slides" id="slides_4" />
+  		</c:when>
+  		<c:otherwise>
+  		<input type="radio" name="slides" id="slides_<c:out value="${status.index + 1 }"/>" />
+  		</c:otherwise>
+  		</c:choose>
+
+   	</c:forEach>
   		<ul>
-  			<li>
-  				<div class="banner-top">
+  			<c:forEach items="${event}" var="event" varStatus="status">
+			<li>
+  				<div class="banner-top" style="background: url(/resources/upload/<c:out value="${event.image }" />) no-repeat center; background-size: cover;">
   					<div class="overlay">
   						<div class="container">
   							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
+  								<h3 class="text-wh"><c:out value="${event.title}" /></h3>
+  								<p class="text-li mx-auto mt-2"><c:out value ="${event.contents}" /></p>
+  								<a href="/front/event/get?event_num=<c:out value="${event.event_num}"/>" class="button-style mt-4">이벤트 바로가기</a>
   							</div>
   						</div>
   					</div>
   				</div>
   			</li>
-  			<li>
-  				<div class="banner-top1">
-  					<div class="overlay">
-  						<div class="container">
-  							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
-  			</li>
-  			<li>
-  				<div class="banner-top2">
-  					<div class="overlay">
-  						<div class="container">
-  							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
-  			</li>
-  			<li>
-  				<div class="banner-top3">
-  					<div class="overlay">
-  						<div class="container">
-  							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
-  			</li>
+      		</c:forEach>
+  			
   		</ul>
   		<div class="arrows">
-  			<label for="slides_1"></label>
-  			<label for="slides_2"></label>
-  			<label for="slides_3"></label>
-  			<label for="slides_4"></label>
+  		<c:forEach items="${event}" var="label" varStatus="status">
+  		
+  			<label for="slides_<c:out value="${status.index + 1}"/>"></label>
+  		
+  		</c:forEach>
   		</div>
+  		
   	</div>
   </section>
 
@@ -122,19 +91,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="containers"></div>
         <section class="news editor_list" id="news">
-          <div class="grid">
+        <c:forEach items="${list}" var="meeting" begin="0" end="2" step="1" varStatus="status">
+        <div class="grid">
             <figure class="effect-lily">
-              <img src="/resources/img/1.jpg" alt="/resources/img12"/>
+              <img src="/resources/upload/<c:out value="${meeting.meeting_Profile }"/>" />
               <figcaption>
                 <div>
-                  <h2>Nice <span>Lily</span></h2>
-                  <p>Lily likes to play with crayons and pencils</p>
+                  <span><c:out value="${meeting.meeting_Name }" /></span>
+                  <p><c:out value="${meeting.introduce }" /></p>
                 </div>
-                <a href="#">View more</a>
+                <a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }">View more</a>
               </figcaption>
             </figure>
-
           </div>
+        </c:forEach>
         </section>
       </div>
     </div>
