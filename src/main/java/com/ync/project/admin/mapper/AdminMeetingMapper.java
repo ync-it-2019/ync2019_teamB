@@ -2,7 +2,10 @@ package com.ync.project.admin.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.MeetingMemberCriteria;
 import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_Member_InfoVO;
 
@@ -22,7 +25,7 @@ public interface AdminMeetingMapper {
 	
 	public int getTotalCount(Criteria cri);
 	
-	public List<Meeting_Member_InfoVO> getMemberInfo(Long meeting_num);
+	public List<Meeting_Member_InfoVO> getMemberInfo(@Param("mcri") MeetingMemberCriteria mcri, @Param("meeting_num") Long meeting_num);
 	
 	public int getMemberCnt(Long meeting_num);
 }

@@ -53,6 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <header class="panel-heading">모임정보</header>
                 <div class="panel-body">
                   <form class="form-horizontal bucket-form" method="get">
+                  <input type="hidden" name="meeting_num" value="${meeting.meeting_Num}">
                     <div class="form-group">
                       <img class="meeting_img" src="images/g8.jpg" alt="">
                     </div>
@@ -103,9 +104,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </tr>
                           </thead>
                           <tbody>
-                          <c:forEach items="${member_info}" var="info">
+                          <c:forEach items="${member_info}" var="info" varStatus="status">
                             <tr data-expanded="true" class="unread cursor" onClick="location.href='/admin/member/detail'">
-                              <td>1</td>
+                              <td><c:out value="${((pageMaker.mcri.memberpageNum-1) * 10) + status.count}" /></td>
                               <td><c:out value="${info.userid}"></c:out></td> 
                             <td><c:out value="${info.name}"></c:out></td>
                               <td class="text-right">모임장</td>
@@ -163,8 +164,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 	<!-- Form 시작 -->
 	<form id='operForm' action="/admin/meeting/detail" method='get'>
-		<input type='hidden' name='MemberpageNum' value='${pageMaker.mcri.memberpageNum}'>
-		<input type='hidden' name='Memberamount' value='${pageMaker.mcri.memberamount}'>
+		<input type='hidden' name='memberpageNum' value='${pageMaker.mcri.memberpageNum}'>
+		<input type='hidden' name='memberamount' value='${pageMaker.mcri.memberamount}'>
 	</form>
 	<!-- Form 끝 -->
 
@@ -184,6 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		var operForm = $("#operForm");
 		
+		var meeting_num = $("input[name='meeting_num']").clone();
 		var pageNumTag = $("input[name='pageNum']").clone();
 		var amountTag = $("input[name='amount']").clone();
 		var keywordTag = $("input[name='keyword']").clone();
@@ -197,6 +199,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		// 페이지 번호 클릭 이벤트
 		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			operForm.find("input[name='memberpageNum']").val($(this).attr("href"));
+			operForm.append(meeting_num);
 			operForm.append(pageNumTag);
 			operForm.append(amountTag);
 			operForm.append(keywordTag);

@@ -82,8 +82,8 @@
 	
 	<select id="getMemberInfo" resultType="com.ync.project.domain.Meeting_Member_InfoVO">
 	<![CDATA[
-	SELECT	 name, userid
-	FROM	(SELECT rownum rn, m.name, tm.userid
+	SELECT	 name, userid, join_date
+	FROM	(SELECT rownum rn, m.name, tm.userid, tm.join_date
 			FROM teamb_member m, teamb_meeting_member tm
 			WHERE m.userid = tm.userid
 			AND	tm.meeting_num = #{meeting_num}
@@ -93,7 +93,8 @@
       			rownum <= #{mcri.memberpageNum} * #{mcri.memberamount}
       			) b
   		WHERE rn > (#{mcri.memberpageNum} -1) * #{mcri.memberamount}   
-  		GROUP BY name, userid
+  		GROUP BY name, userid, join_date
+  		ORDER BY join_date
 		]]>
 	</select>
 	
