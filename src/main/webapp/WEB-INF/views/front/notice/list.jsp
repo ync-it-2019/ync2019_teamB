@@ -57,32 +57,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 		});
-		
-		// 상세보기 클릭 이벤트
-		$(".move").on("click",function(e) {
-			e.preventDefault();
-			actionForm.append("<input type='hidden' name='notice_num' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/front/notice/get");
-			actionForm.submit();
-		});
-		
-		// 검색 버튼 클릭 이벤트
-		var searchForm = $("#searchForm");
-		$("#searchForm button").on("click",	function(e) {
-			if (!searchForm.find("option:selected").val()) {
-				alert("검색종류를 선택하세요");
-				return false;
-			}
-
-			if (!searchForm.find("input[name='keyword']").val()) {
-				alert("키워드를 입력하세요");
-				return false;
-			}
-			
-			searchForm.find("input[name='pageNum']").val("1");
-			e.preventDefault();
-			searchForm.submit();
-		});
 	});
 </script>
     
@@ -165,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
 		</select>
 		<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword}"/>' />
-		<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' />
+		<input type='hidden' name='pageNum' value='<c:out value="1"/>' />
 		<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
 		<button value="" style="cursor:pointer"><span class="fa fa-search"></span></button>
 	</form>
