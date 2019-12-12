@@ -14,6 +14,8 @@ import com.ync.project.domain.EventVO;
 public interface EventEndService {
 	// 전체 글 목록
 	public List<EventVO> getList();
+	// 글 상세보기
+	public EventVO read(Long event_num);
 	// 글 목록 페이징 
 	public List<EventVO> getListWithPaging(Criteria cri);
 	// 글 전체 개수
