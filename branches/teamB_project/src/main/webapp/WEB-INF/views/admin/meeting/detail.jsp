@@ -54,9 +54,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body">
                   <form class="form-horizontal bucket-form" method="get">
                   <input type="hidden" name="meeting_num" value="${meeting.meeting_Num}">
+                    <c:if test="${not empty meeting.meeting_Profile}">
                     <div class="form-group">
-                      <img class="meeting_img" src="images/g8.jpg" alt="">
+                    	<a href="/resources/upload/<c:out value="${meeting.meeting_Profile}" />" target="_blank"><img class="meeting_img" style="display:inline;" src="/resources/upload/<c:out value="${meeting.meeting_Profile}" />"></a>
                     </div>
+                    </c:if>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">모임명</label>
                       <div class="col-sm-6">

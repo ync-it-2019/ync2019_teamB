@@ -111,6 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
 						</c:if>
 					</ul>
+					</div>
 				</div>
 				<!--  Pagination 끝 -->
 				
@@ -122,7 +123,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
 				</form>
 				<!-- Form 끝 -->
-                  </div>
                 </footer>
               </section>
             </div>
