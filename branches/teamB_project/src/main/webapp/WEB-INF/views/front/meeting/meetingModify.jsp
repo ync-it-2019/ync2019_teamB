@@ -73,7 +73,7 @@
 						<label>모임 이름:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="text" name="meeting_Name" placeholder="enter your name">
+						<input type="text" name="meeting_Name" value="${getInfo.meeting_Name}">
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -81,7 +81,7 @@
 						<label>모임소개:</label>
 					</div>
 					<div class="col-md-8">
-						<input type="text"  name="introduce" placeholder="enter your id">
+						<input type="text"  name="introduce" value="${getInfo.introduce}">
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
-				<input type="hidden" name='meeting_Profile' value=" ">			
+				<input type="hidden" name='meeting_Profile' value="${getInfo.meeting_Profile}">			
 				<input type="hidden" name="meeting_Num" value="${getInfo.meeting_Num}">
 				
 			</form>
