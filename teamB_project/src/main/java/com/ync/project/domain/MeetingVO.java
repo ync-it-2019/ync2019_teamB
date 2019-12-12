@@ -25,4 +25,6 @@ public class MeetingVO {
 	private String meeting_Adress;		//모임 활동지역
 	private String meeting_Hobby;		//모임 관심사
 	
+	private int meeting_count;
+	
 }
