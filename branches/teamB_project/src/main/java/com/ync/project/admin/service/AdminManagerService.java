@@ -15,13 +15,10 @@ public interface AdminManagerService {
 	// 글 상세보기
 	public MemberVO read(String userid);
 	
-	// 전체 글 목록
-	public List<MemberVO> getList();
-	
 	// 글 목록 페이징 
 	public List<MemberVO> getListWithPaging(Criteria cri);
 	
-	// 이벤트 글 쓰기
+	// 관리자 계정 등록
 	public void register(MemberVO member);
 	
 	//글 수정

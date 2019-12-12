@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ync.project.admin.mapper.AdminMemberMapper">
+<mapper namespace="com.ync.project.admin.mapper.AdminManagerMapper">
 
 	<resultMap type="com.ync.project.domain.MemberVO" id="memberMap">
 		<id property="userid" column="userid"/>
@@ -20,7 +20,7 @@
 		<result property="userid" column="userid"/>
 		<result property="auth" column="auth"/>
 	</resultMap>
-	
+
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
@@ -41,67 +41,84 @@
 		</trim>
 	</sql>
 	
-	<!--
-	member_auth table은 사용 하지 않고 AuthVO만 사용한다.
-	tbl_member 의 autho 컬럼 정보만 따로 담아는 객차이다.
-	Spring Security의 기본 사용법과 다르게 tbl_member에 권한 컴럼(auth)을
-	넣어서 사용하기에 기본 사용법과 달라진다.
-	-->
-	<select id="read" resultMap="memberMap">
-	SELECT	name,
-			userid,
-			userpw,
-			phone,
-			email,
-			profile,
-			hobby,
-			adress,
-			auth
-	FROM	teamb_member
-	WHERE	userid = #{userid} 
-	</select>
+	<!-- 어드민 계정 등록 -->
+	<insert id="insertSelectKey">
+	<![CDATA[
+				insert into teamb_member (name, 
+								  userid, 
+								  userpw, 
+								  phone, 
+								  email, 
+								  profile, 
+								  adress, 
+								  hobby,
+								  auth)
+		values (#{name},
+				#{userid},
+				#{userpw},
+				#{phone},
+				#{email},
+				#{profile},
+				#{adress},
+				#{hobby},
+				'ROLE_ADMIN')
+		]]>
+	</insert>
 	
 	<!-- 페이징 -->
-	<select id="getListWithPaging" resultMap="memberMap">
+	<select id="getListWithPaging" resultType="com.ync.project.domain.MemberVO">
 	<![CDATA[
 	SELECT  name,
 			userid,
-			userpw,
-			phone,
 			email,
-			profile,
-			hobby,
-			adress,
+			phone,
 			auth
 	FROM    (SELECT /*+INDEX_DESC(teamb_member xpkteamb_member) */
 			rownum rn,
 			name,
 			userid,
-			userpw,
-			phone,
 			email,
-			profile,
-			hobby,
-			adress,
+			phone,
 			auth
 			FROM teamb_member
-			WHERE auth = 'ROLE_USER'
+			WHERE auth = 'ROLE_ADMIN'
 			AND
 	]]>
 	<include refid="criteria"></include> 
 		<![CDATA[    
       			rownum <= #{pageNum} * #{amount}
       			) b
-  		WHERE rn > (#{pageNum} -1) * #{amount}
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
 		]]>
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-	
-		select count(*) from teamb_member
+		select count(*) from teamb_member where 
 		
-		where auth = 'ROLE_USER'
+		<include refid="criteria"></include> 
+		
+		auth = 'ROLE_ADMIN'
 		
 	</select>
-
+	
+	<!-- 어드민 계정 정보 상세 보기 -->
+	<select id="read" resultMap="memberMap">
+	<![CDATA[
+		SELECT *
+		FROM   teamb_member
+		WHERE  userid = #{userid}
+		AND    auth = 'ROLE_ADMIN'
+		]]>
+	</select>
+	
+	<update id="update">
+		update teamb_member
+		set name= #{name}, phone = #{phone}, email = #{email}
+		where userid = #{userid}
+	</update>
+	
+	<delete id="delete">
+		delete teamb_member where userid = #{userid}
+	</delete>
+	
 </mapper>
