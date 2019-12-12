@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ync.project.domain.AppointmentVO;
+import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_MemberVO;
+import com.ync.project.domain.ParticipantsVO;
 import com.ync.project.front.mapper.MeetingMainMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -67,7 +69,7 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	}
 	
 	@Override
-	public Meeting_MemberVO getCount(Long meeting_Num) {
+	public int getCount(Long meeting_Num) {
 		
 		log.info("getCount......");
 		
@@ -81,4 +83,81 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 		
 		mapper.meetingModify(meeting);
 	}
+	
+	@Override
+	public List<AppointmentVO> getAppointmentList(Long meeting_num) {
+		
+		log.info("getAppointmentList......");
+		
+		return mapper.appointmentList(meeting_num);
+	}
+	
+	@Override
+	public void writeAppointment(AppointmentVO appo) {
+		
+		log.info("writeAppointment......");
+		
+		mapper.writeAppointment(appo);
+	}
+	
+	@Override
+	public AppointmentVO getAppointmentNum() {
+		
+		log.info("getAppointmentNum......");
+		
+		return mapper.getAppointmentNum();
+		
+	}
+	
+	@Override
+	public AppointmentVO getAppointmentRead(Long appointment_num) {
+		
+		log.info("getAppointmentRead......");
+		
+		return mapper.getAppointmentRead(appointment_num);
+	}
+	
+	@Override
+	public void appointmentModify(AppointmentVO appo) {
+		
+		log.info("appointmentModify......");
+		
+		mapper.appointmentModify(appo);
+	}
+	
+	@Override
+	public void appointmentDelete(Long appointment_num) {
+		
+		log.info("appointmentDelete......");
+		
+		mapper.appointmentDelete(appointment_num);
+	}
+	
+	@Override
+	public void appointmentParticipation(ParticipantsVO parti) {
+		
+		log.info("appointmentParticipation......");
+		
+		mapper.appointmentParticipation(parti);
+	}
+	
+	@Override
+	public List<ParticipantsVO> getParticipantsInfo(Long appointment_num) {
+		
+		log.info("getParticipantsInfo......");
+		
+		return mapper.getParticipantsInfo(appointment_num);
+	}
+	
+	@Override
+	public ParticipantsVO getParticipantsNum() {
+		
+		log.info("getParticipantsNum......");
+		
+		return mapper.getParticipantsNum();
+		
+	}
+	
+	
+	
 }

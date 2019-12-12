@@ -82,10 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <button type="button" class="btn btn-default"  data-oper='delete'>삭제</button>
                     </div>
                   </div>
-                </div>
-                <footer>
-                  <div class="row">
-                    <div class="center">
+                  <div class="center">
                       <ul class="pagination">
 						<c:if test="${pageMaker.prev}">
 							<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
@@ -100,8 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</c:if>
 					</ul>
                     </div>
-                  </div>
-                </footer>
+                </div>
               </section>
             </div>
           </div>

@@ -67,7 +67,7 @@
 	
 		<selectKey keyProperty="event_num" order="BEFORE"
 			resultType="long">
-			select seq_board.nextval from dual
+			select TEAMB_EVENT_NUM.nextval from dual
 		</selectKey>
 	<![CDATA[
 		insert into teamb_event (event_num, title, contents, event_start_date, event_end_date, image, userid, banner_image)

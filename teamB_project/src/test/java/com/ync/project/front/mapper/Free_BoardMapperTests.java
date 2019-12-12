@@ -77,20 +77,20 @@ public class Free_BoardMapperTests {
 //
 //	}
 
-//	@Test
-//	public void testDelete() {  //확인했음
-//
-//		log.info("DELETE COUNT: " + mapper.delete(78L));
-//	}
+	@Test
+	public void testDelete() {  //확인했음
+
+		log.info("DELETE COUNT: " + mapper.delete(356L));
+	}
 
 //	@Test
 //	public void testUpdate() {
 //
 //		Free_BoardVO board = new Free_BoardVO();
 //		// 실행전 존재하는 번호인지 확인할 것
-//		board.setFree_board_num(1);
-//		board.setTitle("수정된 제목");
-//		board.setContents("수정된 내용");
+//		board.setFree_board_num(343L);
+//		board.setTitle("수정된다!");
+//		board.setContents("수정됐다!");
 //		board.setUserid("user01");
 //
 //		int count = mapper.update(board);

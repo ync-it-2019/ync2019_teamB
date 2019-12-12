@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,14 +43,6 @@ public class AdminEventController {
 	
 	Calendar cal = new GregorianCalendar();
 	
-//	@GetMapping("/list")
-//	public void AdminEventList(Model model) {
-//
-//		log.info("Event List get page!");
-//	
-//		model.addAttribute("list", service.getList());
-//	}
-	
 	/**
 	  * @Method 설명 : admin/event/list.jsp 호출
 	  * @Method Name : AdminEventList
@@ -58,6 +51,7 @@ public class AdminEventController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/list")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminEventList(Criteria cri, Model model) {
 
 		log.info("list: " + cri);
@@ -77,6 +71,7 @@ public class AdminEventController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/detail")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminEventDetail(@RequestParam("event_num") Long event_num, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Event Detail get page!");
@@ -92,6 +87,7 @@ public class AdminEventController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/create")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminEventCreate(@ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("Event Create get page!");
@@ -137,6 +133,7 @@ public class AdminEventController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/modify")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminEventModify(@RequestParam("event_num") Long event_num, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Event Modify get page!");

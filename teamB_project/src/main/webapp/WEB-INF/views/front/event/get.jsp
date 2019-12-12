@@ -36,43 +36,7 @@
 
 <body>
 <!-- //header -->
-  <header class="py-sm-3 pt-3 pb-2" id="home">
-     <div class="container">
-        <!-- nav -->
-        <div class="top d-md-flex">
-           <div id="logo">
-              <h1> <a href="/"><span class="fa fa-meetup"></span> 牛모임</a></h1>
-           </div>
-           <div class="search-form mx-md-auto">
-              <div class="n-right-w3ls">
-                 <form action="#" method="post" class="newsletter">
-                    <input class="search" type="text" placeholder="Search..." required="">
-                    <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
-                 </form>
-              </div>
-           </div>
-           <div class="forms mt-md-0 mt-2">
-              <a href="/login" class="btn"><span class="fa fa-user-circle-o"></span> 로그인</a>
-              <a href="/register" class="btn"><span class="fa fa-pencil-square-o"></span> 회원가입</a>
-              <a href="/loout" class="btn"><span class="fa fa-user-circle-o"></span> 로그아웃</a>
-              <a href="/front/myPage/info" class="btn"><span class="fa fa-pencil-square-o"></span> 마이페이지</a>
-           </div>
-        </div>
-        <nav class="text-center">
-           <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
-           <input type="checkbox" id="drop" />
-           <ul class="menu">
-              <li class="mr-lg-4 mr-2"><a href="/">홈</a></li>
-              <li class="mr-lg-4 mr-2"><a href="/front/notice/list">공지사항</a></li>
-              <li class="mr-lg-4 mr-2 active"><a href="/front/event/list">이벤트</a></li>
-              <li class="mr-lg-4 mr-2"><a href="/front/meetingSearch">모임 찾기</a></li>
-              <li class="mr-lg-4 mr-2"><a href="/front/myMeeting">내모임</a></li>
-              <li class=""><a href="/front/question/FAQ">고객센터</a></li>
-           </ul>
-        </nav>
-        <!-- //nav -->
-     </div>
-  </header>
+  <jsp:include page="/WEB-INF/views/front/include/header.jsp" flush="true" />
   <!-- //header -->
 
 <!-- inner banner -->
@@ -112,13 +76,19 @@
 						</ul>
 						<hr>
 						<div class="">
-							<img class="card-img-top" src="/resources/img/1.jpg" alt="Card image cap">
+						<c:if test="${board.image ne null}">
+							<img src="/resources/upload/${board.image}">
+						</c:if>
 							<div class="mt-4">
 								<p class="card-text">${board.contents}</p>
 							</div>
 						</div>
 						<div class="comment-top" style="position: relative; top: 60px;">
-							<a href="/front/event/list"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
+							<form id='listForm' action="/front/event/list" method='get'>
+								<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
+								<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
+								<button value="" class="btn btn-primary" style="float: right;">목록</button>
+							</form>
             </div>
           </div>
         </div>

@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </thead>
                         <c:forEach items="${list}" var="member" varStatus="status">
 						<tr class="unread" name="move" value="${member.userid}">
-                          <td class="inbox-small-cells"><c:out value="${status.count}" /></td>
+                          <td class="inbox-small-cells"><c:out value="${((pageMaker.cri.pageNum-1) * 10) + status.count}" /></td>
                           <td class="inbox-small-cells"><c:out value="${member.name}" /></td>
                           <td class="view-message dont-show text_limit"><c:out value="${member.userid}" /></td>
                           <td class="view-message "><c:out value="${member.email}" /></td>

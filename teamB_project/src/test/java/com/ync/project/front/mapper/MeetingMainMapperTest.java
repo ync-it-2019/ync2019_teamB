@@ -1,13 +1,17 @@
 package com.ync.project.front.mapper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.MeetingVO;
-import com.ync.project.domain.Meeting_MemberVO;
+import com.ync.project.domain.ParticipantsVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -119,8 +123,8 @@ public class MeetingMainMapperTest {
 //	@Test
 //	public void testGetCount() {
 //		
-//		Meeting_MemberVO mMember = mapper.getCount(1L);
-//		log.info(mMember);
+//		int memberCount = mapper.getCount(1L);
+//		log.info(memberCount);
 //	}
 	
 	 /**
@@ -129,21 +133,193 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 10.
 	  * @작성자 : 이주현
 	  */
+//	@Test
+//	public void testMeetingModify() {
+//		
+//		MeetingVO meeting = new MeetingVO();
+//		
+//		meeting.setIntroduce("모임소개입니다.");
+//		meeting.setMeeting_Profile("image.jpg");
+//		meeting.setMeeting_Name("모임 이름 수정2");
+//		meeting.setMeeting_Adress("대구광역시");
+//		meeting.setMeeting_Hobby("게임/오락");
+//		meeting.setMeeting_Num(50L);
+//
+//		log.info(meeting);
+//		
+//		mapper.meetingModify(meeting);
+//	}
+	
+	 /**
+	  * @throws ParseException 
+	 * @Method 설명 : 정모 목록 테스트
+	  * @Method Name : testAppointmentlist
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testAppointmentlist() {
+//		
+//		List<AppointmentVO> appo = mapper.appointmentList(1L);
+//		
+//		for(AppointmentVO a: appo) {
+//			log.info(a);
+//		}
+//		
+//	}
+	
+	 /**
+	  * @Method 설명 : 정모 작성 테스트
+	  * @Method Name : testWriteAppointment
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  * @throws ParseException
+	  */
+	SimpleDateFormat transFormat  = new SimpleDateFormat("yyyyy-MM-dd HH:mm:ss");
+	
+	String from1 = "1019-12-25 15:00:00";
+	Calendar cal = new GregorianCalendar();
+//	
+//	@Test
+//	public void testWriteAppointment() throws ParseException {
+//		
+//		AppointmentVO appo = new AppointmentVO();
+//		
+//		java.util.Date to1 = transFormat.parse(from1);
+//		
+//		Date date = new Date(cal.getTimeInMillis());
+//		
+//		appo.setAppointment_num(6L);
+//		appo.setTitle("mapperTest1");
+//		appo.setAppointment_date(date);
+//		appo.setAppointment_place("대구광역시");
+//		appo.setContents("정모 내용");
+//		appo.setMax_people(10L);
+//		appo.setUserid("a1");
+//		appo.setMeeting_num(1L);
+//
+//		log.info(appo);
+//		
+//		mapper.writeAppointment(appo);
+//
+//	}
+	
+	 /**
+	  * @Method 설명 : 가장 큰 정모 번호 테스트
+	  * @Method Name : testGetAppointmentNum
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testGetAppointmentNum() {
+//		
+//		AppointmentVO appo = mapper.getAppointmentNum();
+//		log.info(appo);
+//	}
+	
+	 /**
+	  * @Method 설명 : 정모 상세 테스트
+	  * @Method Name : testGetAppointment
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testGetAppointment() {
+//		
+//		AppointmentVO appo = mapper.getAppointmentRead(1L);
+//		log.info(appo);
+//	}
+	
+	 /**
+	  * @Method 설명 : 정모 수정 테스트
+	  * @Method Name : testAppointmentModify
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  * @throws ParseException
+	  */
+//	@Test
+//	public void testAppointmentModify() throws ParseException {
+//		
+//		AppointmentVO appo = new AppointmentVO();
+//		
+//		java.util.Date to1 = transFormat.parse(from1);
+//		
+//		Date date = new Date(cal.getTimeInMillis());
+//		
+//		appo.setTitle("수정되었습니다.");
+//		appo.setAppointment_date(date);
+//		appo.setAppointment_place("서울");
+//		appo.setContents("수정된 내용입니다.");
+//		appo.setMax_people(333L);
+//		
+//		appo.setAppointment_num(1L);
+//		
+//		log.info(appo);
+//		
+//		mapper.appointmentModify(appo);
+//	}
+	
+	 /**
+	  * @Method 설명 : 정모 삭제 테스트
+	  * @Method Name : testAppointmentDelete
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testAppointmentDelete() {
+//		
+//		mapper.appointmentDelete(3L);
+//		
+//	}
+	
+	 /**
+	  * @Method 설명 : 정모 참가 테스트
+	  * @Method Name : testAppointmentParticipation
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  */
 	@Test
-	public void testMeetingModify() {
+	public void testAppointmentParticipation() {
 		
-		MeetingVO meeting = new MeetingVO();
+		ParticipantsVO partipants = new ParticipantsVO();
 		
-		meeting.setIntroduce("모임소개입니다.");
-		meeting.setMeeting_Profile("image.jpg");
-		meeting.setMeeting_Name("모임 이름 수정2");
-		meeting.setMeeting_Adress("대구광역시");
-		meeting.setMeeting_Hobby("게임/오락");
-		meeting.setMeeting_Num(50L);
-
-		log.info(meeting);
+		partipants.setMeeting_num(1L);
+		partipants.setAppointment_num(16L);
+		partipants.setParticipants_num(19L);
+		partipants.setUserid("user6");
 		
-		mapper.meetingModify(meeting);
+		log.info(partipants);
+		
+		mapper.appointmentParticipation(partipants);
 	}
+	
+	 /**
+	  * @Method 설명 : 정모 참가자 명단 테스트
+	  * @Method Name : testGetParticipantsInfo
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testGetParticipantsInfo() {
+//		
+//		ParticipantsVO parti = mapper.getParticipantsInfo(1L);
+//		
+//		log.info(parti);
+//		
+//	}
+	
+	 /**
+	  * @Method 설명 : 가장 큰 정모 참가자 번호 테스트
+	  * @Method Name : testGetParticipantsNum
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testGetParticipantsNum() {
+//		
+//		ParticipantsVO parti = mapper.getParticipantsNum();
+//		log.info(parti);
+//		
+//	}
 	
 }

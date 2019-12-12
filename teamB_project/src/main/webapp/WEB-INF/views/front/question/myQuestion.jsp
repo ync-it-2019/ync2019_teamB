@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <tbody>
             <tr>
               <td><c:out value="${question.question_num}" /></td>
-              <td style="cursor:pointer" class="move over1" onClick="location.href='/front/question/get?question_num=<c:out value="${question.question_num}" />'">[${question.category}]${question.title}</td>
+              <td style="cursor:pointer" class="move over1" href='<c:out value="${question.question_num}"/>'>[${question.category}]${question.title}</td>
               <td><fmt:formatDate pattern="yyyy-MM-dd" value="${question.write_date}" /></td>
               <c:if test="${question.yn == '처리완료'}">
               <td><div style="color:green;">${question.yn}</div></td>
@@ -180,6 +180,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			e.preventDefault();
 			console.log('click');
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		$(".move").on("click", function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='question_num' value='"+$(this).attr("href")+"'>");
+			actionForm.attr("action","/front/question/get");
 			actionForm.submit();
 		});
 	});

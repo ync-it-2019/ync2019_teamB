@@ -2,6 +2,8 @@
 
 package com.ync.project.front.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +21,6 @@ import com.ync.project.domain.MemberVO;
 import com.ync.project.front.service.MemberService;
 import com.ync.project.util.UploadUtils;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -50,26 +51,38 @@ public class MyPageController {
   */
 @GetMapping("/info")
   @PreAuthorize("isAuthenticated()")
-  public void get(@RequestParam("userid") String userid, Model model) {
-     log.info(service.info(userid).getUserpw());
+  public void get(Principal principal, Model model) {
+	log.info("My info!!");
+	String userid = principal.getName();
      model.addAttribute("member", service.info(userid));
   }
   
+
  	 /**
  	  * @Method 설명 : front/myPage/modify.jsp 호출
  	  * @Method Name : Modify
- 	  * @Date : 2019. 11. 11.
+ 	  * @Date : 2019. 12. 11.
  	  * @작성자 : 조중현
- 	  * @param userid
+ 	  * @param principal
  	  * @param model
  	  */
  	@GetMapping(value = "/modify")
- 	public void Modify(@RequestParam("userid") String userid, Model model) {
+ 	public void Modify(Principal principal, Model model) {
  		log.info("My info modify!!");
- 		
+ 		String userid = principal.getName();
  		model.addAttribute("member", service.info(userid));
  	}
  	
+ 	 /**
+ 	  * @Method 설명 : modify.jsp의 POST
+ 	  * @Method Name : modify
+ 	  * @Date : 2019. 12. 11.
+ 	  * @작성자 : 조중현
+ 	  * @param uploadFile
+ 	  * @param member
+ 	  * @param rttr
+ 	  * @return call jsp view
+ 	  */
  	@PostMapping("/modify")
  	public String modify(MultipartFile[] uploadFile, MemberVO member, RedirectAttributes rttr) {
  		
@@ -90,7 +103,7 @@ public class MyPageController {
  			rttr.addFlashAttribute("result", "success");
  		}
  		
- 		return "redirect:/front/myPage/info?userid=" + member.getUserid();
+ 		return "redirect:/front/myPage/info";
  	}
  	
 }

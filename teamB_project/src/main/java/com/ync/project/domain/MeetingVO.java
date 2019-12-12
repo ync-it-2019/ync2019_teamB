@@ -1,8 +1,5 @@
 package com.ync.project.domain;
 
-
-import java.util.List;
-
 import lombok.Data;
 
 @Data
@@ -16,6 +13,7 @@ import lombok.Data;
 public class MeetingVO {
 	
 	private Long meeting_Num;			//모임 번호
+	private int meeting_count;			//모임 번호
 	
 	private String meeting_Name;		//모임 이름
 	private String introduce;			//모임 소개
@@ -24,7 +22,5 @@ public class MeetingVO {
 	
 	private String meeting_Adress;		//모임 활동지역
 	private String meeting_Hobby;		//모임 관심사
-	
-	private int meeting_count;
 	
 }

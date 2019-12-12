@@ -46,12 +46,12 @@
     <div id="meeting-menu">
       <ul class="menu info-row">
         <div class="meeting-menu1">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="../main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="../board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="./appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="/front/meeting/appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href=".">수정하기</a>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
         </div>
@@ -68,53 +68,21 @@
 			<thead>
 				<tr>
 					<th class="board-number-css">글번호</th>
-					<th class="board-category-css">분류</th>
 					<th class="board-title-css pl-4">제목</th>
-					<th class="board-writer-css">작성자</th>
-					<th class="board-date-css">날짜</th>
-					<th class="board-hits-css">조회수</th>
+					<th class="board-date-css">작성일</th>
+					<th class="board-writer-css">정모장소</th>
+					<th class="board-date-css">정모일</th>
 				</tr>
 			</thead>
-			<tr>
-				<td class="board-number-css">5</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4"><a href="./get.html" style="color:black">대구 어디 소고기 먹으러</a><a style="color:#5C88FD"> 1</a></td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-			</tr>
-			<tr>
-				<td class="board-number-css">4</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-			</tr>
-			<tr>
-				<td class="board-number-css">3</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-			</tr>
-			<tr>
-				<td class="board-number-css">2</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-			</tr>
-			<tr>
-				<td class="board-number-css">1</td>
-				<td class="board-category-css">일반</td>
-				<td class="pl-4">일반글</td>
-				<td class="board-writer-css">이주현</td>
-				<td class="board-date-css">2019. 10. 01</td>
-				<td class="board-hits-css">0</td>
-			</tr>
+			<c:forEach items="${getAppointmentList}" var="appointmentList" varStatus="status">
+				<tr>
+					<td class="board-number-css"><c:out value="${appointmentList.appointment_num}" /></td>
+					<td class="pl-4"><a href="./get?meeting_num=${getInfo.meeting_Num}&appointment_num=<c:out value='${appointmentList.appointment_num}' />" style="color:black"><c:out value="${appointmentList.title}" /></a></td>
+					<td class="board-date-css"><fmt:formatDate pattern="yyyy-MM-dd" value="${appointmentList.write_date}" /></td>
+					<td class="board-writer-css"><c:out value="${appointmentList.appointment_place}" /></td>
+					<td class="board-date-css"><fmt:formatDate pattern="yyyy-MM-dd" value="${appointmentList.appointment_date}" /></td>
+				</tr>
+			</c:forEach>
 		</table>
 		<hr>
 	</div>
@@ -133,7 +101,7 @@
 		
 		<!-- 글쓰기 버튼 -->
 		<div class="input-group-btn" style="position: absolute; right: 0;">
-			<a href="./write" style="color:white"><button class="btn btn-secondary" type="button" >정모 만들기</button></a>
+			<a href="./write?meeting_num=${getInfo.meeting_Num}" style="color:white"><button class="btn btn-secondary" type="button" >정모 만들기</button></a>
 		</div>
 		<!-- //글쓰기 버튼 -->
 	</div>
@@ -155,5 +123,13 @@
 	</div>
 </section>
 <!-- //페이지 버튼 -->
+
+<!-- 모임 가입 히든 폼 -->
+<form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
+</form>
+<!-- //모임 가입 히든 폼 -->
 </body>
 </html>

@@ -70,12 +70,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">비밀번호</label>
-                      <div class="col-sm-6">
-                        <input type="password" class="form-control round-input" value="${member.userpw}" readonly>
-                      </div>
-                    </div>
-                    <div class="form-group">
                       <label class="col-sm-3 control-label">전화번호</label>
                       <div class="col-sm-6">
                         <input class="form-control" type="text" value="${member.phone}" readonly>
@@ -83,8 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="form-group">
                       <label class=" col-sm-3 control-label">이메일</label>
-                      <div class="col-lg-6">
-                        <p class="form-control-static"><c:out value="${member.name}" /></p>
+                      <div class="col-sm-6">
+                        <input class="form-control" type="text" value="${member.email}" readonly>
                       </div>
                     </div>
                     <div class="form-group">

@@ -19,19 +19,72 @@
 <title>牛모임 :: 모임 게시글 보기</title>
 
 <jsp:include page="/WEB-INF/views/front/include/cssLink.jsp" flush="true" />
+  <!-- //$(document).ready를 사용하려면 필요함 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <meta charset="UTF-8">
 </head>
-<body>
+  <script type="text/javascript">
+	function meetingJoin() {
+		
+		if(confirm("가입하시겠습니까?")) {
+			alert("가입되었습니다.");
+			document.getElementById('frm').submit();
+		}
+	}
+</script>
 
-<jsp:include page="/WEB-INF/views/front/include/meetingBoardHead.jsp" flush="true" />
+<!-- 링크 색깔 -->
+<style type="text/css">
+ a:link { color: red; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;}
+ a:active {color: black; text-decoration: none;}
+</style>
+<!-- //링크 색깔 -->
+
+<body>
+<!-- 소모임 페이지 상단 이미지 / 이름 -->
+<Header class="meeting-page-name-space" style="background: url(/resources/upload/<c:out value="${getInfo.meeting_Profile}" />) no-repeat center; background-size: cover;">
+	<div class="meeting-overlay py-5">
+		<div class="container py-lg-5">
+			<div class="text-center py-5">
+        <div class="meeting-name-style">
+					${getInfo.meeting_Name}
+				</div>
+			</div>
+		</div>
+	</div>
+</Header>
+<!-- //소모임 페이지 상단 이미지 / 이름 -->
+
+<!-- 소모임 메뉴 -->
+<section>
+  <div class="container">
+    <div id="meeting-menu">
+      <ul class="menu info-row">
+        <div class="meeting-menu1">
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="/front/meeting/board/list?meeting_num=${getInfo.meeting_Num}&pageNum=1">게시판</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/appointment/list?meeting_num=${getInfo.meeting_Num}&pageNum=1">정모</a></li>
+        </div>
+        <div class="meeting-menu2">
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
+          </li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- //소모임 메뉴 -->
 
 <!-- 소모임 게시글 -->
 <section>
 	<div class="container mb-5">
        	<!-- 게시글 제목 -->
 		<tr>
-			<h2 style="font-weight:bold">${board.title}</h2><br>
+			<h2 style="font-weight:bold">${param.title}</h2><br>
 		</tr>
 		<!-- //게시글 제목 -->
 		
@@ -40,7 +93,7 @@
 			<thead>
 	            <tr>${board.userid} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</tr>
 	            <tr><fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_Date}" /> &nbsp&nbsp&nbsp&nbsp</tr>
-	            <tr>조회수 : ${board.views}</tr>	            
+	            <tr>조회수 : ${board.views+1}</tr>	            
 			</thead>
 		</div>
 		
@@ -59,7 +112,7 @@
 </section>
 <!-- //소모임 게시글 -->
 
-<!-- 게시글 댓글 -->
+<%-- <!-- 게시글 댓글 -->
 <section>
 	<div class="container">
 		<div style="background:#C6D0C7; padding:2px">
@@ -71,10 +124,9 @@
         <div style="margin:15px 5px">
           	<tr>알겠습니다 조장</tr>
         </div>
-        
 	</div>
 </section>
-<!-- //게시글 댓글 -->
+<!-- //게시글 댓글 --> --%>
 
 <!-- 댓글 작성 -->
 <section>
@@ -96,9 +148,32 @@
 <!-- 목록 / 수정 / 삭제 버튼 -->
 <section>
 	<div class="container">
-		<button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left mb-3"><a href="/front/meeting/board/list?meeting_num=${param.meeting_num}&pageNum=1" style="color:white">목록</a></button>
-		<button type="submit" id="submit" name="submit" class="btn btn-danger pull-right">삭제</button>
-		<button type="submit" id="submit" name="submit" class="btn btn-primary pull-right mr-2">수정</button>
+		<a href="/front/meeting/board/list?meeting_num=${param.meeting_num}&pageNum=1" style="color:white"><button type="submit" id="submit" name="submit" class="btn btn-secondary pull-left mb-3">목록</button></a>
+		<sec:authentication property="principal" var="pinfo"/>
+		<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.username eq board.userid}">
+					<button data-oper='remove' id="remove" name="remove" class="btn btn-danger pull-right">삭제</button>		
+					<a href="/front/meeting/board/modify?meeting_num=${param.meeting_num}&free_board_num=${param.free_board_num}" style="color:white"><button data-oper='modify' class="btn btn-primary pull-right mr-2">수정</button></a>
+				</c:if>
+		</sec:authorize>
+		
+		<form id='operForm' action="/front/meeting/board/modify" method="get">
+			<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  			<input type='hidden' name='free_board_num' value='<c:out value="${board.free_board_num}"/>'>
+			<input type='hidden' name ='meeting_num' value='<c:out value="${board.meeting_num}"/>'>
+			<input type='hidden' name ='userid' value='<c:out value="${board.userid}"/>'>
+			<input type='hidden' name ='category' value='<c:out value="${board.category}"/>'>
+			<input type='hidden' name ='title' value='<c:out value="${board.title}"/>'>
+			<input type='hidden' name ='contents' value='<c:out value="${board.contents}"/>'>
+			<input type='hidden' name ='files' value='<c:out value="${board.files}"/>'>
+			<input type='hidden' name ='write_Date' value='<c:out value="${board.write_Date}"/>'>
+			<input type='hidden' name ='views' value='<c:out value="${board.views}"/>'>
+			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+			<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+  			<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  			<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+		</form>
+		
 	</div>
 </section>
 <!-- //목록 / 수정 / 삭제 버튼 -->
@@ -139,73 +214,92 @@
 
 <!-- 게시글 검색/글쓰기 -->
 <section class="mx-5 px-5">
-	<div class="input-group-css">
-		<!-- 분류 선택 -->
-		<select>
-			<option value="">카테고리</option>
-			<option>일반</option>
-			<option>공지사항</option>
-			<option>정모 후기</option>
-			<option>건의</option>
-		</select>
-		<!-- //분류 선택 -->
-		
-		<!-- 검색 키워드 입력창 -->
-		<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" style="width:20%">
-		<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" >찾기</button>
-		</span>
-		<!-- //검색 키워드 입력창 -->
-		
-		<!-- 글쓰기 버튼 -->
-		<div class="input-group-btn" style="position: absolute; right: 0;">
-			<a href="./write?meeting_num=${param.meeting_num}" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
-		</div>
-		<!-- //글쓰기 버튼 -->
-	</div>
+   <div class="input-group-css">
+        <form id='searchForm' action="/front/meeting/board/list" method='get'>
+    	 <select name='type'>
+         	<option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
+         	<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
+         	<option value="W" <c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
+         	<option value="G" <c:out value="${pageMaker.cri.type eq 'G'?'selected':''}"/>>카테고리</option>
+      	 </select>
+        	 <input type='text'   name='keyword'     value='<c:out value="${pageMaker.cri.keyword}"/>' placeholder="검색 내용을 입력하세요!" />
+        	 <input type='hidden' name='pageNum'     value='<c:out value="1"/>' />
+        	 <input type='hidden' name='meeting_num' value='<c:out value="${param.meeting_num}"/>' />
+        	 <input type='hidden' name='amount'      value='<c:out value="${pageMaker.cri.amount}"/>' />
+         <button class="btn btn-secondary" value=""><span class="fa fa-search"></span></button>
+      </form>
+      <!-- //검색 키워드 입력창 -->
+      
+      <!-- 글쓰기 버튼 -->
+      <div class="input-group-btn" style="position: absolute; right: 0;">
+         <a href="/front/meeting/board/write?meeting_num=${param.meeting_num}" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
+      </div>
+      <!-- //글쓰기 버튼 -->
+   </div>
 </section>
 <!-- //게시글 검색/글쓰기 -->
 
 <!-- 페이지 버튼 -->
 <section>
-	<div class="text-center" style="margin-bottom:100px;">
-
-		<ul class="pagination justify-content-center">
-			<c:if test="${pageMaker.prev}">
-				<li class="paginate_button previous">
-					<a href="/front/meeting/board/list?page=${pageMaker.startPage -1}">Previous</a>
-				</li>
-			</c:if>
-
-			<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
-				<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-					<a href="/front/meeting/board/list?meeting_num=${param.meeting_num}&pageNum=${num}">${num}</a>
-				</li>
-			</c:forEach>
-
-			<c:if test="${pageMaker.next}">
-				<li class="paginate_button next">
-					<a href="/front/meeting/board/list?page=${pageMaker.endPage +1 }">Next</a>
-				</li>
-			</c:if>
-		</ul>
-	</div>
-	<!-- Form 시작 -->
-			<form id='actionForm' action="/front/meeting/board/list" method='get'>
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
- 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
-				<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
-			</form>
-	<!-- Form 끝 -->
-				
+   <div class="text-center" style="margin-bottom:100px;" >
+      <ul class="pagination justify-content-center">
+         <c:if test="${pageMaker.prev}">
+            <li class="paginate_button previous">
+               <a class="page-link" href="/front/meeting/board/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${pageMaker.startPage -1}"> Previous </a>
+            </li>
+         </c:if>
+         <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+            <li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+               <a class="page-link"  href="/front/meeting/board/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${num}">${num}</a>
+            </li>
+         </c:forEach>
+      <c:if test="${pageMaker.next}">
+         <li class="paginate_button next">
+        	 <a class="page-link" href="/front/meeting/board/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${pageMaker.endPage +1 }"> Next </a>
+         </li>
+      </c:if>
+      </ul>
+   </div>
+   <!-- Form 시작 -->
+         <form id='actionForm' action="/front/meeting/board/list" method='get'>
+        	<input type='hidden' name='type'      value='<c:out value="${pageMaker.cri.type}"/>'>
+            <input type='hidden' name='keyword'   value='<c:out value="${pageMaker.cri.keyword}"/>'>
+            <input type='hidden' name='pageNum'   value='${pageMaker.cri.pageNum}'>
+            <input type='hidden' name='amount'    value='${pageMaker.cri.amount}'>
+         </form>
+   <!-- Form 끝 -->      
 </section>
 <!-- //페이지 버튼 -->
+
+<!-- 모임 가입 히든 폼 -->
+<form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
+</form>
+<!-- //모임 가입 히든 폼 -->
 
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var result = '<c:out value="${result}"/>';
+
+		var operForm = $("#operForm");
+		
+		$("button[data-oper='remove']").on("click", function(e){
+			
+			if (confirm('정말 삭제 하시겠습니까?')) {
+				operForm.attr('method', 'post');
+				operForm.attr("action","/front/meeting/board/remove").submit();
+			}
+		});
+		
+		$("button[data-oper='list']").on("click", function(e){
+			$("input[id='token']").remove();
+			$("input[name='event_num']").remove();
+			$("input[name='ck_code']").remove();
+			operForm.attr("action","/front/meeting/board/list").submit();
+		});
 		
 		checkModal(result);
 
@@ -250,6 +344,7 @@
 			e.preventDefault();
 			searchForm.submit();
 		});
+		
 	});
 </script>
 </html>

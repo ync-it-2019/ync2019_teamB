@@ -44,7 +44,6 @@ public class UploadUtils {
 
 		return false;
 	}
-
 	
 	public static String uploadFormPost(MultipartFile uploadFile, String realUploadPath) {
 

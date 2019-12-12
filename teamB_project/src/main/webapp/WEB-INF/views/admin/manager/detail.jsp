@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -52,36 +54,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body">
                   <form class="form-horizontal bucket-form" method="get">
                     <div class="form-group">
-                      <img class="member_img" src="/resources/img/no_img.jpg" alt="">
-                    </div>
-                    <div class="form-group">
                       <label class="col-sm-3 control-label">이름</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="서영준" readonly>
+                        <input type="text" class="form-control" value="<c:out value="${manager.name}" />" readonly>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">아이디</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="ay9564" readonly>
+                        <input type="text" class="form-control" value="<c:out value="${manager.userid}" />" readonly>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">비밀번호</label>
+                      <label class="col-sm-3 control-label">전화번호</label>
                       <div class="col-sm-6">
-                        <input type="password" class="form-control round-input" value="ay789456" readonly>
+                        <input type="text" class="form-control" value="<c:out value="${manager.phone}" />" readonly>
                       </div>
                     </div>
-                  </form>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">이메일</label>
+                      <div class="col-sm-6">
+                        <input type="eamil" class="form-control" value="<c:out value="${manager.email}" />" readonly>
+                      </div>
+                    </div>
+                    <div class="center">
+                  <button type="button" class="btn btn-primary" data-oper="modify" style="width:100px;">수정</button>
                 </div>
-                <div class="center">
-                  <button type="submit" class="btn btn-primary" onClick="location.href='/admin/manager/modify'" style="width:100px;">수정</button>
+                  </form>
                 </div>
               </section>
             </div>
           </div>
 
-          <button type="button" class="btn btn-default" onClick="location.href='/admin/manager/list'">목록</button>
+          <button type="button" class="btn btn-default" data-oper="list">목록</button>
           <!-- page end-->
         </div>
       </section>
@@ -96,6 +101,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!--main content end-->
   </section>
+  <form id='operForm' action="/admin/manager/modify" method="get">
+  	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  	<input type='hidden' name='userid' value='<c:out value="${manager.userid}"/>'>
+  	<input type='hidden' name='ck_code' value='<c:out value="${manager.userid}"/>'>
+  	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  	<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  	<input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+  </form>
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
@@ -103,6 +117,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="/resources/js/admin/jquery.nicescroll.js"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/resources/js/admin/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="/resources/js/admin/jquery.scrollTo.js"></script>
+  <script type="text/javascript">
+
+function replaceEscapeStr(str) {
+	return str.replace("\\","\\\\");
+}
+
+$(document).ready(function() {
+  
+	var operForm = $("#operForm");
+
+	$("button[data-oper='modify']").on("click", function(e){
+		$("input[id='token']").remove();
+		$("input[name='ck_code']").remove();
+		operForm.attr("action","/admin/manager/modify").submit();
+	});
+	
+	$("button[data-oper='remove']").on("click", function(e){
+		if (confirm('정말 삭제 하시겠습니까?')) {
+			operForm.attr('method', 'post');
+			operForm.attr("action","/admin/manager/delete").submit();
+		}
+	});
+	
+	$("button[data-oper='list']").on("click", function(e){
+		$("input[id='token']").remove();
+		$("input[name='userid']").remove();
+		$("input[name='ck_code']").remove();
+		operForm.attr("action","/admin/manager/list").submit();
+	});
+	
+});
+</script>
 </body>
 
 </html>

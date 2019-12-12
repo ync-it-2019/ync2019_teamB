@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j;
   * @FileName	: EventServiceImpl.java
   * @Date		: 2019. 10. 27. 
   * @Author		: 김상훈
-  * @프로그램 설명 : 이벤트 ServiceImpl
+  * @프로그램 설명 : 이벤트 implements
   */
 @Log4j
 @Service

@@ -40,74 +40,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <jsp:include page="/WEB-INF/views/front/include/header.jsp" flush="true" />
   <section class="banner_w3lspvt">
   	<div class="csslider infinity" id="slider1">
+  	<c:forEach items="${event}" var="event" varStatus="status">
+  		<c:choose>
+  		<c:when test="${status.index eq 0 }">
   		<input type="radio" name="slides" checked="checked" id="slides_1" />
-  		<input type="radio" name="slides" id="slides_2" />
-  		<input type="radio" name="slides" id="slides_3" />
-  		<input type="radio" name="slides" id="slides_4" />
+  		</c:when>
+  		<c:otherwise>
+  		<input type="radio" name="slides" id="slides_<c:out value="${status.index + 1 }"/>" />
+  		</c:otherwise>
+  		</c:choose>
+
+   	</c:forEach>
   		<ul>
-  			<li>
-  				<div class="banner-top">
+  			<c:forEach items="${event}" var="event" varStatus="status">
+			<li>
+  				<div class="banner-top" style="background: url(/resources/upload/<c:out value="${event.image }" />) no-repeat center; background-size: cover;">
   					<div class="overlay">
   						<div class="container">
   							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
+  								<h3 class="text-wh"><c:out value="${event.title}" /></h3>
+  								<p class="text-li mx-auto mt-2"><c:out value ="${event.contents}" /></p>
+  								<a href="/front/event/get?event_num=<c:out value="${event.event_num}"/>" class="button-style mt-4">이벤트 바로가기</a>
   							</div>
   						</div>
   					</div>
   				</div>
   			</li>
-  			<li>
-  				<div class="banner-top1">
-  					<div class="overlay">
-  						<div class="container">
-  							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
-  			</li>
-  			<li>
-  				<div class="banner-top2">
-  					<div class="overlay">
-  						<div class="container">
-  							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
-  			</li>
-  			<li>
-  				<div class="banner-top3">
-  					<div class="overlay">
-  						<div class="container">
-  							<div class="w3layouts-banner-info text-center">
-  								<h3 class="text-wh">We Are the best designers of Interior Furniture</h3>
-  								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-  									labore et dolore magna aliqua nostrud exerci sed.</p>
-  								<a href="about.html" class="button-style mt-4">Explore More</a>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
-  			</li>
+      		</c:forEach>
+  			
   		</ul>
   		<div class="arrows">
-  			<label for="slides_1"></label>
-  			<label for="slides_2"></label>
-  			<label for="slides_3"></label>
-  			<label for="slides_4"></label>
+  		<c:forEach items="${event}" var="label" varStatus="status">
+  		
+  			<label for="slides_<c:out value="${status.index + 1}"/>"></label>
+  		
+  		</c:forEach>
   		</div>
+  		
   	</div>
   </section>
 
@@ -118,40 +87,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="content">
       <div class="home_editor">
         <div class="common_title">
-          <h3 class="title">Editor's Pick</h3>
+          <h3 class="title">이런 모임 어때요?</h3>
         </div>
         <div class="containers"></div>
         <section class="news editor_list" id="news">
-          <div class="grid">
+        <c:forEach items="${list}" var="meeting" begin="0" end="2" step="1" varStatus="status">
+        <div class="grid">
             <figure class="effect-lily">
-              <img src="/resources/img/1.jpg" alt="/resources/img12"/>
+              <img src="/resources/upload/<c:out value="${meeting.meeting_Profile }"/>" />
               <figcaption>
                 <div>
-                  <h2>Nice <span>Lily</span></h2>
-                  <p>Lily likes to play with crayons and pencils</p>
+                  <span><c:out value="${meeting.meeting_Name }" /></span>
+                  <p><c:out value="${meeting.introduce }" /></p>
                 </div>
-                <a href="#">View more</a>
+                <a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }">View more</a>
               </figcaption>
             </figure>
-            <figure class="effect-lily">
-              <img src="/resources/img/2.jpg" alt="/resources/img1"/>
-              <figcaption>
-                <div>
-                  <h2>Nice <span>Lily</span></h2>
-                  <p>Lily likes to play with crayons and pencils</p>
-                </div>
-                <a href="#">View more</a>
-              </figcaption>
-            </figure>
-            <figure class="effect-lily">
-  						<img src="/resources/img/3.jpg" alt="/resources/img02"/>
-  						<figcaption>
-  							<h2>Holy <span>Sadie</span></h2>
-  							<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-  							<a href="#">View more</a>
-  						</figcaption>
-  					</figure>
           </div>
+        </c:forEach>
         </section>
       </div>
     </div>
@@ -191,31 +144,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <section class="main_bottom">
   <div class="news_area">
     <div class="notice">
-      <p><a href="*">+더보기</a></p>
-      <h3>Notice</h3>
+      <p><a href="/front/notice/list">+더보기</a></p>
+      <h3>공지사항</h3>
       <div class="notice_list">
+      <c:forEach items="${list3}" var="notice" begin="0" end="4" step="1" varStatus="status">
         <ul>
-          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
-          <li class="n_li_date">2019-10-15<li>
+          <li class="n_li_title" style ="width:250px;">&middot;<a href="/front/notice/get?notice_num=<c:out value="${notice.notice_num}"/>"><c:out value="${notice.title}" /></a></li>
+          <li class="n_li_date"><c:out value="${notice.write_date}" /><li>
         </ul>
-        <ul>
-          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
-          <li class="n_li_date">2019-10-15<li>
-        </ul>
-        <ul>
-          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
-          <li class="n_li_date">2019-10-15<li>
-        </ul>
-        <ul>
-          <li class="n_li_title">&middot;<a href="*">소모임 서비스를 새롭게 시작합니다.</a></li>
-          <li class="n_li_date">2019-10-15<li>
-        </ul>
+      </c:forEach>
     </div>
   </div>
     <div class="faq">
       <div class="faq_i"><a href="/front/question/FAQ"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
       <div class="answer_i"><a href="/front/question/myQuestion"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
-      <div class="faq_i"></div>
+      <div class="faq_i"><img class="tell_img" src="/resources/img/tell.png"></div>
     </div>
   </div>
 </section>
@@ -226,159 +169,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container py-md-3">
 		<div class="footer-grid_section text-center">
 			<div class="footer-title mb-3">
-				<h2> <a href="index.html"> Furnish</a></h2>
+				<h2> <a href="index.html"> 환영합니다!</a></h2>
 			</div>
 			<div class="footer-text">
-				<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ipnut libero malesuada feugiat.
-				 Lorem ipsum dolor sit amet elit.</p>
+				<p>모임에 참여해 활동을 시작하세요!</p>
 			</div>
-		</div>
-		<div class="row mt-5">
-			<div class="col-lg-4 mb-lg-0 mb-4 footer-top">
-				<h4 class="mb-4 w3f_title text-uppercase">Contact Info</h4>
-				<div class="footer-style-w3ls my-2">
-					<p> 1127 Block, 2nd cross, 4th floor, London.</p>
-				</div>
-				<div class="footer-style-w3ls my-2">
-					<p> (+121)-098-8907-9987</p>
-				</div>
-				<div class="footer-style-w3ls">
-					<p> <a href="mailto:info@examplemail.com">info@examplemail.com</a></p>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6 footv3-left">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Company</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="about.html">
-							About Us
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Terms of use
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Faq's
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Privacy Ploicy
-						</a>
-					</li>
-					<li>
-						<a href="contact.html">
-							Get In Touch
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Categories</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Furniture Chairs
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Three Seater Sofas
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Dining Tables
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							Office Chairs
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Kitchen Cabinets
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Resources</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="#">
-							Getting Started
-						</a>
-					</li>
-					<li class="mb-2">
-						<a href="#">
-							Best Collections
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="categories.html">
-							All Categories
-						</a>
-					</li>
-					<li class="my-2">
-						<a href="#">
-							24/7 Support
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							Contact for Help
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-2 col-md-3 col-6 mt-md-0 mt-sm-5 mt-4">
-				<h4 class="mb-md-4 mb-3 w3f_title text-uppercase">Account</h4>
-				<ul class="list-agileits">
-					<li class="my-2">
-						<a href="login.html">
-							Sign In
-						</a>
-					</li>
-					<li class="">
-						<a href="register.html">
-							Create Account
-						</a>
-					</li>
-				</ul>
-			</div>
-
 		</div>
 	</div>
+</footer>
 	<!-- //footer bottom -->
 
-<!-- copyright -->
-<section class="copy-right py-4">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
-				</p>
-			</div>
-			<div class="col-md-4 mt-md-0 mt-4">
-				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- copyright -->
 
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>

@@ -174,7 +174,20 @@
 		SELECT meeting_num, count(*) AS meeting_count
 		FROM   teamb_meeting_member
 		GROUP BY meeting_num
+		ORDER BY meeting_count DESC
 		]]>
 	</select>
+	
+	<select id="mainMeetingList" resultMap="meetingMap">
+	<![CDATA[
+		SELECT A.meeting_num, A.meeting_name, A.meeting_profile, A.introduce, B.meeting_count
+		FROM teamb_meeting A, (SELECT meeting_num, count(*) AS meeting_count
+					   		   FROM   teamb_meeting_member
+                       		   GROUP BY meeting_num) B
+		WHERE A.meeting_num = B.meeting_num
+		ORDER BY B.meeting_count DESC
+		]]>
+	</select>
+	
 	
 </mapper>

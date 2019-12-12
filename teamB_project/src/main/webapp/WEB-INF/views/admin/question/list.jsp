@@ -155,8 +155,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </tbody>
                       </table>
                     </div>
-                    <footer>
-                      <div class="row">
+                  </div>
+                </section>
+                <footer  style="padding:10px 10px 10px 10px;">
+                	<div class="row">
                         <div class="center">
                           <!--  Pagination 시작 -->
 							<ul class="pagination">
@@ -174,9 +176,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
                         </div>
                       </div>
-                    </footer>
-                  </div>
-                </section>
+                </footer>
               </section>
             </div>
           </div>

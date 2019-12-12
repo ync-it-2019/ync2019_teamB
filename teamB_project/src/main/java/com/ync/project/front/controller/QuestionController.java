@@ -1,8 +1,9 @@
 package com.ync.project.front.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,28 +39,60 @@ public class QuestionController {
 		@Autowired
 		private QuestionService service;
 		
+		 /**
+		  * @Method 설명 : front/question/FAQ.jsp 호출
+		  * @Method Name : FAQ
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  */
 		@GetMapping(value = "/FAQ")
 		public void FAQ() {
 			log.info("FAQ!");
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/myQuestion.jsp 호출
+		  * @Method Name : myQuestion
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param cri
+		  * @param model
+		  * @param principal
+		  */
 		@GetMapping(value = "/myQuestion")
-		public void myQuestion(Criteria cri, Model model) {
-			log.info("List");
+		public void myQuestion(Criteria cri, Model model, Principal principal) {
 			log.info("cri: " + cri);
-			int total = service.getTotal(cri);
+			String userid = principal.getName();
+			int total = service.getTotal(cri, userid);
 			log.info("total: " + total);
-			model.addAttribute("list", service.getListWithPaging(cri));
+			log.info(principal.getName());
+			model.addAttribute("list", service.getListWithPaging(cri, userid));
 			model.addAttribute("pageMaker", new PageDTO(cri, total));
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/write.jsp 호출
+		  * @Method Name : questionWirte
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  */
 		@GetMapping(value = "/write")
 		public void questionWirte() {
 			log.info("write");
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/write.jsp에 필요한 데이터 POST
+		  * @Method Name : uploadFormPost
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param uploadFile
+		  * @param question
+		  * @param rttr
+		  * @return redirect:/front/question/myQuestion
+		  */
 		@PostMapping(value = "/write")
-		public String uploadFormPost(MultipartFile uploadFile, Model model, QuestionVO question, RedirectAttributes rttr) {
+		public String uploadFormPost(MultipartFile uploadFile, QuestionVO question, RedirectAttributes rttr) {
 			
 			log.info("파일 이름: " + uploadFile.getOriginalFilename());
 			log.info("파일 크기: " + uploadFile.getSize());
@@ -71,7 +104,6 @@ public class QuestionController {
 			}
 			
 			log.info("write: " + question);
-			log.info("Question Write!");
 			service.register(question);
 			
 			rttr.addFlashAttribute("result", question.getQuestion_num());
@@ -79,17 +111,35 @@ public class QuestionController {
 			return "redirect:/front/question/myQuestion";
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/get.jsp, front/question/modify.jsp 호출
+		  * @Method Name : questionGet
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param question_num
+		  * @param cri
+		  * @param model
+		  */
 		@GetMapping({"/get","/modify"})
-		public void questionGet(@RequestParam("question_num") Long question_num, Model model) {
+		public void questionGet(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
 			log.info("Get or Modify!");
 			model.addAttribute("question", service.read(question_num));
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/modify.jsp에 필요한 데이터 POST
+		  * @Method Name : modify
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param question
+		  * @param cri
+		  * @param rttr
+		  * @return
+		  */
 		@PostMapping("/modify")
-		@PreAuthorize("principal.username == #question.userid")
 		public String modify(QuestionVO question, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 			log.info("modify:" + question);
-
+			
 			if (service.modify(question)) {
 				rttr.addFlashAttribute("result", "success");
 			}
