@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ync.project.admin.service.AdminManagerService;
 import com.ync.project.domain.AuthVO;
 import com.ync.project.domain.Criteria;
-import com.ync.project.domain.EventVO;
 import com.ync.project.domain.MemberVO;
 import com.ync.project.domain.PageDTO;
-import com.ync.project.util.UploadUtils;
 
 import lombok.extern.log4j.Log4j;
 /**
@@ -49,11 +47,12 @@ public class AdminManagerController {
 	/**
 	  * @Method 설명 : admin/manager/create.jsp 호출
 	  * @Method Name : AdminManagerCreate
-	  * @Date : 2019. 11. 04.
+	  * @Date : 2019. 12. 12.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
 	@GetMapping("/create")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerCreate() {
 
 		log.info("Manager Create get page!");
@@ -63,11 +62,12 @@ public class AdminManagerController {
 	/**
 	  * @Method 설명 : admin/manager/create.jsp 호출
 	  * @Method Name : AdminManagerCreate
-	  * @Date : 2019. 11. 04.
+	  * @Date : 2019. 12. 12.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
 	@PostMapping("/create")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String AdminManagerCreate(MemberVO member, AuthVO auth, RedirectAttributes rttr) {
 
 		BCryptPasswordEncoder scpwd = new BCryptPasswordEncoder();
@@ -96,6 +96,7 @@ public class AdminManagerController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/list")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerList(Criteria cri, Model model) {
 
 		log.info("Manager List get page!");
@@ -113,11 +114,12 @@ public class AdminManagerController {
 	/**
 	  * @Method 설명 : admin/manager/detail.jsp 호출
 	  * @Method Name : AdminManagerDetail
-	  * @Date : 2019. 11. 04.
+	  * @Date : 2019. 12. 12.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
 	@GetMapping("/detail")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerDetail(@RequestParam("userid") String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Manager Detail get page!");
@@ -131,11 +133,12 @@ public class AdminManagerController {
 	/**
 	  * @Method 설명 : admin/manager/modify.jsp 호출
 	  * @Method Name : AdminManagerModify
-	  * @Date : 2019. 11. 04.
+	  * @Date : 2019. 12. 12.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
 	@GetMapping("/modify")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerModify(@RequestParam("userid") String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Manager Modify get page!");
@@ -145,14 +148,14 @@ public class AdminManagerController {
 	}
 	
 	/**
-	  * @Method 설명 : 공지 수정 후 admin/manager/detail.jsp 호출
+	  * @Method 설명 : 관리자 계정 정보 수정 후 admin/manager/modify.jsp 호출
 	  * @Method Name : AdminManagerModify
-	  * @Date : 2019. 12. 08.
+	  * @Date : 2019. 12. 12.
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
 	@PostMapping("/modify")
-	public String AdminEventModify(MemberVO member, AuthVO auth, @ModelAttribute("cri") Criteria cri,  RedirectAttributes rttr) {
+	public String AdminManagerModify(MemberVO member, AuthVO auth, @ModelAttribute("cri") Criteria cri,  RedirectAttributes rttr) {
 		log.info("modify:" + member);
 		
 		List<AuthVO> auth_arr = new ArrayList<AuthVO>();
@@ -166,25 +169,13 @@ public class AdminManagerController {
 		return "redirect:/admin/manager/detail" + cri.getListLink() + "&userid=" + member.getUserid();
 	}
 	
-//	@GetMapping("/delete")
-//	public String AdminManagerDelete(@RequestParam("ck_code") String ck, Criteria cri, RedirectAttributes rttr) {
-//
-//		log.info("Manager Detail get page!");
-//		
-//		String[] array = ck.split(",");
-//		
-//		for(int i = 0; i < array.length; i++) {
-//			service.remove(array[i]);
-//			System.out.println("삭제 글 번호" + (i+1) + ": " + array[i]);
-//		}
-//		
-//		log.info(ck);
-//		log.info(cri);
-//    	
-//    	return "redirect:/admin/event/list" + cri.getListLink();
-//	
-//	}
-	
+	/**
+	  * @Method 설명 : 관리자 계정 삭제 후 admin/manager/list.jsp 호출
+	  * @Method Name : AdminManagerDelete
+	  * @Date : 2019. 12. 12.
+	  * @작성자 : 서영준
+	  * @return call jsp view
+	  */
 	@PostMapping("/delete")
 	public String AdminManagerDelete(@RequestParam("ck_code") String ck, Criteria cri, RedirectAttributes rttr) {
 
