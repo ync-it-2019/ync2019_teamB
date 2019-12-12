@@ -1,12 +1,19 @@
 package com.ync.project.service;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.AppointmentVO;
+import com.ync.project.domain.ParticipantsVO;
 import com.ync.project.front.service.MeetingMainService;
 
 import lombok.extern.log4j.Log4j;
@@ -72,13 +79,13 @@ public class MeetingMainServiceTests {
 //		service.getMeetingNum();
 //	}
 //	
-	@Test
-	public void testGetCount() {
-		
-		log.info(service);
-		
-		service.getCount(1L);
-	}
+//	@Test
+//	public void testGetCount() {
+//		
+//		log.info(service);
+//		
+//		service.getCount(1L);
+//	}
 
 //	@Test
 //	public void testMeetingModify() {
@@ -96,6 +103,93 @@ public class MeetingMainServiceTests {
 //		log.info(meeting);
 //		
 //		service.meetingModify(meeting);
+//	}
+	
+//	@Test
+//	public void testGetAppointmentList() {
+//		service.getAppointmentList(1L).forEach(board -> log.info(board));
+//	}
+	
+	SimpleDateFormat transFormat  = new SimpleDateFormat("yyyyy-MM-dd HH:mm:ss");
+	String from1 = "2019-12-25 15:00:00";
+	Calendar cal = new GregorianCalendar();
+//	
+//	@Test
+//	public void testWriteAppoinment() throws ParseException {
+//		
+//		AppointmentVO appo = new AppointmentVO();
+//		java.util.Date to1 = transFormat.parse(from1);
+//		Date date = new Date(cal.getTimeInMillis());
+//		
+//		appo.setAppointment_num(11L);
+//		appo.setTitle("serviceTest");
+//		appo.setAppointment_date(date);
+//		appo.setAppointment_place("대구광역시");
+//		appo.setContents("정모 내용");
+//		appo.setMax_people(10L);
+//		appo.setUserid("a1");
+//		appo.setMeeting_num(1L);
+//		
+//		service.writeAppointment(appo);
+//	}
+	
+//	@Test
+//	public void testGetAppointmentRead() {
+//		
+//		log.info(service.getAppointmentRead(1L));
+//	}
+	
+//	@Test
+//	public void testAppointmentModify() throws ParseException {
+//		
+//		AppointmentVO appo = new AppointmentVO();
+//		java.util.Date to1 = transFormat.parse(from1);
+//		Date date = new Date(cal.getTimeInMillis());
+//		
+//		appo.setTitle("수정되었습니다.222222");
+//		appo.setAppointment_date(date);
+//		appo.setAppointment_place("서울");
+//		appo.setContents("수정된 내용입니다.222222");
+//		appo.setMax_people(333L);
+//		
+//		appo.setAppointment_num(1L);
+//		
+//		service.appointmentModify(appo);
+//	}
+	
+//	@Test
+//	public void testAppointmentDelete() {
+//		
+//		service.appointmentDelete(4L);
+//	}
+	
+	@Test
+	public void testAppointmentParticipation() {
+		
+		ParticipantsVO parti = new ParticipantsVO();
+		
+		parti.setMeeting_num(1L);
+		parti.setAppointment_num(15L);
+		parti.setParticipants_num(20L);
+		parti.setUserid("user9");
+		
+		log.info(parti);
+		
+		service.appointmentParticipation(parti);
+		
+	}
+	
+//	@Test
+//	public void testGetParticipantsInfo() {
+//		
+//		log.info(service.getParticipantsInfo(1L));
+//		
+//	}
+	
+//	@Test
+//	public void testGetParticipantsNum() {
+//		
+//		log.info(service.getParticipantsNum());
 //	}
 
 }
