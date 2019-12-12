@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
   * @FileName	: EventEndServiceImpl.java
   * @Date		: 2019. 11. 27. 
   * @Author		: 김상훈
-  * @프로그램 설명 :
+  * @프로그램 설명 : 종료된 이벤트 implements
   */
 @Log4j
 @Service

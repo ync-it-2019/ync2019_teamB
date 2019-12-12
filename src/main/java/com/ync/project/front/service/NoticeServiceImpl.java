@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j;
   * @FileName	: NoticeServiceImpl.java
   * @Date		: 2019. 10. 27. 
   * @Author		: 김상훈
-  * @프로그램 설명 : 공지사항 ServiceImpl
+  * @프로그램 설명 : 공지사항 implements
   */
 @Log4j
 @Service

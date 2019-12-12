@@ -39,11 +39,26 @@ public class QuestionController {
 		@Autowired
 		private QuestionService service;
 		
+		 /**
+		  * @Method 설명 : front/question/FAQ.jsp 호출
+		  * @Method Name : FAQ
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  */
 		@GetMapping(value = "/FAQ")
 		public void FAQ() {
 			log.info("FAQ!");
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/myQuestion.jsp 호출
+		  * @Method Name : myQuestion
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param cri
+		  * @param model
+		  * @param principal
+		  */
 		@GetMapping(value = "/myQuestion")
 		public void myQuestion(Criteria cri, Model model, Principal principal) {
 			log.info("cri: " + cri);
@@ -55,13 +70,29 @@ public class QuestionController {
 			model.addAttribute("pageMaker", new PageDTO(cri, total));
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/write.jsp 호출
+		  * @Method Name : questionWirte
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  */
 		@GetMapping(value = "/write")
 		public void questionWirte() {
 			log.info("write");
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/write.jsp에 필요한 데이터 POST
+		  * @Method Name : uploadFormPost
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param uploadFile
+		  * @param question
+		  * @param rttr
+		  * @return redirect:/front/question/myQuestion
+		  */
 		@PostMapping(value = "/write")
-		public String uploadFormPost(MultipartFile uploadFile, Model model, QuestionVO question, RedirectAttributes rttr) {
+		public String uploadFormPost(MultipartFile uploadFile, QuestionVO question, RedirectAttributes rttr) {
 			
 			log.info("파일 이름: " + uploadFile.getOriginalFilename());
 			log.info("파일 크기: " + uploadFile.getSize());
@@ -81,12 +112,31 @@ public class QuestionController {
 			return "redirect:/front/question/myQuestion";
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/get.jsp, front/question/modify.jsp 호출
+		  * @Method Name : questionGet
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param question_num
+		  * @param cri
+		  * @param model
+		  */
 		@GetMapping({"/get","/modify"})
 		public void questionGet(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
 			log.info("Get or Modify!");
 			model.addAttribute("question", service.read(question_num));
 		}
 		
+		 /**
+		  * @Method 설명 : front/question/modify.jsp에 필요한 데이터 POST
+		  * @Method Name : modify
+		  * @Date : 2019. 12. 12.
+		  * @작성자 : 김상훈
+		  * @param question
+		  * @param cri
+		  * @param rttr
+		  * @return
+		  */
 		@PostMapping("/modify")
 		public String modify(QuestionVO question, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 			log.info("modify:" + question);

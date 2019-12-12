@@ -19,6 +19,6 @@ public interface NoticeService {
 	public NoticeVO read(Long notice_num);
 	// 글 목록 페이징 
 	public List<NoticeVO> getListWithPaging(Criteria cri);
-	//추가
+	// 글 전체 개수
 	public int getTotal(Criteria cri);
 }

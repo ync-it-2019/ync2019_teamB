@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
   * @FileName	: QuestionServiceImpl.java
   * @Date		: 2019. 10. 28. 
   * @Author		: 김상훈
-  * @프로그램 설명 : 고객센터 ServiceImpl
+  * @프로그램 설명 : 고객센터 implements
   */
 @Log4j
 @Service
