@@ -7,7 +7,8 @@
 	<![CDATA[
 		SELECT *
 		FROM  teamb_event
-		WHERE event_num > 0 
+		WHERE SYSDATE >= event_start_date
+  		AND SYSDATE < event_end_date 
 		]]>
 	</select>
 	
