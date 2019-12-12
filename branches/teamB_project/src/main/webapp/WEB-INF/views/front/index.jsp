@@ -134,7 +134,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </sec:authorize>
   
   <sec:authorize access="isAuthenticated()">
-
+	<div class="aside">
+    <div class="login_area" style="margin-top:15px;">
+    <div class="letter">
+      	<p>"모임을 개설해 자신만의 모임을 만들어 보세요!"</p>
+      </div>
+    <div style="border: 1px solid #ccc; width: 290px; height: 120px; margin-top:10px;" class="login_box">
+    <div style="display:black; width: 290px; height: 80px;">
+    <img style="border-radius: 50%; border:1px solid; float:left; width: 70px; height: 70px; display: inline-block; color:#ccc; margin:10px 10px 10px 10px;" src="/resources/img/no_img.jpg">
+    <div style="display: inline-block; float:left; padding-top:13px; width:85px;">(이름) 님</div>
+    <div style="float:left; padding-top:10px;">
+    	<div style="display: inline-block;">지역 : </div>
+    	<div style="display: inline-block; margin-left:30px;">취미 : </div>
+    </div>
+    </div>
+    <div class="logout" align="right" style="font-size:12px; margin-right:25px; margin-top:10px;">
+      <a style="color:black;" href="#">정보수정</a>
+       <a style="margin-left:5px; color:black;" href="/customLogout">로그아웃</a>
+        </div>
+        </div>
+        <div class="login">
+          <button class="login_btn" style="background-color:#708041;" onclick="location.href='/login' ">
+            	모임 개설
+          </button>
+        </div>
+    </div>
+  </div>
   </sec:authorize>
   <!-- aside end -->
 </section>
