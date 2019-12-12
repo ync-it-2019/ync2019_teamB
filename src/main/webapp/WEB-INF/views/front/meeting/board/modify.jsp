@@ -121,7 +121,7 @@
 				</div>
                 <div class="form-group">
 								첨부파일 <input type="file" name="uploadFile" value="${board.files}">
-								 <input type="hidden" name="files" multiple>
+								 <input type="hidden" name="files" value="${board.files}" multiple>
                 	<div style="position: relative; bottom: 37px;"></div>
 			    </div>
 			  
