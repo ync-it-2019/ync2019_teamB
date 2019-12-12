@@ -62,8 +62,7 @@ public class QuestionController {
 		}
 		
 		@PostMapping(value = "/write")
-		public String uploadFormPost(MultipartFile uploadFile, Model model,
-				QuestionVO question, RedirectAttributes rttr) {
+		public String uploadFormPost(MultipartFile uploadFile, Model model, QuestionVO question, RedirectAttributes rttr) {
 			
 			log.info("파일 이름: " + uploadFile.getOriginalFilename());
 			log.info("파일 크기: " + uploadFile.getSize());
