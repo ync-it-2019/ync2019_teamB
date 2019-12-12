@@ -93,7 +93,7 @@
       <table class="table-board table-hover" >
          <thead>
             <tr>
-               <th class="board-number-css">글번호</th>
+<!--                <th class="board-number-css">글번호</th> -->
                   <th class="board-category-css">분류</th>
                   <th class="board-title-css pl-4">제목</th>
                   <th class="board-writer-css">작성자</th>
@@ -104,14 +104,14 @@
            
            <c:forEach items="${list}" var="board">
            <tr>
-            <td class="board-number-css"><c:out value="${board.free_board_num}"/></td>
+<%--             <td class="board-number-css"><c:out value="${board.free_board_num}"/></td> --%>
             <td class="board-category-css"><c:out value="${board.category}" /></td>
-            <td><a class="move" onClick="location.href='/front/meeting/board/get?meeting_num=${param.meeting_num}&free_board_num=<c:out value="${board.free_board_num}" />'">
+            <td align="center"><a class="move" onClick="location.href='/front/meeting/board/get?meeting_num=${param.meeting_num}&free_board_num=<c:out value="${board.free_board_num}" />'">
                <c:out value="${board.title}" /></a>
             </td>
                <!--  <a style="color:#5C88FD">  댓글 수    </a> -->
             <td class="board-writer-css"><c:out value="${board.userid}" /></td>
-            <td><fmt:formatDate  value="${board.write_Date}" /></td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<fmt:formatDate  value="${board.write_Date}" /></td>
             <td class="board-hits-css"><c:out value="${board.views}" /></td>
            </tr>
          </c:forEach>
