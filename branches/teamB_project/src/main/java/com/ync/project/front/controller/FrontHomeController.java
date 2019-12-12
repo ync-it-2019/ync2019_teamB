@@ -47,6 +47,10 @@ public class FrontHomeController {
 		model.addAttribute("list3", service4.getList());
 		//회원정보 창
 		model.addAttribute("member", service2.getUserList());
+		//이벤트 슬라이드 이미지
+		model.addAttribute("event", service3.getList());
+		//모임 회원수 별 모임 목록
+		model.addAttribute("list", service.mainMeetingList());
 		
 		return "front/index";
 	}
