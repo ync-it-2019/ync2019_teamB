@@ -22,10 +22,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            </div>
            <div class="search-form mx-md-auto">
               <div class="n-right-w3ls">
-                 <form action="#" method="post" class="newsletter">
+                 <!-- <form action="#" method="post" class="newsletter">
                     <input class="search" type="text" placeholder="Search..." required="">
                     <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
-                 </form>
+                 </form> -->
               </div>
            </div>
            		<sec:authorize access="isAnonymous()">
