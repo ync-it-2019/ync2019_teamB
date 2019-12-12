@@ -61,7 +61,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <textarea class="wysihtml5 form-control" rows="9" readonly>${notice.contents}</textarea>
                         <div class="form-group">
                           <label class="">첨부:</label>
-                          <p class="form-control">${notice.files}</p>
+                          <c:choose>
+       						<c:when test="${not empty notice.files}">
+           						<p class="form-control">${notice.files}</p>
+       						</c:when>
+       						<c:otherwise>
+       							<p class="form-control">첨부된 파일이 없습니다.</p>
+		        			</c:otherwise>
+  	 					  </c:choose>
                         </div>
                       </div>
                       <div class="center">
