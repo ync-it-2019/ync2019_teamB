@@ -92,10 +92,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <button type="button" class="btn btn-default" data-oper='create'>글쓰기</button>
                       <button type="button" class="btn btn-default" data-oper='delete'>삭제</button>
                     </div>
-                  </div>
-                </div>
-                <footer>
-                  <div class="row">
                     <div class="center">
                     <!--  Pagination 시작 -->
 					<ul class="pagination">
@@ -112,18 +108,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</c:if>
 					</ul>
 					</div>
-				</div>
 				<!--  Pagination 끝 -->
-				
-				<!-- Form 시작 -->
-				<form id='actionForm' action="/admin/event/list" method='get'>
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
-				<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
-				</form>
-				<!-- Form 끝 -->
-                </footer>
+                  </div>
+                </div>
               </section>
             </div>
           </div>
@@ -141,6 +128,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </section>
     <!--main content end-->
   </section>
+  <!-- Form 시작 -->
+	<form id='actionForm' action="/admin/event/list" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+		<input type='hidden' name='keyword'	value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+	</form>
+  <!-- Form 끝 -->
   <script src="/resources/js/admin/bootstrap.js"></script>
   <script src="/resources/js/admin/jquery.dcjqaccordion.2.7.js"></script>
   <script src="/resources/js/admin/scripts.js"></script>
