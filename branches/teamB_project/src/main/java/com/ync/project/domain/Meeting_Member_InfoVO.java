@@ -1,5 +1,7 @@
 package com.ync.project.domain;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 /**
@@ -12,6 +14,7 @@ import lombok.Data;
 @Data
 public class Meeting_Member_InfoVO {
 	
+	private Date join_date;
 	private String name;
 	private String userid;
 	
