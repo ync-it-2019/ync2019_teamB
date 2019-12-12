@@ -33,14 +33,6 @@ public class AdminManagerServiceImpl implements AdminManagerService {
 
 	}
 
-	 @Override
-	 public List<MemberVO> getList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getList();
-	 }
-
 	@Override
 	public List<MemberVO> getListWithPaging(Criteria cri) {
 
@@ -77,6 +69,7 @@ public class AdminManagerServiceImpl implements AdminManagerService {
 	public int getTotal(Criteria cri) {
 		
 		log.info("get total count");
+		
 		return mapper.getTotalCount(cri);
 	}
 }
