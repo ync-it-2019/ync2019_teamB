@@ -38,7 +38,6 @@ public class EventEndController {
 @GetMapping("/event/endList")
    public void endList(Criteria cri, Model model) {
       log.info("endList");
-      cri.setAmount(9);
       int total = service.getTotal(cri);
 	  log.info("total: " + total);
       model.addAttribute("eventEndList", service.getListWithPaging(cri));
