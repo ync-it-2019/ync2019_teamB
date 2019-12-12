@@ -84,7 +84,11 @@
 							</div>
 						</div>
 						<div class="comment-top" style="position: relative; top: 60px;">
-							<a href="/front/event/list"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
+							<form id='listForm' action="/front/event/list" method='get'>
+								<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
+								<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
+								<button value="" class="btn btn-primary" style="float: right;">목록</button>
+							</form>
             </div>
           </div>
         </div>
