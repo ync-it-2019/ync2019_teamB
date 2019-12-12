@@ -82,6 +82,7 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 		log.info("get List with criteria: " + cri);
 
 		return mapper.getListWithPaging(cri, meeting_num);
+
 	}
 
 	@Override
