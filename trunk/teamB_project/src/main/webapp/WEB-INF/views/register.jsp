@@ -120,6 +120,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-8" style="position: relative; top: 12px;">
 						<select name="adress">
+				<option>지역</option>
+				<option>경산시</option>
                 <option>서울 특별시</option>
                 <option>세종 특별시</option>
                 <option>대구 광역시</option>
@@ -143,6 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-8" style="position: relative; top: 12px;">
 						<select name="hobby">
+				<option>취미</option>
                 <option>게임/오락</option>
                 <option>운동/스포츠</option>
                 <option>인문학/책/글</option>

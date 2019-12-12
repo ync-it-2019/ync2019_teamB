@@ -20,7 +20,7 @@ public interface QuestionService {
 	// 글 수정
 	public boolean modify(QuestionVO question);
 	// 글 목록 페이징 
-	public List<QuestionVO> getListWithPaging(Criteria cri);
-	//전체 글 개수
-	public int getTotal(Criteria cri);
+	public List<QuestionVO> getListWithPaging(Criteria cri, String userid);
+	// 전체 글 개수
+	public int getTotal(Criteria cri, String userid);
 }

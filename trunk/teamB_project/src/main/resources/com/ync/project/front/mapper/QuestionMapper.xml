@@ -69,27 +69,30 @@
 			DECODE(answer_whether, 'Y' , '처리완료' ,
                               	   'N' , '처리중') YN
 	FROM    (SELECT /*+INDEX_DESC(teamb_1to1_question xpkteamb_1to1_question) */
-			rownum rn,
-			question_num,
-			category,
-			title,
-			write_date,
-			answer_whether
+				rownum rn,
+				question_num,
+				category,
+				title,
+				write_date,
+				answer_whether
 			FROM teamb_1to1_question
-			WHERE 
+			WHERE userid = #{userid}
+			AND
   		]]>
 		<include refid="criteria"></include>
       
 		<![CDATA[    
-      			rownum <= #{pageNum} * #{amount}
+      			rownum <= #{cri.pageNum} * #{cri.amount}
       			)
-  		WHERE rn > (#{pageNum} -1) * #{amount}   
+  		WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
 		]]>
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(*) from teamb_1to1_question where 
-		
+		SELECT count(*)
+		FROM teamb_1to1_question
+		WHERE userid = #{userid}
+		AND
 		<include refid="criteria"></include> 
 		
 		question_num > 0

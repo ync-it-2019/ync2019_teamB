@@ -14,8 +14,10 @@ import com.ync.project.domain.EventVO;
 public interface EventEndMapper {
 	// 전체 글 목록
 	public List<EventVO> getEndList();
+	// 글 상세보기
+	public EventVO read(Long event_num);
 	// 목록 페이징
 	public List<EventVO> getListWithPaging(Criteria cri);
-	//글 전체 개수
+	// 글 전체 개수
 	public int getTotalCount(Criteria cri);
 }

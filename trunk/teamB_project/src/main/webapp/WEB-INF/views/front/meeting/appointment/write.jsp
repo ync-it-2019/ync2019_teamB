@@ -52,12 +52,12 @@
     <div id="meeting-menu">
       <ul class="menu info-row">
         <div class="meeting-menu1">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="./board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
-          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="./appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/main?meeting_num=${getInfo.meeting_Num}">메인</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/board/list?meeting_num=${getInfo.meeting_Num}">게시판</a></li>
+          <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="/front/meeting/appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href=".">수정하기</a>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
         </div>
@@ -70,35 +70,41 @@
 <!-- 글쓰기 -->
 <section>
 	<div class="container">
-		<form id="articleForm" role="form" action="/article" method="post">
+		<form role="form" id="appoWrite" action="/front/meeting/appointment/write" method="post" enctype="multipart/form-data">
 			<br style="clear: both">
 			<h3 style="margin-bottom: 25px;">정모 작성</h3>
 			<div class="form-group">
-				<input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요" required>
+				<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" required>
 			</div>
+			
 			<div class="form-group">
-				<textarea class="form-control" id="summernote" name="content" placeholder="content" maxlength="140" rows="7"></textarea>
+				<textarea class="form-control" id="summernote" name="contents" placeholder="내용을 적어주세요" maxlength="140" rows="7"></textarea>
 			</div>
-			<script>
-				$('#summernote').summernote({
-					placeholder: '내용을 작성해주세요',
-					tabsize: 2,
-					height: 100
-				});
-			</script>
 			<div class="input-group-css">
-				<input type="text" class="form-control-appointment" id="subject" name="subject" placeholder="정모일을 입력해주세요" required>
-				<input type="text" class="form-control-appointment" id="subject" name="subject" placeholder="정모 장소를 입력해주세요" required>
-				<input type="text" class="form-control-appointment" id="subject" name="subject" placeholder="정모 최대인원을 입력해주세요" required>
+				<input type="date" class="form-control-appointment" name="appointment_date" required>
+				<input type="text" class="form-control-appointment" name="appointment_place" placeholder="정모 장소를 입력해주세요" required>
+				<input type="text" class="form-control-appointment" name="max_people" placeholder="정모 최대인원을 입력해주세요" required>
 			</div>
 			
+			<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
+			<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
+			<input type="hidden" name="appointment_num" value="${getAppointmentNum.getAppointmentNum().appointment_num + 1}">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			
-			<button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin:10px"> 등록 </button>
+			<button type="submit" class="btn btn-primary pull-right" style="margin:10px"> 등록 </button>
 			<button type="reset" class="btn btn-default pull-right" onClick="history.back();" style="margin:10px">취소</button>
-		</form>
+		 </form>
 	</div>
 </section>
 <!-- //글쓰기 -->
+
+<!-- 모임 가입 히든 폼 -->
+<form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
+</form>
+<!-- //모임 가입 히든 폼 -->
 
 </body>
 </html>

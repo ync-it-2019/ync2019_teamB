@@ -1,8 +1,11 @@
 package com.ync.project.front.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,20 +42,22 @@ public class MeetingSearchController {
 	private EventService service3;
 	private NoticeService service4;
 	
+
 	 /**
-	  * @Method 설명 : MeetingSerach page Design
-	  * @Method Name : MeetingSerach
-	  * @Date : 2019. 10. 19.
+	  * @Method 설명 : meetingSerach.jsp 호출
+	  * @Method Name : MeetingSearchPage
+	  * @Date : 2019. 12. 11.
 	  * @작성자 : 조중현
-	  * @return
+	  * @param cri
+	  * @param model
+	  * @param vo
+	  * @param request
 	  */
 	@GetMapping("/front/meetingSearch")
 	public void MeetingSearchPage(Criteria cri, Model model, MemberVO vo, HttpServletRequest request) {
 		log.info("list: " + cri);
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
-		
-		log.info("userid : " + request.getAttribute("username"));
 
 		//모임 목록
 		model.addAttribute("list", service.getListWithPaging(cri));
@@ -62,16 +67,13 @@ public class MeetingSearchController {
 //		//최근 공지사항 목록
 		model.addAttribute("list3", service4.getList());
 		//진행 중인 이벤트 배너
-				model.addAttribute("list4", service3.getList());
+		model.addAttribute("list4", service3.getList());
 		//회원정보 창
 
-//		model.addAttribute("member", service2.info(userid));
+		model.addAttribute("member", service2.getUserList());
 
 	}
-	@PostMapping("/front/meetingSearch")
-	public void MeetingSearchPage(Model model, MemberVO vo, String userid) {
-		log.info("시발" + vo);
-
-	}
+	
+	
 	
 }

@@ -39,7 +39,7 @@
 	Spring Security의 기본 사용법과 다르게 tbl_member에 권한 컴럼(auth)을
 	넣어서 사용하기에 기본 사용법과 달라진다.
 	-->
-	<select id="read" resultMap="meetingMap">
+	<select id="read" resultType="com.ync.project.domain.MeetingVO">
 	SELECT	meeting_num,
 			meeting_name,
 			introduce,
@@ -52,7 +52,7 @@
 	</select>
 	
 	<!-- 페이징 -->
-	<select id="getListWithPaging" resultType="com.ync.project.domain.MeetingVO">
+	<select id="getListWithPaging" resultMap="meetingMap">
 	<![CDATA[
 	SELECT  meeting_num,
 			meeting_name,
@@ -73,12 +73,35 @@
 			FROM teamb_meeting
 			WHERE 
 	]]>
-	<include refid="criteria"></include> 
 		<![CDATA[    
       			rownum <= #{pageNum} * #{amount}
       			) b
   		WHERE rn > (#{pageNum} -1) * #{amount}   
 		]]>
+	</select>
+	
+	<select id="getMemberInfo" resultType="com.ync.project.domain.Meeting_Member_InfoVO">
+	<![CDATA[
+	SELECT	 name, userid, join_date
+	FROM	(SELECT rownum rn, m.name, tm.userid, tm.join_date
+			FROM teamb_member m, teamb_meeting_member tm
+			WHERE m.userid = tm.userid
+			AND	tm.meeting_num = #{meeting_num}
+			AND
+		]]>
+		<![CDATA[    
+      			rownum <= #{mcri.memberpageNum} * #{mcri.memberamount}
+      			) b
+  		WHERE rn > (#{mcri.memberpageNum} -1) * #{mcri.memberamount}   
+  		GROUP BY name, userid, join_date
+  		ORDER BY join_date
+		]]>
+	</select>
+	
+	<select id="getMemberCnt" resultType="int">
+		SELECT	COUNT(*)
+		FROM	teamb_meeting_member
+		WHERE	meeting_num = #{meeting_num}
 	</select>
 	
 	<select id="getTotalCount" resultType="int">

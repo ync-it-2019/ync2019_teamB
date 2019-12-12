@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
   * @FileName	: QuestionServiceImpl.java
   * @Date		: 2019. 10. 28. 
   * @Author		: 김상훈
-  * @프로그램 설명 : 고객센터 ServiceImpl
+  * @프로그램 설명 : 고객센터 implements
   */
 @Log4j
 @Service
@@ -35,11 +35,11 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public List<QuestionVO> getListWithPaging(Criteria cri) {
+	public List<QuestionVO> getListWithPaging(Criteria cri, String userid) {
 
 		log.info("get List with criteria: " + cri);
 
-		return mapper.getListWithPaging(cri);
+		return mapper.getListWithPaging(cri, userid);
 	}
 
 	@Override
@@ -57,8 +57,8 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public int getTotal(Criteria cri) {
+	public int getTotal(Criteria cri, String userid) {
 		log.info("get total count");
-		return mapper.getTotalCount(cri);
+		return mapper.getTotalCount(cri, userid);
 	}
 }

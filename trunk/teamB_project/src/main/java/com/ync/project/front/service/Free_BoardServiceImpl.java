@@ -82,6 +82,7 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 		log.info("get List with criteria: " + cri);
 
 		return mapper.getListWithPaging(cri, meeting_num);
+
 	}
 
 	@Override
@@ -89,6 +90,13 @@ public class Free_BoardServiceImpl implements Free_BoardService {
 
 		log.info("get total count");
 		return mapper.getTotalCount(cri, meeting_num);
+	}
+	
+	@Override
+	public int viewCount(Long free_board_num) {
+		
+		log.info("get views");	
+		return mapper.viewCount(free_board_num);
 	}
 
 }

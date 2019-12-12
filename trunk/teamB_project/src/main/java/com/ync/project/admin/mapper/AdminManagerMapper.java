@@ -12,8 +12,6 @@ import com.ync.project.domain.MemberVO;
   * @프로그램 설명 : 관리자용 관리자 계정 Mapper interface
   */
 public interface AdminManagerMapper {
-	// 전체 글 목록
-	public List<MemberVO> getList();
 	// 글 상세보기
 	public MemberVO read(String userid);
 	// 목록 페이징

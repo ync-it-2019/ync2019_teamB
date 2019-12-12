@@ -2,13 +2,17 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ync.project.front.mapper.MeetingMainMapper">
 	
+	<sql id="criteria"></sql>
+	
 	<!-- 모임 정보 -->
 	<select id="meeting_Read" resultType="com.ync.project.domain.MeetingVO">
 	<![CDATA[
 		SELECT	MEETING_NAME,
 				MEETING_PROFILE,
 				INTRODUCE,
-				MEETING_NUM
+				MEETING_NUM,
+				MEETING_HOBBY,
+				MEETING_ADRESS
 		FROM	TEAMB_MEETING
 		WHERE	MEETING_NUM = #{meeting_Num}
 		]]>
@@ -70,9 +74,9 @@
 	</select>
 	
 	<!-- 모임인원수 -->
-	<select id="getCount" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<select id="getCount"  resultType="int">
 	<![CDATA[
-		SELECT	COUNT(*)
+		SELECT	COUNT(JOIN_CODE) AS MEETING_MEMEBER_COUNT
 		FROM	TEAMB_MEETING_MEMBER
 		WHERE	MEETING_NUM = #{meeting_Num}
 		]]>
@@ -90,5 +94,113 @@
 		WHERE	MEETING_NUM = #{meeting_Num}
 		]]>
 	</update>
+	
+	<!-- 정모 목록 -->
+	<select id="appointmentList" resultType="com.ync.project.domain.AppointmentVO">
+	<![CDATA[
+		SELECT		*
+		FROM		TEAMB_APPOINTMENT
+		WHERE		MEETING_NUM = #{meeting_num}
+		ORDER BY	APPOINTMENT_NUM DESC
+		]]>
+	</select>
+	
+	<!-- 정모 작성 -->
+	<insert id="writeAppointment">
+	<![CDATA[
+		INSERT INTO TEAMB_APPOINTMENT (	APPOINTMENT_NUM,
+										TITLE,
+										APPOINTMENT_DATE,
+										APPOINTMENT_PLACE,
+										CONTENTS,
+										MAX_PEOPLE,
+										WRITE_DATE,
+										USERID,
+										MEETING_NUM)
+		VALUES	(	#{appointment_num},
+					#{title},
+					#{appointment_date},
+					#{appointment_place},
+					#{contents},
+					#{max_people},
+					SYSDATE,
+					#{userid},
+					#{meeting_num})
+		]]>
+	</insert>
+	
+	<!-- 가장 큰 정모 번호 -->
+	<select id="getAppointmentNum" resultType="com.ync.project.domain.AppointmentVO">
+	<![CDATA[
+		SELECT	APPOINTMENT_NUM
+		FROM	TEAMB_APPOINTMENT
+		WHERE	APPOINTMENT_NUM = ( SELECT	MAX(APPOINTMENT_NUM)
+									FROM	TEAMB_APPOINTMENT)
+		]]>
+	</select>
+	
+	<!-- 정모 상세 -->
+	<select id="getAppointmentRead" resultType="com.ync.project.domain.AppointmentVO">
+	<![CDATA[
+		SELECT		*
+		FROM		TEAMB_APPOINTMENT
+		WHERE		APPOINTMENT_NUM = #{appointment_num}
+		]]>
+	</select>
+	
+	<!-- 정모 수정 -->
+	<update id="appointmentModify">
+	<![CDATA[
+		UPDATE	TEAMB_APPOINTMENT
+		SET		TITLE = #{title},
+				APPOINTMENT_DATE = #{appointment_date},
+				APPOINTMENT_PLACE = #{appointment_place},
+				CONTENTS = #{contents},
+				MAX_PEOPLE = #{max_people}
+		WHERE	APPOINTMENT_NUM = #{appointment_num}
+		]]>
+	</update>
+	
+	<!-- 정모 삭제 -->
+	<delete id="appointmentDelete">
+		DELETE	TEAMB_APPOINTMENT
+		WHERE	APPOINTMENT_NUM = #{appointment_num}
+	</delete>
+	
+	<!-- 정모 참가 -->
+	<insert id="appointmentParticipation">
+		INSERT INTO	TEAMB_PARTICIPANTS (MEETING_NUM,
+										APPOINTMENT_NUM,
+										PARTICIPANTS_NUM,
+										USERID)
+		VALUES	(	#{meeting_num},
+					#{appointment_num},
+					#{participants_num},
+					#{userid})
+	</insert>
+	
+	<!-- 정모 참가자 명단 -->
+	<select id="getParticipantsInfo" resultType="com.ync.project.domain.ParticipantsVO">
+	<![CDATA[
+		SELECT		MEETING_NUM,
+					APPOINTMENT_NUM,
+					PARTICIPANTS_NUM,
+					USERID
+		FROM		TEAMB_PARTICIPANTS
+		WHERE		APPOINTMENT_NUM = #{appointment_num}
+		ORDER BY	PARTICIPANTS_NUM
+		]]>
+	</select>
+	
+	<!-- 가장 큰 참가자 번호 -->
+	<select id="getParticipantsNum" resultType="com.ync.project.domain.ParticipantsVO">
+	<![CDATA[
+		SELECT	PARTICIPANTS_NUM
+		FROM	TEAMB_PARTICIPANTS
+		WHERE	PARTICIPANTS_NUM = (SELECT	MAX(PARTICIPANTS_NUM)
+									FROM	TEAMB_PARTICIPANTS)
+		]]>
+	</select>
+	
 	
 </mapper>

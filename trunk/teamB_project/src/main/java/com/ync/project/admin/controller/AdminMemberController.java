@@ -1,6 +1,7 @@
 package com.ync.project.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,15 +35,8 @@ public class AdminMemberController {
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-//	@GetMapping("/list")
-//	public void AdminMemberList(Model model) {
-//		
-//		log.info("Member List get page!");
-//	
-//		model.addAttribute("list", service.getList());
-//	}
-	
 	@GetMapping("/list") 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void list(Criteria cri, Model model) {
 	  
 		log.info("Member List get page!");
@@ -64,6 +58,7 @@ public class AdminMemberController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/detail")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminMemberDetail(@RequestParam("userid") String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Member Detail get page!");

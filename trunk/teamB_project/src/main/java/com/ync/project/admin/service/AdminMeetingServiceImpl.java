@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.ync.project.admin.mapper.AdminMeetingMapper;
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.MeetingMemberCriteria;
 import com.ync.project.domain.MeetingVO;
+import com.ync.project.domain.Meeting_Member_InfoVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -53,6 +55,22 @@ public class AdminMeetingServiceImpl implements AdminMeetingService {
 	public int getTotal(Criteria cri) {
 		
 		log.info("get total count");
+		
 		return mapper.getTotalCount(cri);
+	}
+	
+	@Override
+	public List<Meeting_Member_InfoVO> getMemberInfo(MeetingMemberCriteria mcri, Long meeting_num) {
+		
+		log.info("get Meeting Member id........");
+		return mapper.getMemberInfo(mcri, meeting_num);
+	}
+	
+	@Override
+	public int getMemberCnt(Long meeting_num) {
+		
+		log.info("get Meeting member Total count");
+		
+		return mapper.getMemberCnt(meeting_num);
 	}
 }

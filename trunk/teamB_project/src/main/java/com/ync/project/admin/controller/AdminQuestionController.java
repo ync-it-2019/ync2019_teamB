@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,15 +48,8 @@ public class AdminQuestionController {
 	  * @작성자 : 서영준
 	  * @return call jsp view
 	  */
-//	@GetMapping("/list")
-//	public void AdminQuestionList(Model model) {
-//
-//		log.info("Question List get page!");
-//	
-//		model.addAttribute("list", service.getList());
-//	}
-	
 	@GetMapping("/list")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void list(Criteria cri, Model model) {
 
 		log.info("list: " + cri);
@@ -75,6 +69,7 @@ public class AdminQuestionController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/detail")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminQuestionDetail(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("Question Detail get page!");
@@ -90,6 +85,7 @@ public class AdminQuestionController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/create")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminQuestionCreate(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 		Date date = new Date(cal.getTimeInMillis());
@@ -101,7 +97,7 @@ public class AdminQuestionController {
 	}
 	
 	/**
-	  * @Method 설명 : 파일 업로드 후 admin/question/list.jsp 호출
+	  * @Method 설명 : 답변 작성 후 admin/question/list.jsp 호출
 	  * @Method Name : AdminQuestionCreate
 	  * @Date : 2019. 12. 08.
 	  * @작성자 : 서영준
