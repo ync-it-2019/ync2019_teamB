@@ -38,7 +38,6 @@ public class EventController {
 @GetMapping("/event/list")
    public void list(MultipartFile uploadFile, Criteria cri, Model model) {
 	   log.info("List");
-	   cri.setAmount(9);
 	   int total = service.getTotal(cri);
 	   log.info("total: " + total);
 	   model.addAttribute("eventList", service.getListWithPaging(cri));
