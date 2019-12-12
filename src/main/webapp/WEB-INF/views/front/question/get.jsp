@@ -91,10 +91,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               ${question.answer}
             </div>
             </c:if>
-						<div class="comment-top" style="position: relative; top: 60px;">
-							<a href="/front/question/myQuestion"><button type="button" class="btn btn-primary" style="float: right;">목록</button></a>
-              <c:if test="${question.yn == '처리중'}">
-              	<a href="/front/question/modify?question_num=<c:out value="${question.question_num}" />"><button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button></a>
+				<div class="comment-top" style="position: relative; top: 60px;">
+					<form id='listForm' action="/front/question/myQuestion" method='get'>
+						<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
+						<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
+						<button value="" class="btn btn-primary" style="float: right;">목록</button>
+					</form>
+             	 <c:if test="${question.yn == '처리중'}">
+              	<form id='listForm' action="/front/question/modify" method='get'>
+	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
+	<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
+	<input type='hidden' name='question_num' value='<c:out value="${question.question_num}"/>' />
+	<button value="" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</button>
+</form>
               </c:if>
             </div>
           </div>

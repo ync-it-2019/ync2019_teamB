@@ -23,43 +23,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
     </script>
     
-    <script type="text/javascript">
-	$(document).ready(function() {
-		var result = '<c:out value="${result}"/>';
-		
-		checkModal(result);
-
-		history.replaceState({}, null, null);
-
-		function checkModal(result) {
-
-			if (result === '' || history.state) {
-				return;
-			}
-
-			if (parseInt(result) > 0) {
-				$(".modal-body").html("게시글 " + parseInt(result)	+ " 번이 등록되었습니다.");
-			}
-
-			$("#myModal").modal("show");
-		}
-		
-		$("#regBtn").on("click", function() {
-			self.location = "/front/notice/write";
-		});
-		
-		var actionForm = $("#actionForm");
-
-		// 페이지 번호 클릭 이벤트
-		$(".paginate_button a").on("click", function(e) {
-			e.preventDefault();
-			// console.log('click');
-			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-			actionForm.submit();
-		});
-	});
-</script>
-    
     <style media="screen">
       a:link { color: black; text-decoration: none;}
         a:visited { color: black; text-decoration: none;}
@@ -124,8 +87,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <c:forEach items="${list}" var="notice">
         <tr>
          <td><c:out value="${notice.notice_num}" /></td>
-         <td class="move over1" style="cursor:pointer" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.title}" /></td>
-         <td class="move" onClick="location.href='/front/notice/get?notice_num=<c:out value="${notice.notice_num}" />'"><c:out value="${notice.userid}" /></td>
+         <td style="cursor:pointer" class="move over1" href='<c:out value="${notice.notice_num}" />'><c:out value="${notice.title}" /></td>
+         <td><c:out value="${notice.userid}" /></td>
          <td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.write_date}" /></td>
         </tr>
 	  </c:forEach>
@@ -213,6 +176,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			e.preventDefault();
 			console.log('click');
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		$(".move").on("click", function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='notice_num' value='"+$(this).attr("href")+"'>");
+			actionForm.attr("action","/front/notice/get");
 			actionForm.submit();
 		});
 	});

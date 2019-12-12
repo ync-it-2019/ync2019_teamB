@@ -3,6 +3,7 @@ package com.ync.project.front.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,7 +37,7 @@ public class NoticeController {
    }
    
    @GetMapping("/notice/get")
-   public void get(@RequestParam("notice_num") Long notice_num, Model model) {
+   public void get(@RequestParam("notice_num") Long notice_num, @ModelAttribute("cri") Criteria cri, Model model) {
       log.info("get");
       model.addAttribute("board", service.read(notice_num));
    }
