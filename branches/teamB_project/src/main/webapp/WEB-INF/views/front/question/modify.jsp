@@ -77,16 +77,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h4>1:1문의</h4>
             <hr>
             <form role="form" action="/front/question/modify" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input type="hidden" name='files' value=" ">
-							<div class="form-group">
-                문의 분류 &nbsp;
-              <select name="category" id="selectBox">
-                <option>계정</option>
-                <option>모임</option>
-                <option>기타</option>
-              </select>
-							</div>
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
+				<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
+                <input type="hidden" name='files' value=" ">
+					<div class="form-group">
+                		문의 분류 &nbsp;
+           			   <select name="category" id="selectBox">
+            			   <option>계정</option>
+            			   <option>모임</option>
+             			   <option>기타</option>
+              			</select>
+					</div>
               <hr>
               	<div class="form-group">
 					<input type="hidden" class="form-control" name="question_num" value='<c:out value="${question.question_num}"/>' readonly="readonly">
@@ -105,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 	<div style="position: relative; bottom: 37px;"></div>
 			  </div>
               <div style="float: right;">
-                <a href="/front/question/myQuestion"><button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">수정하기</button></a>
+                <button class="btn btn-primary" style="position: relative; right: 70px;">수정하기</button>
               </div>
               </form>
               <div style="float: right; margin-right: 10px;">

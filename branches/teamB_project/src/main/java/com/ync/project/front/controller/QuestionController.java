@@ -62,7 +62,8 @@ public class QuestionController {
 		}
 		
 		@PostMapping(value = "/write")
-		public String uploadFormPost(MultipartFile uploadFile, Model model, QuestionVO question, RedirectAttributes rttr) {
+		public String uploadFormPost(MultipartFile uploadFile, Model model,
+				QuestionVO question, RedirectAttributes rttr) {
 			
 			log.info("파일 이름: " + uploadFile.getOriginalFilename());
 			log.info("파일 크기: " + uploadFile.getSize());
@@ -83,13 +84,12 @@ public class QuestionController {
 		}
 		
 		@GetMapping({"/get","/modify"})
-		public void questionGet(@RequestParam("question_num") Long question_num, Model model) {
+		public void questionGet(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
 			log.info("Get or Modify!");
 			model.addAttribute("question", service.read(question_num));
 		}
 		
 		@PostMapping("/modify")
-		@PreAuthorize("principal.username == #question.userid")
 		public String modify(QuestionVO question, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 			log.info("modify:" + question);
 
