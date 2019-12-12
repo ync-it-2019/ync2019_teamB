@@ -26,7 +26,15 @@ import lombok.extern.log4j.Log4j;
 public class EventController {
    private EventService service;
    
-   @GetMapping("/event/list")
+    /**
+  * @Method 설명 : front/event/list.jsp 호출
+  * @Method Name : list
+  * @Date : 2019. 12. 12.
+  * @작성자 : 김상훈
+  * @param cri
+  * @param model
+  */
+@GetMapping("/event/list")
    public void list(Criteria cri, Model model) {
 	   log.info("List");
 	   int total = service.getTotal(cri);
@@ -35,7 +43,15 @@ public class EventController {
 	   model.addAttribute("pageMaker", new PageDTO(cri, total));
    }
    
-   @GetMapping("/event/get")
+    /**
+  * @Method 설명 : front/event/get.jsp 호출
+  * @Method Name : get
+  * @Date : 2019. 12. 12.
+  * @작성자 : 김상훈
+  * @param event_num
+  * @param model
+  */
+@GetMapping("/event/get")
    public void get(@RequestParam("event_num") Long event_num, Model model) {
       log.info("get");
       model.addAttribute("board", service.read(event_num));

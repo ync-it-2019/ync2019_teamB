@@ -22,6 +22,6 @@ public interface QuestionMapper {
 	public int update(QuestionVO board);
 	// 글 목록 페이징 
 	public List<QuestionVO> getListWithPaging(@Param("cri") Criteria cri, @Param("userid") String userid);
-
+	// 글 전체 개수 + 유저 아이디 데이터 전달
 	public int getTotalCount(@Param("cri") Criteria cri, @Param("userid") String userid);
 }

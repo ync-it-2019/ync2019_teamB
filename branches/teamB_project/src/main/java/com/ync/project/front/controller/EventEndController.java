@@ -25,7 +25,15 @@ import lombok.extern.log4j.Log4j;
 public class EventEndController {
    private EventEndService service;
    //종료된 이벤트 목록
-   @GetMapping("/event/endList")
+    /**
+  * @Method 설명 : front/event/endList.jsp 호출
+  * @Method Name : endList
+  * @Date : 2019. 12. 12.
+  * @작성자 : 김상훈
+  * @param cri
+  * @param model
+  */
+@GetMapping("/event/endList")
    public void endList(Criteria cri, Model model) {
       log.info("endList");
       int total = service.getTotal(cri);
