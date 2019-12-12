@@ -1,10 +1,8 @@
 package com.ync.project.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
- /**
+/**
   * @FileName	: Meeting_Member_InfoVO.java
   * @Date		: 2019. 12. 10. 
   * @Author		: 서영준
@@ -14,7 +12,7 @@ import lombok.Data;
 @Data
 public class Meeting_Member_InfoVO {
 	
-	private String userid;
 	private String name;
+	private String userid;
 	
 }
