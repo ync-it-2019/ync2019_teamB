@@ -55,7 +55,7 @@
 	
 		<selectKey keyProperty="notice_num" order="BEFORE"
 			resultType="long">
-			select seq_board.nextval from dual
+			select TEAMB_NOTICE_NUM.nextval from dual
 		</selectKey>
 	<![CDATA[
 		insert into teamb_notice (notice_num, title, contents, write_date, files, userid, popup)
