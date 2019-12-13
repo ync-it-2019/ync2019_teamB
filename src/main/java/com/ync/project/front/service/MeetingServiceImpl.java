@@ -90,6 +90,11 @@ public class MeetingServiceImpl implements MeetingService {
       return mapper.mainMeetingList();
    }
    
+   @Override
+	public List<MeetingVO> recommendedMeeting(String hobby, String adress) {
+		log.info("get recommendedMeeting!");
+		return mapper.recommendedMeeting(hobby, adress);
+	}
 
    
 }
