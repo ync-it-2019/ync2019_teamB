@@ -34,14 +34,6 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 
 	}
 
-	 @Override
-	 public List<QuestionVO> getList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getList();
-	 }
-
 	@Override
 	public List<QuestionVO> getListWithPaging(Criteria cri) {
 

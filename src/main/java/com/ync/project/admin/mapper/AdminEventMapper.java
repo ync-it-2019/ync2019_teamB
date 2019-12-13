@@ -12,17 +12,15 @@ import com.ync.project.domain.EventVO;
   * @프로그램 설명 : 관리자용 이벤트 Mapper interface
   */
 public interface AdminEventMapper {
-	//전체 게시 글 목록
-	public List<EventVO> getList();
-	//게시 글 상세보기
+	//이벤트 상세보기
 	public EventVO read(Long event_num);
-	//목록 페이징
+	//이벤트 목록 페이징
 	public List<EventVO> getListWithPaging(Criteria cri);
-	//게시 글 등록
+	//이벤트 등록
 	public Integer insertSelectKey(EventVO event);
-	//게시 글 삭제
+	//이벤트 삭제
 	public int delete(Long event_num);
-	//게시 글 수정
+	//이벤트 수정
 	public int update(EventVO event);
 	
 	public int getTotalCount(Criteria cri);
