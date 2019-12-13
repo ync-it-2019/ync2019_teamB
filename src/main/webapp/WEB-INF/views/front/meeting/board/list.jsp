@@ -79,7 +79,15 @@
         <div class="meeting-menu2">
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+          <!-- 가입버튼 비로그인 시 -->
+          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login">
+         	 <li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a>
+          </sec:authorize>
+		  <!-- 가입버튼 로그인 시 -->	
+		  <sec:authorize access="isAuthenticated()">
+		 	 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+		  	 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="outMeeting();">탈퇴하기</a></li>
+		  </sec:authorize> 
         </div>
       </ul>
     </div>
@@ -140,9 +148,11 @@
       <!-- //검색 키워드 입력창 -->
       
       <!-- 글쓰기 버튼 -->
-      <div class="input-group-btn" style="position: absolute; right: 0;">
-         <a href="/front/meeting/board/write?meeting_num=${param.meeting_num}" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
-      </div>
+      <sec:authorize access="isAuthenticated()">
+     	   <div class="input-group-btn" style="position: absolute; right: 0;">
+         	 <a href="/front/meeting/board/write?meeting_num=${param.meeting_num}" style="color:white"><button class="btn btn-secondary" type="button" >글쓰기</button></a>
+     	   </div>
+      </sec:authorize>
       <!-- //글쓰기 버튼 -->
    </div>
 </section>
