@@ -32,48 +32,49 @@ public class AdminNoticeMapperTests {
 	
 	Criteria cri = new Criteria();
 	
-	@Test
-	public void testAdminEventInsertSelectKey(){
-		
-		Date date = new Date(cal.getTimeInMillis());
-		
-		notice.setTitle("등록된 테스트 이벤트 게시글");
-		notice.setPopup("N");
-		notice.setWrite_date(date);
-		notice.setContents("이벤트 등록 테스트");
-		notice.setUserid("user01");
-		notice.setFiles("이미지 경로~~");
-		
-		mapper.insertSelectKey(notice);
-
-		log.info(notice);
-	}
+//	@Test
+//	public void testAdminEventInsertSelectKey(){
+//		
+//		Date date = new Date(cal.getTimeInMillis());
+//		
+//		notice.setTitle("등록된 테스트 이벤트 게시글");
+//		notice.setPopup("N");
+//		notice.setWrite_date(date);
+//		notice.setContents("이벤트 등록 테스트");
+//		notice.setUserid("user01");
+//		notice.setFiles("이미지 경로~~");
+//		
+//		mapper.insertSelectKey(notice);
+//
+//		log.info(notice);
+//	}
 	
 //	@Test
-//	public void testAdminEventRead() {
+//	public void testAdminNoticeRead() {
 //
 //		// 존재하는 게시물 번호로 테스트
-//		EventVO event = mapper.read(5L);
+//		notice = mapper.read(393L);
 //
-//		log.info(event);
+//		log.info(notice);
 //
 //	}
 
 //	@Test
-//	public void testAdminEventDelete() {
+//	public void testAdminNoticeDelete() {
 //
-//		log.info("DELETE COUNT: " + mapper.delete(0L));
+//		log.info("DELETE COUNT: " + mapper.delete(393L));
 //	}
 
 //	@Test
-//	public void testAdminEventUpdate() {
+//	public void testAdminNoticeUpdate() {
 //		
 //		// 실행전 존재하는 번호인지 확인할것
-//		notice.setBno(5L);
+//		notice.setNotice_num(387L);
 //		notice.setTitle("수정된 제목");
-//		notice.setContent("수정된 내용");
-//		notice.setWriter("user00");
-//
+//		notice.setContents("수정된 내용");
+//		notice.setPopup("user00");
+//		notice.setFiles("수정된 첨부 파일");
+//		
 //		int count = mapper.update(notice);
 //		log.info("UPDATE COUNT: " + count);
 //
