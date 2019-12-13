@@ -115,7 +115,7 @@
 
 <section class="news py-5" id="news" >
 
-	<div class="container py-lg-3" style="height:750px;">
+	<div class="container py-lg-3" style="height:750px; margin-bottom:540px;">
 
       <div class="aside">
         <div class="login_area" style="margin-top:40px;">
@@ -218,28 +218,78 @@
   		</div>
   	</div>
 	  </c:forEach>
-
-
-    <div style="margin:130px 330px; text-align: center;">
-    <ul class="pagination">
-    	<c:if test="${pageMaker.prev}">
-			<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1}">Previous</a></li>
-		</c:if>
-		<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
-			<li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
-		</c:forEach>
-		<c:if test="${pageMaker.next}">
-			<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1 }">Next</a></li>
-		</c:if>
-    </ul>
-    <form id='actionForm' action="/front/myMeeting" method='get'>
-		<input type='hidden' name='userid' value='<sec:authentication property="principal.username"/>'>
-		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+	  <div class="row blog-grids">
+    	<div style="margin:0px 330px; text-align: center;">
+    		<ul class="pagination">
+    		<c:if test="${pageMaker.prev}">
+				<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1}">Previous</a></li>
+			</c:if>
+			<c:forEach var="num" begin="${pageMaker.startPage}"	end="${pageMaker.endPage}">
+				<li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
+			</c:forEach>
+			<c:if test="${pageMaker.next}">
+				<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1 }">Next</a></li>
+			</c:if>
+    		</ul>
+    	<form id='actionForm' action="/front/myMeeting" method='get'>
+			<input type='hidden' name='userid' value='<sec:authentication property="principal.username"/>'>
+			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+			<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 		</form>
+
+    	</div>
+    	<hr align="left" style="width:97%;">
+    	<div align="left" style="margin-right:50px;">
+    	<h5  style="margin-top:50px;">추천 모임</h5><span style="color:#BDBDBD;">(추천 모임은 사용자가 등록한 정보를 바탕으로 최대 10가지의 모임을 추천해드립니다.)</span>
+    	</div>
+  		<hr align="left" style="width:97%;">
+  		<c:forEach items="${recomend}" var="meeting"  begin="0" end="9" step="1" varStatus="status">
+  	<div class="col-lg-5 col-md-6 newsgrid1">
+  	<c:choose>
+  		<c:when test="${status.count % 2 eq 1}">
+       		<div class="left-meeting">
+    	</c:when>
+    	<c:otherwise>
+    	<div class="right-meeting">
+    	</c:otherwise>
+  	</c:choose>
+  			<div class="">
+  			<a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }">
+  	  <c:choose>
+          	<c:when test="${meeting.meeting_Profile == ' ' || meeting.meeting_Profile == null }">
+          	<img src="/resources/img/meeting.png" style="height:105px; width:200px;">
+          	</c:when>
+          	<c:otherwise>
+          	<img src="/resources/upload/<c:out value="${meeting.meeting_Profile}" />" alt="" >
+          	</c:otherwise>
+      </c:choose>
+  			</a>
+        	</div>
+        	<div class="introduction">
+        	
+          	<b class="mt-4"><a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }"><c:out value="${meeting.meeting_Name}" /></a></b>
+          	
+          		<h6><c:out value="${meeting.introduce}" /></h6>
+          		<ul class="blog-info mt-1">
+          		<li>멤버 
+          		<c:set var="memberCount" value="0" />
+          		<c:forEach items="${list4}" var="meeting2" varStatus="status">
+          		<c:if test="${meeting.meeting_Num eq meeting2.meeting_Num}">
+          		<c:set var="memberCount" value="${meeting2.meeting_count}" />
+          		</c:if>
+          		</c:forEach>
+          		<c:out value="${memberCount}" />
+            		명</li>
+            		<li> · <c:out value="${meeting.meeting_Adress}" /></li>
+            		<li> · <c:out value="${meeting.meeting_Hobby}" /></li>
+          		</ul>
+        	</div>
+  		</div>
+  	</div>
+	  </c:forEach>
     </div>
-		</div>
-	</div>
+    
+</div>
   <!--aside -->
 
 
@@ -260,15 +310,11 @@
    <div class="container">
       <div class="row">
          <div class="col-md-8">
-            <p class="">© 2019 Furnish. All rights reserved | Design by Team_B.
+            <p class="">© YNC Japan employment class.  Team_B Project | Design by JO Junghyeon.
             </p>
          </div>
          <div class="col-md-4 mt-md-0 mt-4">
             <div class="subscribe-form">
-               <form action="#" method="post" class="newsletter">
-                  <input class="subscribe" type="text" placeholder="Subscribe..." required="">
-                  <button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-               </form>
             </div>
          </div>
       </div>
