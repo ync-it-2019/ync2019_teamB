@@ -62,7 +62,7 @@ public class MeetingController {
 		model.addAttribute("getAppointment", service2.getAppointment(meeting_num));
 		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 		model.addAttribute("getCount", service2.getCount(meeting_num));
-
+		
 	}
 	
 	@PostMapping(value = "/main")
@@ -87,6 +87,7 @@ public class MeetingController {
 		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 	}
    
 	//소모임 게시글 상세보기
@@ -104,6 +105,7 @@ public class MeetingController {
 		
 		model.addAttribute("list", service1.getListWithPaging(cri, meeting_num));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 	}
    
 	//소모임 게시글 작성 페이지
@@ -111,6 +113,7 @@ public class MeetingController {
 	public void boardWrite(@RequestParam("meeting_num") Long meeting_num, Model model) {
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
 		log.info("Board Write get page!");
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 	}
    
 	//소모임 게시글 작성 하기
@@ -198,8 +201,8 @@ public class MeetingController {
 	public void meetingModify(Model model, @RequestParam("meeting_num") Long meeting_num) {
 				
 		model.addAttribute("getMeetingNum", service2);
-		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 		
 	}
 	
@@ -227,6 +230,7 @@ public class MeetingController {
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
 		model.addAttribute("getAppointmentList", service2.getListWithPaging(cri, meeting_num));
 		model.addAttribute("meetingLeaderCheck", service2.meetingLeaderCheck(meeting_num));
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 		
 		int total = service2.getTotal(cri, meeting_num);
 		
@@ -240,8 +244,8 @@ public class MeetingController {
 		log.info("Meeting appointment write page!");
 		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
-		
 		model.addAttribute("getAppointmentNum", service2);
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 		
 	}
 	
@@ -268,6 +272,7 @@ public class MeetingController {
 		model.addAttribute("getParticipantsNum", service2.getParticipantsNum());
 		model.addAttribute("getParticipantsCount", service2.getParticipantsCount(appointment_num));
 		model.addAttribute("meetingLeaderCheck", service2.meetingLeaderCheck(meeting_num));
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 	}
 	
 	//소모임 정모 삭제
@@ -288,8 +293,8 @@ public class MeetingController {
 		log.info("Meeting appointment modify page!");
 		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
-		
 		model.addAttribute("getAppointmentRead", service2.getAppointmentRead(appointment_num));
+		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
 		
 	}
 	
@@ -308,7 +313,6 @@ public class MeetingController {
 	public void appointmentParticipation(Model model, AppointmentVO appo) {
 		
 		log.info("appointmentParticipation!");
-		
 		
 	}
 	
