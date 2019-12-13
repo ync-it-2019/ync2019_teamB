@@ -79,6 +79,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 						<hr>
 							<div class="mt-4">
+								<c:if test="${question.files ne null}">
+									<img src="/resources/upload/${question.files}">
+								</c:if>
 								<p class="card-text">${question.contents}</p>
 							</div>
 				<c:if test="${question.yn == '처리완료'}">
