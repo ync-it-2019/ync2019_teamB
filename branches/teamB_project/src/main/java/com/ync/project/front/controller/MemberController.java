@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
  * @FileName	: MemberController.java
  * @Date		: 2019. 10. 21. 
  * @Author		: 서영준
- * @프로그램 설명 : 로그인 페이지 호출용 controller
+ * @프로그램 설명 : 회원가입페이지 호출용 controller
  */
 @Controller
 @Log4j
@@ -44,6 +44,16 @@ public class MemberController {
 	public void register() {
 	}
 	
+	 /**
+	  * @Method 설명 : 회원가입  POST
+	  * @Method Name : register
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 조중현
+	  * @param uploadFile
+	  * @param member
+	  * @param rttr
+	  * @return call jsp view ("/")
+	  */
 	@PostMapping("/register")
 	public String register(MultipartFile[] uploadFile, MemberVO member, RedirectAttributes rttr) {
 		BCryptPasswordEncoder scpwd = new BCryptPasswordEncoder();
