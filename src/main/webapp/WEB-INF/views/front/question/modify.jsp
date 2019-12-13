@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-lg-14">
             <h4>1:1문의</h4>
             <hr>
-            <form role="form" action="/front/question/modify" method="post">
+            <form role="form" action="/front/question/modify" method="post" enctype="multipart/form-data">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
 				<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
@@ -103,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					내용<textarea name='contents' rows="10" class="form-control"><c:out value="${question.contents}"/></textarea>
 				</div>
               <div class="form-group">
-					<input type="file" name="uploadFile" value='<c:out value="${question.files}"/>'/>
+					<input type="file" class="default" name="uploadFile" value=""/>
                 	<div style="position: relative; bottom: 37px;"></div>
 			  </div>
               <div style="float: right;">
