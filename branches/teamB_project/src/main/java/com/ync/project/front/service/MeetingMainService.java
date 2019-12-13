@@ -2,8 +2,11 @@ package com.ync.project.front.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ync.project.domain.AppointmentVO;
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.Free_BoardVO;
 import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_MemberVO;
 import com.ync.project.domain.ParticipantsVO;
@@ -66,5 +69,12 @@ public interface MeetingMainService {
 	
 	//모임인원수
 	public int getParticipantsCount(Long appointment_num);
+	
+	//정모 목록 페이징 
+	public List<AppointmentVO> getListWithPaging(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
+	
+	//정모 갯수
+	public int getTotal(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
+	
 
 }
