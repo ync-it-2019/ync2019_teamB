@@ -327,4 +327,16 @@ public class MeetingController {
 		
 	}
 	
+	//모임 탈퇴
+	@PostMapping(value = "/outMeeting")
+	@PreAuthorize("principal.username == #mm.userid")
+	public String outMeeting(@RequestParam("meeting_num") int meeting_num, @RequestParam("userid") String userid , MeetingVO mm,RedirectAttributes rttr) {
+
+		log.info("get out here!..." + meeting_num);
+		service3.outMeeting(meeting_num, userid);
+		rttr.addFlashAttribute("result", "success");		
+		
+		return "redirect:/front/meeting/main?meeting_num="+ meeting_num;
+	}
+	
 }
