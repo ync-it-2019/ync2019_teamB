@@ -189,5 +189,15 @@
 		]]>
 	</select>
 	
+	<!-- 모임 리스트 -->
+	<select id="recommendedMeeting" resultMap="meetingMap">
+	<![CDATA[
+		SELECT	*
+		FROM	teamb_meeting
+		WHERE   meeting_adress = #{adress}
+		OR		meeting_hobby = #{hobby}
+		]]>
+	</select>
+	
 	
 </mapper>

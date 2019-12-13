@@ -3,12 +3,12 @@ package com.ync.project.front.mapper;
 
 import java.util.List;
 
-
 import org.apache.ibatis.annotations.Param;
 
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_MemberVO;
+import com.ync.project.domain.MemberVO;
 
 
  /**
@@ -39,5 +39,8 @@ public interface MeetingMapper {
    public List<MeetingVO> MeetingMemberCount();
    //메인 페이지 회원 수 순 모임 목록
    public List<MeetingVO> mainMeetingList();
+   //추천 모임
+   public List<MeetingVO> recommendedMeeting(@Param("hobby") String hobby, @Param("adress") String adress);
+
 
 }
