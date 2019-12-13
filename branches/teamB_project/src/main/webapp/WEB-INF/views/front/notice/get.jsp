@@ -74,8 +74,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <div class="col-lg-13">
 						<h6 class="card-title"><b>${board.title}</b></h6>
 						<ul class="blog-info my-2">
-							<li class="mr-sm-4 mr-2">${board.userid}</li>
-							<li class="mr-sm-4 mr-2"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_date}" /></li>
+							<li class="mr-sm-4 mr-2">글쓴이: ${board.userid}</li>
+							<li class="mr-sm-4 mr-2">작성일: <fmt:formatDate pattern="yyyy-MM-dd" value="${board.write_date}" /></li>
 						</ul>
 						<hr>
 						<div class="">
