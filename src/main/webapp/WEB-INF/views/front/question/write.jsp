@@ -99,10 +99,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								내용<textarea name='contents' rows="10" class="form-control"></textarea>
 							</div>
               <div class="form-group">
-								첨부파일: 
                 <input type="file" name="uploadFile">
-                <div style="position: relative; bottom: 37px;">
-              </div>
+                <div style="position: relative; bottom: 37px;"></div>
 							</div>
               <div style="float: right;">
                 <button type="submit" class="btn btn-primary" style="position: relative; right: 70px;">문의하기</button>

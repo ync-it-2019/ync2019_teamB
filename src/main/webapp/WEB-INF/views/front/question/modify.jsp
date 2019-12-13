@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
 				<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
-                <input type="hidden" name='files' value=" ">
+                <input type="hidden" name='files'>
 					<div class="form-group">
                 		문의 분류 &nbsp;
            			   <select name="category" id="selectBox">
