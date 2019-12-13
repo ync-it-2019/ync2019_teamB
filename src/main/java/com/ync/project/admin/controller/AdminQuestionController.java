@@ -89,10 +89,7 @@ public class AdminQuestionController {
 	  */
 	@GetMapping("/create")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public void AdminQuestionCreate(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    CustomUser user = (CustomUser) authentication.getPrincipal();
+	public void AdminQuestionCreate(@RequestParam("question_num") Long question_num, String userid, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 		Date date = new Date(cal.getTimeInMillis());
 		
@@ -100,7 +97,7 @@ public class AdminQuestionController {
 		
 		model.addAttribute("question_num", question_num);
 		model.addAttribute("date_time", date);
-		model.addAttribute("admin_id", user);
+		model.addAttribute("userid", userid);
 	}
 	
 	/**
@@ -112,6 +109,13 @@ public class AdminQuestionController {
 	  */
 	@PostMapping("/create")
 	public String AdminQuestionCreate(AnswerVO answer, Criteria cri, RedirectAttributes rttr) {
+	
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    CustomUser user = (CustomUser) authentication.getPrincipal();
+		
+		answer.setAnswer_writer(user.getUsername());
+		
+		
 		
 		log.info("create: " + answer);
 		log.info("Question Create Post page!");
