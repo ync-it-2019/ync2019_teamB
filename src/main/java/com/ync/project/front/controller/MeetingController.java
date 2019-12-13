@@ -266,15 +266,11 @@ public class MeetingController {
 		log.info("Meeting appointment get page!");
 		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
-		
 		model.addAttribute("getAppointmentRead", service2.getAppointmentRead(appointment_num));
-		
 		model.addAttribute("getParticipantsInfo", service2.getParticipantsInfo(appointment_num));
-		
 		model.addAttribute("getParticipantsNum", service2.getParticipantsNum());
-		
 		model.addAttribute("getParticipantsCount", service2.getParticipantsCount(appointment_num));
-		
+		model.addAttribute("meetingLeaderCheck", service2.meetingLeaderCheck(meeting_num));
 	}
 	
 	//소모임 정모 삭제

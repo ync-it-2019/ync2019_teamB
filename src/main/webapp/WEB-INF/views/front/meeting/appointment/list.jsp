@@ -26,12 +26,12 @@
 		var checkLeader = document.getElementById("meetingLeaderCheck");
 		var chackUserid = document.getElementById("useridCheck");
 		
-		//모임장인지 아닌지를 확인principal.username == 
+		//모임장인지 아닌지를 확인
 		if(checkLeader.value == chackUserid.value) {		//모임장일 경우 작성 페이지로 이동
 			location.href = "./write?meeting_num=${getInfo.meeting_Num}";
 		} else {	//모임장이 아닐 경우
 			alert("정모는 모임장만 만들 수 있습니다.");
-		}${meetingLeaderCheck.userid}
+		}
 	}
 </script>
 
