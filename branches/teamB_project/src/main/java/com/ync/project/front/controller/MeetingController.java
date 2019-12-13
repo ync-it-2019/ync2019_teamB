@@ -229,6 +229,7 @@ public class MeetingController {
 		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
 		model.addAttribute("getAppointmentList", service2.getListWithPaging(cri, meeting_num));
+		model.addAttribute("meetingLeaderCheck", service2.meetingLeaderCheck(meeting_num));
 		
 		int total = service2.getTotal(cri, meeting_num);
 		

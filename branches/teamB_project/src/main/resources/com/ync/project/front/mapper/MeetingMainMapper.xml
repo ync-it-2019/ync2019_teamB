@@ -280,5 +280,15 @@
 		AND    appointment_num > 0
 	</select>
 	
+	<!-- 모임장 확인 -->
+	<select id="meetingLeaderCheck" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<![CDATA[
+		SELECT		userid
+		FROM		teamb_meeting_member
+		WHERE		join_date = (	SELECT	MIN(join_date)
+									FROM	teamb_meeting_member
+									WHERE	meeting_num = #{meeting_num})
+		]]>
+	</select>
 	
 </mapper>

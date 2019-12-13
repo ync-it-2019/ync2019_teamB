@@ -181,5 +181,12 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 		return mapper.getTotalCount(cri, meeting_num);
 	}
 	
+	@Override
+	public Meeting_MemberVO meetingLeaderCheck(Long meeting_num) {
+		
+		log.info("meeting Leader Check");
+		
+		return mapper.meetingLeaderCheck(meeting_num);
+	}
 	
 }

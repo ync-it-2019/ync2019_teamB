@@ -20,6 +20,19 @@
 			document.getElementById('frm').submit();
 		}
 	}
+	
+	function appointmentWriteBtn() {
+		
+		var checkLeader = document.getElementById("meetingLeaderCheck");
+		var chackUserid = document.getElementById("useridCheck");
+		
+		//모임장인지 아닌지를 확인principal.username == 
+		if(checkLeader.value == chackUserid.value) {		//모임장일 경우 작성 페이지로 이동
+			location.href = "./write?meeting_num=${getInfo.meeting_Num}";
+		} else {	//모임장이 아닐 경우
+			alert("정모는 모임장만 만들 수 있습니다.");
+		}${meetingLeaderCheck.userid}
+	}
 </script>
 
 <!-- 링크 색깔 -->
@@ -103,7 +116,7 @@
 	<div class="input-group-css">
 		<!-- 글쓰기 버튼 -->
 		<div class="input-group-btn" style="position: absolute; right: 0;">
-			<a href="./write?meeting_num=${getInfo.meeting_Num}" style="color:white"><button class="btn btn-secondary" type="button" >정모 만들기</button></a>
+			<a href="#" onclick="appointmentWriteBtn();" style="color:white"><button class="btn btn-secondary" type="button" >정모 만들기</button></a>
 		</div>
 		<!-- //글쓰기 버튼 -->
 	</div>
@@ -139,7 +152,10 @@
             <input type='hidden' name='amount'    value='${pageMaker.cri.amount}'>
          </form>
    <!-- Form 끝 -->
-            
+	<sec:authorize access="isAuthenticated()">
+		<input type='hidden' id='meetingLeaderCheck' value='${meetingLeaderCheck.userid}'>
+		<input type='hidden' id='useridCheck' value="<sec:authentication property="principal.username"/>">
+	</sec:authorize>
 </section>
 <!-- //페이지 버튼 -->
 
