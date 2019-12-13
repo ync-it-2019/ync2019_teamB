@@ -16,7 +16,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="../../../resources/js/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/resources/js/slick.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 	function meetingJoin() {
@@ -140,7 +140,7 @@
 		<h3 class="heading mb-sm-5 mb-4 text-center">modify Meeting</h3>
 
 		<div class="login-form">
-			<form action="./meetingModify?meeting_num=${getInfo.meeting_Num}" id="modifyForm" method="post" enctype="multipart/form-data">
+			<form action="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}" id="modifyForm" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-4 text-md-right">
 						<label>모임 이름:</label>

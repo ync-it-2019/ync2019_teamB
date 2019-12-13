@@ -28,7 +28,7 @@
 		
 		//모임장인지 아닌지를 확인
 		if(checkLeader.value == chackUserid.value) {		//모임장일 경우 작성 페이지로 이동
-			location.href = "./write?meeting_num=${getInfo.meeting_Num}";
+			location.href = "/front/meeting/appointment/write?meeting_num=${getInfo.meeting_Num}";
 		} else {	//모임장이 아닐 경우
 			alert("정모는 모임장만 만들 수 있습니다.");
 		}
@@ -125,7 +125,7 @@
 			<c:forEach items="${getAppointmentList}" var="appointmentList" varStatus="status">
 				<tr>
 					<td class="board-number-css"><c:out value="${appointmentList.appointment_num}" /></td>
-					<td class="pl-4"><a href="./get?meeting_num=${getInfo.meeting_Num}&appointment_num=<c:out value='${appointmentList.appointment_num}' />" style="color:black"><c:out value="${appointmentList.title}" /></a></td>
+					<td class="pl-4"><a href="/front/meeting/appointment/get?meeting_num=${getInfo.meeting_Num}&appointment_num=<c:out value='${appointmentList.appointment_num}' />" style="color:black"><c:out value="${appointmentList.title}" /></a></td>
 					<td class="board-date-css"><fmt:formatDate pattern="yyyy-MM-dd" value="${appointmentList.write_date}" /></td>
 					<td class="board-writer-css"><c:out value="${appointmentList.appointment_place}" /></td>
 					<td class="board-date-css"><fmt:formatDate pattern="yyyy-MM-dd" value="${appointmentList.appointment_date}" /></td>
