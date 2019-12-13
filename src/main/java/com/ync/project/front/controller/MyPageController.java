@@ -81,7 +81,7 @@ public class MyPageController {
  	  * @param uploadFile
  	  * @param member
  	  * @param rttr
- 	  * @return call jsp view
+ 	  * @return call jsp view ("redirect:/front/myPage/info")
  	  */
  	@PostMapping("/modify")
  	public String modify(MultipartFile[] uploadFile, MemberVO member, RedirectAttributes rttr) {

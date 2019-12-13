@@ -43,10 +43,11 @@ public class MeetingSearchController {
 	private NoticeService service4;
 	
 
+
 	 /**
-	  * @Method 설명 : meetingSerach.jsp 호출
+	  * @Method 설명 :
 	  * @Method Name : MeetingSearchPage
-	  * @Date : 2019. 12. 11.
+	  * @Date : 2019. 12. 13.
 	  * @작성자 : 조중현
 	  * @param cri
 	  * @param model
