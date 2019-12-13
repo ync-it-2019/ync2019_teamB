@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ync.project.domain.Criteria;
+import com.ync.project.domain.MemberVO;
 import com.ync.project.domain.PageDTO;
 import com.ync.project.front.service.EventService;
 import com.ync.project.front.service.MeetingService;
@@ -44,12 +45,15 @@ public class MyMeetingListController {
   * @param cri
   * @param model
   */
+
 @GetMapping("/front/myMeeting")
    public void list(Principal principal, Criteria cri, Model model) {
 	   log.info("list: " + cri);
 	   String userid = principal.getName();
 	   int total = service.getMyTotal(userid);
 		log.info("total: " + total);
+		String hobby = service2.info(userid).getHobby();
+		String adress = service2.info(userid).getAdress();
 		//모임 회원 수
 		model.addAttribute("list4", service.MeetingMemberCount());
 		//현재 로그인 한 사용자가 가입한 모임 목록
@@ -61,6 +65,8 @@ public class MyMeetingListController {
 		model.addAttribute("list3", service4.getList());
 		//회원정보 창
 	    model.addAttribute("member", service2.info(userid));
+	    //추천 모임 목록
+	    model.addAttribute("recomend", service.recommendedMeeting(hobby, adress));
    }
    
 }

@@ -223,13 +223,17 @@ public class MeetingController {
 	
 	//소모임 정모 목록
 	@GetMapping(value = "/appointment/list")
-	public void appointmentList(Model model, @RequestParam("meeting_num") Long meeting_num, Criteria cri) {
+	public void appointmentList(Model model, @RequestParam("meeting_num") Long meeting_num, Criteria cri, AppointmentVO appo) {
 
 		log.info("Meeting Appointment List page!");
 		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
+		model.addAttribute("getAppointmentList", service2.getListWithPaging(cri, meeting_num));
+		model.addAttribute("meetingLeaderCheck", service2.meetingLeaderCheck(meeting_num));
 		
-		model.addAttribute("getAppointmentList", service2.getAppointmentList(meeting_num));
+		int total = service2.getTotal(cri, meeting_num);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 
 	}
 	
@@ -268,6 +272,8 @@ public class MeetingController {
 		model.addAttribute("getParticipantsInfo", service2.getParticipantsInfo(appointment_num));
 		
 		model.addAttribute("getParticipantsNum", service2.getParticipantsNum());
+		
+		model.addAttribute("getParticipantsCount", service2.getParticipantsCount(appointment_num));
 		
 	}
 	
@@ -320,7 +326,8 @@ public class MeetingController {
 		
 		service2.appointmentParticipation(parti);
 		
-		return "redirect:/front/meeting/appointment/list?meeting_num=" + appo.getMeeting_num();
+		return "redirect:/front/meeting/appointment/get?meeting_num=" + appo.getMeeting_num()
+		+ "&appointment_num=" + appo.getAppointment_num();
 		
 	}
 	

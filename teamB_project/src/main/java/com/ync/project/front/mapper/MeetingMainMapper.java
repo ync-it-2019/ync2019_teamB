@@ -2,7 +2,11 @@ package com.ync.project.front.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ync.project.domain.AppointmentVO;
+import com.ync.project.domain.Criteria;
+import com.ync.project.domain.Free_BoardVO;
 import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_MemberVO;
 import com.ync.project.domain.ParticipantsVO;
@@ -39,12 +43,6 @@ public interface MeetingMainMapper {
 	//정모 목록
 	public List<AppointmentVO> appointmentList(Long meeting_num);
 	
-	//정모 페이징
-
-	
-	//정모 전체 갯수
-
-	
 	//정모 쓰기
 	public void writeAppointment(AppointmentVO appo);
 	
@@ -69,4 +67,15 @@ public interface MeetingMainMapper {
 	//가장 큰 정모 참가자 번호
 	public ParticipantsVO getParticipantsNum();
 	
+	//모임인원수
+	public int getParticipantsCount(Long appointment_num);
+	
+	//정모 페이징
+	public List<AppointmentVO> getListWithPaging(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
+	
+	//정모 갯수 체크
+	public int getTotalCount(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
+	
+	//모임장 확인
+	public Meeting_MemberVO meetingLeaderCheck(Long meeting_num);
 }

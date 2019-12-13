@@ -2,6 +2,7 @@ package com.ync.project.front.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -158,6 +159,34 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 		
 	}
 	
+	@Override
+	public int getParticipantsCount(Long appointment_num) {
+		
+		log.info("getParticipantsCount......");
+		
+		return mapper.getParticipantsCount(appointment_num);
+	}
 	
+	@Override
+	public List<AppointmentVO> getListWithPaging(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num) {
+		log.info("get List with criteria: " + cri);
+
+		return mapper.getListWithPaging(cri, meeting_num);
+	}
+	
+	@Override
+	public int getTotal(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num) {
+		
+		log.info("get total count");
+		return mapper.getTotalCount(cri, meeting_num);
+	}
+	
+	@Override
+	public Meeting_MemberVO meetingLeaderCheck(Long meeting_num) {
+		
+		log.info("meeting Leader Check");
+		
+		return mapper.meetingLeaderCheck(meeting_num);
+	}
 	
 }

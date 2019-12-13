@@ -152,6 +152,10 @@
           <div class="user_find">
             <a class="btn_join" href="/register">회원가입</a>
           </div>
+          <hr>
+          <div class="arti1">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">나만의 모임</a></div>
+          <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
+          <div class="arti3">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">취미 생활 크로 활동</a></div>
        </sec:authorize>
        <sec:authorize access="isAuthenticated()">
        <div class="profile">
@@ -175,7 +179,7 @@
                     <li class="add_ho">지역 : <c:out value="${member.adress}" /></li>
                     <li class="add_ho"><span  style="width:200px;">취미 : <c:out value="${member.hobby}" /></span>
                     </c:if>
-                    </c:forEach>
+      </c:forEach>
                         <div class="logout" align="right">
                         <a href="/customLogout">로그아웃</a>
                       </div>
@@ -185,11 +189,11 @@
               </ul>
             </div>
           </div>
-          </sec:authorize>
           <hr>
           <div class="arti1">#<a href="/front/meeting/meetingCreate">나만의 모임</a></div>
           <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
           <div class="arti3">#<a href="/front/myMeeting">취미 생활 크로 활동</a></div>
+          </sec:authorize>
           <div class="notice">
             <a href="/front/notice/list" class="plus">+더보기</a>
             <p>공지사항</p>
@@ -341,17 +345,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
+				<p class="">© YNC Japan employment class.  Team_B Project | Design by JO Junghyeon.
 				</p>
 			</div>
 			<div class="col-md-4 mt-md-0 mt-4">
-				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
-				</div>
 			</div>
 		</div>
 	</div>

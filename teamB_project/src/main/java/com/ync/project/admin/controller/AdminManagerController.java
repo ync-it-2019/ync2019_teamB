@@ -52,7 +52,6 @@ public class AdminManagerController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/create")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerCreate() {
 
 		log.info("Manager Create get page!");
@@ -67,7 +66,6 @@ public class AdminManagerController {
 	  * @return call jsp view
 	  */
 	@PostMapping("/create")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String AdminManagerCreate(MemberVO member, AuthVO auth, RedirectAttributes rttr) {
 
 		BCryptPasswordEncoder scpwd = new BCryptPasswordEncoder();
@@ -96,7 +94,6 @@ public class AdminManagerController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/list")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerList(Criteria cri, Model model) {
 
 		log.info("Manager List get page!");

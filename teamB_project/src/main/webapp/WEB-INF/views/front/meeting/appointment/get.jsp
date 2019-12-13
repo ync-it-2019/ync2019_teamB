@@ -53,7 +53,8 @@
         <div class="meeting-menu2">
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login"><li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a></sec:authorize>
+		  <sec:authorize access="isAuthenticated()"><li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">탈퇴하기</a></li></sec:authorize></h5>
         </div>
       </ul>
     </div>
@@ -86,7 +87,7 @@
 				
 				<!-- 정모 참여 인원 -->
 				<div>
-					참여 인원 : 명
+					참여 인원 : ${getParticipantsCount}명
 					<table class="table table-striped">
 						<c:forEach items="${getParticipantsInfo}" var="participantsInfo" varStatus="status">
 							<tr style="text-align: center;">
@@ -140,12 +141,14 @@
 <!-- //모임 가입 히든 폼 -->
 
 <!-- 모임 가입 히든 폼 -->
+<sec:authorize access="isAuthenticated()">
 <form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
 </form>
 <!-- //모임 가입 히든 폼 -->
+</sec:authorize>
 </body>
 
 <script type="text/javascript">

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.ParticipantsVO;
+import com.ync.project.domain.Meeting_MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -278,20 +278,20 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 12.
 	  * @작성자 : 이주현
 	  */
-	@Test
-	public void testAppointmentParticipation() {
-		
-		ParticipantsVO partipants = new ParticipantsVO();
-		
-		partipants.setMeeting_num(1L);
-		partipants.setAppointment_num(16L);
-		partipants.setParticipants_num(19L);
-		partipants.setUserid("user6");
-		
-		log.info(partipants);
-		
-		mapper.appointmentParticipation(partipants);
-	}
+//	@Test
+//	public void testAppointmentParticipation() {
+//		
+//		ParticipantsVO partipants = new ParticipantsVO();
+//		
+//		partipants.setMeeting_num(1L);
+//		partipants.setAppointment_num(16L);
+//		partipants.setParticipants_num(19L);
+//		partipants.setUserid("user6");
+//		
+//		log.info(partipants);
+//		
+//		mapper.appointmentParticipation(partipants);
+//	}
 	
 	 /**
 	  * @Method 설명 : 정모 참가자 명단 테스트
@@ -321,5 +321,68 @@ public class MeetingMainMapperTest {
 //		log.info(parti);
 //		
 //	}
+	
+	
+	 /**
+	  * @Method 설명 : 정모 참가자 인원 수 테스트
+	  * @Method Name : testGetParticipantsCount
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testGetParticipantsCount() {
+//		
+//		int participantsCount = mapper.getParticipantsCount(1L);
+//		log.info(participantsCount);
+//	}
+	
+	 /**
+	  * @Method 설명 : 페이징 테스트
+	  * @Method Name : testPaging
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
+//	@Test 
+//	public void testPaging() { 
+//
+//		Criteria cri = new Criteria();
+//		
+//	    //10개씩 3페이지 
+//	    cri.setPageNum(1);
+//	    cri.setAmount(10);
+//	    
+//		List<AppointmentVO> list = mapper.getListWithPaging(cri, 1L);
+//		list.forEach(board -> log.info(board));
+//
+//	}
+	
+
+	 /**
+	  * @Method 설명 : 정모 갯수 테스트
+	  * @Method Name : testTotal
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
+//	@Test
+//	public void testTotal() {
+//
+//		Criteria cri = new Criteria();
+//		int total = mapper.getTotalCount(cri, 1L);
+//		log.info("total:" + total);
+//	}
+	
+	 /**
+	  * @Method 설명 : 모임장 확인 테스트
+	  * @Method Name : testMeetingLeaderCheck
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
+	@Test
+	public void testMeetingLeaderCheck() {
+		
+		Meeting_MemberVO mMember = mapper.meetingLeaderCheck(1L);
+		
+		log.info(mMember);
+	}
 	
 }

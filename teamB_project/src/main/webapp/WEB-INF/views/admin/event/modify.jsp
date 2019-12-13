@@ -90,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       </div>
                       <div class="compose-editor">
                         <textarea class="wysihtml5 form-control" rows="9" name="contents"> <c:out value="${event.contents}" /></textarea>
-                        <input type="file" class="default" name="uploadFile" value="${event.image}"/>
+                        <input type="file" class="default" name="uploadFile" value=""/>
                       </div>
                       <div class="center">
                         <button type="button" class="btn btn-primary btn-sm" data-oper='update'><i class="fa fa-check"></i> 완료</button>
