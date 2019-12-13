@@ -110,11 +110,13 @@
 <!-- //소모임 소개 -->
 
 <!-- 모임 가입 히든 폼 -->
+<sec:authorize access="isAuthenticated()">
 <form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
 </form>
+</sec:authorize>
 <!-- //모임 가입 히든 폼 -->
 
 </body>
