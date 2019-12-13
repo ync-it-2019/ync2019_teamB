@@ -202,7 +202,7 @@ function appointmentModifyBtn() {
 		var chackUserid = document.getElementById("useridCheck");
 		
 		if(checkLeader.value == chackUserid.value) {
-			location.href = "./modify?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointmentRead.appointment_num}";
+			location.href = "/front/meeting/appointment/modify?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointmentRead.appointment_num}";
 		} else {
 			alert("정모 수정은 모임장만 할 수 있습니다.");
 		}
