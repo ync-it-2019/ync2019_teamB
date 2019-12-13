@@ -68,6 +68,8 @@
 		<div class="info-row">
 			<div class="meeting-introduce1">
 				<div class="meeting-introduce1-info">
+					<h3>주제 / 지역 : ${getInfo.meeting_Hobby} / ${getInfo.meeting_Adress}</h3><br>
+					<h3 style="text-align:center;">모임 소개</h3>
 					${getInfo.introduce}
 				</div>
 			</div>

@@ -75,4 +75,7 @@ public interface MeetingMainMapper {
 	
 	//정모 갯수 체크
 	public int getTotalCount(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num);
+	
+	//모임장 확인
+	public Meeting_MemberVO meetingLeaderCheck(Long meeting_num);
 }

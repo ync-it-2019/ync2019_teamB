@@ -201,10 +201,16 @@ public class MeetingMainServiceTests {
 //		service.getListWithPaging(new Criteria(2, 10), 1L).forEach(board -> log.info(board));
 //	}
 	
+//	@Test
+//	public void testGetTotal() {
+//		
+//		log.info(service.getTotal(new Criteria(1, 10), 1L));
+//	}
+	
 	@Test
-	public void testGetTotal() {
+	public void testMeetingLeaderCheck() {
 		
-		log.info(service.getTotal(new Criteria(1, 10), 1L));
+		log.info(service.meetingLeaderCheck(1L));
 	}
-
+	
 }
