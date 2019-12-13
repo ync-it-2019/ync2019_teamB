@@ -80,6 +80,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<hr>
 						<div class="">
 							<div class="mt-4">
+								<c:if test="${board.files ne null}">
+									<img src="/resources/upload/${board.files}">
+								</c:if>
 								<p class="card-text">${board.contents}</p>
 							</div>
 						</div>
