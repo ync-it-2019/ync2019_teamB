@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="hidden" name='banner_image' value="">
                         <div class="form-group">
                           <label class="">작성자:</label>
-                          <input type="text" tabindex="1" id="to" class="form-control" value="user01" name='userid' readonly>
+                          <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${userid}" />" name='userid' readonly>
                         </div>
                         <div class="form-group">
                           <label class="">시작 일</label>

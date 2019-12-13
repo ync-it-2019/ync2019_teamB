@@ -7,6 +7,8 @@ import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import com.ync.project.admin.service.AdminEventService;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.EventVO;
 import com.ync.project.domain.PageDTO;
+import com.ync.project.security.domain.CustomUser;
 import com.ync.project.util.UploadUtils;
 
 import lombok.extern.log4j.Log4j;
@@ -89,8 +92,12 @@ public class AdminEventController {
 	@GetMapping("/create")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminEventCreate(@ModelAttribute("cri") Criteria cri, Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    CustomUser user = (CustomUser) authentication.getPrincipal();
 		
 		log.info("Event Create get page!");
+		
+		model.addAttribute("userid", user.getUsername());
 	}
 	
 	/**
