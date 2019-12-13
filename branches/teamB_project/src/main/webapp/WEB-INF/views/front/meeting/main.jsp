@@ -20,6 +20,13 @@
 			document.getElementById('frm').submit();
 		}
 	}
+	function outMeeting() {
+		
+		if(confirm("정말로 탈퇴 하시겠습니까?")) {
+			alert("탈퇴되었습니다.");
+			document.getElementById('outMeeting').submit();
+		}
+	}
 </script>
 
 <meta charset="UTF-8">
@@ -51,10 +58,18 @@
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
-          </li>
-          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login"><li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a></sec:authorize>
-		  <sec:authorize access="isAuthenticated()"><li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">탈퇴하기</a></li></sec:authorize></h5>
+          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a></li>
+
+<!-- 가입버튼 비로그인 시 -->
+          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login">
+         	 <li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a>
+          </sec:authorize>
+<!-- 가입버튼 로그인 시 -->	
+		  <sec:authorize access="isAuthenticated()">
+		 	 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+		  	 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="outMeeting();">탈퇴하기</a></li>
+		  </sec:authorize> 
+
         </div>
       </ul>
     </div>
@@ -68,9 +83,7 @@
 		<div class="info-row">
 			<div class="meeting-introduce1">
 				<div class="meeting-introduce1-info">
-					<h3>주제 / 지역 : ${getInfo.meeting_Hobby} / ${getInfo.meeting_Adress}</h3><br>
-					<h3 style="text-align:center;">모임 소개</h3>
-					${getInfo.introduce}
+					${getInfo.introduce}		 
 				</div>
 			</div>
 			<div class="meeting-introduce2">
@@ -120,6 +133,17 @@
 </form>
 </sec:authorize>
 <!-- //모임 가입 히든 폼 -->
+
+<!-- 모임 탈퇴 히든 폼 -->
+<sec:authorize access="isAuthenticated()">
+<form id="outMeeting" action="/front/meeting/outMeeting?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
+</form>
+</sec:authorize>
+<!-- //모임 탈퇴 히든 폼 -->
+
 
 </body>
 </html>
