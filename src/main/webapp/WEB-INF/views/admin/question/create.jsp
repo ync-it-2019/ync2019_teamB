@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                       <div class="form-group">
                         <label class="">질문자:</label>
-                        <input type="text" tabindex="1" id="to" name="answer_writer" class="form-control" value="user01" readonly>
+                        <input type="text" tabindex="1" id="to" name="userid" class="form-control" value="${userid}" readonly>
                       </div>
                       <div class="form-group">
                         <label class="">작성일:</label>

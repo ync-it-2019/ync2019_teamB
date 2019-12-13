@@ -49,7 +49,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="text" class="ggg" name="name" placeholder="이름" required="">
                     <input type="text" class="ggg" name="userid" placeholder="아이디" required="">
                     <input type="password" class="ggg" name="userpw" placeholder="비밀번호" required="">
-                    <input type="password" class="ggg" name="userpwid" placeholder="비밀번호 확인" required="">
                     <input type="phone" class="ggg" name="phone" placeholder="전화번호" required="">
                     <input type="email" class="ggg" name="email" placeholder="이메일" required="">
                     <input type="hidden" class="ggg" name="profile" value="">
