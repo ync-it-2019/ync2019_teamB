@@ -51,10 +51,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div class="compose-mail">
                     <form role="form-horizontal" action="/admin/notice/create" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input type="hidden" id="to" class="form-control" value="user01" name='userid' readonly>
+                    <input type="hidden" id="to" class="form-control" value=" " name='userid' readonly>
                       <div class="form-group">
                         <label for="to" class="">제목:</label>
                         <input type="text" name="title" tabindex="1" id="to" class="form-control">
+                        </div>
                         <div class="form-group">
                           <label for="subject" class="">팝업여부</label>
                           <input type="radio" name="popup" value="Yes" style="width:5%; float:none;">On

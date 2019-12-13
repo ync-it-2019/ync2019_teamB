@@ -7,6 +7,8 @@ import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import com.ync.project.admin.service.AdminNoticeService;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.NoticeVO;
 import com.ync.project.domain.PageDTO;
+import com.ync.project.security.domain.CustomUser;
 import com.ync.project.util.UploadUtils;
 
 import lombok.extern.log4j.Log4j;
@@ -101,6 +104,11 @@ public class AdminNoticeController {
 	  */
 	@PostMapping("/create")
 	public String AdminNoticeCreate(MultipartFile uploadFile, NoticeVO notice, RedirectAttributes rttr) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    CustomUser user = (CustomUser) authentication.getPrincipal();
+	    
+	    notice.setUserid(user.getUsername());
+		
 		Date date = new Date(cal.getTimeInMillis());
 		
 		log.info("파일 이름: " + uploadFile.getOriginalFilename());
