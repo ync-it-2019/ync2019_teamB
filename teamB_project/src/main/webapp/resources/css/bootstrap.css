@@ -9056,7 +9056,7 @@ a.text-dark:hover, a.text-dark:focus {
     margin: 0 auto;
   }
   
-  .over1{
+ .over1{
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -9071,6 +9071,22 @@ a.text-dark:hover, a.text-dark:focus {
   white-space: nowrap;
   width: 150px;
   height: 40px;
+}
+
+ .over3{
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 250px;
+}
+
+ .over4{
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px;
 }
 
   .img-fluid2 {

@@ -28,14 +28,15 @@
 	<!-- 모임 정보 -->
 	<select id="meeting_Read" resultType="com.ync.project.domain.MeetingVO">
 	<![CDATA[
-		SELECT	MEETING_NAME,
-				MEETING_PROFILE,
-				INTRODUCE,
-				MEETING_NUM,
-				MEETING_HOBBY,
-				MEETING_ADRESS
-		FROM	TEAMB_MEETING
-		WHERE	MEETING_NUM = #{meeting_Num}
+		SELECT	meeting_name,
+				meeting_profile,
+				introduce,
+				meeting_num,
+				meeting_hobby,
+				meeting_adress,
+				userid
+		FROM	teamb_meeting
+		WHERE	meeting_num = #{meeting_Num}
 		]]>
 	</select>
 	
@@ -288,6 +289,16 @@
 		WHERE		join_date = (	SELECT	MIN(join_date)
 									FROM	teamb_meeting_member
 									WHERE	meeting_num = #{meeting_num})
+		]]>
+	</select>
+	
+	<!-- 정모 참가 인원 확인 -->
+	<select id="participantsCheck" resultType="com.ync.project.domain.ParticipantsVO">
+	<![CDATA[
+		SELECT	userid
+		FROM	teamb_participants
+		WHERE	appointment_num = #{appointment_num}
+		AND		participants_num = #{participants_num}
 		]]>
 	</select>
 	

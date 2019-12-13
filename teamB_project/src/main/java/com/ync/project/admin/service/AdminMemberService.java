@@ -12,15 +12,12 @@ import com.ync.project.domain.MemberVO;
   * @프로그램 설명 : 관리자용 이벤트 Service
   */
 public interface AdminMemberService {
-	// 글 상세보기
+	// 회원 정보 상세보기
 	public MemberVO read(String userid);
 	
-	// 전체 글 목록
-	public List<MemberVO> getList();
-	
-	// 글 목록 페이징 
+	// 회원 목록 페이징 
 	public List<MemberVO> getListWithPaging(Criteria cri);
 	
-	//추가(전체 글 개수)
+	//추가(전체 회원 수)
 	public int getTotal(Criteria cri);
 }

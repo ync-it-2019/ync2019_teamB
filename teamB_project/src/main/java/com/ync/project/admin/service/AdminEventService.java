@@ -12,24 +12,21 @@ import com.ync.project.domain.EventVO;
   * @프로그램 설명 : 관리자용 이벤트 Service
   */
 public interface AdminEventService {
-	// 글 상세보기
+	// 이벤트 상세보기
 	public EventVO read(Long event_num);
 	
-	// 전체 글 목록
-	public List<EventVO> getList();
-	
-	// 글 목록 페이징 
+	// 이벤트 목록 페이징 
 	public List<EventVO> getListWithPaging(Criteria cri);
 	
-	// 이벤트 글 쓰기
+	// 이벤트 등록
 	public void register(EventVO event);
 	
-	//글 수정
+	// 이벤트 수정
 	public boolean modify(EventVO event);
 	
-	//글 삭제
+	// 이벤트 삭제
 	public boolean remove(Long event_num);
 	
-	//추가(전체 글 개수)
+	// 추가(전체 글 개수)
 	public int getTotal(Criteria cri);
 }

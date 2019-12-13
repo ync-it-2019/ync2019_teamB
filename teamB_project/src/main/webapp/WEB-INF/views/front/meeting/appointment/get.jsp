@@ -51,10 +51,35 @@
           <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="/front/meeting/appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
-          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login"><li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a></sec:authorize>
-		  <sec:authorize access="isAuthenticated()"><li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">탈퇴하기</a></li></sec:authorize></h5>
+          <!-- 가입버튼 비로그인 시 -->
+          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login">
+             <li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a>
+          </sec:authorize>
+<!-- 가입버튼 로그인 시 -->   
+        <sec:authorize access="isAuthenticated()">
+        <sec:authentication var="user" property="principal" />
+          <c:set var="username" value="${user.username }"/>
+          <c:set var="member_userid" value="${getInfo.userid }"/>
+        <c:choose>
+           <c:when test="${member_userid eq username}">
+           <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a></li>
+           </c:when>
+           <c:otherwise>
+           <c:set var="count" value="0"/>
+           <c:forEach items="${getMemberList}" var="memberList" varStatus="status">
+           <c:set var="userid" value="${memberList.userid }"/>
+                 <c:if test="${userid eq username}">
+                 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="outMeeting();">탈퇴하기</a></li>
+                 <c:set var="count" value="1"/>
+                 </c:if>
+         </c:forEach>
+         <c:if test="${count eq 0}">
+           <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+           </c:if>
+           </c:otherwise>
+        </c:choose>
+        </sec:authorize> 
         </div>
       </ul>
     </div>
@@ -152,6 +177,7 @@
 	<input type='hidden' id='meetingLeaderCheck' value='${meetingLeaderCheck.userid}'>
 	<input type='hidden' id='useridCheck' value="<sec:authentication property="principal.username"/>">
 </sec:authorize>
+
 </body>
 
 <script type="text/javascript">
@@ -176,13 +202,16 @@ function appointmentModifyBtn() {
 		var chackUserid = document.getElementById("useridCheck");
 		
 		if(checkLeader.value == chackUserid.value) {
-			location.href = "./modify?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointmentRead.appointment_num}";
+			location.href = "/front/meeting/appointment/modify?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointmentRead.appointment_num}";
 		} else {
 			alert("정모 수정은 모임장만 할 수 있습니다.");
 		}
 	}
 	
 	function appoParticipation() {
+		
+		var chackUserid = document.getElementById("useridCheck");
+		var participants_userid_check = document.getElementById("participants_userid_check");
 		
 		if(confirm("정모에 참가하시겠습니까?")) {
 			alert("참가하였습니다.");

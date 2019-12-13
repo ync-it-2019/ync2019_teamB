@@ -28,7 +28,7 @@
 		
 		//모임장인지 아닌지를 확인
 		if(checkLeader.value == chackUserid.value) {		//모임장일 경우 작성 페이지로 이동
-			location.href = "./write?meeting_num=${getInfo.meeting_Num}";
+			location.href = "/front/meeting/appointment/write?meeting_num=${getInfo.meeting_Num}";
 		} else {	//모임장이 아닐 경우
 			alert("정모는 모임장만 만들 수 있습니다.");
 		}
@@ -73,9 +73,35 @@
           <li class="mr-3 ml-3 mt-3 mb-3 active"><a href="/front/meeting/appointment/list?meeting_num=${getInfo.meeting_Num}">정모</a></li>
         </div>
         <div class="meeting-menu2">
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+          <!-- 가입버튼 비로그인 시 -->
+          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login">
+             <li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a>
+          </sec:authorize>
+<!-- 가입버튼 로그인 시 -->   
+        <sec:authorize access="isAuthenticated()">
+        <sec:authentication var="user" property="principal" />
+          <c:set var="username" value="${user.username }"/>
+          <c:set var="member_userid" value="${getInfo.userid }"/>
+        <c:choose>
+           <c:when test="${member_userid eq username}">
+           <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a></li>
+           </c:when>
+           <c:otherwise>
+           <c:set var="count" value="0"/>
+           <c:forEach items="${getMemberList}" var="memberList" varStatus="status">
+           <c:set var="userid" value="${memberList.userid }"/>
+                 <c:if test="${userid eq username}">
+                 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="outMeeting();">탈퇴하기</a></li>
+                 <c:set var="count" value="1"/>
+                 </c:if>
+         </c:forEach>
+         <c:if test="${count eq 0}">
+           <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+           </c:if>
+           </c:otherwise>
+        </c:choose>
+        </sec:authorize> 
         </div>
       </ul>
     </div>
@@ -99,7 +125,7 @@
 			<c:forEach items="${getAppointmentList}" var="appointmentList" varStatus="status">
 				<tr>
 					<td class="board-number-css"><c:out value="${appointmentList.appointment_num}" /></td>
-					<td class="pl-4"><a href="./get?meeting_num=${getInfo.meeting_Num}&appointment_num=<c:out value='${appointmentList.appointment_num}' />" style="color:black"><c:out value="${appointmentList.title}" /></a></td>
+					<td class="pl-4"><a href="/front/meeting/appointment/get?meeting_num=${getInfo.meeting_Num}&appointment_num=<c:out value='${appointmentList.appointment_num}' />" style="color:black"><c:out value="${appointmentList.title}" /></a></td>
 					<td class="board-date-css"><fmt:formatDate pattern="yyyy-MM-dd" value="${appointmentList.write_date}" /></td>
 					<td class="board-writer-css"><c:out value="${appointmentList.appointment_place}" /></td>
 					<td class="board-date-css"><fmt:formatDate pattern="yyyy-MM-dd" value="${appointmentList.appointment_date}" /></td>

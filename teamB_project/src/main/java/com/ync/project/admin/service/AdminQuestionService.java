@@ -13,18 +13,15 @@ import com.ync.project.domain.QuestionVO;
   * @프로그램 설명 : 관리자용 1:1문의 Service
   */
 public interface AdminQuestionService {
-	// 글 상세보기
+	// 문의 글 상세보기
 	public QuestionVO read(Long question_num);
 	
-	// 전체 글 목록
-	public List<QuestionVO> getList();
-	
-	// 글 목록 페이징 
+	// 문의 글 목록 페이징 
 	public List<QuestionVO> getListWithPaging(Criteria cri);
 	
-	// 글 쓰기
+	// 답변 글 쓰기
 	public void register(AnswerVO answer);
 	
-////추가(전체 글 개수)
+	//추가(전체 글 개수)
 	public int getTotal(Criteria cri);
 }

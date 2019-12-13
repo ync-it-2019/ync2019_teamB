@@ -36,24 +36,6 @@ public class AdminEventMapperTests {
 	String from3 = "2013-04-08 10:10:10";
 	
 	Calendar cal = new GregorianCalendar();
-
-//	@Test
-//	public void testAdminEventGetList() {
-//
-//		//기존 방식의 코드
-////		List<EventVO> event = mapper.getList();
-////		
-////		for(EventVO e : event) {
-////			log.info(e);;
-////		}
-//		
-//		//람다식 코드
-//		mapper.getList().forEach((event) -> {
-//			log.info("=================");
-//			log.info(event);
-//			});
-//
-//	}
 	
 //	@Test
 //	public void testAdminEventInsertSelectKey() throws ParseException {

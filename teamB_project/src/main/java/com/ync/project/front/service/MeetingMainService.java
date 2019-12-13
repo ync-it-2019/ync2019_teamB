@@ -79,5 +79,8 @@ public interface MeetingMainService {
 	//모임장 확인
 	public Meeting_MemberVO meetingLeaderCheck(Long meeting_num);
 	
+	//모임 참가자 확인
+	public void participantsCheck(ParticipantsVO parti);
+	
 
 }

@@ -46,4 +46,10 @@ public interface MeetingService {
    
    //회원별 모임 추천
    public List<MeetingVO> recommendedMeeting(@Param("hobby") String hobby, @Param("adress") String adress);
+   
+   //모임 탈퇴
+   public boolean outMeeting(@Param("meeting_num") int meeting_num, @Param("userid") String userid);
+   
+   //모임 멤버 확인
+   public List<MeetingVO> memberConfirm(@Param("meeting_num") Long meeting_num);
 }

@@ -199,5 +199,21 @@
 		]]>
 	</select>
 	
+	<!-- 모임 탈퇴 -->
+	<delete id="outMeeting">
+	<![CDATA[
+		DELETE teamb_meeting_member
+		WHERE userid = #{userid}
+		AND   meeting_num = #{meeting_num}
+	]]>
+	</delete>
 	
+	<!--모임에 가입한 멤버인지 확인-->
+	<select id="memberConfirm" resultType="com.ync.project.domain.MeetingVO">
+		<![CDATA[
+			SELECT meeting_num, userid
+			FROM   teamb_meeting_member
+			WHERE  meeting_num = #{meeting_num}
+		]]>
+	</select>
 </mapper>

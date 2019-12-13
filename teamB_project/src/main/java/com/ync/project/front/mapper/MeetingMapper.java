@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MeetingVO;
 import com.ync.project.domain.Meeting_MemberVO;
-import com.ync.project.domain.MemberVO;
 
 
  /**
@@ -41,6 +40,9 @@ public interface MeetingMapper {
    public List<MeetingVO> mainMeetingList();
    //추천 모임
    public List<MeetingVO> recommendedMeeting(@Param("hobby") String hobby, @Param("adress") String adress);
-
+   //모임 탈퇴
+   public int outMeeting(@Param("meeting_num") int meeting_num, @Param("userid") String userid);
+   //모임 멤버 확인
+   public List<MeetingVO> memberConfirm(@Param("meeting_num") Long meeting_num);
 
 }

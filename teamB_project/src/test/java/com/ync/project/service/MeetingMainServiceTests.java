@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.Criteria;
+import com.ync.project.domain.ParticipantsVO;
 import com.ync.project.front.service.MeetingMainService;
 
 import lombok.extern.log4j.Log4j;
@@ -207,10 +207,24 @@ public class MeetingMainServiceTests {
 //		log.info(service.getTotal(new Criteria(1, 10), 1L));
 //	}
 	
+//	@Test
+//	public void testMeetingLeaderCheck() {
+//		
+//		log.info(service.meetingLeaderCheck(1L));
+//	}
+	
 	@Test
-	public void testMeetingLeaderCheck() {
+	public void testParticipantsCheck() {
 		
-		log.info(service.meetingLeaderCheck(1L));
+		ParticipantsVO parti = new ParticipantsVO();
+		
+		parti.setUserid("user6");
+		parti.setAppointment_num(1L);
+		
+		log.info(parti);
+		
+		service.participantsCheck(parti);
+		
 	}
 	
 }

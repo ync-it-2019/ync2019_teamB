@@ -33,14 +33,6 @@ public class AdminEventServiceImpl implements AdminEventService {
 
 	}
 
-	 @Override
-	 public List<EventVO> getList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getList();
-	 }
-
 	@Override
 	public List<EventVO> getListWithPaging(Criteria cri) {
 
