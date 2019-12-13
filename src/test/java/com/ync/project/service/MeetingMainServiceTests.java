@@ -1,7 +1,5 @@
 package com.ync.project.service;
 
-import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -12,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.AppointmentVO;
-import com.ync.project.domain.ParticipantsVO;
+import com.ync.project.domain.Criteria;
 import com.ync.project.front.service.MeetingMainService;
 
 import lombok.extern.log4j.Log4j;
@@ -192,10 +189,22 @@ public class MeetingMainServiceTests {
 //		log.info(service.getParticipantsNum());
 //	}
 	
+//	@Test
+//	public void testGetParticipantsCount() {
+//		
+//		log.info(service.getParticipantsCount(1L));
+//	}
+	
+//	@Test
+//	public void testGetList() {
+//
+//		service.getListWithPaging(new Criteria(2, 10), 1L).forEach(board -> log.info(board));
+//	}
+	
 	@Test
-	public void testGetParticipantsCount() {
+	public void testGetTotal() {
 		
-		log.info(service.getParticipantsCount(1L));
+		log.info(service.getTotal(new Criteria(1, 10), 1L));
 	}
 
 }

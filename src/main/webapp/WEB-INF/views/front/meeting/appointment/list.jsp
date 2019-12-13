@@ -22,6 +22,15 @@
 	}
 </script>
 
+<!-- 링크 색깔 -->
+<style type="text/css">
+ a:link { color: red; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;}
+ a:active {color: black; text-decoration: none;}
+</style>
+<!-- //링크 색깔 -->
+
 <meta charset="UTF-8">
 </head>
 <body>
@@ -103,17 +112,34 @@
 
 <!-- 페이지 버튼 -->
 <section>
-	<div class="text-center" style="margin-bottom:100px;">
-		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="#"> < </a></li>
-			<li class="page-item active"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#">5</a></li>
-			<li class="page-item"><a class="page-link" href="#"> > </a></li>
-		</ul>
-	</div>
+   <div class="text-center" style="margin-bottom:100px;" >
+      <ul class="pagination justify-content-center">
+         <c:if test="${pageMaker.prev}">
+            <li class="paginate_button previous">
+               <a class="page-link" href="/front/meeting/appointment/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${pageMaker.startPage -1}"> Previous </a>
+            </li>
+         </c:if>
+         <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+            <li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+               <a class="page-link"  href="/front/meeting/appointment/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${num}">${num}</a>
+            </li>
+         </c:forEach>
+      <c:if test="${pageMaker.next}">
+         <li class="paginate_button next">
+        	 <a class="page-link" href="/front/meeting/appointment/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${pageMaker.endPage +1 }"> Next </a>
+         </li>
+      </c:if>
+      </ul>
+   </div>
+   <!-- Form 시작 -->
+         <form id='actionForm' action="/front/meeting/appointment/list" method='get'>
+        	<input type='hidden' name='type'      value='<c:out value="${pageMaker.cri.type}"/>'>
+            <input type='hidden' name='keyword'   value='<c:out value="${pageMaker.cri.keyword}"/>'>
+            <input type='hidden' name='pageNum'   value='${pageMaker.cri.pageNum}'>
+            <input type='hidden' name='amount'    value='${pageMaker.cri.amount}'>
+         </form>
+   <!-- Form 끝 -->
+            
 </section>
 <!-- //페이지 버튼 -->
 

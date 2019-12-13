@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.ParticipantsVO;
+import com.ync.project.domain.AppointmentVO;
+import com.ync.project.domain.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -329,11 +331,47 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 13.
 	  * @작성자 : 이주현
 	  */
+//	@Test
+//	public void testGetParticipantsCount() {
+//		
+//		int participantsCount = mapper.getParticipantsCount(1L);
+//		log.info(participantsCount);
+//	}
+	
+	 /**
+	  * @Method 설명 : 페이징 테스트
+	  * @Method Name : testPaging
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
+//	@Test 
+//	public void testPaging() { 
+//
+//		Criteria cri = new Criteria();
+//		
+//	    //10개씩 3페이지 
+//	    cri.setPageNum(1);
+//	    cri.setAmount(10);
+//	    
+//		List<AppointmentVO> list = mapper.getListWithPaging(cri, 1L);
+//		list.forEach(board -> log.info(board));
+//
+//	}
+	
+	   /**
+	  * @Method 설명 : 정모 갯수 테스트
+	  * @Method Name : testTotal
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
 	@Test
-	public void testGetParticipantsCount() {
-		
-		int participantsCount = mapper.getParticipantsCount(1L);
-		log.info(participantsCount);
-	}
+	  public void testTotal() {
+
+	    Criteria cri = new Criteria();
+
+	    int total = mapper.getTotalCount(cri, 1L);
+
+	    log.info("total:" + total);
+	  }
 	
 }

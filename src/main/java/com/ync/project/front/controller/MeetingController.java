@@ -223,13 +223,16 @@ public class MeetingController {
 	
 	//소모임 정모 목록
 	@GetMapping(value = "/appointment/list")
-	public void appointmentList(Model model, @RequestParam("meeting_num") Long meeting_num, Criteria cri) {
+	public void appointmentList(Model model, @RequestParam("meeting_num") Long meeting_num, Criteria cri, AppointmentVO appo) {
 
 		log.info("Meeting Appointment List page!");
 		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
+		model.addAttribute("getAppointmentList", service2.getListWithPaging(cri, meeting_num));
 		
-		model.addAttribute("getAppointmentList", service2.getAppointmentList(meeting_num));
+		int total = service2.getTotal(cri, meeting_num);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 
 	}
 	
