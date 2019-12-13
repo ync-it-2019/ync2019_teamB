@@ -160,6 +160,7 @@
 	<input type='hidden' id='meetingLeaderCheck' value='${meetingLeaderCheck.userid}'>
 	<input type='hidden' id='useridCheck' value="<sec:authentication property="principal.username"/>">
 </sec:authorize>
+
 </body>
 
 <script type="text/javascript">
@@ -191,6 +192,9 @@ function appointmentModifyBtn() {
 	}
 	
 	function appoParticipation() {
+		
+		var chackUserid = document.getElementById("useridCheck");
+		var participants_userid_check = document.getElementById("participants_userid_check");
 		
 		if(confirm("정모에 참가하시겠습니까?")) {
 			alert("참가하였습니다.");
