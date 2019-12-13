@@ -43,4 +43,7 @@ public interface MeetingService {
 
    //메인 페이지 회원 수 순 모임 목록
    public List<MeetingVO> mainMeetingList();
+   
+   //회원별 모임 추천
+   public List<MeetingVO> recommendedMeeting(@Param("hobby") String hobby, @Param("adress") String adress);
 }
