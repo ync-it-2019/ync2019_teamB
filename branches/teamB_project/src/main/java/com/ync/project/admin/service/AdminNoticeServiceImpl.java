@@ -34,14 +34,6 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 
 	}
 
-	 @Override
-	 public List<NoticeVO> getList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getList();
-	 }
-
 	@Override
 	public List<NoticeVO> getListWithPaging(Criteria cri) {
 

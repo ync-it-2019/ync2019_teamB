@@ -174,9 +174,6 @@ public class AdminEventController {
 	  */
 	@PostMapping("/delete")
     public String AdminEventDelete(@RequestParam("ck_code") String ck, Criteria cri, RedirectAttributes rttr) {
-		/*
-		 * for (String List : deleteList) { log.info("delete : " + deleteList); }
-		 */
 		String[] array = ck.split(",");
 		
 		for(int i = 0; i < array.length; i++) {
