@@ -219,31 +219,22 @@ Chrome>설정>왼편 상단 카테고리 클릭>고급>개인정보 및 보안>�
 
 <!-- footer -->
 <footer class="footer py-5">
-
 </footer>
-<!-- //footer -->
-
-<!-- copyright -->
 <section class="copy-right py-4">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
-				</p>
-			</div>
-			<div class="col-md-4 mt-md-0 mt-4">
-				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <p class="">© YNC Japan employment class.  Team_B Project | Design by Kim Sanghun.
+            </p>
+         </div>
+         <div class="col-md-4 mt-md-0 mt-4">
+            <div class="subscribe-form">
+            </div>
+         </div>
+      </div>
+   </div>
 </section>
-<!-- copyright -->
+<!-- //footer -->
 
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
