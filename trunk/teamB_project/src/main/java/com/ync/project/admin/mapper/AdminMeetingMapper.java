@@ -16,8 +16,6 @@ import com.ync.project.domain.Meeting_Member_InfoVO;
   * @프로그램 설명 : 관리자용 모임 Mapper interface
   */
 public interface AdminMeetingMapper {
-	//전체 게시 글 목록
-	public List<MeetingVO> getList();
 	//게시 글 상세보기
 	public MeetingVO read(Long meeting_num);
 	//목록 페이징

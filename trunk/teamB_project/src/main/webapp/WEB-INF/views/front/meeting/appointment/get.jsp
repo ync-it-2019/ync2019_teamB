@@ -117,7 +117,7 @@
 	<div class="container" style="text-align: center;">
 		<a href="#" onclick="appoParticipation()"><button type="button" name="participation" class="btn btn-secondary mb-3" style="margin-left:100px;">정모 참가 신청하기</button></a>
 		<a href="#" onclick="appointmentDelete()"><button type="button" name="delete" class="btn btn-danger pull-right">삭제</button></a>
-		<a href="./modify?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointmentRead.appointment_num}"><button type="button" name="modify" class="btn btn-primary pull-right mr-2">수정</button></a>
+		<a href="#" onclick="appointmentModifyBtn()"><button type="button" name="modify" class="btn btn-primary pull-right mr-2">수정</button></a>
 	</div>
 </section>
 <!-- //정모 참석 버튼 -->
@@ -141,22 +141,44 @@
 <!-- //모임 가입 히든 폼 -->
 
 <!-- 모임 가입 히든 폼 -->
-<sec:authorize access="isAuthenticated()">
 <form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
 </form>
 <!-- //모임 가입 히든 폼 -->
+
+<sec:authorize access="isAuthenticated()">
+	<input type='hidden' id='meetingLeaderCheck' value='${meetingLeaderCheck.userid}'>
+	<input type='hidden' id='useridCheck' value="<sec:authentication property="principal.username"/>">
 </sec:authorize>
 </body>
 
 <script type="text/javascript">
 	function appointmentDelete() {
 		
-		if(confirm("삭제하시겠습니까?")) {
-			alert("삭제되었습니다.");
-			document.getElementById('frmDelete').submit();
+		var checkLeader = document.getElementById("meetingLeaderCheck");
+		var chackUserid = document.getElementById("useridCheck");
+		
+		if(checkLeader.value == chackUserid.value) {
+			if(confirm("삭제하시겠습니까?")) {
+				alert("삭제되었습니다.");
+				document.getElementById('frmDelete').submit();
+			}
+		} else {
+			alert("정모 삭제는 모임장만 할 수 있습니다.");
+		}
+	}
+	
+function appointmentModifyBtn() {
+		
+		var checkLeader = document.getElementById("meetingLeaderCheck");
+		var chackUserid = document.getElementById("useridCheck");
+		
+		if(checkLeader.value == chackUserid.value) {
+			location.href = "./modify?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointmentRead.appointment_num}";
+		} else {
+			alert("정모 수정은 모임장만 할 수 있습니다.");
 		}
 	}
 	
