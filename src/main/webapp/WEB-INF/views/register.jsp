@@ -309,16 +309,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<p class="">ÃÂ© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
+				<p class="">© YNC Japan employment class.  Team_B Project | Design by JO Junghyeon.
 				</p>
 			</div>
 			<div class="col-md-4 mt-md-0 mt-4">
 				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
+	
 				</div>
 			</div>
 		</div>

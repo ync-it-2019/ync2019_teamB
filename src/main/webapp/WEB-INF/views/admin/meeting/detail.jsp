@@ -37,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
   <section id="container">
-    <jsp:include page="../includes/meeting_header.jsp" flush="true" />
+    <jsp:include page="/WEB-INF/views/admin/includes/meeting_header.jsp" flush="true" />
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
