@@ -24,28 +24,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="fa fa-bars"></div>
         </div>
       </div>
-      <!--logo end-->
-      <div class="top-nav clearfix">
-        <!--search & user info start-->
-        <ul class="nav pull-right top-menu">
-          <!-- user login dropdown start-->
-          <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <img alt="" src="/resources/img/2.png">
-              <span class="username">John Doe</span>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu extended logout">
-              <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-              <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-              <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
-            </ul>
-          </li>
-          <!-- user login dropdown end -->
-
-        </ul>
-        <!--search & user info end-->
-      </div>
     </header>
     <!--header end-->
     <!--sidebar start-->
@@ -95,7 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </ul>
             </li>
             <li>
-              <a href="./login.html">
+              <a href="/customLogout">
                 <i class="fa fa-user"></i>
                 <span>Logout</span>
               </a>
