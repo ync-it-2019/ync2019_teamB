@@ -1,4 +1,4 @@
-package com.ync.project.service;
+package com.ync.project.front.service;
 
 import static org.junit.Assert.assertNotNull;
 

@@ -1,4 +1,4 @@
-package com.ync.project.service;
+package com.ync.project.front.service;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -9,21 +9,26 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ync.project.domain.Criteria;
-import com.ync.project.front.service.NoticeService;
+import com.ync.project.front.service.EventEndService;
 
 import lombok.extern.log4j.Log4j;
 
+ /**
+  * @FileName	: EventServiceTests.java
+  * @Date		: 2019. 10. 27. 
+  * @Author		: 김상훈
+  * @프로그램 설명 : 이벤트 Service Test
+  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class NoticeServiceTests {
+public class EventEndServiceTests {
 
 	@Autowired
-	private NoticeService service;
+	private EventEndService service;
 
 	@Test
 	public void testExist() {
-
 		log.info(service);
 		assertNotNull(service);
 	}
@@ -32,12 +37,6 @@ public class NoticeServiceTests {
 	public void testGetList() {
 		service.getList().forEach(board -> log.info(board));
 		service.getListWithPaging(new Criteria(1, 10)).forEach(board -> log.info(board));
-	}
-	
-	@Test
-	public void testGet() {
-
-		log.info(service.read(1L));
 	}
 
 }
