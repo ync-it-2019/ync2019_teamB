@@ -32,22 +32,22 @@ public class AdminNoticeMapperTests {
 	
 	Criteria cri = new Criteria();
 	
-//	@Test
-//	public void testAdminEventInsertSelectKey(){
-//		
-//		Date date = new Date(cal.getTimeInMillis());
-//		
-//		notice.setTitle("등록된 테스트 이벤트 게시글");
-//		notice.setPopup("N");
-//		notice.setWrite_date(date);
-//		notice.setContents("이벤트 등록 테스트");
-//		notice.setUserid("user01");
-//		notice.setFiles("이미지 경로~~");
-//		
-//		mapper.insertSelectKey(notice);
-//
-//		log.info(notice);
-//	}
+	@Test
+	public void testAdminEventInsertSelectKey(){
+		
+		Date date = new Date(cal.getTimeInMillis());
+		
+		notice.setTitle("등록된 테스트 이벤트 게시글");
+		notice.setPopup("N");
+		notice.setWrite_date(date);
+		notice.setContents("이벤트 등록 테스트");
+		notice.setUserid("user01");
+		notice.setFiles("이미지 경로~~");
+		
+		mapper.insertSelectKey(notice);
+
+		log.info(notice);
+	}
 	
 //	@Test
 //	public void testAdminNoticeRead() {
