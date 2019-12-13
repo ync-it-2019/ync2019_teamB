@@ -58,13 +58,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            					<div class="form-group">
            						<label class="" style="margin-right:20px;">대표 이미지</label>
 								<a href="/resources/upload/${notice.files}" target="_blank"><img class="notice_img" style="display:inline;" src="/resources/upload/${notice.files}"></a>
-								<input type="hidden" name="image" value="${notice.files}">
+								<input type="hidden" name="files" value="${notice.files}">
        						</div>
        					</c:when>
        					<c:otherwise>
        						<div class="form-group">
-								<input type="hidden" name="image" value="">
-								<input type="hidden" name="banner_image" value="">
+								<input type="hidden" name="files" value="">
 							</div>
 		        		</c:otherwise>
   	 				</c:choose>
