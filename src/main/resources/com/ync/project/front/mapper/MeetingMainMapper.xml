@@ -28,14 +28,15 @@
 	<!-- 모임 정보 -->
 	<select id="meeting_Read" resultType="com.ync.project.domain.MeetingVO">
 	<![CDATA[
-		SELECT	MEETING_NAME,
-				MEETING_PROFILE,
-				INTRODUCE,
-				MEETING_NUM,
-				MEETING_HOBBY,
-				MEETING_ADRESS
-		FROM	TEAMB_MEETING
-		WHERE	MEETING_NUM = #{meeting_Num}
+		SELECT	meeting_name,
+				meeting_profile,
+				introduce,
+				meeting_num,
+				meeting_hobby,
+				meeting_adress,
+				userid
+		FROM	teamb_meeting
+		WHERE	meeting_num = #{meeting_Num}
 		]]>
 	</select>
 	
