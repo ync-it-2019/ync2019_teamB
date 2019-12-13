@@ -1,4 +1,4 @@
-package com.ync.project.service;
+package com.ync.project.front.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
