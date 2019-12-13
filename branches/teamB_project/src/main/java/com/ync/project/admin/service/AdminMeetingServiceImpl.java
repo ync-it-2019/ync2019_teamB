@@ -35,14 +35,6 @@ public class AdminMeetingServiceImpl implements AdminMeetingService {
 
 	}
 
-	 @Override
-	 public List<MeetingVO> getList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getList();
-	 }
-
 	@Override
 	public List<MeetingVO> getListWithPaging(Criteria cri) {
 

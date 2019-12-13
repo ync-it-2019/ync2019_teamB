@@ -13,6 +13,12 @@
 		<result property="meeting_Hobby" column="meeting_hobby"/>
 	</resultMap>
 	
+	<resultMap type="com.ync.project.domain.Meeting_Member_InfoVO" id="infoMap">
+		<id property="name" column="name"/>
+		<result property="join_date" column="join_date"/>
+		<result property="userid" column="userid"/>
+	</resultMap>
+	
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
@@ -39,7 +45,7 @@
 	Spring Security의 기본 사용법과 다르게 tbl_member에 권한 컴럼(auth)을
 	넣어서 사용하기에 기본 사용법과 달라진다.
 	-->
-	<select id="read" resultType="com.ync.project.domain.MeetingVO">
+	<select id="read" resultMap="meetingMap">
 	SELECT	meeting_num,
 			meeting_name,
 			introduce,
@@ -80,7 +86,7 @@
 		]]>
 	</select>
 	
-	<select id="getMemberInfo" resultType="com.ync.project.domain.Meeting_Member_InfoVO">
+	<select id="getMemberInfo" resultMap="infoMap">
 	<![CDATA[
 	SELECT	 name, userid, join_date
 	FROM	(SELECT rownum rn, m.name, tm.userid, tm.join_date

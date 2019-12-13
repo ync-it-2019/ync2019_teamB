@@ -17,10 +17,7 @@ public interface AdminMeetingService {
 	// 글 상세보기
 	public MeetingVO read(Long meeting_Num);
 	
-	// 전체 글 목록
-	public List<MeetingVO> getList();
-	
-	// 글 목록 페이징 
+	// 모임 목록 페이징 
 	public List<MeetingVO> getListWithPaging(Criteria cri);
 	
 	//추가(전체 글 개수)
