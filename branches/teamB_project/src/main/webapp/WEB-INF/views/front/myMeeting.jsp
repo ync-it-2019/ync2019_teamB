@@ -243,8 +243,11 @@
     	<h5  style="margin-top:50px;">추천 모임</h5><span style="color:#BDBDBD;">(추천 모임은 사용자가 등록한 정보를 바탕으로 최대 10가지의 모임을 추천해드립니다.)</span>
     	</div>
   		<hr align="left" style="width:97%;">
+  		<c:set var="inx" value="0" />
   		<c:forEach items="${recomend}" var="meeting"  begin="0" end="9" step="1" varStatus="status">
+  		<c:set var="inx" value="${status.index + 1 }" />
   	<div class="col-lg-5 col-md-6 newsgrid1">
+  	
   	<c:choose>
   		<c:when test="${status.count % 2 eq 1}">
        		<div class="left-meeting">
@@ -260,13 +263,12 @@
           	<img src="/resources/img/meeting.png" style="height:105px; width:200px;">
           	</c:when>
           	<c:otherwise>
-          	<img src="/resources/upload/<c:out value="${meeting.meeting_Profile}" />" alt="" >
+          	<img src="/resources/upload/<c:out value="${meeting.meeting_Profile}" />"  style="height:105px; width:200px;" alt="" >
           	</c:otherwise>
       </c:choose>
   			</a>
         	</div>
         	<div class="introduction">
-        	
           	<b class="mt-4"><a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }"><c:out value="${meeting.meeting_Name}" /></a></b>
           	
           		<h6><c:out value="${meeting.introduce}" /></h6>
@@ -282,11 +284,17 @@
             		명</li>
             		<li> · <c:out value="${meeting.meeting_Adress}" /></li>
             		<li> · <c:out value="${meeting.meeting_Hobby}" /></li>
+ 
           		</ul>
         	</div>
   		</div>
   	</div>
 	  </c:forEach>
+	  <c:if test="${inx eq 0 }">
+	  <h3>조건에 맞는 모임이 없습니다!</h3>
+	  <a href="/front/meeting/meetingCreate"> 직접 모임을 만드세요! </a>
+	  
+	  </c:if>
     </div>
     
 </div>
