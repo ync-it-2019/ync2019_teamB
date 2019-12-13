@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Recent News -->
 <section class="news py-5">
 	<div class="container py-lg-3">
-    <h5 style="margin : 20px;"><a href="./list">진행중인 이벤트</a> | <a href="#" style="color : #007bff">종료된 이벤트</a></h5>
+    <h5 style="margin : 20px;"><a href="/front/event/list">진행중인 이벤트</a> | <a href="#" style="color : #007bff">종료된 이벤트</a></h5>
     <hr>
     <h4 style="margin-top : 50px; margin-bottom : 20px"><b>종료된 이벤트</b></h4>
 		<div class="row blog-grids">

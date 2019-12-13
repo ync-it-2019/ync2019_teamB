@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		
 		var submitForm = $("#submitForm");
+		var idDiv = $("#checkDiv");
 		//이름
 		var name = document.getElementById("name");
 		//아이디
@@ -69,8 +70,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var sel2 = document.getElementById("sel2");
 		
 		var file = document.getElementById("files");
+		
+		var check = "사용가능한 아이디 입니다.";
+		
+		var count = 0;
 		$("#checkId").on("click", function(e) {
-			
+			<c:forEach items="${member}" var="member" varStatus="status">
+			if('${member.userid}' == id.value){
+				check = "이미 사용중인 아이디 입니다. 다른 아이디를 입력해주세요.";
+			}
+			else if(id.value ==''){
+				alert("아이디를 입력해주세요.");
+				return false;
+			}
+			</c:forEach>
+			alert(check);
+			check = "사용가능한 아이디 입니다.";
+			count = 1;
 		});
 		
 		$("#submitBtn").on("click", function(e) {
@@ -106,6 +122,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 			else if(sel2.value == 1){
 				alert('취미를 선택해주세요.');
+				return false;
+			}
+			else if(count == 0){
+				alert('아이디 중복확인을 해주세요.');
 				return false;
 			}
 			else{
@@ -164,8 +184,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-8">
 						<input type="text"  id="id" name="userid" placeholder="enter your id">
-						<button type="button" id="checkId">중복확인</button>
+						<button type="button" id="checkId" style="margin-left:280px; margin-top:3px;">중복확인</button>
 					</div>
+					
 				</div>
         <div class="row mt-3">
 					<div class="col-md-4 text-md-right">
@@ -288,16 +309,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<p class="">ÃÂ© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
+				<p class="">© YNC Japan employment class.  Team_B Project | Design by JO Junghyeon.
 				</p>
 			</div>
 			<div class="col-md-4 mt-md-0 mt-4">
 				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
+	
 				</div>
 			</div>
 		</div>

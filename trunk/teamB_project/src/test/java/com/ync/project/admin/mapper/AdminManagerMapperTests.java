@@ -85,18 +85,18 @@ public class AdminManagerMapperTests {
 //
 //	}
 
-	@Test
-	public void testAdminManagerPaging() {
-		
-	    //10개씩 3페이지
-	    cri.setPageNum(1);
-	    cri.setAmount(10);
-
-
-		List<MemberVO> list = mapper.getListWithPaging(cri);
-
-		list.forEach(member -> log.info(member));
-
-	}
+//	@Test
+//	public void testAdminManagerPaging() {
+//		
+//	    //10개씩 3페이지
+//	    cri.setPageNum(1);
+//	    cri.setAmount(10);
+//
+//
+//		List<MemberVO> list = mapper.getListWithPaging(cri);
+//
+//		list.forEach(member -> log.info(member));
+//
+//	}
 
 }

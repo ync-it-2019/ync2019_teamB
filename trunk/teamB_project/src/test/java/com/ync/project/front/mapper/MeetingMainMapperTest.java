@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ync.project.domain.Meeting_MemberVO;
+import com.ync.project.domain.ParticipantsVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -377,12 +377,29 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 13.
 	  * @작성자 : 이주현
 	  */
+//	@Test
+//	public void testMeetingLeaderCheck() {
+//		
+//		Meeting_MemberVO mMember = mapper.meetingLeaderCheck(1L);
+//		
+//		log.info(mMember);
+//	}
+	
+	 /**
+	  * @Method 설명 : 정모 참가자 확인 테스트
+	  * @Method Name : testParticipantsCheck
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
 	@Test
-	public void testMeetingLeaderCheck() {
+	public void testParticipantsCheck() {
 		
-		Meeting_MemberVO mMember = mapper.meetingLeaderCheck(1L);
+		ParticipantsVO parti = new ParticipantsVO();
 		
-		log.info(mMember);
+		parti.setAppointment_num(1L);
+		parti.setParticipants_num(3L);
+		
+		mapper.participantsCheck(parti);
 	}
 	
 }

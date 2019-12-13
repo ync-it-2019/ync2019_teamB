@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <img src="/resources/upload/<c:out value="${meeting.meeting_Profile }"/>" />
               <figcaption>
                 <div>
-                  <span><c:out value="${meeting.meeting_Name }" /></span>
+                  <span><div class="over4"><c:out value="${meeting.meeting_Name }" /></div></span>
                   <p><c:out value="${meeting.introduce }" /></p>
                 </div>
                 <a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }">View more</a>
@@ -186,7 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="notice_list">
       <c:forEach items="${list3}" var="notice" begin="0" end="4" step="1" varStatus="status">
         <ul>
-          <li class="n_li_title" style ="width:250px;">&middot;<a href="/front/notice/get?notice_num=<c:out value="${notice.notice_num}"/>"><c:out value="${notice.title}" /></a></li>
+          <li class="n_li_title" style ="width:250px;"><div class="over3">&middot;<a href="/front/notice/get?notice_num=<c:out value="${notice.notice_num}"/>"><c:out value="${notice.title}" /></a></div></li>
           <li class="n_li_date"><c:out value="${notice.write_date}" /><li>
         </ul>
       </c:forEach>
@@ -195,7 +195,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="faq">
       <div class="faq_i"><a href="/front/question/FAQ"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
       <div class="answer_i"><a href="/front/question/myQuestion"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
-      <div class="faq_i"><img class="tell_img" src="/resources/img/tell.png"></div>
+      <div class="call_i"><img class="faq_img" src="/resources/img/call.png"><p class="call_font">Tell: 010-7443-1516</p></div>
     </div>
   </div>
 </section>

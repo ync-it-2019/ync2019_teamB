@@ -35,7 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
   <section id="container">
-    <jsp:include page="../includes/question_header.jsp" flush="true" />
+    <jsp:include page="/WEB-INF/views/admin/includes/question_header.jsp" flush="true" />
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -50,6 +50,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body">
                   <h3 class="center">질문</h3>
                   <div class="compose-mail">
+                  <div class="form-group">
+                        <label class="" style="margin-right:20px;">참고 이미지</label>
+                        <img class="question_img" src="/resources/upload/<c:out value="${question.files}" />" alt="" style="display:inline;">
+                      </div>
                       <div class="form-group">
                         <label class="">질문자</label>
                         <input type="text" tabindex="1" id="to" class="form-control" value="${question.userid}" readonly>
@@ -121,6 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <form id='operForm' action="/admin/question/modify" method="get">
   	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   	<input type='hidden' name='question_num' value='<c:out value="${question.question_num}"/>'>
+  	<input type='hidden' name='userid' value='<c:out value="${question.userid}"/>'>
   	<input type='hidden' name='ck_code' value='<c:out value="${question.question_num}"/>'>
   	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   	<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>

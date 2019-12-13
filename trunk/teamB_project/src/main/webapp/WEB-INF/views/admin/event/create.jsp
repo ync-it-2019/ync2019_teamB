@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
   <section id="container">
-    <jsp:include page="../includes/event_header.jsp" flush="true" />
+    <jsp:include page="/WEB-INF/views/admin/includes/event_header.jsp" flush="true" />
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="hidden" name='banner_image' value="">
                         <div class="form-group">
                           <label class="">작성자:</label>
-                          <input type="text" tabindex="1" id="to" class="form-control" value="user01" name='userid' readonly>
+                          <input type="text" tabindex="1" id="to" class="form-control" value="<c:out value="${userid}" />" name='userid' readonly>
                         </div>
                         <div class="form-group">
                           <label class="">시작 일</label>

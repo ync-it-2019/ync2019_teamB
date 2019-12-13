@@ -163,6 +163,12 @@
   float: left;
   background-color: #434a54;
 }
+.call_i {
+  width: 200px;
+  height: 180px;
+  float: left;
+  background-color: #434a54;
+}
 .faq_img {
   margin-top: 20px;
   margin-left: 50px;
@@ -190,5 +196,11 @@
   color: white;
   font-size: 30px;
   margin-left: 50px;
+}
+.call_font {
+  color: white;
+  font-size: 18px;
+  margin-top: 15px;
+  margin-left: 8px;
 }
 /* faq end */

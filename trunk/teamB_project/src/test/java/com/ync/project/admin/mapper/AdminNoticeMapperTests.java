@@ -50,30 +50,31 @@ public class AdminNoticeMapperTests {
 	}
 	
 //	@Test
-//	public void testAdminEventRead() {
+//	public void testAdminNoticeRead() {
 //
 //		// 존재하는 게시물 번호로 테스트
-//		EventVO event = mapper.read(5L);
+//		notice = mapper.read(393L);
 //
-//		log.info(event);
+//		log.info(notice);
 //
 //	}
 
 //	@Test
-//	public void testAdminEventDelete() {
+//	public void testAdminNoticeDelete() {
 //
-//		log.info("DELETE COUNT: " + mapper.delete(0L));
+//		log.info("DELETE COUNT: " + mapper.delete(393L));
 //	}
 
 //	@Test
-//	public void testAdminEventUpdate() {
+//	public void testAdminNoticeUpdate() {
 //		
 //		// 실행전 존재하는 번호인지 확인할것
-//		notice.setBno(5L);
+//		notice.setNotice_num(387L);
 //		notice.setTitle("수정된 제목");
-//		notice.setContent("수정된 내용");
-//		notice.setWriter("user00");
-//
+//		notice.setContents("수정된 내용");
+//		notice.setPopup("user00");
+//		notice.setFiles("수정된 첨부 파일");
+//		
 //		int count = mapper.update(notice);
 //		log.info("UPDATE COUNT: " + count);
 //

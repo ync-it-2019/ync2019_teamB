@@ -2,6 +2,7 @@ package com.ync.project.front.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -95,6 +96,17 @@ public class MeetingServiceImpl implements MeetingService {
 		log.info("get recommendedMeeting!");
 		return mapper.recommendedMeeting(hobby, adress);
 	}
-
+   
+   @Override
+   public boolean outMeeting (@Param("meeting_num") int meeting_num, @Param("userid") String userid) {
+	   log.info("get out of here!" + meeting_num + userid);
+	   return mapper.outMeeting(meeting_num, userid) == 1;
+   }
+   
+   @Override
+   public List<MeetingVO> memberConfirm(@Param("meeting_num") Long meeting_num){
+	   
+	   return mapper.memberConfirm(meeting_num);
+   }
    
 }

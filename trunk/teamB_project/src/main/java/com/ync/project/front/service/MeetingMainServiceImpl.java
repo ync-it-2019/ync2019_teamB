@@ -177,16 +177,23 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 	@Override
 	public int getTotal(@Param("cri") Criteria cri, @Param("meeting_num") Long meeting_num) {
 		
-		log.info("get total count");
+		log.info("get total count......");
 		return mapper.getTotalCount(cri, meeting_num);
 	}
 	
 	@Override
 	public Meeting_MemberVO meetingLeaderCheck(Long meeting_num) {
 		
-		log.info("meeting Leader Check");
+		log.info("meeting Leader Check......");
 		
 		return mapper.meetingLeaderCheck(meeting_num);
 	}
 	
+	@Override
+	public void participantsCheck(ParticipantsVO parti) {
+		
+		log.info("participants Check......");
+		
+		mapper.participantsCheck(parti);
+	}
 }

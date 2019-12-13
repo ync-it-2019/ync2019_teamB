@@ -33,14 +33,6 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	}
 
-	 @Override
-	 public List<MemberVO> getList() {
-	
-		 log.info("getList..........");
-		
-		 return mapper.getList();
-	 }
-
 	@Override
 	public List<MemberVO> getListWithPaging(Criteria cri) {
 
