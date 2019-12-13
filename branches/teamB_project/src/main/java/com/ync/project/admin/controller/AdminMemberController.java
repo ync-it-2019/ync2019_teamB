@@ -36,7 +36,6 @@ public class AdminMemberController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/list") 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void list(Criteria cri, Model model) {
 	  
 		log.info("Member List get page!");
