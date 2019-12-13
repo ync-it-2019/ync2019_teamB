@@ -269,6 +269,8 @@ public class MeetingController {
 		
 		model.addAttribute("getParticipantsNum", service2.getParticipantsNum());
 		
+		model.addAttribute("getParticipantsCount", service2.getParticipantsCount(appointment_num));
+		
 	}
 	
 	//소모임 정모 삭제
@@ -320,7 +322,8 @@ public class MeetingController {
 		
 		service2.appointmentParticipation(parti);
 		
-		return "redirect:/front/meeting/appointment/list?meeting_num=" + appo.getMeeting_num();
+		return "redirect:/front/meeting/appointment/get?meeting_num=" + appo.getMeeting_num()
+		+ "&appointment_num=" + appo.getAppointment_num();
 		
 	}
 	

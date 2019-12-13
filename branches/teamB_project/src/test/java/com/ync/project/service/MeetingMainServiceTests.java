@@ -163,21 +163,21 @@ public class MeetingMainServiceTests {
 //		service.appointmentDelete(4L);
 //	}
 	
-	@Test
-	public void testAppointmentParticipation() {
-		
-		ParticipantsVO parti = new ParticipantsVO();
-		
-		parti.setMeeting_num(1L);
-		parti.setAppointment_num(15L);
-		parti.setParticipants_num(20L);
-		parti.setUserid("user9");
-		
-		log.info(parti);
-		
-		service.appointmentParticipation(parti);
-		
-	}
+//	@Test
+//	public void testAppointmentParticipation() {
+//		
+//		ParticipantsVO parti = new ParticipantsVO();
+//		
+//		parti.setMeeting_num(1L);
+//		parti.setAppointment_num(15L);
+//		parti.setParticipants_num(20L);
+//		parti.setUserid("user9");
+//		
+//		log.info(parti);
+//		
+//		service.appointmentParticipation(parti);
+//		
+//	}
 	
 //	@Test
 //	public void testGetParticipantsInfo() {
@@ -191,5 +191,11 @@ public class MeetingMainServiceTests {
 //		
 //		log.info(service.getParticipantsNum());
 //	}
+	
+	@Test
+	public void testGetParticipantsCount() {
+		
+		log.info(service.getParticipantsCount(1L));
+	}
 
 }
