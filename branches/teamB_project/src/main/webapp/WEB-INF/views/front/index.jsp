@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <img src="/resources/upload/<c:out value="${meeting.meeting_Profile }"/>" />
               <figcaption>
                 <div>
-                  <span><c:out value="${meeting.meeting_Name }" /></span>
+                  <span><div class="over4"><c:out value="${meeting.meeting_Name }" /></div></span>
                   <p><c:out value="${meeting.introduce }" /></p>
                 </div>
                 <a href="/front/meeting/main?meeting_num=${meeting.meeting_Num }">View more</a>
@@ -186,7 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="notice_list">
       <c:forEach items="${list3}" var="notice" begin="0" end="4" step="1" varStatus="status">
         <ul>
-          <li class="n_li_title" style ="width:250px;">&middot;<a href="/front/notice/get?notice_num=<c:out value="${notice.notice_num}"/>"><c:out value="${notice.title}" /></a></li>
+          <li class="n_li_title" style ="width:250px;"><div class="over3">&middot;<a href="/front/notice/get?notice_num=<c:out value="${notice.notice_num}"/>"><c:out value="${notice.title}" /></a></div></li>
           <li class="n_li_date"><c:out value="${notice.write_date}" /><li>
         </ul>
       </c:forEach>
