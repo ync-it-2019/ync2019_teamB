@@ -8,6 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import com.ync.project.domain.AuthVO;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.MemberVO;
 import com.ync.project.domain.PageDTO;
+import com.ync.project.security.domain.CustomUser;
 
 import lombok.extern.log4j.Log4j;
 /**
@@ -52,8 +55,9 @@ public class AdminManagerController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/create")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerCreate() {
-
+		
 		log.info("Manager Create get page!");
 		
 	}
@@ -94,6 +98,7 @@ public class AdminManagerController {
 	  * @return call jsp view
 	  */
 	@GetMapping("/list")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminManagerList(Criteria cri, Model model) {
 
 		log.info("Manager List get page!");

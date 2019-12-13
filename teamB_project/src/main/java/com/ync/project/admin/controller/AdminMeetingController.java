@@ -77,6 +77,5 @@ public class AdminMeetingController {
 		model.addAttribute("pageMaker", new PageDTO(mcri, member_cnt));
 		
 		log.info(mcri.getListLink());
-		
 	}
 }

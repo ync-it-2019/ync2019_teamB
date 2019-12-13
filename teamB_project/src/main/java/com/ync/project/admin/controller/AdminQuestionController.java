@@ -7,6 +7,8 @@ import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import com.ync.project.admin.service.AdminQuestionService;
 import com.ync.project.domain.AnswerVO;
 import com.ync.project.domain.Criteria;
 import com.ync.project.domain.PageDTO;
+import com.ync.project.security.domain.CustomUser;
 
 import lombok.extern.log4j.Log4j;
 /**
@@ -88,12 +91,16 @@ public class AdminQuestionController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void AdminQuestionCreate(@RequestParam("question_num") Long question_num, @ModelAttribute("cri") Criteria cri, Model model) {
 		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    CustomUser user = (CustomUser) authentication.getPrincipal();
+		
 		Date date = new Date(cal.getTimeInMillis());
 		
 		log.info("Question Create get page!");
 		
 		model.addAttribute("question_num", question_num);
 		model.addAttribute("date_time", date);
+		model.addAttribute("admin_id", user);
 	}
 	
 	/**

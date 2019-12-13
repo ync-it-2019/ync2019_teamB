@@ -89,7 +89,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="row blog-grids">
 		<c:forEach items="${eventList}" var="event">
       <div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-        <div class="move" href='<c:out value="${event.event_num}" />'><img src="/resources/upload/${event.image}" class="img-fluid2" style="cursor:pointer"></div>
+        <div class="move" href='<c:out value="${event.event_num}" />'>
+        	<c:if test="${event.image ne null}">
+        		<img src="/resources/upload/${event.image}" class="img-fluid2" style="cursor:pointer">
+        	</c:if>
+        	<c:if test="${event.image eq null}">
+        		<img src="/resources/img/no_image.png" class="img-fluid2" style="cursor:pointer">
+        	</c:if>
+        </div>
 		<h4 style="cursor:pointer" class="mt-4 move" href='<c:out value="${event.event_num}" />'><c:out value="${event.title}" /></h4>
 		<ul class="blog-info mt-2">
 		 <li class="mr-4" style="margin : 50"><fmt:formatDate pattern="yyyy-MM-dd" value="${event.event_start_date}" /> ~ <fmt:formatDate pattern="yyyy-MM-dd" value="${event.event_end_date}" /></li>
