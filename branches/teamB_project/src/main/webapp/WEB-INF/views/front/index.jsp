@@ -195,7 +195,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="faq">
       <div class="faq_i"><a href="/front/question/FAQ"><img class="faq_img" src="/resources/img/faq.png"><p class="faq_font">FAQ</p></a></div>
       <div class="answer_i"><a href="/front/question/myQuestion"><img class="answer_img" src="/resources/img/answer.png"><p class="answer_font">1:1 문의</p></a></div>
-      <div class="faq_i"><img class="tell_img" src="/resources/img/tell.png"></div>
+      <div class="call_i"><img class="faq_img" src="/resources/img/call.png"><p class="call_font">Tell: 010-7443-1516</p></div>
     </div>
   </div>
 </section>
