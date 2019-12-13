@@ -74,7 +74,7 @@
 				<!-- 최근 정모글 들어가는 부분 -->
         		<div class="meeting-info-appointment-css">
           			<div class="meeting-info-appointment-css-title">
-            			<h3><a href="./appointment/get" style="color:black">${getAppointment.title}</a></h3>
+            			<h3><a href="/front/meeting/appointment/get?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointment.appointment_num}" style="color:black">${getAppointment.title}</a></h3>
           			</div>
           			<div class="meeting-info-appointment-css-date">
           				<fmt:formatDate pattern="yyyy-MM-dd" value="${getAppointment.appointment_date}" />

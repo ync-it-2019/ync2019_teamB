@@ -70,7 +70,7 @@
 					<th class="board-number-css">글번호</th>
 					<th class="board-title-css pl-4">제목</th>
 					<th class="board-date-css">작성일</th>
-					<th class="board-writer-css">정모장소</th>
+					<th class="board-appointment-css">정모장소</th>
 					<th class="board-date-css">정모일</th>
 				</tr>
 			</thead>
@@ -91,14 +91,7 @@
 
 <!-- 게시글 검색/글쓰기 -->
 <section class="mx-5 px-5">
-	<div class="input-group-css">		
-		<!-- 검색 키워드 입력창 -->
-		<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" style="width:20%">
-		<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" >찾기</button>
-		</span>
-		<!-- //검색 키워드 입력창 -->
-		
+	<div class="input-group-css">
 		<!-- 글쓰기 버튼 -->
 		<div class="input-group-btn" style="position: absolute; right: 0;">
 			<a href="./write?meeting_num=${getInfo.meeting_Num}" style="color:white"><button class="btn btn-secondary" type="button" >정모 만들기</button></a>

@@ -86,7 +86,7 @@
 				
 				<!-- 정모 참여 인원 -->
 				<div>
-					참여 인원 : 명
+					참여 인원 : ${getParticipantsCount}명
 					<table class="table table-striped">
 						<c:forEach items="${getParticipantsInfo}" var="participantsInfo" varStatus="status">
 							<tr style="text-align: center;">

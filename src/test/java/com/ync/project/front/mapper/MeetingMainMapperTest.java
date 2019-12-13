@@ -278,20 +278,20 @@ public class MeetingMainMapperTest {
 	  * @Date : 2019. 12. 12.
 	  * @작성자 : 이주현
 	  */
-	@Test
-	public void testAppointmentParticipation() {
-		
-		ParticipantsVO partipants = new ParticipantsVO();
-		
-		partipants.setMeeting_num(1L);
-		partipants.setAppointment_num(16L);
-		partipants.setParticipants_num(19L);
-		partipants.setUserid("user6");
-		
-		log.info(partipants);
-		
-		mapper.appointmentParticipation(partipants);
-	}
+//	@Test
+//	public void testAppointmentParticipation() {
+//		
+//		ParticipantsVO partipants = new ParticipantsVO();
+//		
+//		partipants.setMeeting_num(1L);
+//		partipants.setAppointment_num(16L);
+//		partipants.setParticipants_num(19L);
+//		partipants.setUserid("user6");
+//		
+//		log.info(partipants);
+//		
+//		mapper.appointmentParticipation(partipants);
+//	}
 	
 	 /**
 	  * @Method 설명 : 정모 참가자 명단 테스트
@@ -321,5 +321,19 @@ public class MeetingMainMapperTest {
 //		log.info(parti);
 //		
 //	}
+	
+	
+	 /**
+	  * @Method 설명 : 정모 참가자 인원 수 테스트
+	  * @Method Name : testGetParticipantsCount
+	  * @Date : 2019. 12. 13.
+	  * @작성자 : 이주현
+	  */
+	@Test
+	public void testGetParticipantsCount() {
+		
+		int participantsCount = mapper.getParticipantsCount(1L);
+		log.info(participantsCount);
+	}
 	
 }

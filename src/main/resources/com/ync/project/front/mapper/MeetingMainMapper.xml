@@ -23,7 +23,8 @@
 	<![CDATA[				
 		SELECT	TITLE,
 				APPOINTMENT_DATE,
-				APPOINTMENT_PLACE
+				APPOINTMENT_PLACE,
+				APPOINTMENT_NUM
 		FROM	TEAMB_APPOINTMENT
 		WHERE	MEETING_NUM = #{meeting_Num}
 				AND APPOINTMENT_NUM = ( SELECT	MAX(APPOINTMENT_NUM)
@@ -199,6 +200,15 @@
 		FROM	TEAMB_PARTICIPANTS
 		WHERE	PARTICIPANTS_NUM = (SELECT	MAX(PARTICIPANTS_NUM)
 									FROM	TEAMB_PARTICIPANTS)
+		]]>
+	</select>
+	
+	<!-- 정모 참가 인원수 -->
+	<select id="getParticipantsCount"  resultType="int">
+	<![CDATA[
+		SELECT	COUNT(*)
+		FROM	TEAMB_PARTICIPANTS
+		WHERE	APPOINTMENT_NUM = #{appointment_num}
 		]]>
 	</select>
 	

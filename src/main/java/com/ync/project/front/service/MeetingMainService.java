@@ -40,12 +40,6 @@ public interface MeetingMainService {
 	//정모 목록
 	public List<AppointmentVO> getAppointmentList(Long meeting_num);
 	
-	//정모 목록 페이징
-
-	
-	//정모 전체 갯수
-
-	
 	//정모 작성
 	public void writeAppointment(AppointmentVO appo);
 	
@@ -69,5 +63,8 @@ public interface MeetingMainService {
 	
 	//가장 큰 정모 참가자 번호
 	public ParticipantsVO getParticipantsNum();
+	
+	//모임인원수
+	public int getParticipantsCount(Long appointment_num);
 
 }

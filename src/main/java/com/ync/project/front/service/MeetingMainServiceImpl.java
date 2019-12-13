@@ -158,6 +158,14 @@ public class MeetingMainServiceImpl implements MeetingMainService {
 		
 	}
 	
+	@Override
+	public int getParticipantsCount(Long appointment_num) {
+		
+		log.info("getParticipantsCount......");
+		
+		return mapper.getParticipantsCount(appointment_num);
+	}
+	
 	
 	
 }
