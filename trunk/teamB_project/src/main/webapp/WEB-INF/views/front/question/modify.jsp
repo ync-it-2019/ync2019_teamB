@@ -76,11 +76,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-lg-14">
             <h4>1:1문의</h4>
             <hr>
-            <form role="form" action="/front/question/modify" method="post">
+            <form role="form" action="/front/question/modify" method="post" enctype="multipart/form-data">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>' />
 				<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>' />
-                <input type="hidden" name='files' value=" ">
+                <input type="hidden" name='files'>
 					<div class="form-group">
                 		문의 분류 &nbsp;
            			   <select name="category" id="selectBox">
@@ -103,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					내용<textarea name='contents' rows="10" class="form-control"><c:out value="${question.contents}"/></textarea>
 				</div>
               <div class="form-group">
-					<input type="file" name="uploadFile" value='<c:out value="${question.files}"/>'/>
+					<input type="file" class="default" name="uploadFile" value=""/>
                 	<div style="position: relative; bottom: 37px;"></div>
 			  </div>
               <div style="float: right;">
@@ -123,32 +123,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- footer -->
 <footer class="footer py-5">
-
-	<!-- //footer bottom -->
 </footer>
-<!-- //footer -->
-
-<!-- copyright -->
 <section class="copy-right py-4">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
-				</p>
-			</div>
-			<div class="col-md-4 mt-md-0 mt-4">
-				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <p class="">© YNC Japan employment class.  Team_B Project | Design by Kim Sanghun.
+            </p>
+         </div>
+         <div class="col-md-4 mt-md-0 mt-4">
+            <div class="subscribe-form">
+            </div>
+         </div>
+      </div>
+   </div>
 </section>
-<!-- copyright -->
+<!-- //footer -->
 
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>

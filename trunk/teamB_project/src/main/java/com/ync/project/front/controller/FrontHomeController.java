@@ -38,7 +38,7 @@ public class FrontHomeController {
 	  * @Date : 2019. 12. 11.
 	  * @작성자 : 조중현
 	  * @param model
-	  * @return call jsp view
+	  * @return call jsp view ("front/index")
 	  */
 	@GetMapping(value = "/")
 	public String home(Model model) {

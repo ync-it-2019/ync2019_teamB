@@ -20,7 +20,29 @@
 			document.getElementById('frm').submit();
 		}
 	}
+	
+	function appointmentWriteBtn() {
+		
+		var checkLeader = document.getElementById("meetingLeaderCheck");
+		var chackUserid = document.getElementById("useridCheck");
+		
+		//모임장인지 아닌지를 확인principal.username == 
+		if(checkLeader.value == chackUserid.value) {		//모임장일 경우 작성 페이지로 이동
+			location.href = "./write?meeting_num=${getInfo.meeting_Num}";
+		} else {	//모임장이 아닐 경우
+			alert("정모는 모임장만 만들 수 있습니다.");
+		}${meetingLeaderCheck.userid}
+	}
 </script>
+
+<!-- 링크 색깔 -->
+<style type="text/css">
+ a:link { color: red; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;}
+ a:active {color: black; text-decoration: none;}
+</style>
+<!-- //링크 색깔 -->
 
 <meta charset="UTF-8">
 </head>
@@ -70,7 +92,7 @@
 					<th class="board-number-css">글번호</th>
 					<th class="board-title-css pl-4">제목</th>
 					<th class="board-date-css">작성일</th>
-					<th class="board-writer-css">정모장소</th>
+					<th class="board-appointment-css">정모장소</th>
 					<th class="board-date-css">정모일</th>
 				</tr>
 			</thead>
@@ -91,17 +113,10 @@
 
 <!-- 게시글 검색/글쓰기 -->
 <section class="mx-5 px-5">
-	<div class="input-group-css">		
-		<!-- 검색 키워드 입력창 -->
-		<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" style="width:20%">
-		<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" >찾기</button>
-		</span>
-		<!-- //검색 키워드 입력창 -->
-		
+	<div class="input-group-css">
 		<!-- 글쓰기 버튼 -->
 		<div class="input-group-btn" style="position: absolute; right: 0;">
-			<a href="./write?meeting_num=${getInfo.meeting_Num}" style="color:white"><button class="btn btn-secondary" type="button" >정모 만들기</button></a>
+			<a href="#" onclick="appointmentWriteBtn();" style="color:white"><button class="btn btn-secondary" type="button" >정모 만들기</button></a>
 		</div>
 		<!-- //글쓰기 버튼 -->
 	</div>
@@ -110,17 +125,37 @@
 
 <!-- 페이지 버튼 -->
 <section>
-	<div class="text-center" style="margin-bottom:100px;">
-		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="#"> < </a></li>
-			<li class="page-item active"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#">5</a></li>
-			<li class="page-item"><a class="page-link" href="#"> > </a></li>
-		</ul>
-	</div>
+   <div class="text-center" style="margin-bottom:100px;" >
+      <ul class="pagination justify-content-center">
+         <c:if test="${pageMaker.prev}">
+            <li class="paginate_button previous">
+               <a class="page-link" href="/front/meeting/appointment/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${pageMaker.startPage -1}"> Previous </a>
+            </li>
+         </c:if>
+         <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+            <li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+               <a class="page-link"  href="/front/meeting/appointment/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${num}">${num}</a>
+            </li>
+         </c:forEach>
+      <c:if test="${pageMaker.next}">
+         <li class="paginate_button next">
+        	 <a class="page-link" href="/front/meeting/appointment/list?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&meeting_num=${param.meeting_num}&pageNum=${pageMaker.endPage +1 }"> Next </a>
+         </li>
+      </c:if>
+      </ul>
+   </div>
+   <!-- Form 시작 -->
+         <form id='actionForm' action="/front/meeting/appointment/list" method='get'>
+        	<input type='hidden' name='type'      value='<c:out value="${pageMaker.cri.type}"/>'>
+            <input type='hidden' name='keyword'   value='<c:out value="${pageMaker.cri.keyword}"/>'>
+            <input type='hidden' name='pageNum'   value='${pageMaker.cri.pageNum}'>
+            <input type='hidden' name='amount'    value='${pageMaker.cri.amount}'>
+         </form>
+   <!-- Form 끝 -->
+	<sec:authorize access="isAuthenticated()">
+		<input type='hidden' id='meetingLeaderCheck' value='${meetingLeaderCheck.userid}'>
+		<input type='hidden' id='useridCheck' value="<sec:authentication property="principal.username"/>">
+	</sec:authorize>
 </section>
 <!-- //페이지 버튼 -->
 

@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="row blog-grids">
 			<c:forEach items="${eventEndList}" var="eventEnd">
       			<div class="col-lg-4 col-md-6 newsgrid1" style="margin-top:30px;">
-        			<div class="move" href='<c:out value="${eventEnd.event_num}" />'><img src="/resources/img/event1.jpg" class="img-fluid2" style="cursor:pointer"></div>
+        			<div class="move" href='<c:out value="${eventEnd.event_num}" />'><img src="/resources/upload/${eventEnd.image}" class="img-fluid2" style="cursor:pointer"></div>
 					<h4 style="cursor:pointer" class="mt-4 move" href='<c:out value="${eventEnd.event_num}" />'><c:out value="${eventEnd.title}" /></h4>
 					<ul class="blog-info mt-2">
 		 				<li class="mr-4" style="margin : 50"><fmt:formatDate pattern="yyyy-MM-dd" value="${eventEnd.event_start_date}" /> ~ <fmt:formatDate pattern="yyyy-MM-dd" value="${eventEnd.event_end_date}" /></li>
@@ -122,31 +122,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- footer -->
 <footer class="footer py-5">
-	
 </footer>
+<section class="copy-right py-4">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <p class="">© YNC Japan employment class.  Team_B Project | Design by Kim Sanghun.
+            </p>
+         </div>
+         <div class="col-md-4 mt-md-0 mt-4">
+            <div class="subscribe-form">
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 <!-- //footer -->
 
-<!-- copyright -->
-<section class="copy-right py-4">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<p class="">© 2019 Furnish. All rights reserved | Design by
-					<a href="http://w3layouts.com"> W3layouts.</a>
-				</p>
-			</div>
-			<div class="col-md-4 mt-md-0 mt-4">
-				<div class="subscribe-form">
-					<form action="#" method="post" class="newsletter">
-						<input class="subscribe" type="text" placeholder="Subscribe..." required="">
-						<button class="form-control btn" value=""><span class="fa fa-long-arrow-right"></span></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- copyright -->
 <!-- move top icon -->
 <a href="#home" class="move-top text-center"></a>
 <!-- //move top icon -->

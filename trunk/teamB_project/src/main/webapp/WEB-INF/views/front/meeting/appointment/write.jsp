@@ -74,16 +74,16 @@
 			<br style="clear: both">
 			<h3 style="margin-bottom: 25px;">정모 작성</h3>
 			<div class="form-group">
-				<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" required>
+				<h4>제목</h4><input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" required>
 			</div>
 			
 			<div class="form-group">
-				<textarea class="form-control" id="summernote" name="contents" placeholder="내용을 적어주세요" maxlength="140" rows="7"></textarea>
+				<h4>내용</h4><textarea class="form-control" id="summernote" name="contents" placeholder="내용을 적어주세요" maxlength="140" rows="7"></textarea>
 			</div>
 			<div class="input-group-css">
-				<input type="date" class="form-control-appointment" name="appointment_date" required>
-				<input type="text" class="form-control-appointment" name="appointment_place" placeholder="정모 장소를 입력해주세요" required>
-				<input type="text" class="form-control-appointment" name="max_people" placeholder="정모 최대인원을 입력해주세요" required>
+				<h4>정모일&nbsp&nbsp</h4><input type="date" class="form-control-appointment" name="appointment_date" required>
+				<h4>&nbsp&nbsp정모 장소&nbsp&nbsp</h4><input type="text" class="form-control-appointment" name="appointment_place" placeholder="정모 장소를 입력해주세요" required>
+				<h4>&nbsp&nbsp정모 최대인원&nbsp&nbsp</h4><input type="text" class="form-control-appointment" name="max_people" placeholder="정모 최대인원을 입력해주세요" required>
 			</div>
 			
 			<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">

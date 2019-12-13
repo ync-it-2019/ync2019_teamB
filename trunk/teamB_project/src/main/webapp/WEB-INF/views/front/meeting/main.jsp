@@ -53,7 +53,8 @@
         <div class="meeting-menu2">
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
-          <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login"><li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a></sec:authorize>
+		  <sec:authorize access="isAuthenticated()"><li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">탈퇴하기</a></li></sec:authorize></h5>
         </div>
       </ul>
     </div>
@@ -67,6 +68,8 @@
 		<div class="info-row">
 			<div class="meeting-introduce1">
 				<div class="meeting-introduce1-info">
+					<h3>주제 / 지역 : ${getInfo.meeting_Hobby} / ${getInfo.meeting_Adress}</h3><br>
+					<h3 style="text-align:center;">모임 소개</h3>
 					${getInfo.introduce}
 				</div>
 			</div>
@@ -74,7 +77,7 @@
 				<!-- 최근 정모글 들어가는 부분 -->
         		<div class="meeting-info-appointment-css">
           			<div class="meeting-info-appointment-css-title">
-            			<h3><a href="./appointment/get" style="color:black">${getAppointment.title}</a></h3>
+            			<h3><a href="/front/meeting/appointment/get?meeting_num=${getInfo.meeting_Num}&appointment_num=${getAppointment.appointment_num}" style="color:black">${getAppointment.title}</a></h3>
           			</div>
           			<div class="meeting-info-appointment-css-date">
           				<fmt:formatDate pattern="yyyy-MM-dd" value="${getAppointment.appointment_date}" />
@@ -109,11 +112,13 @@
 <!-- //소모임 소개 -->
 
 <!-- 모임 가입 히든 폼 -->
+<sec:authorize access="isAuthenticated()">
 <form id="frm" action="/front/meeting/main?meeting_num=${getInfo.meeting_Num}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="userid" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="meeting_num" value="${getInfo.meeting_Num}">
 </form>
+</sec:authorize>
 <!-- //모임 가입 히든 폼 -->
 
 </body>

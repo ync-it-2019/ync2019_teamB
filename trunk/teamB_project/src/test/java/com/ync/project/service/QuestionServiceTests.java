@@ -29,11 +29,11 @@ public class QuestionServiceTests {
 //		assertNotNull(service);
 //	}
 	
-	@Test
-	public void testGetList() {
-
-		service.getListWithPaging(new Criteria(1, 10), "user02").forEach(board -> log.info(board));
-	}
+//	@Test
+//	public void testGetList() {
+//
+//		service.getListWithPaging(new Criteria(1, 10), "user02").forEach(board -> log.info(board));
+//	}
 	
 //	@Test
 //	public void testGet() {
@@ -57,16 +57,13 @@ public class QuestionServiceTests {
 //		log.info("생성된 게시물의 번호: " + question.getQuestion_num());
 //	}
 //
-//	@Test
-//	public void testUpdate() {
-//
-//		QuestionVO board = service.read(38L);
-//
-//		if (board == null) {
-//			return;
-//		}
-//
-//		board.setTitle("제목 수정합니다.");
-//		log.info("MODIFY RESULT: " + service.modify(board));
-//	}
+	@Test
+	public void testUpdate() {
+
+		QuestionVO board = service.read(87L);
+
+		board.setTitle("제목 수정합니다.");
+		board.setFiles("file/a.jpg");
+		log.info("MODIFY RESULT: " + service.modify(board));
+	}
 }

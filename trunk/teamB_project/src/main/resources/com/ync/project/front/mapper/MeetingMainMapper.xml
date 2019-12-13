@@ -2,7 +2,28 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ync.project.front.mapper.MeetingMainMapper">
 	
-	<sql id="criteria"></sql>
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="cri.typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{cri.keyword}||'%'  
+						</when>
+						<when test="type == 'C'.toString()">
+							contents like '%'||#{cri.keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							userid like '%'||#{cri.keyword}||'%'
+						</when>
+						<when test="type == 'G'.toString()">
+							category like '%'||#{cri.keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	
 	<!-- 모임 정보 -->
 	<select id="meeting_Read" resultType="com.ync.project.domain.MeetingVO">
@@ -23,7 +44,8 @@
 	<![CDATA[				
 		SELECT	TITLE,
 				APPOINTMENT_DATE,
-				APPOINTMENT_PLACE
+				APPOINTMENT_PLACE,
+				APPOINTMENT_NUM
 		FROM	TEAMB_APPOINTMENT
 		WHERE	MEETING_NUM = #{meeting_Num}
 				AND APPOINTMENT_NUM = ( SELECT	MAX(APPOINTMENT_NUM)
@@ -202,5 +224,71 @@
 		]]>
 	</select>
 	
+	<!-- 정모 참가 인원수 -->
+	<select id="getParticipantsCount"  resultType="int">
+	<![CDATA[
+		SELECT	COUNT(*)
+		FROM	TEAMB_PARTICIPANTS
+		WHERE	APPOINTMENT_NUM = #{appointment_num}
+		]]>
+	</select>
+	
+	<!-- 글 목록 페이징 -->
+	<select id="getListWithPaging" resultType="com.ync.project.domain.AppointmentVO">
+		<![CDATA[
+		SELECT	meeting_num,
+				appointment_num,
+				appointment_date,
+				appointment_place,
+				max_people,
+				title,
+				contents,
+				userid,
+				write_date
+		FROM	(SELECT /*+INDEX_DESC(teamb_appointment xpkteamb_appointment) */
+        				rownum rn,
+        				meeting_num,
+        				appointment_num,
+						appointment_date,
+						appointment_place,
+						max_people,
+						title,
+						contents,
+						userid,
+						write_date
+      			FROM	teamb_appointment
+				WHERE   meeting_num = #{meeting_num}
+				AND 
+				]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[  
+      			rownum <= #{cri.pageNum} * #{cri.amount}
+      			) 
+  				WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
+  		  		AND   meeting_num = #{meeting_num}
+  		]]>
+	</select>
+
+
+	<select id="getTotalCount" resultType="int">
+		SELECT	count(*)
+		FROM	teamb_appointment
+		WHERE
+		<include refid="criteria"></include> 
+			   meeting_num = #{meeting_num}
+		AND    appointment_num > 0
+	</select>
+	
+	<!-- 모임장 확인 -->
+	<select id="meetingLeaderCheck" resultType="com.ync.project.domain.Meeting_MemberVO">
+	<![CDATA[
+		SELECT		userid
+		FROM		teamb_meeting_member
+		WHERE		join_date = (	SELECT	MIN(join_date)
+									FROM	teamb_meeting_member
+									WHERE	meeting_num = #{meeting_num})
+		]]>
+	</select>
 	
 </mapper>

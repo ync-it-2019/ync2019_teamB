@@ -126,15 +126,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="user_find">
         <a class="btn_join" href="/register">회원가입</a>
       </div>
-      <div class="arti1">#<a href="/front/myMeeting">나만의 모임</a></div>
-      <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
-      <div class="arti3">#<a href="/front/meetingSearch">취미 생활 크루 찾기</a></div>
+      <div class="arti1">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">나만의 모임</a></div>
+          <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
+          <div class="arti3">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">취미 생활 크로 활동</a></div>
     </div>
   </div>
   </sec:authorize>
   
   <sec:authorize access="isAuthenticated()">
-
+	<div class="aside">
+    <div class="login_area" style="margin-top:15px;">
+    <div class="letter">
+      	<p>"모임을 개설해 자신만의 모임을 만들어 보세요!"</p>
+      </div>
+    <div style="border: 1px solid #ccc; width: 290px; height: 120px; margin-top:10px;" class="login_box">
+    <div style="display:black; width: 290px; height: 80px;">
+    <sec:authentication property="principal.username" var="userId"/>
+    <c:forEach items="${member}" var="member" varStatus="status">
+    <c:if test="${member.userid eq userId}">
+    <c:choose>
+    <c:when test="${member.profile == ' ' }">
+    <img style="border-radius: 50%; border:1px solid; float:left; width: 70px; height: 70px; display: inline-block; color:#ccc; margin:10px 10px 10px 10px;" src="/resources/img/man.png">
+    </c:when>
+    <c:otherwise>
+    <img style="border-radius: 50%; border:1px solid; float:left; width: 70px; height: 70px; display: inline-block; color:#ccc; margin:10px 10px 10px 10px;" src="/resources/upload/<c:out value="${member.profile}" />">
+    </c:otherwise>
+    </c:choose>
+    <div style="display: inline-block; float:left; padding-top:13px; width:85px;"><c:out value="${member.name}" /> 님</div>
+    <div style="float:left; width:300px;">
+    	<div style="margin-left:90px; margin-top:-50px;">지역 : <c:out value="${member.adress}" /></div>
+    	<div style="margin-left:90px;">취미 : <c:out value="${member.hobby}" /></div>
+    </div>
+    </div>
+    <div class="logout" align="right" style="font-size:12px; margin-right:25px; margin-top:10px;">
+      <a style="color:black;" href="/front/myPage/info">내정보</a>
+    </c:if>
+    </c:forEach>
+       <a style="margin-left:5px; color:black;" href="/customLogout">로그아웃</a>
+        </div>
+        </div>
+        <div class="login">
+          <button class="login_btn" style="background-color:#708041;" onclick="location.href='/front/meeting/meetingCreate' ">
+            	모임 개설
+          </button>
+        </div>
+    </div>
+  </div>
   </sec:authorize>
   <!-- aside end -->
 </section>
@@ -177,6 +214,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 </footer>
+<section class="copy-right py-4">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <p class="">© YNC Japan employment class.  Team_B Project | Design by Seo Yeongjyun.
+            </p>
+         </div>
+         <div class="col-md-4 mt-md-0 mt-4">
+            <div class="subscribe-form">
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 	<!-- //footer bottom -->
 
 
