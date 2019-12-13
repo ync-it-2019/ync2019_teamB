@@ -59,11 +59,8 @@ public class MeetingController {
 		log.info("Meeting Info page!");
 		
 		model.addAttribute("getInfo", service2.getInfo(meeting_num));
-		
 		model.addAttribute("getAppointment", service2.getAppointment(meeting_num));
-		
 		model.addAttribute("getMemberList", service2.getMemberList(meeting_num));
-		
 		model.addAttribute("getCount", service2.getCount(meeting_num));
 
 	}
@@ -261,7 +258,7 @@ public class MeetingController {
 	
 	//소모임 정모 상세
 	@GetMapping(value = "/appointment/get")
-	public void appointmentGet(Model model, @RequestParam("meeting_num") Long meeting_num, @RequestParam("appointment_num") Long appointment_num) {
+	public void appointmentGet(Model model, ParticipantsVO parti, @RequestParam("meeting_num") Long meeting_num, @RequestParam("appointment_num") Long appointment_num) {
 		
 		log.info("Meeting appointment get page!");
 		
@@ -279,7 +276,7 @@ public class MeetingController {
 
 		log.info("appointmentDelete..." + appo.getAppointment_num());
 		
-		service2.appointmentDelete(appointment_num);		
+		service2.appointmentDelete(appointment_num);
 		
 		return "redirect:/front/meeting/appointment/list?meeting_num="+appo.getMeeting_num();
 	}

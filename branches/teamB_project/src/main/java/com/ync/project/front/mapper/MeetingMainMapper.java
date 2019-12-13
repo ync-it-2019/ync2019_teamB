@@ -78,4 +78,7 @@ public interface MeetingMainMapper {
 	
 	//모임장 확인
 	public Meeting_MemberVO meetingLeaderCheck(Long meeting_num);
+	
+	//정모 참가자 확인
+	public void participantsCheck(ParticipantsVO parti);
 }
