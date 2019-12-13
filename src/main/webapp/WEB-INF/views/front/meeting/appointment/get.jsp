@@ -53,8 +53,16 @@
         <div class="meeting-menu2">
           <li class="mr-3 ml-3 mt-3 mb-3"><a href="/front/meeting/meetingModify?meeting_num=${getInfo.meeting_Num}">수정하기</a>
           </li>
-          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login"><li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a></sec:authorize>
-		  <sec:authorize access="isAuthenticated()"><li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">탈퇴하기</a></li></sec:authorize></h5>
+			<!-- 가입버튼 비로그인 시 -->
+          <sec:authorize access="isAnonymous()"><a onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');" href="/login">
+         	 <li class="mr-3 ml-3 mt-3 mb-3">가입하기</li></a>
+          </sec:authorize>
+			<!-- 가입버튼 로그인 시 -->	
+		  <sec:authorize access="isAuthenticated()">
+		 	 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="meetingJoin();">가입하기</a></li>
+		  	 <li class="mr-3 ml-3 mt-3 mb-3"><a href="#" onclick="outMeeting();">탈퇴하기</a></li>
+		  </sec:authorize> 
+
         </div>
       </ul>
     </div>
