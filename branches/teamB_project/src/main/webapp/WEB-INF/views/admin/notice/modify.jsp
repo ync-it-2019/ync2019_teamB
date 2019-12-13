@@ -53,6 +53,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <form id="updateForm" role="form-horizontal" action="/admin/notice/modify" method="post"  enctype="multipart/form-data">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name="notice_num" value="${notice.notice_num}"/>
+                    <c:choose>
+       					<c:when test="${not empty notice.files}">
+           					<div class="form-group">
+           						<label class="" style="margin-right:20px;">대표 이미지</label>
+								<a href="/resources/upload/${notice.files}" target="_blank"><img class="notice_img" style="display:inline;" src="/resources/upload/${notice.files}"></a>
+								<input type="hidden" name="image" value="${notice.files}">
+       						</div>
+       					</c:when>
+       					<c:otherwise>
+       						<div class="form-group">
+								<input type="hidden" name="image" value="">
+								<input type="hidden" name="banner_image" value="">
+							</div>
+		        		</c:otherwise>
+  	 				</c:choose>
                       <div class="form-group">
                         <label for="to" class="">제목:</label>
                         <input type="text" tabindex="1" id="to" class="form-control" name="title" value="${notice.title}">
@@ -72,9 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       </div>
                         <div class="compose-editor">
                           <textarea class="wysihtml5 form-control" name="contents" rows="9">${notice.contents}</textarea>
-                          </textarea>
-                          <input type="file" class="default" name="uploadFile" value="${notice.files}">
-                          <input type="hidden" class="default" name="Files">
+                          <input type="file" class="default" name="uploadFile" value=""/>
                         </div>
                         <div class="center">
                           <button type="button" class="btn btn-primary btn-sm" data-oper='update'><i class="fa fa-check"></i> 완료</button>
