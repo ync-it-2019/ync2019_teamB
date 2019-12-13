@@ -95,8 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                   </form>
                 </div>
-
-
+                <!--  
                 <div class="panel-body">
                   <div class="position-center ">
                     <div class="text-center">
@@ -366,6 +365,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                   </div>
                 </div>
+                 -->
               </section>
             </div>
           </div>
