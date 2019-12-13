@@ -141,20 +141,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>
     <div style="border: 1px solid #ccc; width: 290px; height: 120px; margin-top:10px;" class="login_box">
     <div style="display:black; width: 290px; height: 80px;">
-    <img style="border-radius: 50%; border:1px solid; float:left; width: 70px; height: 70px; display: inline-block; color:#ccc; margin:10px 10px 10px 10px;" src="/resources/img/no_img.jpg">
-    <div style="display: inline-block; float:left; padding-top:13px; width:85px;">(이름) 님</div>
-    <div style="float:left; padding-top:10px;">
-    	<div style="display: inline-block;">지역 : </div>
-    	<div style="display: inline-block; margin-left:30px;">취미 : </div>
+    <sec:authentication property="principal.username" var="userId"/>
+    <c:forEach items="${member}" var="member" varStatus="status">
+    <c:if test="${member.userid eq userId}">
+    <c:choose>
+    <c:when test="${member.profile == ' ' }">
+    <img style="border-radius: 50%; border:1px solid; float:left; width: 70px; height: 70px; display: inline-block; color:#ccc; margin:10px 10px 10px 10px;" src="/resources/img/man.png">
+    </c:when>
+    <c:otherwise>
+    <img style="border-radius: 50%; border:1px solid; float:left; width: 70px; height: 70px; display: inline-block; color:#ccc; margin:10px 10px 10px 10px;" src="/resources/upload/<c:out value="${member.profile}" />">
+    </c:otherwise>
+    </c:choose>
+    <div style="display: inline-block; float:left; padding-top:13px; width:85px;"><c:out value="${member.name}" /> 님</div>
+    <div style="float:left; width:300px;">
+    	<div style="margin-left:90px; margin-top:-50px;">지역 : <c:out value="${member.adress}" /></div>
+    	<div style="margin-left:90px;">취미 : <c:out value="${member.hobby}" /></div>
     </div>
     </div>
     <div class="logout" align="right" style="font-size:12px; margin-right:25px; margin-top:10px;">
-      <a style="color:black;" href="#">정보수정</a>
+      <a style="color:black;" href="/front/myPage/info">내정보</a>
+    </c:if>
+    </c:forEach>
        <a style="margin-left:5px; color:black;" href="/customLogout">로그아웃</a>
         </div>
         </div>
         <div class="login">
-          <button class="login_btn" style="background-color:#708041;" onclick="location.href='/login' ">
+          <button class="login_btn" style="background-color:#708041;" onclick="location.href='/front/meeting/meetingCreate' ">
             	모임 개설
           </button>
         </div>
@@ -202,6 +214,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 </footer>
+<section class="copy-right py-4">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <p class="">© YNC Japan employment class.  Team_B Project | Design by Seo Yeongjyun.
+            </p>
+         </div>
+         <div class="col-md-4 mt-md-0 mt-4">
+            <div class="subscribe-form">
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 	<!-- //footer bottom -->
 
 
