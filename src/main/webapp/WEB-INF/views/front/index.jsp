@@ -126,9 +126,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="user_find">
         <a class="btn_join" href="/register">회원가입</a>
       </div>
-      <div class="arti1">#<a href="/front/myMeeting">나만의 모임</a></div>
-      <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
-      <div class="arti3">#<a href="/front/meetingSearch">취미 생활 크루 찾기</a></div>
+      <div class="arti1">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">나만의 모임</a></div>
+          <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
+          <div class="arti3">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">취미 생활 크로 활동</a></div>
     </div>
   </div>
   </sec:authorize>

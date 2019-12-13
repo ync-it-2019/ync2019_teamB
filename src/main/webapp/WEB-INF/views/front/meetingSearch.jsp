@@ -152,6 +152,10 @@
           <div class="user_find">
             <a class="btn_join" href="/register">회원가입</a>
           </div>
+          <hr>
+          <div class="arti1">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">나만의 모임</a></div>
+          <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
+          <div class="arti3">#<a href="/login" onClick="alert('로그인 시 이용 가능합니다. 로그인 해주세요.');">취미 생활 크로 활동</a></div>
        </sec:authorize>
        <sec:authorize access="isAuthenticated()">
        <div class="profile">
@@ -185,11 +189,11 @@
               </ul>
             </div>
           </div>
-          </sec:authorize>
           <hr>
           <div class="arti1">#<a href="/front/meeting/meetingCreate">나만의 모임</a></div>
           <div class="arti2">#<a href="/front/meetingSearch">인맥 쌓기</a></div>
           <div class="arti3">#<a href="/front/myMeeting">취미 생활 크로 활동</a></div>
+          </sec:authorize>
           <div class="notice">
             <a href="/front/notice/list" class="plus">+더보기</a>
             <p>공지사항</p>
