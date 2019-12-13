@@ -49,6 +49,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </header>
                 <div class="panel-body">
                   <div class="compose-mail">
+                  	  <div class="form-group">
+                        <label class="" style="margin-right:20px;">대표 이미지</label>
+                        <img class="notice_img" src="/resources/upload/<c:out value="${notice.files}" />" alt="" style="display:inline;">
+                      </div>
                       <div class="form-group">
                         <label class="">제목:</label>
                         ${notice.title}
@@ -59,17 +63,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       </div>
                       <div class="compose-editor">
                         <textarea class="wysihtml5 form-control" rows="9" readonly>${notice.contents}</textarea>
-                        <div class="form-group">
-                          <label class="">첨부:</label>
-                          <c:choose>
-       						<c:when test="${not empty notice.files}">
-           						<p class="form-control">${notice.files}</p>
-       						</c:when>
-       						<c:otherwise>
-       							<p class="form-control">첨부된 파일이 없습니다.</p>
-		        			</c:otherwise>
-  	 					  </c:choose>
-                        </div>
                       </div>
                       <div class="center">
                         <button class="btn btn-primary btn-sm" data-oper='modify'>수정</button>
